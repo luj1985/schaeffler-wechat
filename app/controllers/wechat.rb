@@ -1,14 +1,12 @@
-require 'crack'
 require '_wechat'
 
 SchaefflerWechat::App.controllers :wechat do
   register Wechat::Events
 
   #TODO: should split wechat communication code
-  wechat :menu, :with => 'activity' do
-
+  wechat_event :click, :event_key => 'activity' do
   end
 
-  wechat :text do
+  wechat_event :click, :event_key => 'challenge' do
   end
 end

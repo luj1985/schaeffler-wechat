@@ -2,7 +2,7 @@ module Wechat
   module Events
     class << self
       def registered app
-        handler = Hash.new
+        event_handlers = Hash.new
 
         app.get :index do
           token = ENV["WECHAT_TOKEN"] || 'test'
@@ -12,23 +12,35 @@ module Wechat
 
         app.post :index do
           content_type :xml
-          doc = Crack::XML.parse(request.body.read)
-          hash = doc["xml"]
-          type = hash["MsgType"]
-          event = hash["Event"] || ""
-          if hash["MsgType"] == "event" and event.downcase == "click" then
-            openid = hash["FromUserName"]
-            key = hash["EventKey"]
+          dom = Nokogiri::XML(request.body.read)
+          hash = dom.root.element_children.each_with_object(Hash.new) do |e, h|
+            name = e.name.gsub(/(.)([A-Z])/,'\1_\2').downcase
+            h[name.to_sym] = e.content
           end
-          openid || ""
+          type = hash[:msg_type].to_sym
+          case type
+          when :event
+            event = hash[:event].to_sym
+            handlers = event_handlers[event] || []
+            handler = handlers.find do |handler|
+              handler[:condition].call(hash)
+            end
+            handler[:proc].call(hash)
+          else
+            halt 501, "Cannot handle this kind of message #{type}"
+          end
         end
 
-        metaclass = class << app; self; end
-
-        metaclass.instance_eval do
-          define_method :wechat do |event, with = nil, &blk|
-            puts "event is #{event}"
-            puts "with is #{with}"
+        controller = class << app; self; end
+        controller.instance_eval do
+          # TODO: add other message type
+          define_method :wechat_event do |event, condition = nil, &blk|
+            event_handlers[event] ||= Array.new
+            task = {:proc => blk}
+            task.merge!(:condition => lambda {|hash|
+              condition.all? { |k, v| condition[k] == v }
+            }) if condition.present?
+            event_handlers[event] << task
           end
         end
       end
