@@ -25,6 +25,8 @@ module Wechat
           case type
           when :event
             event = hash[:event].to_sym
+            puts "event_handlers #{event_handlers.inspect}"
+            puts "hash #{hash}"
             handlers = event_handlers[event] || []
             handler = handlers.find do |handler|
               handler[:condition].call(hash)
