@@ -29,10 +29,15 @@ module Wechat
             handler = handlers.find do |handler|
               handler[:condition].call(hash)
             end
-            halt 501, "not handler" if handler.nil?
-            handler[:proc].call(hash)
+            if handler.nil? then
+              puts "handler is not defined"
+              return "" 
+            else 
+              handler[:proc].call(hash)
+            end 
           else
-            halt 501, "Cannot handle this kind of message #{type}"
+            puts "Cannot handle this kind of message #{type}"
+            return ""
           end
         end
 
