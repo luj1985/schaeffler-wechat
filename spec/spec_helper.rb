@@ -22,6 +22,6 @@ def app(app = nil, &blk)
 end
 
 
-app SchaefflerWechat::App do
-	set :protect_from_csrf, false
-end
+# app SchaefflerWechat::App do
+# 	set :protect_from_csrf, false
+# end

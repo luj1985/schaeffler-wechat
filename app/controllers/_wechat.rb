@@ -7,18 +7,11 @@ module Wechat
         app.get :index do
           token = ENV["WECHAT_TOKEN"] || 'test'
           raw = [token, params[:timestamp], params[:nonce]].compact.sort.join
-          echostr = Digest::SHA1.hexdigest(raw) == params[:signature] ? params[:echostr] : ""
-
-          puts "echo string is #{echostr}"
-          
-          echostr
+          Digest::SHA1.hexdigest(raw) == params[:signature] ? params[:echostr] : ""
         end
 
         app.post :index do
           content_type :xml
-
-          puts request.body.read
-
           dom = Nokogiri::XML(request.body.read)
           hash = dom.root.element_children.each_with_object(Hash.new) do |e, h|
             name = e.name.gsub(/(.)([A-Z])/,'\1_\2').downcase

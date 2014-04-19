@@ -28,7 +28,7 @@ describe "WechatController" do
   context "menu push event support" do
     let (:body) {
       <<-EOF
-<xml>;
+<xml>
   <ToUserName>target wechat id</ToUserName>
   <FromUserName>client open id</FromUserName>
   <CreateTime>123456789</CreateTime>
