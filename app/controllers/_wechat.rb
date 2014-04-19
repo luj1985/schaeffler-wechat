@@ -7,7 +7,11 @@ module Wechat
         app.get :index do
           token = ENV["WECHAT_TOKEN"] || 'test'
           raw = [token, params[:timestamp], params[:nonce]].compact.sort.join
-          Digest::SHA1.hexdigest(raw) == params[:signature] ? params[:echostr] : ""
+          echostr = Digest::SHA1.hexdigest(raw) == params[:signature] ? params[:echostr] : ""
+
+          puts "echo string is #{echostr}"
+          
+          echostr
         end
 
         app.post :index do
@@ -31,7 +35,7 @@ module Wechat
             response = handler[:proc].call(hash)
 
             puts response
-            
+
             response
           else
             halt 501, "Cannot handle this kind of message #{type}"
