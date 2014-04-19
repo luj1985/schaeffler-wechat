@@ -12,6 +12,9 @@ module Wechat
 
         app.post :index do
           content_type :xml
+
+          puts request.body.read
+
           dom = Nokogiri::XML(request.body.read)
           hash = dom.root.element_children.each_with_object(Hash.new) do |e, h|
             name = e.name.gsub(/(.)([A-Z])/,'\1_\2').downcase
@@ -25,7 +28,11 @@ module Wechat
             handler = handlers.find do |handler|
               handler[:condition].call(hash)
             end
-            handler[:proc].call(hash)
+            response = handler[:proc].call(hash)
+
+            puts response
+            
+            response
           else
             halt 501, "Cannot handle this kind of message #{type}"
           end
