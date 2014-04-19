@@ -33,7 +33,7 @@ describe "WechatController" do
   <CreateTime>123456789</CreateTime>
   <MsgType>event</MsgType>
   <Event>click</Event>
-  <EventKey>source key</EventKey>
+  <EventKey>activity</EventKey>
 </xml>
 EOF
     }
@@ -45,6 +45,11 @@ EOF
     it "return activity url" do
       last_response.should be_ok
       last_response.should have_content_type('application/xml').with_charset('utf-8')
+      last_response.body.should include("<ToUserName>client open id</ToUserName>")
+      last_response.body.should include("<FromUserName>target wechat id</FromUserName>")
+      last_response.body.should include("<MsgType>news</MsgType>")
+      last_response.body.should include("<ArticleCount>1</ArticleCount>")
     end
+
   end
 end
