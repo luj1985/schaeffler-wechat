@@ -3,6 +3,7 @@
     %h1 Activity
   %div{'data-role' => 'content'}
     %form
+      %p= session[:openid]
       %input{:type => 'number'}
       %input{:type => 'submit', :value => 'Submit'}
     .activity-rules
