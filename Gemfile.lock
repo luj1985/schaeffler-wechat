@@ -109,6 +109,7 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     rack (1.5.2)
+    rack-env (0.1.3)
     rack-less (3.0.2)
       less (~> 2.0)
       rack (~> 1.0)
@@ -161,6 +162,7 @@ DEPENDENCIES
   haml
   less
   padrino (= 0.12.1)
+  rack-env
   rack-less
   rack-test
   rake

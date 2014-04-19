@@ -2,6 +2,7 @@ module SchaefflerWechat
   class App < Padrino::Application
     register LessInitializer
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
+    use Rack::Env
     register Padrino::Mailer
     register Padrino::Helpers
 

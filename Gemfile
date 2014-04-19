@@ -25,6 +25,8 @@ gem 'sqlite3'
 gem 'rspec', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
+gem 'rack-env'
+
 # Padrino Stable Gem
 gem 'padrino', '0.12.1'
 
