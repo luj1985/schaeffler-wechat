@@ -11,4 +11,17 @@ SchaefflerWechat::App.controllers :wechat do
 
     hash == signature ? params[:echostr] : ""
   end
+
+  post :index do
+    content_type :xml
+    doc = Crack::XML.parse(request.body.read)
+    hash = doc["xml"]
+    type = hash["MsgType"]
+    event = hash["Event"] || ""
+    if hash["MsgType"] == "event" and event.downcase == "click" then
+      openid = hash["FromUserName"]
+      key = hash["EventKey"]
+    end
+    openid || ""
+  end
 end
