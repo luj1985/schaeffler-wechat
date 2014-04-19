@@ -1,3 +1,5 @@
+
+
 module SchaefflerWechat
   class App < Padrino::Application
     register LessInitializer
@@ -5,6 +7,7 @@ module SchaefflerWechat
     use Rack::Env
     register Padrino::Mailer
     register Padrino::Helpers
+    
 
     enable :sessions
 

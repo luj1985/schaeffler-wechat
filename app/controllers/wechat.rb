@@ -1,27 +1,14 @@
-SchaefflerWechat::App.controllers :wechat do  
-  get :index do
-    signature = params[:signature]
-    timestamp = params[:timestamp]
-    nonce = params[:nonce]
+require 'crack'
+require '_wechat'
 
-    token = ENV["token"] || 'test'
+SchaefflerWechat::App.controllers :wechat do
+  register Wechat::Events
 
-    raw = [token, timestamp, nonce].compact.sort.join
-    hash = Digest::SHA1.hexdigest(raw)
+  #TODO: should split wechat communication code
+  wechat :menu, :with => 'activity' do
 
-    hash == signature ? params[:echostr] : ""
   end
 
-  post :index do
-    content_type :xml
-    doc = Crack::XML.parse(request.body.read)
-    hash = doc["xml"]
-    type = hash["MsgType"]
-    event = hash["Event"] || ""
-    if hash["MsgType"] == "event" and event.downcase == "click" then
-      openid = hash["FromUserName"]
-      key = hash["EventKey"]
-    end
-    openid || ""
+  wechat :text do
   end
 end

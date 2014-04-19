@@ -6,7 +6,6 @@ RSpec.configure do |conf|
 end
 
 Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f }
-
 # You can use this method to custom specify a Rack app
 # you want rack-test to invoke:
 #

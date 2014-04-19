@@ -15,7 +15,7 @@ describe "WechatController" do
     }
     
     before do
-      get "/wechat", params, rack_env = {:token => 'wechat-test-token'}
+      get "/wechat", params, rack_env = {"WECHAT_TOKEN" => 'wechat-test-token'}
     end
 
     it "return echo string" do
@@ -27,7 +27,7 @@ describe "WechatController" do
   context "menu push event support" do
     let (:body) {
       <<-EOF
-<xml>
+<xml>;
   <ToUserName>target wechat id</ToUserName>
   <FromUserName>client open id</FromUserName>
   <CreateTime>123456789</CreateTime>
