@@ -13,7 +13,6 @@ module Wechat
         app.post :index do
           content_type :xml
           body = request.body.read || ""
-          return "" if params[:signature] # sometimes wechat will post signature to this endpoint
           
           halt 404, "unknown post body" if body.empty?
 
