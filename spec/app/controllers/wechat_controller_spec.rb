@@ -6,8 +6,9 @@ describe "WechatController" do
     let (:echostr) {
       'wechat echostr'
     }
+    
     let(:params) { {
-      :signature => '4a18c8f02ff399dcaa5ebd8f1fe190cd0c36a25f', 
+      :signature => '80862eb64cfeb6f419f98dd6a089ce54962502cb', 
       :timestamp => '20140419', 
       :nonce => 'nonce', 
       :echostr => echostr
@@ -15,7 +16,7 @@ describe "WechatController" do
     }
     
     before do
-      get "/wechat", params, rack_env = {"WECHAT_TOKEN" => 'wechat-test-token'}
+      get "/wechat", params, rack_env = {"WECHAT_TOKEN" => 'test'}
     end
 
     it "return echo string" do
