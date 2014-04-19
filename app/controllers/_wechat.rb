@@ -37,7 +37,7 @@ module Wechat
           type = hash[:msg_type].downcase.to_sym
           case type
           when :event
-            event = hash[:event].downcase.to_sym\
+            event = hash[:event].downcase.to_sym
             handlers = event_handlers[event] || []
             handler = handlers.find do |handler|
               handler[:condition].call(hash)
