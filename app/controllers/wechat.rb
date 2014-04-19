@@ -5,8 +5,6 @@ SchaefflerWechat::App.controllers :wechat do
 
   wechat_event :click, :event_key => 'activity' do |hash|
     host = ENV['WECHAT_HOST']
-    activity_path = url_for(:activity, :index)
-    image_path = '/images/activity/activity.jpg'
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.xml {
         xml.ToUserName hash[:from_user_name]
@@ -18,8 +16,8 @@ SchaefflerWechat::App.controllers :wechat do
           xml.item {
             xml.Title "Welcome to join Schaeffler activity"
             xml.Description "This is Schaeffler test activity"
-            xml.PicUrl URI.join(host, image_path)
-            xml.Url URI.join(host, activity_path)
+            xml.PicUrl URI.join(host, '/images/activity/activity.jpg')
+            xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
           }
         }
       }

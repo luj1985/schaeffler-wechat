@@ -29,8 +29,8 @@ describe "WechatController" do
     let (:body) {
       <<-EOF
 <xml>
-  <ToUserName>target wechat id</ToUserName>
-  <FromUserName>client open id</FromUserName>
+  <ToUserName>targetwechatid</ToUserName>
+  <FromUserName>clientopenid</FromUserName>
   <CreateTime>123456789</CreateTime>
   <MsgType>event</MsgType>
   <Event>click</Event>
@@ -46,8 +46,8 @@ EOF
     it "return activity url" do
       last_response.should be_ok
       last_response.should have_content_type('application/xml').with_charset('utf-8')
-      last_response.body.should include("<ToUserName>client open id</ToUserName>")
-      last_response.body.should include("<FromUserName>target wechat id</FromUserName>")
+      last_response.body.should include("<ToUserName>clientopenid</ToUserName>")
+      last_response.body.should include("<FromUserName>targetwechatid</FromUserName>")
       last_response.body.should include("<MsgType>news</MsgType>")
       last_response.body.should include("<ArticleCount>1</ArticleCount>")
     end

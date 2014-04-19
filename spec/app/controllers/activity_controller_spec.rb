@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe "ActivityController" do
   before do
-    get "/activity"
+    get "/activity/thisisopenid"
   end
 
-  it "returns hello world" do
-    last_response.body.should == "Hello World"
+  it "access home page" do
+    last_response.should be_ok
   end
 end

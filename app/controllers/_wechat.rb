@@ -27,6 +27,7 @@ module Wechat
         app.post :index do
           content_type :xml
           body = request.body.read || ""
+          # TODO validate post message signature
           halt 501, "unknown post body" if body.empty?
 
           doc = Nokogiri::XML(body).root

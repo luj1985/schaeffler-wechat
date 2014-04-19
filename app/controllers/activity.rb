@@ -18,9 +18,11 @@ SchaefflerWechat::App.controllers :activity do
   # get '/example' do
   #   'Hello world!'
   # end
+
   
-  get :index do
-    'Hello World'
+  get :index, :with => :openid do
+    openid = session[:openid] = params[:openid]
+    render :home
   end
 
   post :challenge do
