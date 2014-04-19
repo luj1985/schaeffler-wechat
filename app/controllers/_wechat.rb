@@ -21,10 +21,10 @@ module Wechat
             name = e.name.gsub(/(.)([A-Z])/,'\1_\2').downcase
             h[name.to_sym] = e.content
           end
-          type = hash[:msg_type].to_sym
+          type = hash[:msg_type].downcase.to_sym
           case type
           when :event
-            event = hash[:event].to_sym
+            event = hash[:event].downcase.to_sym
             puts "event_handlers #{event_handlers.inspect}"
             puts "hash #{hash}"
             handlers = event_handlers[event] || []
