@@ -37,6 +37,8 @@ group :development, :test do
 	gem 'guard-rspec'
 end
 
+gem 'unicorn'
+
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 
