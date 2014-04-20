@@ -1,0 +1,12 @@
+zh_cn:
+  models:
+    lottery:
+      name: 奖品
+      attributes:
+        id: 编号
+        name: 奖品名称
+        tel: 充值号码
+        created_at: 创建时间
+        updated_at: 更新时间
+        serial: 抽奖号码
+        crypted_serial: 加密后的抽奖号码

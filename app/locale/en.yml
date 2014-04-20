@@ -1,0 +1,14 @@
+en:
+  home:
+    title: Schaeffler China
+  activity:
+    home:
+      title: Lucky draw
+      test: Serial number for test
+      serial:
+        placeholder: Please enter your serial number
+      submit: Submit
+    result: 
+      title: Personal Information
+      thanks: Congrantulations, you gained %{name}!
+      save: Save

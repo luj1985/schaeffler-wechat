@@ -1,0 +1,13 @@
+zh_cn:
+  models:
+    user:
+      name: 微信用户
+      attributes:
+        id: 编号
+        openid: OpenID
+        tel: 联系电话
+        name: 姓名
+        workshop: 修理厂名称
+        workshop_address: 修理厂地址
+        created_at: 创建时间
+        updated_at: 更新时间

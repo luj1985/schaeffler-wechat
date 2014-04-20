@@ -1,14 +1,17 @@
-%div{'data-role' => 'page', :id => "activity", :class => 'noshadow' }
+- content_for :assets do
+  =stylesheet_link_tag 'activity/activity'
+
+%div{'data-role' => 'page', :id => "activity" }
   %div{'data-role' => 'header'}
-    %h1 Activity
+    .logo-name
+    .logo-icons
+  %img{:src => '/images/innovation_intro_header.jpg', :width => '100%'}
   %div{'data-role' => 'content'}
-    %img{:src => '/images/activity/innovation_intro_header.jpg'}
-    %form
-      %p= session[:openid]
-      %input{:type => 'number', 
-            'data-corner' => 'false',
-            'data-shadow' => 'false' }
-      %input{:type => 'submit', :value => 'Submit'}
+    =form_for :lottery, url(:activity, :challenge) do |f|
+      = f.text_field_block :serial, :type => "number", 
+        :placeholder => t('activity.home.serial.placeholder'),
+        :required => 'required'
+      = f.submit_block t('activity.home.submit'), 'data-mini' => "true"
     .activity-rules
       %p 活动流程:
       %ul

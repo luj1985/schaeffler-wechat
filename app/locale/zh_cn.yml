@@ -1,0 +1,14 @@
+zh_cn:
+  home:
+    title: 舍弗勒中国
+  activity:
+    home:
+      title: 抽奖活动
+      test: 测试用的中奖号码
+      serial:
+        placeholder: 请输入抽奖号码
+      submit: 提交
+    result: 
+      title: 填写个人信息
+      thanks: 恭喜你获得%{name}！
+      save: 保存

@@ -1,0 +1,12 @@
+en:
+  models:
+    lottery:
+      name: Lottery
+      attributes:
+        id: Id
+        name: Name
+        tel: Tel
+        created_at: Created at
+        updated_at: Updated at
+        serial: Serial
+        crypted_serial: Crypted serial
