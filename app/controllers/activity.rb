@@ -1,5 +1,5 @@
 SchaefflerWechat::App.controllers :activity do
-  get :index, :with => :openid do
+  get :index do
   	@page_id = "activity"
     openid = session[:openid] = params[:openid]
     render :index
@@ -11,9 +11,10 @@ SchaefflerWechat::App.controllers :activity do
   	@lottery = Lottery.find_by_crypted_serial crypted_serial
     if @lottery then
       if not @lottery.available? then
-        @error = "This serial number has already been exchanged"
+        @error = t('activity.result.used')
         render :error
       else
+        @lottery.status = 'EXCHANGING'
         @lottery.serial = serial
         # TODO: should redirect page if open id is not defined
         openid = session[:openid]
@@ -29,7 +30,13 @@ SchaefflerWechat::App.controllers :activity do
   end
 
   post :save do
-
+    @lottery = Lottery.find_by_id(params[:id])
+    halt 404 unless @lottery
+    @lottery.status = 'USED'
+    if @lottery.update(params[:lottery])
+      redirect url(:activity, :index)
+    else
+      render :profile
+    end
   end
-
 end

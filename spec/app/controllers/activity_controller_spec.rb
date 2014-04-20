@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "ActivityController" do
   before do
-    get "/activity/thisisopenid"
+    get "/activity?openid=thisisopenid"
   end
 
   it "access home page" do

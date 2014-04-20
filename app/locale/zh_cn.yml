@@ -12,3 +12,5 @@ zh_cn:
       title: 填写个人信息
       thanks: 恭喜你获得%{name}，请完成以下信息以方便我们联系
       save: 保存
+      missing: 您的号码没有中奖，感谢您的参与
+      used: 该奖卷已经被使用

@@ -12,3 +12,5 @@ en:
       title: Personal Information
       thanks: Congrantulations, you gained %{name}, pleae fill follwing form
       save: Save
+      missing: Thank you for join our activity
+      used: This ticket has been used

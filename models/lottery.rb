@@ -3,9 +3,14 @@ class Lottery < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   validates :serial, presence: true, if: :exchanging?
+  validates :tel, presence: true, if: :tel_charge?
 
   after_initialize :init
 
+  def tel_charge?
+    self.name == 'Level 4'
+  end
+  
   def exchanging?
   	self.status == 'EXCHANGING'
   end

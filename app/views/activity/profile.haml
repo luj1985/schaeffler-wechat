@@ -1,15 +1,34 @@
 %div{'data-role' => 'content'}
   %p= t('activity.result.thanks', :name => @lottery.name)
-  = form_for :lottery, url(:activity, :save) do |f|
+  = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
     = f.hidden_field :serial
-    = f.text_field_block :tel, 
-      :required => "required", 
-      :type => "tel" if @lottery.name == "Level 4"
+    - if @lottery.name == "Level 4"
+      - errors = @lottery.errors
+      %p
+        = f.label :tel
+        = f.telephone_field :tel
+        %span.error= f.error_message_on(:tel) if errors.include?(:tel)
     = f.fields_for :user do |user|
       = user.hidden_field :openid
-      = user.text_field_block :name, :required => "required"
-      = user.text_field_block :tel, :type => "tel", :required => "required"
-      = user.text_field_block :workshop, :required => "required"
-      = user.text_area_block :workshop_address, :required => "required"
-      = user.check_box_block :join_match
+      - errors = @lottery.user.errors
+      %p
+        = user.label :name
+        = user.text_field :name
+        %span.error= user.error_message_on(:name) if errors.include?(:name)
+      %p
+        = user.label :tel
+        = user.telephone_field :tel
+        %span.error= user.error_message_on(:tel) if errors.include?(:tel)
+      %p
+        = user.label :workshop
+        = user.text_field :workshop
+        %span.error= user.error_message_on(:workshop) if errors.include?(:workshop)
+      %p
+        = user.label :workshop_address
+        = user.text_area :workshop_address
+        %span.error= user.error_message_on(:workshop_address) if errors.include?(:workshop_address)
+      %p
+        = user.label :join_match
+        = user.check_box :join_match
+        %span.error= user.error_message_on(:join_match) if errors.include?(:join_match)
     = f.submit_block t('activity.result.save'), 'data-mini' => true

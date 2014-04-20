@@ -37,3 +37,8 @@
   box-shadow: none;
   border-radius: 3px;
 }
+
+.schaeffler .error {
+  color: #E21C38;
+  font-size: .9em;
+}
