@@ -6,9 +6,9 @@ en:
       title: Lucky draw
       test: Serial number for test
       serial:
-        placeholder: Please enter your serial number
+        placeholder: Please enter your 10 digit serial number
       submit: Submit
     result: 
       title: Personal Information
-      thanks: Congrantulations, you gained %{name}!
+      thanks: Congrantulations, you gained %{name}, pleae fill follwing form
       save: Save

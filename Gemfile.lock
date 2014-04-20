@@ -15,6 +15,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.7)
     builder (3.2.2)
     celluloid (0.15.2)
       timers (~> 1.1.0)
@@ -30,6 +31,7 @@ GEM
     eventmachine (1.0.3)
     ffi (1.9.3)
     formatador (0.2.4)
+    grouped_validations (0.3.3)
     guard (2.6.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -165,6 +167,8 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (>= 3.1)
+  bcrypt
+  grouped_validations
   guard
   guard-livereload
   guard-rspec

@@ -14,11 +14,13 @@ source 'https://rubygems.org'
 gem 'rake'
 
 # Component requirements
+gem 'bcrypt'
 gem 'therubyracer'
 gem 'rack-less'
 gem 'less'
 gem 'haml'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
+gem 'grouped_validations'
 gem 'sqlite3'
 
 # Test requirements

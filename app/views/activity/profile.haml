@@ -11,4 +11,5 @@
       = user.text_field_block :tel, :type => "tel", :required => "required"
       = user.text_field_block :workshop, :required => "required"
       = user.text_area_block :workshop_address, :required => "required"
+      = user.check_box_block :join_match
     = f.submit_block t('activity.result.save'), 'data-mini' => true

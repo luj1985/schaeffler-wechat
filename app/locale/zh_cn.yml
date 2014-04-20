@@ -6,9 +6,9 @@ zh_cn:
       title: 抽奖活动
       test: 测试用的中奖号码
       serial:
-        placeholder: 请输入抽奖号码
+        placeholder: 请输入十位数字的抽奖号码
       submit: 提交
     result: 
       title: 填写个人信息
-      thanks: 恭喜你获得%{name}！
+      thanks: 恭喜你获得%{name}，请完成以下信息以方便我们联系
       save: 保存

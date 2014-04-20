@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 7) do
+
+  create_table "accounts", force: true do |t|
+    t.string   "name"
+    t.string   "surname"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "lotteries", force: true do |t|
     t.string   "name"
@@ -21,6 +31,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.string   "serial"
     t.string   "crypted_serial"
     t.integer  "user_id"
+    t.string   "status"
   end
 
   create_table "users", force: true do |t|
@@ -31,6 +42,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.text     "workshop_address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "join_match"
   end
 
 end

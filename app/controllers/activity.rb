@@ -10,7 +10,7 @@ SchaefflerWechat::App.controllers :activity do
   	crypted_serial = Digest::MD5::hexdigest serial
   	@lottery = Lottery.find_by_crypted_serial crypted_serial
     if @lottery then
-      if @lottery.user then
+      if not @lottery.available? then
         @error = "This serial number has already been exchanged"
         render :error
       else
