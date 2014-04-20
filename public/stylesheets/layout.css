@@ -6,16 +6,16 @@
   background-position: -5px -15px;
   width: 143px;
   height: 17px;
-  margin-left: 15px;
+  margin-left: 20px;
   margin-top: 17px;
   float:left;
 }
 .ui-header .logo-icons {
   background-image: url('./images/schaeffler_logos.svg');
-  background-position: -183px -2px;
-  width: 115px;
+  background-position: -200px -2px;
+  width: 100px;
   height: 42px;
-  margin-right:15px;
+  margin-right:10px;
   margin-top:4px;
   float: right;
 }
@@ -24,4 +24,16 @@
   background-image: url('./images/innovation_intro_header.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.schaeffler .ui-focus {
+  border: 1px solid #00954d;
+}
+
+.schaeffler .ui-input-text,
+.schaeffler .ui-input-btn {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 3px;
 }

@@ -12,8 +12,8 @@
     =yield_content :assets
 
   %body
-    %div{'data-role' => 'page', :id => @page_id }
-      %div{'data-role' => 'header', 'data-position' => 'fixed'}
+    %div{'data-role' => 'page', :id => @page_id, :class => 'schaeffler' }
+      %div{'data-role' => 'header', 'data-position' => "fixed"}
         .logo-name
         .logo-icons
       = yield
