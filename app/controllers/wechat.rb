@@ -16,7 +16,7 @@ SchaefflerWechat::App.controllers :wechat do
           xml.item {
             xml.Title "Welcome to join Schaeffler activity"
             xml.Description "This is Schaeffler test activity"
-            xml.PicUrl URI.join(host, '/images/activity/activity.jpg')
+            xml.PicUrl URI.join(host, '/images/innovation_intro_header.jpg')
             xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
           }
         }

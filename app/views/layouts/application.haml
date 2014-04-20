@@ -7,8 +7,13 @@
     =stylesheet_link_tag 'themes/schaeffler'
     =stylesheet_link_tag 'themes/jquery.mobile.icons.min'
     =stylesheet_link_tag 'jquery.mobile.structure.min'
+    =stylesheet_link_tag 'layout'
     =javascript_include_tag 'jquery', 'jquery.mobile.min'
     =yield_content :assets
 
   %body
-    = yield
+    %div{'data-role' => 'page', :id => @page_id }
+      %div{'data-role' => 'header', 'data-position' => 'fixed'}
+        .logo-name
+        .logo-icons
+      = yield
