@@ -1,0 +1,14 @@
+%div{'data-role' => 'content'}
+  %p= t('activity.result.thanks', :name => @lottery.name)
+  = form_for :lottery, url(:activity, :save) do |f|
+    = f.hidden_field :serial
+    = f.text_field_block :tel, 
+      :required => "required", 
+      :type => "tel" if @lottery.name == "Level 4"
+    = f.fields_for :user do |user|
+      = user.hidden_field :openid
+      = user.text_field_block :name, :required => "required"
+      = user.text_field_block :tel, :type => "tel", :required => "required"
+      = user.text_field_block :workshop, :required => "required"
+      = user.text_area_block :workshop_address, :required => "required"
+    = f.submit_block t('activity.result.save'), 'data-mini' => true
