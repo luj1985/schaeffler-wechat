@@ -27,14 +27,7 @@
 
 # shell.say ""
 
-account = Account.create(
-  :email => "test@example.com", 
-  :name => "Jun", 
-  :surname => "Lu", 
-  :password => "test", 
-  :password_confirmation => "test", 
-  :role => "admin")
-
+account = Account.create(:email => "test@example.com", :name => "Jun", :surname => "Lu", :password => "test", :password_confirmation => "test", :role => "admin")
 # md5sum
 # e11170b8cbd2d74102651cb967fa28e5 => 1111111111
 # 3a08fe7b8c4da6ed09f21c3ef97efce2 => 2222222222

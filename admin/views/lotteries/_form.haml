@@ -1,0 +1,43 @@
+- error = @lottery.errors.include?(:name)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :name, :class => 'control-label'
+  .controls
+    =f.text_field :name, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
+- error = @lottery.errors.include?(:tel)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :tel, :class => 'control-label'
+  .controls
+    =f.text_field :tel, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:tel, :class => 'text-error') : pat(:example)
+- error = @lottery.errors.include?(:serial)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :serial, :class => 'control-label'
+  .controls
+    =f.text_field :serial, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:serial, :class => 'text-error') : pat(:example)
+- error = @lottery.errors.include?(:crypted_serial)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :crypted_serial, :class => 'control-label'
+  .controls
+    =f.text_field :crypted_serial, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:crypted_serial, :class => 'text-error') : pat(:example)
+- error = @lottery.errors.include?(:user_id)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :user_id, :class => 'control-label'
+  .controls
+    =f.text_field :user_id, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:user_id, :class => 'text-error') : pat(:example)
+- error = @lottery.errors.include?(:status)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :status, :class => 'control-label'
+  .controls
+    =f.text_field :status, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:status, :class => 'text-error') : pat(:example)
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:lotteries, :index), :class => 'btn btn-default'
