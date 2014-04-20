@@ -1,10 +1,13 @@
-%div{'data-role' => 'page', :id => "activity"}
+%div{'data-role' => 'page', :id => "activity", :class => 'noshadow' }
   %div{'data-role' => 'header'}
     %h1 Activity
   %div{'data-role' => 'content'}
+    %img{:src => '/images/activity/innovation_intro_header.jpg'}
     %form
       %p= session[:openid]
-      %input{:type => 'number'}
+      %input{:type => 'number', 
+            'data-corner' => 'false',
+            'data-shadow' => 'false' }
       %input{:type => 'submit', :value => 'Submit'}
     .activity-rules
       %p 活动流程:
