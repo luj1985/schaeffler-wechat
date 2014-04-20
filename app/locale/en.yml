@@ -14,3 +14,6 @@ en:
       save: Save
       missing: Thank you for join our activity
       used: This ticket has been used
+      invalid:
+        openid: Missing OpenID, please use wechat menu to access
+      success: You exchange request has been submitted, please wait

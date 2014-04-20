@@ -27,8 +27,9 @@
         = user.label :workshop_address
         = user.text_area :workshop_address
         %span.error= user.error_message_on(:workshop_address) if errors.include?(:workshop_address)
-      %p
-        = user.label :join_match
-        = user.check_box :join_match
-        %span.error= user.error_message_on(:join_match) if errors.include?(:join_match)
+      - if user.object.can_join_match?
+        %p
+          = user.label :join_match
+          = user.check_box :join_match
+          %span.error= user.error_message_on(:join_match) if errors.include?(:join_match)
     = f.submit_block t('activity.result.save'), 'data-mini' => true

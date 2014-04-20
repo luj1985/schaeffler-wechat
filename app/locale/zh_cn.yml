@@ -14,3 +14,6 @@ zh_cn:
       save: 保存
       missing: 您的号码没有中奖，感谢您的参与
       used: 该奖卷已经被使用
+      invalid:
+        openid: 缺少OpenID，请点击菜单按钮访问
+      success: 您的兑奖信息已经提交，稍后会有工作人员和您联系

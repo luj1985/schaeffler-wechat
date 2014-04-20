@@ -1,8 +1,14 @@
 SchaefflerWechat::App.controllers :activity do
   get :index do
-  	@page_id = "activity"
-    openid = session[:openid] = params[:openid]
-    render :index
+    if params[:openid].present? then
+      session[:openid] = params[:openid]
+    end
+    if session[:openid].nil? then
+      @message = t('activity.result.invalid.openid')
+      render :message
+    else 
+      render :index
+    end
   end
 
   post :challenge do
@@ -11,8 +17,8 @@ SchaefflerWechat::App.controllers :activity do
   	@lottery = Lottery.find_by_crypted_serial crypted_serial
     if @lottery then
       if not @lottery.available? then
-        @error = t('activity.result.used')
-        render :error
+        @message = t('activity.result.used')
+        render :message
       else
         @lottery.status = 'EXCHANGING'
         @lottery.serial = serial
@@ -25,7 +31,8 @@ SchaefflerWechat::App.controllers :activity do
         render :profile
       end
     else
-      render :thanks
+      @message = t('activity.result.missing')
+      render :message
     end
   end
 
@@ -34,7 +41,8 @@ SchaefflerWechat::App.controllers :activity do
     halt 404 unless @lottery
     @lottery.status = 'USED'
     if @lottery.update(params[:lottery])
-      redirect url(:activity, :index)
+      @message = t('activity.result.success')
+      render :message
     else
       render :profile
     end

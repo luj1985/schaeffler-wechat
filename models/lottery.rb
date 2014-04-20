@@ -3,20 +3,25 @@ class Lottery < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   validates :serial, presence: true, if: :exchanging?
-  validates :tel, presence: true, if: :tel_charge?
+  validates :tel, presence: true, if: :validate_charge_tel?
 
   after_initialize :init
+
+  def validate_charge_tel?
+    tel_charge? && exchanging?
+  end
 
   def tel_charge?
     self.name == 'Level 4'
   end
   
+  # validate attributes when lottery is in other stages
   def exchanging?
-  	self.status == 'EXCHANGING'
+  	self.status != 'AVAILABLE'
   end
 
   def available?
-  	self.status = 'AVAILABLE'
+  	self.status == 'AVAILABLE'
   end
 
   def init

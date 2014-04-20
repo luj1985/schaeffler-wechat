@@ -1,0 +1,5 @@
+%div{'data-role' => 'content'}
+  %p.message= @message
+  %ul.links
+    %li= link_to t('home.title'), url(:home)
+    %li= link_to t('activity.home.title'), url(:activity, :index)

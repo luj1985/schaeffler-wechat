@@ -42,3 +42,11 @@
   color: #E21C38;
   font-size: .9em;
 }
+
+.schaeffler .message {
+  margin-bottom: 50px;
+}
+
+.schaeffler .links {
+  padding-left: 20px;
+}

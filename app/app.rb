@@ -67,5 +67,8 @@ module SchaefflerWechat
     #     render 'errors/505'
     #   end
     #
+    get :home, :map => '/' do
+      render :home
+    end
   end
 end
