@@ -2,6 +2,9 @@ en:
   home:
     title: Schaeffler China
   activity:
+    intro:
+      title: Enter activity
+      description: Activity description
     home:
       title: Lucky draw
       test: Serial number for test

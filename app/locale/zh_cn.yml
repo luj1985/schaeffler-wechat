@@ -2,6 +2,9 @@ zh_cn:
   home:
     title: 舍弗勒中国
   activity:
+    intro:
+      title: 进入抽奖活动
+      description: 活动介绍Bla bla bla
     home:
       title: 抽奖活动
       test: 测试用的中奖号码
