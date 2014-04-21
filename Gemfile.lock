@@ -31,7 +31,6 @@ GEM
     eventmachine (1.0.3)
     ffi (1.9.3)
     formatador (0.2.4)
-    grouped_validations (0.3.3)
     guard (2.6.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -168,7 +167,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord (>= 3.1)
   bcrypt
-  grouped_validations
   guard
   guard-livereload
   guard-rspec

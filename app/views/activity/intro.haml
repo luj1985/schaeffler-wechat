@@ -1,0 +1,13 @@
+%img{:src => '/images/introduction.jpg', :width => '100%'}
+%div{'data-role' => 'content'}
+  .activity-rules
+    %p 活动流程:
+    %ul
+      %li 购买舍弗勒旗下产品
+      %li 刮卡获取验证码
+      %li 扫描二维码并关注，进入兑奖页
+      %li 输入信息兑换成功
+      %li 申请观赛成功
+  %ul.links
+  %li= link_to t('home.title'), url(:home)
+  %li= link_to t('activity.home.title'), url(:activity, :index)
