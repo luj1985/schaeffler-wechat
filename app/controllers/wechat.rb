@@ -14,7 +14,7 @@ SchaefflerWechat::App.controllers :wechat do
         xml.ArticleCount 2
         xml.Articles {
           xml.item {
-            xml.Title "Activity introduction"
+            xml.Title "Introduction"
             xml.Description "Activity introduction description"
             xml.PicUrl URI.join(host, '/images/introduction.jpg')
             xml.Url URI.join(host, url_for(:activity, :intro, :openid => hash[:from_user_name]))
