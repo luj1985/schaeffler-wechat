@@ -14,14 +14,14 @@ SchaefflerWechat::App.controllers :wechat do
         xml.ArticleCount 2
         xml.Articles {
           xml.item {
-            xml.Title "活动介绍"
-            xml.Description "活动说明文字，活动说明文字活动说明文字"
+            xml.Title "Activity introduction"
+            xml.Description "Activity introduction description"
             xml.PicUrl URI.join(host, '/images/introduction.jpg')
             xml.Url URI.join(host, url_for(:activity, :intro, :openid => hash[:from_user_name]))
           }
           xml.item {
-            xml.Title "进入抽奖活动"
-            xml.Description "抽奖活动说明文字"
+            xml.Title "Enter activity"
+            xml.Description "Lucky draw activity description"
             xml.PicUrl URI.join(host, '/images/innovation_intro_header.jpg')
             xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
           }
