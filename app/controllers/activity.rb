@@ -1,14 +1,6 @@
 SchaefflerWechat::App.controllers :activity do
   get :intro do
-    if params[:openid].present? then
-      session[:openid] = params[:openid]
-    end
-    if session[:openid].nil? then
-      @message = t('activity.result.invalid.openid')
-      render :message
-    else 
-      render :intro
-    end
+    render :intro
   end
   
   get :index do
