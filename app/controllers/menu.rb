@@ -1,8 +1,27 @@
 SchaefflerWechat::App.controllers :menu do
   
+  # get :index, :map => '/foo/bar' do
+  #   session[:foo] = 'bar'
+  #   render 'index'
+  # end
+
+  # get :sample, :map => '/sample/url', :provides => [:any, :js] do
+  #   case content_type
+  #     when :js then ...
+  #     else ...
+  # end
+
+  # get :foo, :with => :id do
+  #   'Maps to url '/foo/#{params[:id]}''
+  # end
+
+  # get '/example' do
+  #   'Hello world!'
+  # end
+  
   get :index, :with => :name do
-    @article = Article.find_by_name params[:name]
-    render :menu
+    @menu = Menu.find_by_name params[:name]
+    render :index
   end
 
 end
