@@ -5,6 +5,7 @@ en:
     intro:
       title: Enter activity
       description: Activity description
+    submenu: Activity Submenu
     home:
       title: Lucky draw
       test: Serial number for test

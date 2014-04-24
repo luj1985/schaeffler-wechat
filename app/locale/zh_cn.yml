@@ -5,6 +5,7 @@ zh_cn:
     intro:
       title: 进入抽奖活动
       description: 活动介绍Bla bla bla
+    submenu: 活动介绍子菜单
     home:
       title: 抽奖活动
       test: 测试用的中奖号码

@@ -1,24 +1,9 @@
 %div{'data-role' => 'content'}
   %ul{'data-role' => 'listview'}
-    %li 
-      %a{:href=>url_for(:article, :index, :name => 'first')}
-        This is the first menu
-    %li
-      %a{:href=>url_for(:article, :index,:name => 'second')}
-        this is the second menu
-    %li 
-      %a{:href=>url_for(:article, :index,:name => 'third')}
-        third menu
-    %li 
-      %a{:href=>url_for(:article, :index,:name => 'forth')}
-        forth menu
-    %li 
-      %a{:href=>url_for(:article, :index,:name => 'fifth')}
-        fifth menu
-    %li 
-      %a{:href=>url_for(:article, :index,:name => 'sixth')}
-        sixth menu
-    %li 
-      %a{:href=>url_for(:article, :index,:name => 'seventh')}
-        senventh menu
+    -@menus.each do |item|
+      %li
+        %a{:href=>url_for(:article, :index, :name=> item.link)}
+          %img{:src => '/images/introduction.jpg'}
+          %h2=item.text
+          %p=item.description
 

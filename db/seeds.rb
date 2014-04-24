@@ -41,3 +41,12 @@ Lottery.create(:name => "Level 3", :crypted_serial => "4aee3e28df37ea1af64bd636e
 Lottery.create(:name => "Level 4", :crypted_serial => "e53a68903e2c336a890907125b489abd")
 Lottery.create(:name => "Level 1", :crypted_serial => "781e5e245d69b566979b86e28d23f2c7")
 Lottery.create(:name => "Level 4", :crypted_serial => "312f04f99be9e857bfb2c033eeb1d3e2")
+
+
+Menu.create(:name => "home", :text => "test menu 1", :link => 'article1', :description => 'This is a test description for menu 1')
+Menu.create(:name => "home", :text => "test menu 2", :link => 'article2', :description => 'This is a test description for menu 2')
+Menu.create(:name => "home", :text => "test menu 3", :link => 'article3', :description => 'This is a test description for menu 3')
+Menu.create(:name => "home", :text => "test menu 4", :link => 'article4', :description => 'This is a test description for menu 4')
+Menu.create(:name => "home", :text => "test menu 5", :link => 'article5', :description => 'This is a test description for menu 5')
+Menu.create(:name => "home", :text => "test menu 6", :link => 'article6', :description => 'This is a test description for menu 6')
+Menu.create(:name => "home", :text => "test menu 7", :link => 'article7', :description => 'This is a test description for menu 7')
