@@ -1,4 +1,2 @@
-%img{:src => '/images/introduction.jpg', :width => '100%'}
 %div{'data-role' => 'content'}
-  .message
-    %p=params[:name]
+  != @article.body
