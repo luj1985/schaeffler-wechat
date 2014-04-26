@@ -1,0 +1,11 @@
+zh_cn:
+  models:
+    article:
+      name: 新闻
+      attributes:
+        id: 编号
+        title: 新闻标题
+        name: 名字
+        body: 正文内容
+        created_at: 创建时间
+        updated_at: 更新时间

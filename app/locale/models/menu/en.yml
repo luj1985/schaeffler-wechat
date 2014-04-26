@@ -1,0 +1,12 @@
+en:
+  models:
+    menu:
+      name: Menu
+      attributes:
+        id: Id
+        name: Name
+        text: Text
+        link: Link
+        created_at: Created at
+        updated_at: Updated at
+        description: Description

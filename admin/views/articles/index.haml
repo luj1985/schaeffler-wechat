@@ -26,12 +26,9 @@
                       =hidden_field_tag :article_ids, :'data-delete-many-ids' => true
                       =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
-        %th.header= mat(:article, :id)
+        %th.header= mat(:image, :id)
         %th.header= mat(:article, :title)
         %th.header= mat(:article, :name)
-        %th.header= mat(:article, :body)
-        %th.header= mat(:article, :created_at)
-        %th.header= mat(:article, :updated_at)
         %th.header.list-row-action-header
 
     %tbody
@@ -42,9 +39,6 @@
           %td.list-column=article.id
           %td.list-column=article.title
           %td.list-column=article.name
-          %td.list-column=article.body
-          %td.list-column=time_ago_in_words article.created_at
-          %td.list-column=time_ago_in_words article.updated_at
           %td.list-column.list-row-action
             .list-row-action-wrapper
               =link_to tag_icon(:edit), :href => url(:articles, :edit, :id => article.id), :rel => :tooltip, :title => "#{pat(:edit)} article", :class => 'list-row-action-wrapper-link'

@@ -1,0 +1,10 @@
+en:
+  models:
+    image:
+      name: Image
+      attributes:
+        id: Id
+        title: Title
+        created_at: Created at
+        updated_at: Updated at
+        href: Href
