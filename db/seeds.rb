@@ -50,3 +50,11 @@ Menu.create(:name => "home", :text => "test menu 4", :link => 'article4', :descr
 Menu.create(:name => "home", :text => "test menu 5", :link => 'article5', :description => 'This is a test description for menu 5')
 Menu.create(:name => "home", :text => "test menu 6", :link => 'article6', :description => 'This is a test description for menu 6')
 Menu.create(:name => "home", :text => "test menu 7", :link => 'article7', :description => 'This is a test description for menu 7')
+
+Article.create(:name => 'article1', :title => 'Article 1', :body => '<h3>Title of Article 1</h3><p>body of article 1</p>')
+Article.create(:name => 'article2', :title => 'Article 2', :body => '<h3>Title of Article 2</h3><p>body of article 2</p>')
+Article.create(:name => 'article3', :title => 'Article 3', :body => '<h3>Title of Article 3</h3><p>body of article 3</p>')
+Article.create(:name => 'article4', :title => 'Article 4', :body => '<h3>Title of Article 4</h3><p>body of article 4</p>')
+Article.create(:name => 'article5', :title => 'Article 5', :body => '<h3>Title of Article 5</h3><p>body of article 5</p>')
+Article.create(:name => 'article6', :title => 'Article 6', :body => '<h3>Title of Article 6</h3><p>body of article 6</p>')
+Article.create(:name => 'article7', :title => 'Article 8', :body => '<h3>Title of Article 7</h3><p>body of article 7</p>')
