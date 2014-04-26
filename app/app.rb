@@ -56,17 +56,24 @@ module SchaefflerWechat
     #   end
     #
 
-    ##
-    # You can manage errors like:
-    #
-    #   error 404 do
-    #     render 'errors/404'
-    #   end
-    #
-    #   error 505 do
-    #     render 'errors/505'
-    #   end
-    #
+    error ActiveRecord::RecordNotFound do
+      halt 404
+      render('errors/404')
+    end
+
+    error 404 do
+      render 'errors/404'
+    end
+
+    error 505 do
+      render 'errors/505'
+    end
+
+    not_found do
+      status 404
+      render('errors/404')
+    end
+    
     get :home, :map => '/' do
       render :home
     end
