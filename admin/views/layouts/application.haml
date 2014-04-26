@@ -10,6 +10,7 @@
     %title= @title.present? ? "#{@title} | Padrino Admin" : "Padrino Admin"
     =favicon_tag 'favicon.ico'
     %link{:href => 'http://fonts.googleapis.com/css?family=Varela', :rel => :stylesheet}
+    =stylesheet_link_tag '/stylesheets/wysihtml5-colors'
     =stylesheet_link_tag 'bootstrap', 'application'
     =yield_content :stylesheets
 

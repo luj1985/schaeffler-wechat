@@ -5,7 +5,9 @@
   :javascript
     $(function() {
       $('textarea[name="article[body]"]').wysihtml5({
-        locale: 'zh-CN'
+        "locale": "zh-CN",
+        "color": true,
+        "html": true
       });
     });
 -content_for :stylesheets do
