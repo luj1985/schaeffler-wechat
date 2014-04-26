@@ -4,7 +4,9 @@
   =javascript_include_tag 'locales/bootstrap-wysihtml5.zh-CN'
   :javascript
     $(function() {
-      $('textarea[name="article[body]"]').wysihtml5();
+      $('textarea[name="article[body]"]').wysihtml5({
+        locale: 'zh-CN'
+      });
     });
 -content_for :stylesheets do
   =stylesheet_link_tag 'bootstrap3-wysihtml5.min'
