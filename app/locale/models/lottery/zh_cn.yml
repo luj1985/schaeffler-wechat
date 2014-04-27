@@ -5,6 +5,7 @@ zh_cn:
       attributes:
         id: 编号
         name: 奖品名称
+        level: 奖品等级
         tel: 充值号码
         created_at: 创建时间
         updated_at: 更新时间

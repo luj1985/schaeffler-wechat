@@ -1,4 +1,5 @@
 SchaefflerWechat::Admin.controllers :images do
+  
   get :index do
     @title = "Images"
     @images = Image.all

@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 13) do
   end
 
   create_table "lotteries", force: true do |t|
-    t.string   "name"
+    t.string   "level"
     t.string   "tel"
     t.datetime "created_at"
     t.datetime "updated_at"

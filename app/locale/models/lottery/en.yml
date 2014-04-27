@@ -5,6 +5,7 @@ en:
       attributes:
         id: Id
         name: Name
+        level: Level
         tel: Telephone number
         created_at: Created at
         updated_at: Updated at

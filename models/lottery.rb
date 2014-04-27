@@ -11,8 +11,12 @@ class Lottery < ActiveRecord::Base
     tel_charge? && exchanging?
   end
 
+  def name
+    "Level #{self.level}"
+  end
+
   def tel_charge?
-    self.name == 'Level 4'
+    self.level == '4'
   end
   
   # validate attributes when lottery is in other stages
