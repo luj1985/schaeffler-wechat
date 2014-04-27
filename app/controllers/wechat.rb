@@ -21,7 +21,6 @@ SchaefflerWechat::App.controllers :wechat do
   end
 
   post :index do
-    content_type :xml
     event_handlers = settings.event_handlers
     body = request.body.read || ""
     # TODO validate post message signature
@@ -71,6 +70,7 @@ SchaefflerWechat::App.controllers :wechat do
         }
       }
     end
+    puts builder.to_xml
     builder.to_xml
   end
 
