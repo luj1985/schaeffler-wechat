@@ -2,10 +2,10 @@ en:
   home:
     title: Schaeffler China
   activity:
-    intro: Activity Introduction
+    intro:
       title: Enter activity
       description: Activity description
-    enter: Enter activity
+    enter:
       description: activity introduction
     submenu: Activity Submenu
     home:
