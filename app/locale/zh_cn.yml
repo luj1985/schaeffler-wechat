@@ -2,8 +2,8 @@ zh_cn:
   modules:
     accounts: 管理员账户
     images: 图片素材
-    menus: 菜单
-    articles: 消息
+    menus: 微网页菜单
+    articles: 消息管理
     users: 微信用户
     lotteries: 促销活动（兑奖）
 
