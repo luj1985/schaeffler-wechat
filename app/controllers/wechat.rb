@@ -58,7 +58,7 @@ SchaefflerWechat::App.controllers :wechat do
             xml.Title t('activity.intro.title')
             xml.Description t('activity.intro.description')
             xml.PicUrl URI.join(host, '/images/introduction.jpg')
-            xml.Url URI.join(host, url_for(:article, :name => 'activity_intro', :openid => hash[:from_user_name]))
+            xml.Url URI.join(host, url_for(:article, :index, :name => 'activity_intro'))
           }
           xml.item {
             xml.Title t('activity.entry.title')
