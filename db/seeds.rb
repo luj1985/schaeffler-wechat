@@ -34,7 +34,7 @@ path = File.join(File.dirname(__FILE__), 'test.csv')
 CSV.foreach(path) do |row|
   crypted, level = row
   Lottery.create(:level => level, :crypted_serial => crypted)
-end	
+end
 
 Menu.create(:name => "home", :text => "test menu 1", :link => 'article1', :description => 'This is a test description for menu 1')
 Menu.create(:name => "home", :text => "test menu 2", :link => 'article2', :description => 'This is a test description for menu 2')
@@ -52,3 +52,14 @@ Article.create(:name => 'article5', :title => 'Article 5', :body => '<h3>Title o
 Article.create(:name => 'article6', :title => 'Article 6', :body => '<h3>Title of Article 6</h3><p>body of article 6</p>')
 Article.create(:name => 'article7', :title => 'Article 8', :body => '<h3>Title of Article 7</h3><p>body of article 7</p>')
 
+Article.create(:name => 'activity_intro', :title => '活动介绍', :body => <<-EOF
+<img src="/images/introduction.jpg", width="100%" />
+<div class="message">
+  <p>活动介绍<p>
+  <ul>
+    <li><a href="/">回到首页</a></li>
+    <li><a href="/menu/home">二级菜单</a></li>
+  </ul>
+</div>
+EOF
+)
