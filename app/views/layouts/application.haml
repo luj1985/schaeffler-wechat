@@ -1,10 +1,10 @@
 !!! 5
-%html{:lang => 'en'}
+%html
   %head
     %meta{:charset => 'utf-8'}
     %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}
-    %title Schaeffler wechat page
-    =stylesheet_link_tag 'themes/schaeffler'
+    %title= t('home.title')
+    =stylesheet_link_tag 'themes/schaeffler.min'
     =stylesheet_link_tag 'themes/jquery.mobile.icons.min'
     =stylesheet_link_tag 'jquery.mobile.structure.min'
     =stylesheet_link_tag 'layout'
@@ -12,14 +12,13 @@
     =javascript_include_tag 'jquery'
     :javascript
       $(document).bind("mobileinit", function() {
-        console.log('mobile init');
         $.mobile.defaultPageTransition = 'slide';
       });
     =javascript_include_tag 'jquery.mobile.min'
     =yield_content :assets
-  %body
-    %div{'data-role' => 'page', :class => 'schaeffler' }
-      %div{'data-role' => 'header', 'data-position' => "fixed"}
-        .logo-name
-        .logo-icons
+  %body{:class => 'schaeffler'}
+    %div{ page_style }
+      %div{ header_style }
+        %span.logo-name
+        %span.logo-icons
       = yield
