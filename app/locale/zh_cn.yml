@@ -1,4 +1,12 @@
 zh_cn:
+  modules:
+    accounts: 管理员账户
+    images: 图片素材
+    menus: 菜单
+    articles: 消息
+    users: 微信用户
+    lotteries: 促销活动（兑奖）
+
   home:
     title: 舍弗勒中国
   activity:

@@ -28,7 +28,8 @@
           %ul.nav.navbar-nav.pull-left
             - project_modules.each do |project_module|
               %li{:class => "navbar-module #{('active' if request.path_info =~ /^#{project_module.path}/)}"}
-                =link_to project_module.human_name, url(project_module.path)
+                - puts project_module.inspect
+                =link_to t("modules.#{project_module.name}"), url(project_module.path)
 
     .container.main
       .main-wrapper
