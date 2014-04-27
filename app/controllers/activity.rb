@@ -25,13 +25,11 @@ SchaefflerWechat::App.controllers :activity do
         render :message
       else
         @lottery.status = 'EXCHANGING'
-        @lottery.serial = serial
         # TODO: should redirect page if open id is not defined
         openid = session[:openid]
-        user = User.find_by_openid openid
-        user = User.new(:openid => openid) if user.nil?
-        # TODO: access session for openid
+        user = User.find_or_initialize_by :openid => openid
         @lottery.user = user
+        @lottery.serial = serial
         render :profile
       end
     else
