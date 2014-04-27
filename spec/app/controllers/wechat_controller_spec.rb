@@ -40,7 +40,7 @@ EOF
     }
 
     before do
-      post "/wechat", body
+      post "/wechat?signature=80862eb64cfeb6f419f98dd6a089ce54962502cb&timestamp=20140419&nonce=nonce", body
     end
 
     it "return activity url" do

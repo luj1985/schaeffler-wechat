@@ -3,35 +3,24 @@ SchaefflerWechat::App.controllers :wechat do
     set :event_handlers, {}
   end
 
-  def wechat_event event, condition = nil, &blk
-    event_handlers = settings.event_handlers
-    event_handlers[event] ||= Array.new
-    task = {:proc => blk}
-    task.merge!(:condition => lambda {|hash|
-      condition.all? { |k, v| condition[k] == v }
-    }) if condition.present?
-    event_handlers[event] << task
-  end
-
-
   get :index do
-    token = ENV["WECHAT_TOKEN"] || 'test'
-    raw = [token, params[:timestamp], params[:nonce]].compact.sort.join
-    Digest::SHA1.hexdigest(raw) == params[:signature] ? params[:echostr] : ""
+    validate_messages ? params[:echostr] : ""
   end
 
   post :index do
-    event_handlers = settings.event_handlers
+    halt 403 unless validate_messages
+
     body = request.body.read || ""
-    # TODO validate post message signature
-    halt 501, "unknown post body" if body.empty?
+    halt 501 if body.empty?
 
     doc = Nokogiri::XML(body).root
     hash = doc.element_children.each_with_object(Hash.new) do |e, h|
       name = e.name.gsub(/(.)([A-Z])/,'\1_\2').downcase
       h[name.to_sym] = e.content
     end
+
     type = hash[:msg_type].downcase.to_sym
+    event_handlers = settings.event_handlers
     case type
     when :event
       event = hash[:event].downcase.to_sym
@@ -44,6 +33,15 @@ SchaefflerWechat::App.controllers :wechat do
     end
   end
 
+  def wechat_event event, condition = nil, &blk
+    event_handlers = settings.event_handlers
+    event_handlers[event] ||= []
+    task = {:proc => blk}
+    task.merge!(:condition => lambda {|hash|
+      condition.all? { |k, v| condition[k] == v }
+    }) if condition.present?
+    event_handlers[event] << task
+  end
 
   wechat_event :click, :event_key => 'activity' do |hash|
     content_type :xml
