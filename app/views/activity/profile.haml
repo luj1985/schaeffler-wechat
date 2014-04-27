@@ -32,4 +32,4 @@
           = user.label :join_match
           = user.check_box :join_match
           %span.error= user.error_message_on(:join_match) if errors.include?(:join_match)
-    = f.submit_block t('activity.result.save'), 'data-mini' => true
+    = f.submit_block t('activity.result.save')

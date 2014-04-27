@@ -4,9 +4,9 @@
     = f.text_field_block :serial, :type => "number", 
       :placeholder => t('activity.home.serial.placeholder'),
       :required => "required",
+      :class => "serial-number",
       'data-clear-btn' => "true"
-    = f.submit_block t('activity.home.submit'), 
-      'data-mini' => true
+    = f.submit_block t('activity.home.submit')
 
   .activity-rules
     %p 活动流程:

@@ -10,7 +10,7 @@ zh_cn:
       title: 抽奖活动
       test: 测试用的中奖号码
       serial:
-        placeholder: 请输入12位数字的测试抽奖号码
+        placeholder: 请输入12位测试号码
       submit: 提交
     result: 
       title: 填写个人信息

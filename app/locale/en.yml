@@ -10,7 +10,7 @@ en:
       title: Lucky draw
       test: Serial number for test
       serial:
-        placeholder: Please enter your 12 digit test serial number
+        placeholder: Please enter serial number
       submit: Submit
     result: 
       title: Personal Information
