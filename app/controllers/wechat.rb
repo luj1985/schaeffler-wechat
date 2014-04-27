@@ -14,20 +14,21 @@ SchaefflerWechat::App.controllers :wechat do
         xml.ArticleCount 2
         xml.Articles {
           xml.item {
-            xml.Title "Introduction"
-            xml.Description "Activity introduction description"
+            xml.Title t('activity.intro')
+            xml.Description t('activity.intro.description')
             xml.PicUrl URI.join(host, '/images/introduction.jpg')
             xml.Url URI.join(host, url_for(:activity, :intro, :openid => hash[:from_user_name]))
           }
           xml.item {
-            xml.Title "Enter activity"
-            xml.Description "Lucky draw activity description"
+            xml.Title t('activity.enter')
+            xml.Description t('activity.enter.description')
             xml.PicUrl URI.join(host, '/images/innovation_intro_header.jpg')
             xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
           }
         }
       }
     end
+    puts builder.to_xml
     builder.to_xml
   end
 end

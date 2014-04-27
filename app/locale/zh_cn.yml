@@ -2,9 +2,11 @@ zh_cn:
   home:
     title: 舍弗勒中国
   activity:
-    intro:
+    intro: 活动介绍
       title: 进入抽奖活动
       description: 活动介绍Bla bla bla
+    enter: 进入兑奖页面
+      description: 抽奖活动介绍
     submenu: 活动介绍子菜单
     home:
       title: 抽奖活动

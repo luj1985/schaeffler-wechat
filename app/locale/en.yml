@@ -2,9 +2,11 @@ en:
   home:
     title: Schaeffler China
   activity:
-    intro:
+    intro: Activity Introduction
       title: Enter activity
       description: Activity description
+    enter: Enter activity
+      description: activity introduction
     submenu: Activity Submenu
     home:
       title: Lucky draw
