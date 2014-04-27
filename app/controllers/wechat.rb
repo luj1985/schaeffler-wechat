@@ -46,8 +46,9 @@ SchaefflerWechat::App.controllers :wechat do
 
 
   wechat_event :click, :event_key => 'activity' do |hash|
+    content_type :xml
     host = ENV['WECHAT_HOST']
-    builder = Nokogiri::XML::Builder.new do |xml|
+    builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
       xml.xml {
         xml.ToUserName hash[:from_user_name]
         xml.FromUserName hash[:to_user_name]
@@ -70,7 +71,6 @@ SchaefflerWechat::App.controllers :wechat do
         }
       }
     end
-    puts builder.to_xml
     builder.to_xml
   end
 
