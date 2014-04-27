@@ -19,7 +19,7 @@ zh_cn:
       placeholder: 请输入12位测试号码
       submit: 提交
 
-    enter:
+    entry:
       title: 进入抽奖活动
       description: 抽奖活动介绍
 
