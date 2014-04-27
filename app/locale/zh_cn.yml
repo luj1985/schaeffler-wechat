@@ -3,23 +3,34 @@ zh_cn:
     title: 舍弗勒中国
   activity:
     intro:
-      title: 进入抽奖活动
+      title: 活动介绍
       description: 活动介绍Bla bla bla
-    enter:
-      description: 抽奖活动介绍
-    submenu: 活动介绍子菜单
+
     home:
-      title: 抽奖活动
-      test: 测试用的中奖号码
-      serial:
-        placeholder: 请输入12位测试号码
+      title: 兑奖
+      placeholder: 请输入12位测试号码
       submit: 提交
-    result: 
+
+    enter:
+      title: 进入抽奖活动
+      description: 抽奖活动介绍
+
+    submenu: 活动介绍子菜单
+
+    result:
       title: 填写个人信息
-      thanks: 恭喜你获得%{name}，请完成以下信息以方便我们联系
+      level1: 一等奖
+      level2: 二等奖
+      level3: 三等奖
+      level4: 四等奖
+      greet: 恭喜你获得<span class="prize">%{name}</span>，请完成以下信息以方便我们联系
+      success: 您的兑奖信息已经提交，稍后会有工作人员和您联系
       save: 保存
       missing: 您的号码没有中奖，感谢您的参与
       used: 该奖卷已经被使用
       invalid:
         openid: 缺少OpenID，请点击菜单按钮访问
-      success: 您的兑奖信息已经提交，稍后会有工作人员和您联系
+      status:
+        USED: 已经被使用
+        AVAILABLE: 可用
+        EXCHANGING: 正在兑奖

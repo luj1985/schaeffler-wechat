@@ -1,5 +1,5 @@
 %div{'data-role' => 'content'}
-  %p= t('activity.result.thanks', :name => @lottery.name)
+  %p!= t('activity.result.greet', :name => lottery_name(@lottery))
   = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
     = f.hidden_field :serial
     - if @lottery.name == "Level 4"

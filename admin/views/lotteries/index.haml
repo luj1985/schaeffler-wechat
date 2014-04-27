@@ -29,8 +29,6 @@
         %th.header= mat(:lottery, :id)
         %th.header= mat(:lottery, :name)
         %th.header= mat(:lottery, :tel)
-        %th.header= mat(:lottery, :created_at)
-        %th.header= mat(:lottery, :updated_at)
         %th.header= mat(:lottery, :serial)
         %th.header= mat(:lottery, :crypted_serial)
         %th.header= mat(:lottery, :user_id)
@@ -43,14 +41,12 @@
           %td.list-column.list-selectable
             =check_box_tag 'lottery_ids[]', :value => lottery.id, :class => 'list-selectable-checkbox'
           %td.list-column=lottery.id
-          %td.list-column=lottery.name
+          %td.list-column=lottery_name(lottery)
           %td.list-column=lottery.tel
-          %td.list-column=time_ago_in_words lottery.created_at
-          %td.list-column=time_ago_in_words lottery.updated_at
           %td.list-column=lottery.serial
           %td.list-column=lottery.crypted_serial
           %td.list-column=lottery.user_id
-          %td.list-column=lottery.status
+          %td.list-column=lottery_status(lottery)
           %td.list-column.list-row-action
             .list-row-action-wrapper
               =link_to tag_icon(:edit), :href => url(:lotteries, :edit, :id => lottery.id), :rel => :tooltip, :title => "#{pat(:edit)} lottery", :class => 'list-row-action-wrapper-link'

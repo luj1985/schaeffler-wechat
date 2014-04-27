@@ -2,7 +2,7 @@
 %div{'data-role' => 'content'}
   =form_for :lottery, url(:activity, :challenge) do |f|
     = f.text_field_block :serial, :type => "number", 
-      :placeholder => t('activity.home.serial.placeholder'),
+      :placeholder => t('activity.home.placeholder'),
       :required => "required",
       :class => "serial-number",
       'data-clear-btn' => "true"

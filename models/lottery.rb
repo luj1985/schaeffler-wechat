@@ -12,7 +12,7 @@ class Lottery < ActiveRecord::Base
   end
 
   def name
-    "Level #{self.level}"
+    "level#{self.level}"
   end
 
   def tel_charge?
