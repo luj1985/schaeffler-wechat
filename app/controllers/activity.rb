@@ -22,8 +22,6 @@ SchaefflerWechat::App.controllers :activity do
   end
 
   post :apply do
-    puts 'apply join match'
-    puts params.inspect
     misses = params.reject do |id, value|
       question = Question.find_by_id id
       puts "question #{question.inspect}"
@@ -34,7 +32,7 @@ SchaefflerWechat::App.controllers :activity do
     user = User.find_by_openid openid
     halt 500 unless user
 
-    passed = misses.empty?
+    passed = !params.empty? && misses.empty?
     user.apply_attemped = true
     user.join_match = passed
     user.save
