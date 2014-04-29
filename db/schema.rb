@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 14) do
+ActiveRecord::Schema.define(version: 15) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 14) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "join_match"
+    t.boolean  "granted"
+    t.boolean  "apply_attemped"
   end
 
 end

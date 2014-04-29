@@ -1,5 +1,8 @@
 %div{'data-role' => 'content'}
   != @message
+  -if @lottery && @lottery.can_apply_join_match? then
+    %a{:href => url_for(:activity, :questions)}
+      =t('activity.apply.title')
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
   %ul.links
     %li= link_to t('home.title'), url(:home)

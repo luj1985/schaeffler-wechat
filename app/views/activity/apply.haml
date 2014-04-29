@@ -1,0 +1,25 @@
+%div{'data-role' => 'content'}
+  %form{:action => url_for(:activity, :apply), :method => :post }
+    -@questions.each do |q|
+      %fieldset{'data-role' => 'controlgroup'}
+        %legend=q.question
+        -if q.a.present?
+          %input{:name => q.id, :id => "#{q.id}a", :value=>'a', :type=>'radio'}
+          %label{:for => "#{q.id}a"}
+            =q.a
+
+        -if q.b.present?
+          %input{:name => q.id, :id => "#{q.id}b", :value=>'b', :type=>'radio'}
+          %label{:for => "#{q.id}b"}
+            =q.b
+
+        -if q.c.present?
+          %input{:name => q.id, :id => "#{q.id}c", :value=>'c', :type=>'radio'}
+          %label{:for => "#{q.id}c"}
+            =q.c
+
+        -if q.d.present?
+          %input{:name => q.id, :id => "#{q.id}d", :value=>'d', :type=>'radio'}
+          %label{:for => "#{q.id}d"}
+            =q.d
+    %input{:type => :submit, :value => '提交答案'}

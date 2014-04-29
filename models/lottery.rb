@@ -7,6 +7,12 @@ class Lottery < ActiveRecord::Base
 
   after_initialize :init
 
+  before_save :grant_permission
+
+  def grant_permission()
+    self.user.granted = true
+  end
+
   def validate_charge_tel?
     tel_charge? && exchanging?
   end
@@ -30,6 +36,12 @@ class Lottery < ActiveRecord::Base
 
   def init
     self.status ||= 'AVAILABLE'
+  end
+
+  def can_apply_join_match?
+    user = self.user
+    return false unless user
+    return user.granted && !user.apply_attemped
   end
 
   def user_attributes=(attributes)

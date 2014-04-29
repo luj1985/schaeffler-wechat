@@ -8,6 +8,8 @@ zh_cn:
     lotteries: 促销活动（兑奖）
     questions: 观赛问题
 
+  common:
+    submit: 提交
   home:
     title: 舍弗勒中国
   activity:
@@ -27,6 +29,13 @@ zh_cn:
 
     submenu: 活动介绍子菜单
 
+    apply:
+      title: 申请观赛
+
+    question:
+      pass: <p class="message">恭喜您回答正确！</p><p class="message">您已经获得申请观赛的资格，我们将于9月15日公布幸运中奖者</p>
+      fail: <p class="message">很抱歉您提交的答案是错误的。</p><p class="message">感谢您对本次活动的支持，预祝您继续刮中好礼！</p>
+  
     result:
       title: 填写个人信息
       level1: 一等奖
