@@ -31,6 +31,7 @@ zh_cn:
 
     apply:
       title: 申请观赛
+      attempted: 不能多次申请观赛
 
     question:
       pass: <p class="message">恭喜您回答正确！</p><p class="message">您已经获得申请观赛的资格，我们将于9月15日公布幸运中奖者</p>

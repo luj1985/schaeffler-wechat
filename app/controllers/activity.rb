@@ -24,13 +24,17 @@ SchaefflerWechat::App.controllers :activity do
   post :apply do
     misses = params.reject do |id, value|
       question = Question.find_by_id id
-      puts "question #{question.inspect}"
       return false unless question
       question.correct == value
     end
     openid = session[:openid]
     user = User.find_by_openid openid
     halt 500 unless user
+
+    if user.apply_attemped then
+      @message = t('activity.apply.attempted')
+      return render :message
+    end
 
     passed = !params.empty? && misses.empty?
     user.apply_attemped = true
