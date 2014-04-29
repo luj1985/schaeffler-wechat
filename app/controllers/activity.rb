@@ -11,6 +11,9 @@ SchaefflerWechat::App.controllers :activity do
     end
   end
 
+  get :question do
+  end
+
   post :challenge do
   	serial = params[:lottery][:serial]
   	crypted_serial = Digest::MD5::hexdigest serial

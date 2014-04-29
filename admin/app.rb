@@ -33,6 +33,7 @@ module SchaefflerWechat
     end
 
     access_control.roles_for :admin do |role|
+      role.project_module :questions, '/questions'
       role.project_module :images, '/images'
       role.project_module :menus, '/menus'
       role.project_module :articles, '/articles'

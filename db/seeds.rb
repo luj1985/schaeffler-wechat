@@ -29,13 +29,6 @@
 
 account = Account.create(:email => "test@example.com", :name => "Jun", :surname => "Lu", :password => "test", :password_confirmation => "test", :role => "admin")
 
-require 'csv'
-path = File.join(File.dirname(__FILE__), 'test.csv')
-CSV.foreach(path) do |row|
-  crypted, level = row
-  Lottery.create(:level => level, :crypted_serial => crypted)
-end
-
 Menu.create(:name => "home", :text => "test menu 1", :link => 'article1', :description => 'This is a test description for menu 1')
 Menu.create(:name => "home", :text => "test menu 2", :link => 'article2', :description => 'This is a test description for menu 2')
 Menu.create(:name => "home", :text => "test menu 3", :link => 'article3', :description => 'This is a test description for menu 3')
@@ -63,3 +56,23 @@ Article.create(:name => 'activity_intro', :title => '活动介绍', :body => <<-
 </div>
 EOF
 )
+
+
+Question.create(:question => '阿拉伯神灯中主人公是', 
+	:a=>'阿拉甲', :b => '阿拉乙', :c => '阿拉丙', :d => '阿拉丁', :correct => 'd')
+Question.create(:question => '英文老歌 " Let it be " 的原唱是', 
+	:a => '披头一', :b => '披头二', :c => '披头三', :d => '披头四', :correct => 'd')
+Question.create(:question => '“给力”这个词出自以下哪本名著？', 
+	:a => '《不给力啊，老湿》', :b => '《这货不是宿敌》', :c => '《西游记：旅程的终点》', :correct => 'a')
+Question.create(:question => '中国最神秘的部门是神马部门？', 
+	:a => '有关部门', :b => '无关部门', :c => '艳照门', :correct => 'a')
+Question.create(:question => '贾君鹏的结局是', 
+	:a => '被妈妈叫回家吃饭', :b => '过马路被泥头车撞飞了', :c =>  '在网吧继续打游戏', :d => '失踪了', :correct => 'a')
+
+
+require 'csv'
+path = File.join(File.dirname(__FILE__), 'test.csv')
+CSV.foreach(path) do |row|
+  crypted, level = row
+  Lottery.create(:level => level, :crypted_serial => crypted)
+end

@@ -1,0 +1,43 @@
+- error = @question.errors.include?(:question)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :question, :class => 'control-label'
+  .controls
+    ~f.text_area :question, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:question, :class => 'text-error') : pat(:example)
+- error = @question.errors.include?(:a)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :a, :class => 'control-label'
+  .controls
+    =f.text_field :a, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:a, :class => 'text-error') : pat(:example)
+- error = @question.errors.include?(:b)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :b, :class => 'control-label'
+  .controls
+    =f.text_field :b, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:b, :class => 'text-error') : pat(:example)
+- error = @question.errors.include?(:c)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :c, :class => 'control-label'
+  .controls
+    =f.text_field :c, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:c, :class => 'text-error') : pat(:example)
+- error = @question.errors.include?(:d)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :d, :class => 'control-label'
+  .controls
+    =f.text_field :d, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:d, :class => 'text-error') : pat(:example)
+- error = @question.errors.include?(:correct)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :correct, :class => 'control-label'
+  .controls
+    =f.text_field :correct, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:correct, :class => 'text-error') : pat(:example)
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:questions, :index), :class => 'btn btn-default'
