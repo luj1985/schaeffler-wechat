@@ -1,11 +1,11 @@
 %div{'data-role' => 'content'}
-  %p!= t('activity.result.greet', :name => lottery_name(@lottery))
+  %p!= lottery_message @lottery
   = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
     = f.hidden_field :serial
-    - if @lottery.name == "Level 4"
+    - if @lottery.level == '4'
       - errors = @lottery.errors
       %p
-        = f.label :tel
+        = f.label t('activity.result.prize4.label')
         = f.telephone_field :tel
         %span.error= f.error_message_on(:tel) if errors.include?(:tel)
     = f.fields_for :user do |user|

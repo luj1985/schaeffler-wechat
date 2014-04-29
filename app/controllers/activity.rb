@@ -39,7 +39,9 @@ SchaefflerWechat::App.controllers :activity do
     halt 404 unless @lottery
     @lottery.status = 'USED'
     if @lottery.update(params[:lottery])
-      @message = t('activity.result.success')
+      @message = @lottery.level == '4' ? 
+        t('activity.result.success4')  : 
+        t('activity.result.success')
       render :message
     else
       render :profile

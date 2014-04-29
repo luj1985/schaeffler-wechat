@@ -1,5 +1,6 @@
 %div{'data-role' => 'content'}
-  %p.message= @message
+  != @message
+%div{'data-role' => 'footer', 'data-position' => 'fixed'}
   %ul.links
     %li= link_to t('home.title'), url(:home)
     %li= link_to t('activity.home.title'), url(:activity, :index)
