@@ -11,6 +11,16 @@ SchaefflerWechat::App.controllers :activity do
     end
   end
 
+  get :questions do
+    openid = session[:openid]
+    @questions = Question.order('random()').limit(2)
+    render :apply
+  end
+
+  get :others, :map => '/activity/*' do
+    redirect url(:activity, :index)
+  end
+
   post :apply do
     puts 'apply join match'
     puts params.inspect
@@ -30,12 +40,6 @@ SchaefflerWechat::App.controllers :activity do
     user.save
     @message = passed ? t('activity.question.pass') : t('activity.question.fail')
     render :message
-  end
-
-  get :questions do
-    openid = session[:openid]
-    @questions = Question.order('random()').limit(2)
-    render :apply
   end
 
   post :challenge do
