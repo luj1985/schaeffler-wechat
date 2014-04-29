@@ -10,7 +10,9 @@ class Lottery < ActiveRecord::Base
   before_save :grant_permission
 
   def grant_permission()
-    self.user.granted = true
+    if self.user then
+      self.user.granted = true
+    end
   end
 
   def validate_charge_tel?
