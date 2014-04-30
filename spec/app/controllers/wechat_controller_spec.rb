@@ -49,7 +49,7 @@ EOF
       last_response.body.should include("<ToUserName>clientopenid</ToUserName>")
       last_response.body.should include("<FromUserName>targetwechatid</FromUserName>")
       last_response.body.should include("<MsgType>news</MsgType>")
-      last_response.body.should include("<ArticleCount>2</ArticleCount>")
+      last_response.body.should include("<ArticleCount>1</ArticleCount>")
     end
 
   end

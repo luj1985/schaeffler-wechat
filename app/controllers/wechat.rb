@@ -52,18 +52,12 @@ SchaefflerWechat::App.controllers :wechat do
         xml.FromUserName hash[:to_user_name]
         xml.CreateTime Time.now.to_i
         xml.MsgType "news"
-        xml.ArticleCount 2
+        xml.ArticleCount 1
         xml.Articles {
-          xml.item {
-            xml.Title t('activity.intro.title')
-            xml.Description t('activity.intro.description')
-            xml.PicUrl URI.join(host, '/images/introduction.jpg')
-            xml.Url URI.join(host, url_for(:article, :index, :name => 'activity_intro'))
-          }
           xml.item {
             xml.Title t('activity.entry.title')
             xml.Description t('activity.entry.description')
-            xml.PicUrl URI.join(host, '/images/innovation_intro_header.jpg')
+            xml.PicUrl URI.join(host, '/images/introduction.jpg')
             xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
           }
         }
