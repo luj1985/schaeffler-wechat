@@ -3,6 +3,12 @@ SchaefflerWechat::App.controllers :activity do
     render :intro
   end
 
+  # This is used for debug layout, should remove it later
+  get :challenge, :with => :debug do
+    @lottery = Lottery.find_by_id 1
+    render :profile
+  end
+
   get :index do
     if params[:openid].present? then
       session[:openid] = params[:openid]
