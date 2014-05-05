@@ -25,16 +25,16 @@
         = user.telephone_field :tel
         %span.error= user.error_message_on(:tel) if errors.include?(:tel)
       %p
-        = user.label '您所在的修理厂名称'
+        = user.label :workshop, :caption => '您所在的修理厂名称:'
         = user.text_field :workshop
         %span.error= user.error_message_on(:workshop) if errors.include?(:workshop)
       %p
-        = user.label '您所在的修理厂地址'
+        = user.label :workshop_address, :caption => '您所在的修理厂地址:'
         = user.select :province, :options => ["北京","上海"], 'data-inline' => "true"
-        省
+        %span{:class => 'select-desc'} 省
         = user.select :city, :options => ["北京","上海"], 'data-inline' => "true"
-        市
-        = user.label '详细地址'
+        %span{:class => 'select-desc'} 市
+        = user.label :workshop_address, :caption => '详细地址:'
         = user.text_area :workshop_address
         %span.error= user.error_message_on(:workshop_address) if errors.include?(:workshop_address)
     = f.submit_block t('activity.result.save')
