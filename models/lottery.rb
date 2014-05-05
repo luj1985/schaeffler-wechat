@@ -19,6 +19,36 @@ class Lottery < ActiveRecord::Base
     tel_charge? && exchanging?
   end
 
+  def level_name
+    case self.level
+    when '1'
+      "一等奖"
+    when '2'
+      "二等奖"
+    when '3'
+      "三等奖"
+    when '4'
+      "四等奖"
+    else
+      raise "Invalid lottery level"
+    end
+  end
+
+  def display_name
+    case self.level
+    when '1'
+      "新一代iPhone"
+    when '2'
+      "iPad Mini"
+    when '3'
+      "舍弗勒双肩包"
+    when '4'
+      "开心花费10元"
+    else
+      raise "Invalid lottery level"
+    end
+  end
+
   def name
     "level#{self.level}"
   end

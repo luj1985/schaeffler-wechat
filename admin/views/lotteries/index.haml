@@ -3,6 +3,7 @@
     %tr
       %th.header= mat(:lottery, :crypted_serial)
       %th.header= mat(:lottery, :serial)
+      %th.header 奖品等级
       %th.header= mat(:lottery, :name)
       %th.header= mat(:lottery, :tel)
       %th.header= mat(:lottery, :user_id)
@@ -13,7 +14,8 @@
       %tr.list-row
         %td.list-column=lottery.crypted_serial
         %td.list-column=lottery.serial
-        %td.list-column=lottery_name(lottery)
+        %td.list-column=lottery.level_name
+        %td.list-column=lottery.display_name
         %td.list-column=lottery.tel
         %td.list-column=lottery.user_id
         %td.list-column=lottery_status(lottery)
