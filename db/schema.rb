@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 15) do
+ActiveRecord::Schema.define(version: 17) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 15) do
     t.string   "crypted_serial"
     t.integer  "user_id"
     t.string   "status"
+    t.string   "product"
   end
 
   create_table "menus", force: true do |t|
@@ -80,6 +81,8 @@ ActiveRecord::Schema.define(version: 15) do
     t.boolean  "join_match"
     t.boolean  "granted"
     t.boolean  "apply_attemped"
+    t.string   "province"
+    t.string   "city"
   end
 
 end

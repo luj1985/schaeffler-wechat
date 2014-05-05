@@ -8,6 +8,11 @@
         = f.label t('activity.result.prize4.label')
         = f.telephone_field :tel
         %span.error= f.error_message_on(:tel) if errors.include?(:tel)
+    - if @lottery.level == '1' or @lottery.level == '2'
+      - errors = @lottery.errors
+      %p
+        = f.label '您所购买的产品号'
+        = f.text_field :product
     = f.fields_for :user do |user|
       = user.hidden_field :openid
       - errors = @lottery.user.errors
@@ -20,11 +25,16 @@
         = user.telephone_field :tel
         %span.error= user.error_message_on(:tel) if errors.include?(:tel)
       %p
-        = user.label :workshop
+        = user.label '您所在的修理厂名称'
         = user.text_field :workshop
         %span.error= user.error_message_on(:workshop) if errors.include?(:workshop)
       %p
-        = user.label :workshop_address
+        = user.label '您所在的修理厂地址'
+        = user.label '省'
+        = user.text_field :province 
+        = user.label '市'
+        = user.text_field :city
+        = user.label '详细地址'
         = user.text_area :workshop_address
         %span.error= user.error_message_on(:workshop_address) if errors.include?(:workshop_address)
     = f.submit_block t('activity.result.save')
