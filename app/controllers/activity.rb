@@ -1,4 +1,8 @@
 SchaefflerWechat::App.controllers :activity do
+  get :intro do
+    render :intro
+  end
+
   get :index do
     if params[:openid].present? then
       session[:openid] = params[:openid]

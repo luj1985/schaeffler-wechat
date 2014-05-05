@@ -75,3 +75,12 @@
   clear: both;
   display: block;
 }
+
+.schaeffler ul.nu-list {
+  list-style: decimal;
+}
+
+.schaeffler ul.no-nu-list {
+  list-style: none;
+  padding-left: 5px;
+}
