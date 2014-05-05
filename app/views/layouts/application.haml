@@ -17,8 +17,5 @@
     =javascript_include_tag 'jquery.mobile.min'
     =yield_content :assets
   %body{:class => 'schaeffler'}
-    %div{ page_style }
-      %div{ header_style }
-        %span.logo-name
-        %span.logo-icons
+    %div{ page_style 
       = yield
