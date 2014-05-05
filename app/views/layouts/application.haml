@@ -17,5 +17,8 @@
     =javascript_include_tag 'jquery.mobile.min'
     =yield_content :assets
   %body{:class => 'schaeffler'}
-    %div{ page_style 
-      = yield
+    %div{ page_style }
+      =yield
+      %div{'data-role' => 'footer', 'data-position' => 'fixed'}
+        %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'}
+          返回上级
