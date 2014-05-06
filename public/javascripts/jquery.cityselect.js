@@ -35,7 +35,7 @@ required:必选项
         var prov_val = settings.prov;
         var city_val = settings.city;
         var dist_val = settings.dist;
-        var select_prehtml = (settings.required) ? "" : "<option value='none'>请选择</option>";
+        var select_prehtml = (settings.required) ? "" : "<option value=''></option>";
         var city_json;
 
         // 赋值市级函数
