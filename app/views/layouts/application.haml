@@ -15,7 +15,8 @@
         $.mobile.defaultPageTransition = 'slide';
       });
     =javascript_include_tag 'jquery.mobile.min'
-    =yield_content :assets
+    =yield_content :stylesheets
+    =yield_content :javascripts
   %body{:class => 'schaeffler'}
     %div{ page_style }
       =yield

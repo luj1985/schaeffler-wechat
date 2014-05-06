@@ -1,3 +1,12 @@
+-content_for :javascripts do
+  =javascript_include_tag 'jquery.cityselect.js'
+  :javascript
+    $(function() {
+      $('#address').citySelect({
+        nodata: "none",
+        required: false 
+      });
+    });
 %div{'data-role' => 'content'}
   %p!= lottery_message @lottery
   = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
@@ -11,7 +20,7 @@
     - if @lottery.level == '1' or @lottery.level == '2'
       - errors = @lottery.errors
       %p
-        = f.label '您所购买的产品号'
+        = f.label :product, :caption => '您所购买的产品号:'
         = f.text_field :product
     = f.fields_for :user do |user|
       = user.hidden_field :openid
@@ -28,12 +37,10 @@
         = user.label :workshop, :caption => '您所在的修理厂名称:'
         = user.text_field :workshop
         %span.error= user.error_message_on(:workshop) if errors.include?(:workshop)
-      %p
+      %p{:id => 'address'}
         = user.label :workshop_address, :caption => '您所在的修理厂地址:'
-        = user.select :province, :options => ["北京","上海"], 'data-inline' => "true"
-        %span{:class => 'select-desc'} 省
-        = user.select :city, :options => ["北京","上海"], 'data-inline' => "true"
-        %span{:class => 'select-desc'} 市
+        = user.select :province, :class => 'prov', 'data-inline' => "true"
+        = user.select :city, :class => 'city', 'data-inline' => "true"
         = user.label :workshop_address, :caption => '详细地址:'
         = user.text_area :workshop_address
         %span.error= user.error_message_on(:workshop_address) if errors.include?(:workshop_address)
