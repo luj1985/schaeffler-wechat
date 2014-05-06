@@ -1,5 +1,5 @@
 %div{'data-role' => 'content'}
   != @message
   -if @lottery && @lottery.can_apply_join_match? then
-    %a{:href => url_for(:activity, :questions)}
+    %a{:href => url_for(:activity, :rules)}
       =t('activity.apply.title')

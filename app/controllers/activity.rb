@@ -9,6 +9,10 @@ SchaefflerWechat::App.controllers :activity do
     render :profile
   end
 
+  get :rules do
+    render :rules
+  end
+
   get :index do
     if params[:openid].present? then
       session[:openid] = params[:openid]
