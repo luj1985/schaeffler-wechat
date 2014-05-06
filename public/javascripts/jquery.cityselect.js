@@ -35,7 +35,7 @@ required:必选项
         var prov_val = settings.prov;
         var city_val = settings.city;
         var dist_val = settings.dist;
-        var select_prehtml = (settings.required) ? "" : "<option value=''></option>";
+        var select_prehtml = (settings.required) ? "" : "<option value=''>请选择</option>";
         var city_json;
 
         // 赋值市级函数
@@ -67,6 +67,9 @@ required:必选项
                 "display": "",
                 "visibility": ""
             });
+            if (city_obj.selectmenu) {
+                city_obj.selectmenu("refresh");
+            }
             distStart();
         };
 
@@ -98,6 +101,10 @@ required:必选项
                 "display": "",
                 "visibility": ""
             });
+
+            if (dist_obj.selectmenu) {
+                dist_obj.selectmenu("refresh");
+            }
         };
 
         var init = function() {
@@ -107,6 +114,10 @@ required:必选项
                 temp_html += "<option value='" + prov.p + "'>" + prov.p + "</option>";
             });
             prov_obj.html(temp_html);
+
+            if (prov_obj.selectmenu) {
+                prov_obj.selectmenu("refresh");
+            }
 
             // 若有传入省份与市级的值，则选中。（setTimeout为兼容IE6而设置）
             setTimeout(function() {
