@@ -6,7 +6,7 @@
     - if @lottery.level == '4'
       - errors = @lottery.errors
       %p
-        = f.label t('activity.result.prize4.label')
+        = f.label :tel, :caption => '您输请您要充值入的手机号:'
         = f.telephone_field :tel
         %span.error= f.error_message_on(:tel) if errors.include?(:tel)
     - if @lottery.level == '1' or @lottery.level == '2'

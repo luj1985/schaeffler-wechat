@@ -73,6 +73,8 @@ class Lottery < ActiveRecord::Base
   def can_apply_join_match?
     user = self.user
     return false unless user
+    # 一、二、三等奖才有资格申请观赛
+    return false if self.level == '4'
     return user.granted && !user.apply_attemped
   end
 
