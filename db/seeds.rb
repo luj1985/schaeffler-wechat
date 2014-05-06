@@ -29,13 +29,13 @@
 
 account = Account.create(:email => "test@example.com", :name => "Jun", :surname => "Lu", :password => "test", :password_confirmation => "test", :role => "admin")
 
-Menu.create(:name => "home", :text => "test menu 1", :link => 'article1', :description => 'This is a test description for menu 1')
-Menu.create(:name => "home", :text => "test menu 2", :link => 'article2', :description => 'This is a test description for menu 2')
-Menu.create(:name => "home", :text => "test menu 3", :link => 'article3', :description => 'This is a test description for menu 3')
-Menu.create(:name => "home", :text => "test menu 4", :link => 'article4', :description => 'This is a test description for menu 4')
-Menu.create(:name => "home", :text => "test menu 5", :link => 'article5', :description => 'This is a test description for menu 5')
-Menu.create(:name => "home", :text => "test menu 6", :link => 'article6', :description => 'This is a test description for menu 6')
-Menu.create(:name => "home", :text => "test menu 7", :link => 'article7', :description => 'This is a test description for menu 7')
+Menu.create(:name => "matches", :text => "test menu 1", :link => 'article1', :description => 'This is a test description for menu 1')
+Menu.create(:name => "matches", :text => "test menu 2", :link => 'article2', :description => 'This is a test description for menu 2')
+Menu.create(:name => "matches", :text => "test menu 3", :link => 'article3', :description => 'This is a test description for menu 3')
+Menu.create(:name => "matches", :text => "test menu 4", :link => 'article4', :description => 'This is a test description for menu 4')
+Menu.create(:name => "matches", :text => "test menu 5", :link => 'article5', :description => 'This is a test description for menu 5')
+Menu.create(:name => "matches", :text => "test menu 6", :link => 'article6', :description => 'This is a test description for menu 6')
+Menu.create(:name => "matches", :text => "test menu 7", :link => 'article7', :description => 'This is a test description for menu 7')
 
 Article.create(:name => 'article1', :title => 'Article 1', :body => '<h3>Title of Article 1</h3><p>body of article 1</p>')
 Article.create(:name => 'article2', :title => 'Article 2', :body => '<h3>Title of Article 2</h3><p>body of article 2</p>')
@@ -44,18 +44,6 @@ Article.create(:name => 'article4', :title => 'Article 4', :body => '<h3>Title o
 Article.create(:name => 'article5', :title => 'Article 5', :body => '<h3>Title of Article 5</h3><p>body of article 5</p>')
 Article.create(:name => 'article6', :title => 'Article 6', :body => '<h3>Title of Article 6</h3><p>body of article 6</p>')
 Article.create(:name => 'article7', :title => 'Article 8', :body => '<h3>Title of Article 7</h3><p>body of article 7</p>')
-
-Article.create(:name => 'activity_intro', :title => '活动介绍', :body => <<-EOF
-<img src="/images/introduction.jpg", width="100%" />
-<div class="message">
-  <p>活动介绍<p>
-  <ul>
-    <li><a href="/">回到首页</a></li>
-    <li><a href="/menu/home">二级菜单</a></li>
-  </ul>
-</div>
-EOF
-)
 
 
 Question.create(:question => '阿拉伯神灯中主人公是', 
