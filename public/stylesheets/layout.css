@@ -85,3 +85,35 @@
 .schaeffler span.select-desc {
   margin-right: .5em;
 }
+
+.schaeffler .overlap {
+  position: relative;
+}
+
+a.detail {
+  float: right;
+  right: 20px;
+  bottom: -15px;
+  position: absolute;
+  background-color: #E21C38;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 3px solid #FFF;
+  color: #FFF;
+  box-shadow: 4px 4px 4px lightgray;
+}
+
+a.detail:hover {
+  color: white;
+}
+a.detail:visited {
+  color: white;
+}
+a.detail:active {
+  color: white;
+}
+
+div.clear {
+  clear:right;
+}

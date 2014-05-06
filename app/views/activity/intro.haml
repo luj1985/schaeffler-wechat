@@ -1,4 +1,7 @@
-%img{:src => '/images/activity-poster.jpg'}
+%div{:class => 'overlap'}
+  %img{:src => '/images/activity-poster.jpg'}
+  %a{:href => url_for(:article, :index, :name=> 'article1'), :class => 'detail'}
+    活动详情
 %div{'data-role' => 'content'}
   %h4 即日起至2014年12月31日，买舍弗勒产品即由机会赢取双重惊喜！
   %p 一重惊喜：随手刮出好礼，综合中奖率高达15%！
