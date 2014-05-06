@@ -50,7 +50,7 @@ SchaefflerWechat::App.controllers :activity do
       return render :message
     end
 
-    passed = !params.empty? && misses.empty?
+    passed = (params.length == 2) && misses.empty?
     user.apply_attemped = true
     user.join_match = passed
     user.save

@@ -34,8 +34,8 @@ zh_cn:
       attempted: 不能多次申请观赛
 
     question:
-      pass: <p class="message">恭喜您回答正确！</p><p class="message">您已经获得申请观赛的资格，我们将于9月15日公布幸运中奖者</p>
-      fail: <p class="message">很抱歉您提交的答案是错误的。</p><p class="message">感谢您对本次活动的支持，预祝您继续刮中好礼！</p>
+      pass: <p class="message">恭喜您回答正确！</p><p class="message">您获得了申请现场观赛的资格，我们将于8月初和10月初从回答正确的申请者中抽取出幸运者！获得现场激情观赛的机会哦！</p><p class="message">届时请您关注舍弗勒汽车售后微信公共帐号！</p>
+      fail: <p class="message">非常抱歉，您提交的答案不正确！<img src="/images/cry.gif" style="height:50px;width:50px"/></p><p class="message">预祝您能刮中更多奖品哦！</p>
 
     result:
       title: 填写个人信息

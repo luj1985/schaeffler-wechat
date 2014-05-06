@@ -1,6 +1,6 @@
 %div{'data-role' => 'content'}
   %h4 赛事申请规则介绍
-  %p 回答正确可获得申请观赛的资格，幸运中奖者将于9月15日抽出。每个微信ID仅有一次机会哦！
+  %p 提交答案后您将无法再次申请观赛哦！
 
   %form{:action => url_for(:activity, :apply), :method => :post }
     -@questions.each.with_index do |q, i|
