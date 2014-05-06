@@ -120,23 +120,33 @@ required:必选项
             }
 
             // 若有传入省份与市级的值，则选中。（setTimeout为兼容IE6而设置）
-            setTimeout(function() {
-                if (settings.prov != null) {
-                    prov_obj.val(settings.prov);
-                    cityStart();
-                    setTimeout(function() {
-                        if (settings.city != null) {
-                            city_obj.val(settings.city);
-                            distStart();
-                            setTimeout(function() {
-                                if (settings.dist != null) {
-                                    dist_obj.val(settings.dist);
-                                };
-                            }, 1);
-                        };
-                    }, 1);
-                };
-            }, 1);
+
+            if (settings.prov != null) {
+                prov_obj.val(settings.prov);
+                cityStart();
+                if (prov_obj.selectmenu) {
+                    prov_obj.selectmenu("refresh");
+                }
+
+            };
+
+            if (settings.city != null) {
+                city_obj.val(settings.city);
+                distStart();
+
+                if (city_obj.selectmenu) {
+                    city_obj.selectmenu("refresh");
+                }
+            };
+
+            if (settings.dist != null) {
+                dist_obj.val(settings.dist);
+
+                if (dist_obj.selectmenu) {
+                    dist_obj.selectmenu("refresh");
+                }
+            };
+
 
             // 选择省份时发生事件
             prov_obj.bind("change", function() {

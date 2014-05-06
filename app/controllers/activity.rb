@@ -6,7 +6,6 @@ SchaefflerWechat::App.controllers :activity do
   # This is used for debug layout, should remove it later
   get :challenge, :with => :debug do
     @lottery = Lottery.find_by_id 1
-    @lottery.user = User.new
     render :profile
   end
 

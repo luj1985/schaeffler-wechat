@@ -1,13 +1,5 @@
 
 %div{'data-role' => 'content'}
-  =javascript_include_tag 'jquery.cityselect.js'
-  :javascript
-    $(function() {
-      $('#address').citySelect({
-        nodata: "none",
-        required: false 
-      });
-    });
   %p!= lottery_message @lottery
   = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
     = f.hidden_field :serial
@@ -23,6 +15,16 @@
         = f.label :product, :caption => '您所购买的产品号:'
         = f.text_field :product
     = f.fields_for :user do |user|
+      =javascript_include_tag 'jquery.cityselect.js'
+      :javascript
+        $(function() {
+          $('#address').citySelect({
+            nodata: "none",
+            prov: "#{user.object.province}",
+            city: "#{user.object.city}",
+            required: false
+          });
+        });
       = user.hidden_field :openid
       - errors = @lottery.user.errors
       %p
