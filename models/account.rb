@@ -19,7 +19,8 @@ class Account < ActiveRecord::Base
   # This method is for authentication purpose.
   #
   def self.authenticate(email, password)
-    account = first(:conditions => ["lower(email) = lower(?)", email]) if email.present?
+    #account = first(:conditions => ["lower(email) = lower(?)", email]) if email.present?
+    account = self.find_by_email email if email.present?
     account && account.has_password?(password) ? account : nil
   end
 
