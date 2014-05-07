@@ -1,18 +1,18 @@
 -content_for :javascripts do
-  =javascript_include_tag 'bootstrap3-wysihtml5.all.min'
-  =javascript_include_tag 'locales/bootstrap-wysihtml5.en-US'
-  =javascript_include_tag 'locales/bootstrap-wysihtml5.zh-CN'
+  =javascript_include_tag 'froala_editor.min'
+  =javascript_include_tag 'langs/zh_cn'
   :javascript
     $(function() {
-      $('textarea[name="article[body]"]').wysihtml5({
-        "locale": "zh-CN",
-        "color": true,
-        "html": true,
-        "stylesheets": ["/stylesheets/wysihtml5-colors.css"]
+      $('textarea[name="article[body]"]').editable({
+        preloaderSrc: "/images/preloader.gif",
+        inlineMode: false,
+        language: "zh_cn"
       });
     });
+
 -content_for :stylesheets do
-  =stylesheet_link_tag 'bootstrap3-wysihtml5.min'
+  =stylesheet_link_tag 'font-awesome.min'
+  =stylesheet_link_tag 'froala_editor.min'
 
 - error = @article.errors.include?(:title)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
