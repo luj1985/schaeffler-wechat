@@ -1,5 +1,7 @@
 SchaefflerWechat::Admin.controllers :images do
-  
+  include FileUtils
+  require 'securerandom'
+
   get :index do
     @title = "Images"
     @images = Image.all
@@ -10,6 +12,17 @@ SchaefflerWechat::Admin.controllers :images do
     @title = pat(:new_title, :model => 'image')
     @image = Image.new
     render 'images/new'
+  end
+
+  post :upload do
+    tempfile = params["file"][:tempfile]
+    extension = File.extname(params["file"][:filename])
+    filename = SecureRandom.hex + extension;
+    cp(tempfile.path, "public/uploads/#{filename}")
+    res = {
+      :link =>  "/uploads/#{filename}"
+    }
+    res.to_json
   end
 
   post :create do
