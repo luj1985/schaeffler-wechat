@@ -29,8 +29,11 @@ SchaefflerWechat::Admin.controllers :images do
     filename = params[:file][:filename]
     extension = File.extname(filename)
     resource = SecureRandom.hex + extension;
-    cp(tempfile.path, "public/uploads/#{resource}")
+    target = "public/uploads/#{resource}"
     link =  "/uploads/#{resource}"
+
+    cp tempfile.path, target
+    chmod 0644, target
 
     Image.create({
       :title => filename,
