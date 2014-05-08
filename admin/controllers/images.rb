@@ -14,13 +14,26 @@ SchaefflerWechat::Admin.controllers :images do
     render 'images/new'
   end
 
+  post :delete do
+    pust "--------------- Delete Image -------"
+    puts params
+  end
+
   post :upload do
     tempfile = params["file"][:tempfile]
-    extension = File.extname(params["file"][:filename])
-    filename = SecureRandom.hex + extension;
-    cp(tempfile.path, "public/uploads/#{filename}")
+    filename = params["file"][:filename]
+    extension = File.extname(filename)
+    resource = SecureRandom.hex + extension;
+    cp(tempfile.path, "public/uploads/#{resource}")
+    link =  "/uploads/#{resource}"
+
+    Image.create({
+      :title => filename,
+      :href => link
+    })
+
     res = {
-      :link =>  "/uploads/#{filename}"
+      :link => link
     }
     res.to_json
   end
