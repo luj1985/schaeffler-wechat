@@ -42,6 +42,7 @@ SchaefflerWechat::App.controllers :activity do
       question.correct == value
     end
     openid = session[:openid]
+    puts "---- Open id #{openid}"
     user = User.find_by_openid openid
     halt 500 unless user
 

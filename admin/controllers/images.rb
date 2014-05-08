@@ -8,6 +8,11 @@ SchaefflerWechat::Admin.controllers :images do
     render 'images/index'
   end
 
+  get :list do
+    @urls = Image.all.collect {|i| i.href }
+    @urls.to_json.to_s
+  end
+
   get :new do
     @title = pat(:new_title, :model => 'image')
     @image = Image.new
@@ -15,13 +20,13 @@ SchaefflerWechat::Admin.controllers :images do
   end
 
   post :delete do
-    pust "--------------- Delete Image -------"
-    puts params
+    src = params[:src]
+    Image.destroy_all(:href => src)
   end
 
   post :upload do
-    tempfile = params["file"][:tempfile]
-    filename = params["file"][:filename]
+    tempfile = params[:file][:tempfile]
+    filename = params[:file][:filename]
     extension = File.extname(filename)
     resource = SecureRandom.hex + extension;
     cp(tempfile.path, "public/uploads/#{resource}")
