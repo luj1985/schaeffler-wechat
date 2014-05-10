@@ -1,5 +1,14 @@
-SchaefflerWechat::App.controllers :activity do
-  get :intro do
+SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} do
+  def self.protect(protected)
+    condition do
+      if params[:openid].present? then
+        session[:openid] = params[:openid]
+      end
+      halt 403, "缺少OpenID，请点击菜单按钮访问" if session[:openid].nil?
+    end if protected
+  end
+
+  get :intro, :protect => false do
     render :intro
   end
 
@@ -14,19 +23,10 @@ SchaefflerWechat::App.controllers :activity do
   end
 
   get :index do
-    if params[:openid].present? then
-      session[:openid] = params[:openid]
-    end
-    if session[:openid].nil? then
-      @message = t('activity.result.invalid.openid')
-      render :message
-    else 
-      render :index
-    end
+    render :index
   end
 
   get :questions do
-    openid = session[:openid]
     @questions = Question.order('random()').limit(2)
     render :apply
   end
@@ -42,7 +42,6 @@ SchaefflerWechat::App.controllers :activity do
       question.correct == value
     end
     openid = session[:openid]
-    puts "---- Open id #{openid}"
     user = User.find_by_openid openid
     halt 500 unless user
 
