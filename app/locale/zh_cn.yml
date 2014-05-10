@@ -1,15 +1,5 @@
 zh_cn:
-  modules:
-    accounts: 管理员账户
-    images: 图片素材
-    menus: 微网页菜单
-    articles: 消息管理
-    users: 微信用户
-    lotteries: 促销活动（兑奖）
-    questions: 观赛问题
-
   activity:
-
     result:
       title: 填写个人信息
       save: 保存

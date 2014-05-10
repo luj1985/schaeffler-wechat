@@ -7,9 +7,8 @@
     <![endif]-->
     %meta{:content => 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
     %meta{:name => :viewport, :content => 'width=device-width,initial-scale=1'}
-    %title= @title.present? ? "#{@title} | Padrino Admin" : "Padrino Admin"
+    %title= @title.present? ? "#{@title} | Schaeffler Admin" : "Schaeffler Admin"
     =favicon_tag 'favicon.ico'
-    %link{:href => 'http://fonts.googleapis.com/css?family=Varela', :rel => :stylesheet}
     =stylesheet_link_tag 'bootstrap', 'application'
     =yield_content :stylesheets
 
@@ -17,18 +16,38 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          =link_to 'Padrino', url(:base, :index), :class => 'navbar-brand', :title => 'Padrino Admin'
+          =link_to 'Schaeffler', url(:base, :index), :class => 'navbar-brand', :title => 'Schaeffler Admin'
           %ul.nav.navbar-nav.pull-right
             %li.navbar-edit-account=link_to tag_icon(:user), url(:accounts, :edit, :id => current_account.id), :title => pat(:profile), :class => 'navbar-nav-link'
             %li.navbar-logout
               =button_to :logout, url(:sessions, :destroy), :method => :delete, :class => 'navbar-nav-form' do
                 =content_tag :button, tag_icon(:off), :type => :submit, :title => pat(:logout), :class => 'navbar-nav-form-link'
+          
 
           %ul.nav.navbar-nav.pull-left
-            - project_modules.each do |project_module|
-              %li{:class => "navbar-module #{('active' if request.path_info =~ /^#{project_module.path}/)}"}
-                - puts project_module.inspect
-                =link_to t("modules.#{project_module.name}"), url(project_module.path)
+            %li.dropdown.navbar-module{:class => "active"}
+              %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
+                消息管理
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => url_for(:menus, :index)} 微网页菜单
+                  %a{:href => url_for(:articles, :index)} 新闻消息
+
+            %li.dropdown.navbar-module
+              %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
+                促销活动
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => url_for(:lotteries, :index)} 兑奖号码
+                  %a{:href => url_for(:users, :index)} 参与微信用户
+                  %a{:href => url_for(:questions, :index)} 申请观赛问题
+
+          -#%ul.nav.navbar-nav.pull-left
+          -#  - project_modules.each do |project_module|
+          -#    %li{:class => "navbar-module #{('active' if request.path_info =~ /^#{project_module.path}/)}"}
+          -#      =link_to t("modules.#{project_module.name}"), url(project_module.path)
 
     .container.main
       .main-wrapper
@@ -36,17 +55,5 @@
         .row=yield
         .main-wrapper-push
 
-    %footer
-      .footer-wrapper.container
-        %p.pull-left
-          Copyright &copy;
-          =Time.now.year
-          Your Site - Powered by Padrino v.#{Padrino.version}
-        %ul.pull-right.footer-links
-          %li= link_to tag_icon(:home, 'web'), 'http://www.padrinorb.com', :target => :_blank, :class => 'footer-links-link'
-          %li= link_to tag_icon(:heart, 'blog'), 'http://www.padrinorb.com/blog', :target => :_blank, :class => 'footer-links-link'
-          %li= link_to tag_icon(:github, 'code'), 'https://github.com/padrino/padrino-framework', :target => :_blank, :class => 'footer-links-link'
-          %li= link_to tag_icon(:twitter, 'twitter'), 'http://twitter.com/padrinorb', :target => :_blank, :class => 'footer-links-link'
-
-    =javascript_include_tag 'jquery-1.9.0.min', (Padrino.env == :production ? 'bootstrap/bootstrap.min' : %w[bootstrap/affix bootstrap/alert bootstrap/button bootstrap/carousel bootstrap/collapse bootstrap/dropdown  bootstrap/tooltip bootstrap/transition  bootstrap/modal bootstrap/popover bootstrap/scrollspy bootstrap/tab]), :application
+    =javascript_include_tag 'jquery-1.9.0.min', 'bootstrap/bootstrap.min', :application
     =yield_content :javascripts
