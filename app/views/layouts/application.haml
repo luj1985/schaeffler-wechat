@@ -12,9 +12,8 @@
     =javascript_include_tag 'jquery'
     :javascript
       $(document).bind("mobileinit", function() {
-        / Wechat browser currently(2014/05/10) doesn't support pushstate
-        / disable this feature, otherwise WeixinJSBridge may not work correctly
-        $.mobile.pushStateEnabled = false;
+        / $.mobile.pushStateEnabled = false;
+        $.mobile.ajaxEnabled = false;
         $.mobile.defaultPageTransition = 'slide';
       });
 
