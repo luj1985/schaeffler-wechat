@@ -18,8 +18,13 @@
         function onWeixinReady() {
           WeixinJSBridge.call('hideToolbar');
           $('body').on('click', '.schaeffler-exit', function(e) {
-            window.alert('close window here');
-            WeixinJSBridge.call('closeWindow');
+            try {
+              var rtn = WeixinJSBridge.call('closeWindow');
+              window.alert(rtn);
+            } catch (e) {
+              window.alert(e);
+            }
+            
           });
         }
         if (typeof WeixinJSBridge === "undefined") {
