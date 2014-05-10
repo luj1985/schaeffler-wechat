@@ -12,22 +12,86 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     render :intro
   end
 
+
+
   get :index do
     render :index
   end
 
+
+
+  post :confirm do
+    raw = params[:lottery][:serial]
+    serial = raw.scan(/\d/).join('')
+    crypted_serial = Digest::MD5::hexdigest serial
+    @lottery = Lottery.find_by_crypted_serial crypted_serial
+    if @lottery then # correct serial number
+      if @lottery.available? then
+        @lottery.status = 'EXCHANGING'
+        user = User.find_or_initialize_by :openid => session[:openid]
+        @lottery.user = user
+        @lottery.serial = serial
+        render :confirm
+      else
+        @message = <<EOF
+<p class="message">对不起，您输入的验证码已经被兑换。</p>
+<p>如有问题，您可拨打活动专线咨询：
+<a href="tel:021-39576702">021-39576702</a></p>
+EOF
+        render :message
+      end
+    else
+      @message = <<EOF
+<p class="message">对不起，您输入的验证码有误，请检查您的输入。</p>
+<p>如有问题，您可拨打活动专线咨询：
+<a href="tel:021-39576702">021-39576702</a>
+</p>
+EOF
+      render :message
+    end
+  end
+
+
+
+  post :save do
+    @lottery = Lottery.find_by_id(params[:id])
+    halt 404 unless @lottery
+    @lottery.status = 'USED'
+    if @lottery.update(params[:lottery])
+      l4_succss_msg = <<EOF
+<p class="message">您的兑奖信息已经提交成功</p>
+<p class="message">根据您提交的信息我们将在三个工作日内为您指定的手机号码充值，请您关注。</p>
+<p class="message">感谢您对舍弗勒的支持与信赖。</p>
+EOF
+      success_msg = <<EOF
+<p class="message">您的兑奖信息已经提交成功</p>
+<p class="message">根据您提交的信息我们的工作人员将于一周以内联系您。</p>
+<p class="message">感谢您对舍弗勒的支持与信赖。</p>
+EOF
+      success_msg += "<a href=#{url_for(:activity, :rules)}>申请观赛</a>" if @lottery.can_apply_join_match?
+      @message = @lottery.level == '4' ? l4_succss_msg : success_msg
+      render :message
+    else
+      render :confirm
+    end
+  end
+
+
+
+
   get :rules do
     render :rules
   end
+
+
+
 
   get :questions do
     @questions = Question.order('random()').limit(2)
     render :questions
   end
 
-  # get :others, :map => '/activity/*' do
-  #   redirect url(:activity, :index)
-  # end
+
 
   post :apply do
     misses = params.reject do |id, value|
@@ -35,9 +99,8 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
       return false unless question
       question.correct == value
     end
-    openid = session[:openid]
-    user = User.find_by_openid openid
-    halt 500 unless user
+    user = User.find_by_openid session[:openid]
+    halt 500, "没有找您的微信账户" unless user
 
     if user.apply_attemped then
       @message = '不能多次申请观赛'
@@ -65,61 +128,12 @@ EOF
     render :message
   end
 
-  post :confirm do
-  	raw = params[:lottery][:serial]
-    serial = raw.scan(/\d/).join('')
-  	crypted_serial = Digest::MD5::hexdigest serial
-  	@lottery = Lottery.find_by_crypted_serial crypted_serial
-    if @lottery then # correct serial number
-      if @lottery.available? then
-        @lottery.status = 'EXCHANGING'
-        openid = session[:openid]
-        user = User.find_or_initialize_by :openid => openid
-        @lottery.user = user
-        @lottery.serial = serial
-        render :confirm
-      else
-        @message = <<EOF
-<p class="message">对不起，您输入的验证码已经被兑换。</p>
-<p>如有问题，您可拨打活动专线咨询：
-<a href="tel:021-39576702">021-39576702</a>
-</p>
-EOF
-        render :message
-      end
-    else
-      @message = <<EOF
-<p class="message">对不起，您输入的验证码有误，请检查您的输入。</p>
-<p>如有问题，您可拨打活动专线咨询：
-<a href="tel:021-39576702">021-39576702</a>
-</p>
-EOF
-      render :message
-    end
-  end
 
-  post :save do
-    @lottery = Lottery.find_by_id(params[:id])
-    halt 404 unless @lottery
-    @lottery.status = 'USED'
-    if @lottery.update(params[:lottery])
-      l4_succss_msg = <<EOF
-<p class="message">您的兑奖信息已经提交成功</p>
-<p class="message">根据您提交的信息我们将在三个工作日内为您指定的手机号码充值，请您关注。</p>
-<p class="message">感谢您对舍弗勒的支持与信赖。</p>
-EOF
-      success_msg = <<EOF
-<p class="message">您的兑奖信息已经提交成功</p>
-<p class="message">根据您提交的信息我们的工作人员将于一周以内联系您。</p>
-<p class="message">感谢您对舍弗勒的支持与信赖。</p>
-EOF
-      success_msg += "<a href=#{url_for(:activity, :rules)}>申请观赛</a>" if @lottery.can_apply_join_match?
-      @message = @lottery.level == '4' ? l4_succss_msg : success_msg
-      render :message
-    else
-      render :confirm
-    end
-  end
+
+
+  # get :others, :map => '/activity/*' do
+  #   redirect url(:activity, :index)
+  # end
 
 
 

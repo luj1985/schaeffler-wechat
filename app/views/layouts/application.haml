@@ -2,7 +2,8 @@
 %html
   %head
     %meta{:charset => 'utf-8'}
-    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}
+    %meta{:name => 'viewport', 
+          :content => 'width=device-width, initial-scale=1'}
     %title 舍弗勒中国
     =stylesheet_link_tag 'themes/schaeffler.min'
     =stylesheet_link_tag 'themes/jquery.mobile.icons.min'
@@ -12,6 +13,13 @@
     :javascript
       $(document).bind("mobileinit", function() {
         $.mobile.defaultPageTransition = 'slide';
+      });
+      $(function() {
+        $('.schaeffler-exit').on('click', function(e) {
+          if (window.WeixinJSBridge) {
+            WeixinJSBridge.call('closeWindow');
+          }
+        });
       });
     =javascript_include_tag 'jquery.mobile.min'
     =javascript_include_tag 'jquery.inputmask.min'
@@ -23,3 +31,6 @@
       %div{'data-role' => 'footer', 'data-position' => 'fixed'}
         %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'}
           返回上级
+        %a{:href => "#", 'data-icon' => "home", 
+           :class => ["ui-btn-right","schaeffler-exit"]}
+          退出
