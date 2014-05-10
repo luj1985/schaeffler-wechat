@@ -24,6 +24,11 @@ module SchaefflerWechat
       render 'errors/505'
     end
 
+    error 409 do
+      @message = body.join
+      render :message
+    end
+
     not_found do
       status 404
       render 'errors/404'

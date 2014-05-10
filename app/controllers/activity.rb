@@ -66,16 +66,13 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
 
 
   post :apply do
+    user = User.find_by_openid session[:openid]
+    halt 409, "没有找您的微信账户" unless user
+    halt 409, '不能多次申请观赛' if user.apply_attemped
+    
     misses = params.reject do |id, value|
       question = Question.find_by_id id
       question && question.correct == value
-    end
-    user = User.find_by_openid session[:openid]
-    halt 500, "没有找您的微信账户" unless user
-
-    if user.apply_attemped then
-      @message = '不能多次申请观赛'
-      return render :message
     end
 
     @passed = (params.length == 2) && misses.empty?
@@ -88,9 +85,9 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
 
 
 
-  # get :others, :map => '/activity/*' do
-  #   redirect url(:activity, :index)
-  # end
+  get :others, :map => '/activity/*' do
+    redirect url(:activity, :index)
+  end
 
 
 
