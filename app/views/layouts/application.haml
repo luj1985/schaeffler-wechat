@@ -14,25 +14,21 @@
       $(document).bind("mobileinit", function() {
         $.mobile.defaultPageTransition = 'slide';
       });
-      $(function() {
-        function onWeixinReady() {
-          WeixinJSBridge.call('hideToolbar');
-          / $('body').on('click', '.schaeffler-exit', function(e) {
-          /   try {
-          /     var rtn = WeixinJSBridge.call('closeWindow');
-          /     window.alert(rtn);
-          /   } catch (e) {
-          /     window.alert(e);
-          /   }
-            
-          / });
-        }
-        if (typeof WeixinJSBridge === "undefined") {
-          $(document).on("WeixinJSBridgeReady", onWeixinReady);
-        } else {
-          onWeixinReady();
-        }
-      });
+
+      function onWeixinReady() {
+        WeixinJSBridge.call('hideToolbar');
+        $('body').on('click', '.schaeffler-exit', function(e) {
+          WeixinJSBridge.call('closeWindow');
+          window.close();
+          e.preventDefault();
+        });
+      }
+
+      if (typeof WeixinJSBridge === "undefined") {
+        $(document).bind("WeixinJSBridgeReady", onWeixinReady);
+      } else {
+        onWeixinReady();
+      }
     =javascript_include_tag 'jquery.mobile.min'
     =javascript_include_tag 'jquery.inputmask.min'
     =yield_content :stylesheets
@@ -44,6 +40,5 @@
         %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'}
           返回上级
         %a{:href => "#", 'data-icon' => "home", 
-           :onclick => "WeixinJSBridge.call('closeWindow');",
            :class => ["ui-btn-right","schaeffler-exit"]}
           退出
