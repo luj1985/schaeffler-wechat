@@ -60,7 +60,8 @@ SchaefflerWechat::App.controllers :activity do
   end
 
   post :challenge do
-  	serial = params[:lottery][:serial]
+  	raw = params[:lottery][:serial]
+    serial = raw.scan(/\d/).join('')
   	crypted_serial = Digest::MD5::hexdigest serial
   	@lottery = Lottery.find_by_crypted_serial crypted_serial
     if @lottery then
