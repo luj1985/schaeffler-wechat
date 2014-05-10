@@ -4,82 +4,67 @@ class Lottery < ActiveRecord::Base
 
   validates :serial, presence: true, if: :exchanging?
   validates :tel, presence: true, if: :validate_charge_tel?
+  validates :product, presence: true, if: :validate_product?
 
   after_initialize :init
 
   before_save :grant_permission
+
+  def init
+    self.status ||= 'AVAILABLE'
+  end
+
+  NAMES = {
+    '1' => ["一等奖", "新一代iPhone"],
+    '2' => ["二等奖", "iPad Mini"],
+    '3' => ["三等奖", "舍弗勒双肩包"],
+    '4' => ["四等奖", "开心花费10元"]
+  }
+
+  def level_name
+    NAMES[self.level][0]
+  end
+
+  def display_name
+    NAMES[self.level][1]
+  end
+
 
   def self.challenge serial
     crypted_serial = Digest::MD5::hexdigest serial
     self.find_by_crypted_serial crypted_serial
   end
 
-  def grant_permission()
+  def grant_permission
     if self.user then
       self.user.granted = true
     end
   end
 
   def validate_charge_tel?
-    tel_charge? && exchanging?
+    exchanging? && self.level == '4'
   end
 
-  def level_name
-    case self.level
-    when '1'
-      "一等奖"
-    when '2'
-      "二等奖"
-    when '3'
-      "三等奖"
-    when '4'
-      "四等奖"
-    else
-      raise "Invalid lottery level"
-    end
+  def validate_product?
+    exchanging? && ['1','2'].include?(self.level)
   end
 
-  def display_name
-    case self.level
-    when '1'
-      "新一代iPhone"
-    when '2'
-      "iPad Mini"
-    when '3'
-      "舍弗勒双肩包"
-    when '4'
-      "开心花费10元"
-    else
-      raise "Invalid lottery level"
-    end
-  end
 
-  def name
-    "level#{self.level}"
-  end
 
-  def tel_charge?
-    self.level == '4'
-  end
-  
   # validate attributes when lottery is in other stages
   def exchanging?
   	self.status != 'AVAILABLE'
   end
 
   def available?
-  	self.status == 'AVAILABLE'
-  end
-
-  def init
-    self.status ||= 'AVAILABLE'
+    self.status == 'AVAILABLE'
   end
 
   def can_apply_join_match?
     user = self.user
     return false unless user
     # 一、二、三等奖才有资格申请观赛
-    return false if self.level == '4'
+    return false unless ['1','2','3'].include?(self.level)
     return user.granted && !user.apply_attemped
   end
 
