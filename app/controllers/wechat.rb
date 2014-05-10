@@ -57,7 +57,7 @@ SchaefflerWechat::App.controllers :wechat do
         xml.Articles {
           xml.item {
             xml.Title '立即点击进入兑奖页面！'
-            xml.Description t('activity.entry.description')
+            xml.Description '本次活动仅限修理厂用户参与'
             xml.PicUrl URI.join(host, '/images/activity-poster.jpg')
             xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
           }
