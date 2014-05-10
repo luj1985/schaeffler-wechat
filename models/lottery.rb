@@ -9,6 +9,11 @@ class Lottery < ActiveRecord::Base
 
   before_save :grant_permission
 
+  def self.challenge serial
+    crypted_serial = Digest::MD5::hexdigest serial
+    self.find_by_crypted_serial crypted_serial
+  end
+
   def grant_permission()
     if self.user then
       self.user.granted = true

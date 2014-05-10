@@ -23,8 +23,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
   post :confirm do
     raw = params[:lottery][:serial]
     serial = raw.scan(/\d/).join('')
-    crypted_serial = Digest::MD5::hexdigest serial
-    @lottery = Lottery.find_by_crypted_serial crypted_serial
+    @lottery = Lottery.challenge serial
     if @lottery then # correct serial number
       if @lottery.available? then
         @lottery.status = 'EXCHANGING'
@@ -34,18 +33,15 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
         render :confirm
       else
         @message = <<EOF
-<p class="message">对不起，您输入的验证码已经被兑换。</p>
-<p>如有问题，您可拨打活动专线咨询：
-<a href="tel:021-39576702">021-39576702</a></p>
+<p class="message">您所输入的兑奖验证码已经被兑换。请您检查是否验证码输入有误。</p>
+<p>如有问题，请拨打活动热线：<a href="tel:021-39576702">021-39576702</a></p>
 EOF
         render :message
       end
     else
       @message = <<EOF
-<p class="message">对不起，您输入的验证码有误，请检查您的输入。</p>
-<p>如有问题，您可拨打活动专线咨询：
-<a href="tel:021-39576702">021-39576702</a>
-</p>
+<p class="message">您输入的验证码有误，请您检查并重新输入。</p>
+<p>如有问题，请拨打活动热线：<a href="tel:021-39576702">021-39576702</a></p>
 EOF
       render :message
     end

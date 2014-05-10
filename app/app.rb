@@ -3,14 +3,13 @@ module SchaefflerWechat
     register LessInitializer
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
     use Rack::Env
-    register Padrino::Mailer
     register Padrino::Helpers
     
     enable :sessions
 
     error ActiveRecord::RecordNotFound do
       halt 404
-      render('errors/404')
+      render 'errors/404'
     end
 
     error 403 do
@@ -27,7 +26,7 @@ module SchaefflerWechat
 
     not_found do
       status 404
-      render('errors/404')
+      render 'errors/404'
     end
     
     get :home, :map => '/' do
