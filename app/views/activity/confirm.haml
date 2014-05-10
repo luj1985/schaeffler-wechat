@@ -1,6 +1,14 @@
 
 %div{'data-role' => 'content'}
-  %p!= lottery_message @lottery
+  %p.greeting
+    恭喜你获得
+    %span.prize=@lottery.level_name
+    ！
+  %p 
+    奖品是
+    %span.prize=@lottery.display_name
+  %p 请您完整填写以下信息，方便我们联系您！
+
   = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
     = f.hidden_field :serial
     - if @lottery.level == '4'
@@ -9,7 +17,7 @@
         = f.label :tel, :caption => '您输请您要充值入的手机号:'
         = f.telephone_field :tel
         %span.error= f.error_message_on(:tel) if errors.include?(:tel)
-    - if @lottery.level == '1' or @lottery.level == '2'
+    - if ['1','2'].include?(@lottery.level)
       - errors = @lottery.errors
       %p
         = f.label :product, :caption => '您所购买的产品号:'
