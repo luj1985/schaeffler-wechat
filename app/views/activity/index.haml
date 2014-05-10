@@ -2,8 +2,8 @@
 %div{'data-role' => 'content'}
   =form_for :lottery, url(:activity, :challenge) do |f|
     %p
-      =f.label t('activity.home.input')
-      = f.text_field :serial, :type => "number", 
+      =f.label '欢迎您参与本次活动，请您输入中奖验证码：'
+      =f.text_field :serial, :type => "number", 
         :placeholder => t('activity.home.placeholder'),
         :required => "required",
         :class => "serial-number",
@@ -11,4 +11,4 @@
     = f.submit_block t('activity.home.submit')
 
   .activity-rules
-    %p 本次活动仅限修理厂用户参与，如经核实兑奖者非修理厂用户，将取消验证码兑奖资格。
+    %p 本次活动仅限修理厂用户参与。

@@ -36,7 +36,8 @@ SchaefflerWechat::App.controllers :wechat do
   def wechat_event event, condition = nil, &blk
     event_handlers = settings.event_handlers
     event_handlers[event] ||= []
-    task = {:proc => blk}
+    # when condition not defined, alwasy return true
+    task = {:proc => blk, :condition => lambda {|h| true} }
     task.merge!(:condition => lambda {|hash|
       condition.all? { |k, v| condition[k] == v }
     }) if condition.present?
@@ -55,7 +56,7 @@ SchaefflerWechat::App.controllers :wechat do
         xml.ArticleCount 1
         xml.Articles {
           xml.item {
-            xml.Title t('activity.entry.title')
+            xml.Title '立即点击进入兑奖页面！'
             xml.Description t('activity.entry.description')
             xml.PicUrl URI.join(host, '/images/activity-poster.jpg')
             xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
