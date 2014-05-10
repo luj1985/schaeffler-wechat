@@ -2,7 +2,7 @@
 %div{'data-role' => 'content'}
   :javascript
     $(function() {
-      $('.serial-number').inputmask("999999-999999", {}).blur();
+      $('.serial-number').inputmask("999999-999999").blur();
     });
   =form_for :lottery, url(:activity, :confirm) do |f|
     %h3 欢迎您参与本次活动
@@ -16,15 +16,3 @@
     = f.submit_block '提交'
   .activity-rules
     %p 本次活动仅限修理厂用户参与。
-
--content_for :footer do
-  %div{'data-role' => 'footer',
-       'data-position' => 'fixed'}
-    -# This is a workaround, when left button not exists, the footer
-    -# cannot be shown
-    %a{:href => '#', :class => 'hidden', 
-       'data-icon' => 'back', 'data-rel' => 'back'}
-      返回上级
-    %a{:href => "#", 'data-icon' => "home", 
-       :class => ["schaeffler-exit", "ui-btn-right"]}
-      退出
