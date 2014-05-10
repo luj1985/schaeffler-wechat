@@ -1,7 +1,6 @@
 module SchaefflerWechat
   class Admin < Padrino::Application
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
-    register Padrino::Mailer
     register Padrino::Helpers
     register Padrino::Admin::AccessControl
 

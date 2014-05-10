@@ -29,6 +29,16 @@ class Lottery < ActiveRecord::Base
     NAMES[self.level][1]
   end
 
+  STATUS = {
+    'USED' => '已经被使用',
+    'AVAILABLE' => '可用',
+    'EXCHANGING' => '正在兑奖',
+  }
+
+  def display_status
+    STATUS[self.status]
+  end
+
 
   def self.challenge serial
     crypted_serial = Digest::MD5::hexdigest serial

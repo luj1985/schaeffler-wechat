@@ -8,19 +8,10 @@ zh_cn:
     lotteries: 促销活动（兑奖）
     questions: 观赛问题
 
-  common:
-    submit: 提交
   activity:
-    submenu: 活动介绍子菜单
 
     result:
       title: 填写个人信息
-      level1: 一等奖
-      level2: 二等奖
-      level3: 三等奖
-      level4: 四等奖
-      greet: <p class="greeting">恭喜你获得 <span class="prize">%{name}</span></p><p>请您如实完整地填写以下信息，方便我们联系到您。</p>
-      greet4: <p class="greeting">恭喜您中 <span class="prize">四等奖</span><br>开心话费10元</p><p>请您如实完整地填写以下联络信息，以便我们核实中奖身份。</p>
       save: 保存
       status:
         USED: 已经被使用
