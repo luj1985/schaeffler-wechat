@@ -12,6 +12,7 @@
     =javascript_include_tag 'jquery'
     :javascript
       $(document).bind("mobileinit", function() {
+        $.mobile.ajaxEnabled = false;
         $.mobile.defaultPageTransition = 'slide';
       });
 
