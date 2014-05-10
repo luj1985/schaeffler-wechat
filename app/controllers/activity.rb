@@ -24,7 +24,8 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     raw = params[:lottery][:serial]
     serial = raw.scan(/\d/).join('')
     @lottery = Lottery.challenge serial
-    if @lottery && @lottery.available?then # correct serial number
+     # record found, correct serial number
+    if @lottery && @lottery.available?then
       @lottery.status = 'EXCHANGING'
       user = User.find_or_initialize_by :openid => session[:openid]
       @lottery.user = user
@@ -39,7 +40,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
 
   post :save do
     @lottery = Lottery.find_by_id(params[:id])
-    halt 404 unless @lottery
+    halt 404, "无效的验证码" unless @lottery
     @lottery.status = 'USED'
     if @lottery.update(params[:lottery])
       render :success
@@ -67,9 +68,9 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
 
   post :apply do
     user = User.find_by_openid session[:openid]
-    halt 409, "没有找您的微信账户" unless user
+    halt 409, "无效的微信账户" unless user
     halt 409, '不能多次申请观赛' if user.apply_attemped
-    
+
     misses = params.reject do |id, value|
       question = Question.find_by_id id
       question && question.correct == value
