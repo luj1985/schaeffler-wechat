@@ -18,11 +18,6 @@
 
       function onWeixinReady() {
         WeixinJSBridge.call('hideToolbar');
-        $('body').on('click', '.schaeffler-exit', function(e) {
-          WeixinJSBridge.call('closeWindow');
-          window.close();
-          e.preventDefault();
-        });
       }
 
       if (typeof WeixinJSBridge === "undefined") {
@@ -30,6 +25,18 @@
       } else {
         onWeixinReady();
       }
+
+      $(function() {
+        / call this part of code only dom was ready;
+        $('body').on('click', '.schaeffler-exit', function(e) {
+          if (!!window.WeixinJSBridge) {
+            WeixinJSBridge.call('closeWindow');
+          }
+          window.close();
+          e.preventDefault();
+        });
+      });
+
     =javascript_include_tag 'jquery.mobile.min'
     =javascript_include_tag 'jquery.inputmask.min'
     =yield_content :stylesheets
