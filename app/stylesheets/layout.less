@@ -1,6 +1,9 @@
+@green: #00954D;
+@red: #E21C38;
+
 .schaeffler  {
   .ui-focus{
-    border: 1px solid #00954d;
+    border: 1px solid @green;
   }
 
   .ui-input-text,
@@ -11,8 +14,14 @@
     border-radius: 3px;
   }
 
+  .ui-icon-home, .ui-icon-back {
+    &:after {
+      background-color: @green;
+    }
+  }
+
   .error {
-    color: #E21C38;
+    color: @red;
     font-size: .9em;
   }
 
@@ -26,7 +35,7 @@
   }
 
   .prize {
-    color: #E21C38;
+    color: @red;
     font-weight: bold;
   }
 
@@ -63,7 +72,7 @@ a.detail {
   right: 20px;
   bottom: -15px;
   position: absolute;
-  background-color: #E21C38;
+  background-color: @red;
   text-decoration: none;
   padding: 4px 8px;
   border-radius: 4px;
