@@ -14,12 +14,14 @@
       $(document).bind("mobileinit", function() {
         $.mobile.defaultPageTransition = 'slide';
       });
+      function closeWeixin() {
+        if (!!window.WeixinJSBridge) {
+          WeixinJSBridge.call('closeWindow');
+        }
+      }
       $(function() {
         function onWeixinReady() {
           WeixinJSBridge.call('hideToolbar');
-          $('.schaeffler-exit').on('click', function(e) {
-              WeixinJSBridge.call('closeWindow');
-          });
         }
         if (typeof WeixinJSBridge === "undefined") {
           $(document).on("WeixinJSBridgeReady", onWeixinReady);
@@ -37,6 +39,8 @@
       %div{'data-role' => 'footer', 'data-position' => 'fixed'}
         %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'}
           返回上级
-        %a{:href => "#", 'data-icon' => "home", 
-           :class => ["ui-btn-right","schaeffler-exit"]}
+        %a{:href => "#", 
+           :onclick => "closeWeixin();", 
+           :class => ["ui-btn-right","schaeffler-exit"], 
+           'data-icon' => "home"}
           退出
