@@ -37,7 +37,6 @@
           window.close();
           e.preventDefault();
         });
-        
       });
 
     =javascript_include_tag 'jquery.mobile.min'
@@ -47,11 +46,13 @@
   %body{:class => 'schaeffler'}
     %div{ page_style }
       =yield
-      %div{'data-role' => 'footer', 
-           'data-id' => 'pfooter',
-           'data-position' => 'fixed'}      
-        %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'}
-          返回上级
-        %a{:href => "#", 'data-icon' => "home", 
-           :class => ["ui-btn-right","schaeffler-exit"]}
-          退出
+      -if content_for? :footer
+        =yield_content :footer
+      -else
+        %div{'data-role' => 'footer',
+             'data-position' => 'fixed'}
+          %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'}
+            返回上级
+          %a{:href => "#", 'data-icon' => "home", 
+             :class => ["ui-btn-right","schaeffler-exit"]}
+            退出
