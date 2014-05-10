@@ -12,8 +12,7 @@
     =javascript_include_tag 'jquery'
     :javascript
       $(document).bind("mobileinit", function() {
-        / $.mobile.pushStateEnabled = false;
-        $.mobile.ajaxEnabled = false;
+        $.mobile.pushStateEnabled = false;
         $.mobile.defaultPageTransition = 'slide';
       });
 
@@ -21,6 +20,7 @@
         WeixinJSBridge.call('hideToolbar');
         $('body').on('click', '.schaeffler-exit', function(e) {
           WeixinJSBridge.call('closeWindow');
+          window.close();
           e.preventDefault();
         });
       }
