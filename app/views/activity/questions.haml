@@ -1,7 +1,4 @@
 %div{'data-role' => 'content'}
-  %h4 赛事申请规则介绍
-  %p 提交答案后您将无法再次申请观赛哦！
-
   %form{:action => url_for(:activity, :apply), :method => :post }
     -@questions.each.with_index do |q, i|
       %fieldset{'data-role' => 'controlgroup'}
@@ -10,19 +7,18 @@
           %input{:name => q.id, :id => "#{q.id}a", :value=>'a', :type=>'radio'}
           %label{:for => "#{q.id}a"}
             =q.a
-
         -if q.b.present?
           %input{:name => q.id, :id => "#{q.id}b", :value=>'b', :type=>'radio'}
           %label{:for => "#{q.id}b"}
             =q.b
-
         -if q.c.present?
           %input{:name => q.id, :id => "#{q.id}c", :value=>'c', :type=>'radio'}
           %label{:for => "#{q.id}c"}
             =q.c
-
         -if q.d.present?
           %input{:name => q.id, :id => "#{q.id}d", :value=>'d', :type=>'radio'}
           %label{:for => "#{q.id}d"}
             =q.d
+
+    %p 提交答案后您将无法再次申请观赛哦！
     %input{:type => :submit, :value => '提交答案'}

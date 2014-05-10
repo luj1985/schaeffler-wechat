@@ -54,19 +54,7 @@ EOF
     halt 404 unless @lottery
     @lottery.status = 'USED'
     if @lottery.update(params[:lottery])
-      l4_succss_msg = <<EOF
-<p class="message">您的兑奖信息已经提交成功</p>
-<p class="message">根据您提交的信息我们将在三个工作日内为您指定的手机号码充值，请您关注。</p>
-<p class="message">感谢您对舍弗勒的支持与信赖。</p>
-EOF
-      success_msg = <<EOF
-<p class="message">您的兑奖信息已经提交成功</p>
-<p class="message">根据您提交的信息我们的工作人员将于一周以内联系您。</p>
-<p class="message">感谢您对舍弗勒的支持与信赖。</p>
-EOF
-      success_msg += "<a href=#{url_for(:activity, :rules)}>申请观赛</a>" if @lottery.can_apply_join_match?
-      @message = @lottery.level == '4' ? l4_succss_msg : success_msg
-      render :message
+      render :success
     else
       render :confirm
     end
