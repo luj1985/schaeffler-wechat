@@ -12,23 +12,17 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     render :intro
   end
 
-  # This is used for debug layout, should remove it later
-  get :challenge, :with => :debug do
-    @lottery = Lottery.find_by_id 1
-    render :profile
+  get :index do
+    render :index
   end
 
   get :rules do
     render :rules
   end
 
-  get :index do
-    render :index
-  end
-
   get :questions do
     @questions = Question.order('random()').limit(2)
-    render :apply
+    render :questions
   end
 
   get :others, :map => '/activity/*' do
@@ -92,6 +86,16 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
         t('activity.result.success')
       render :message
     else
+      render :profile
+    end
+  end
+
+
+
+  configure :development do
+    # for view layout debug only
+    get :challenge, :with => :debug, :protect => false do
+      @lottery = Lottery.find_by_id 1
       render :profile
     end
   end
