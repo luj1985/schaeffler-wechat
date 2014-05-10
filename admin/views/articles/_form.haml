@@ -20,6 +20,7 @@
 -content_for :stylesheets do
   =stylesheet_link_tag 'font-awesome.min'
   =stylesheet_link_tag 'froala_editor.min'
+  =stylesheet_link_tag 'iphone'
 
 - error = @article.errors.include?(:title)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
@@ -39,8 +40,18 @@
     .row
       .col-md-6
         效果预览
-        .preview
-          %iframe{:src => "/article/#{f.object.name}", :width => "320px", :height=> '480px'}
+        .iphone
+          .iphone-light-gradient
+          .iphone-power-button
+          .iphone-voice-toogle
+          .iphone-voice-plus
+          .iphone-voice-minus
+          .iphone-camera
+          .iphone-dynamic
+          .iphone-black-bg
+          %iframe{:class => 'iphone-display', :src => "/article/#{f.object.name}", :width => "320px", :height=> '480px'}
+          .iphone-home
+          
       .col-md-6
         =f.label :body, :class => 'control-label'
         .controls
