@@ -43,7 +43,7 @@
     =javascript_include_tag 'jquery.inputmask.min'
     =yield_content :stylesheets
     =yield_content :javascripts
-  %body{:class => 'schaeffler'}
+  %body.schaeffler
     %div{ page_style }
       =yield
       -if content_for? :footer
@@ -52,4 +52,4 @@
         %div{'data-role' => 'footer',
              'data-position' => 'fixed'}
           %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级
-          %a{:href => "#", 'data-icon' => "home", :class => ["ui-btn-right","schaeffler-exit"]} 退出
+          %a.ui-btn-right.schaeffler-exit{:href => "#", 'data-icon' => "home"} 退出

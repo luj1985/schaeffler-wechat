@@ -1,6 +1,6 @@
-%div{:class => 'overlap'}
+.overlap
   %img{:src => '/images/activity-poster.jpg'}
-  %a{:href => url_for(:menu, :index, :name => 'matches'), :class => 'detail'}
+  %a.detail{:href => url_for(:menu, :index, :name => 'matches')}
     活动详情
 %div{'data-role' => 'content'}
   %h4 即日起至2014年12月31日，买舍弗勒产品即由机会赢取双重惊喜！
@@ -8,14 +8,14 @@
   %p 二重惊喜：回答问题申请观顶级车赛，尽享速度与激情！
 
   %h5 参与流程：
-  %ul{:class => 'nu-list'}
+  %ul.nu-list
     %li 购买舍弗勒LuK、INA、FAG产品
     %li 打开包装，找到刮奖券
     %li 扫描二维码关注微信，进入兑奖页面
     %li 输入验证码完成兑奖
 
   %img{:src => '/images/rewards.jpg'}
-  %ul{:class => 'no-nu-list'}
+  %ul.no-nu-list
     %li 一等奖：新一代iPhone
     %li 二等奖：iPad Mini
     %li 三等奖：舍弗勒双肩包
