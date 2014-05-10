@@ -25,9 +25,9 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     render :questions
   end
 
-  get :others, :map => '/activity/*' do
-    redirect url(:activity, :index)
-  end
+  # get :others, :map => '/activity/*' do
+  #   redirect url(:activity, :index)
+  # end
 
   post :apply do
     misses = params.reject do |id, value|
@@ -52,14 +52,19 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     render :message
   end
 
-  post :challenge do
+  post :confirm do
   	raw = params[:lottery][:serial]
     serial = raw.scan(/\d/).join('')
   	crypted_serial = Digest::MD5::hexdigest serial
   	@lottery = Lottery.find_by_crypted_serial crypted_serial
     if @lottery then
       if not @lottery.available? then
-        @message = t('activity.result.used')
+        @message = <<EOF
+<p class="message">对不起，您输入的验证码已经被兑换。</p>
+<p>如有问题，您可拨打活动专线咨询：
+<a href="tel:021-39576702">021-39576702</a>
+</p>
+EOF
         render :message
       else
         @lottery.status = 'EXCHANGING'
@@ -68,10 +73,15 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
         user = User.find_or_initialize_by :openid => openid
         @lottery.user = user
         @lottery.serial = serial
-        render :profile
+        render :confirm
       end
     else
-      @message = t('activity.result.missing')
+      @message = <<EOF
+<p class="message">对不起，您输入的验证码有误，请检查您的输入。</p>
+<p>如有问题，您可拨打活动专线咨询：
+<a href="tel:021-39576702">021-39576702</a>
+</p>
+EOF
       render :message
     end
   end
@@ -86,7 +96,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
         t('activity.result.success')
       render :message
     else
-      render :profile
+      render :confirm
     end
   end
 
@@ -96,7 +106,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     # for view layout debug only
     get :challenge, :with => :debug, :protect => false do
       @lottery = Lottery.find_by_id 1
-      render :profile
+      render :confirm
     end
   end
 end

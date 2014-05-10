@@ -4,7 +4,7 @@
     $(function() {
       $('.serial-number').inputmask("999999-999999", {}).blur();
     });
-  =form_for :lottery, url(:activity, :challenge) do |f|
+  =form_for :lottery, url(:activity, :confirm) do |f|
     %h3 欢迎您参与本次活动
     %p
       =f.label :serial, :caption => '请您输入中奖验证码：'
