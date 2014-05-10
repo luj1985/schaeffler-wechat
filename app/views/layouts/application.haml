@@ -27,7 +27,6 @@
       }
 
       $(function() {
-        / call this part of code only dom was ready;
         $('body').on('click', '.schaeffler-exit', function(e) {
           if (!!window.WeixinJSBridge) {
             WeixinJSBridge.call('closeWindow');
