@@ -15,11 +15,17 @@
         $.mobile.defaultPageTransition = 'slide';
       });
       $(function() {
-        $('.schaeffler-exit').on('click', function(e) {
-          if (window.WeixinJSBridge) {
-            WeixinJSBridge.call('closeWindow');
-          }
-        });
+        function onWeixinReady() {
+          WeixinJSBridge.call('hideToolbar');
+          $('.schaeffler-exit').on('click', function(e) {
+              WeixinJSBridge.call('closeWindow');
+          });
+        }
+        if (typeof WeixinJSBridge === "undefined") {
+          $(document).on("WeixinJSBridgeReady", onWeixinReady);
+        } else {
+          onWeixinReady();
+        }
       });
     =javascript_include_tag 'jquery.mobile.min'
     =javascript_include_tag 'jquery.inputmask.min'
