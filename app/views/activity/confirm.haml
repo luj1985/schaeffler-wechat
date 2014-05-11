@@ -21,10 +21,13 @@
         -else
           = f.telephone_field :tel
     - if ['1','2'].include?(@lottery.level)
-      - errors = @lottery.errors
       %p
         = f.label :product, :caption => '您所购买的产品号:'
-        = f.text_field :product
+        -if errors.include?(:product)
+          = f.text_field :product, :autofocus => true
+          %span.error= f.error_message_on(:product)
+        -else
+          = f.text_field :product
     = f.fields_for :user do |user|
       :javascript
         $(document).one('pageshow', function() {

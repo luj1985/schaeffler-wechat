@@ -48,7 +48,8 @@ class Lottery < ActiveRecord::Base
   end
 
   def grant_permission
-    if self.user then
+    # 一、二、三等奖才有资格申请观赛
+    if ['1','2','3'].include?(self.level) && self.user then
       self.user.granted = true
     end
   end
@@ -74,10 +75,7 @@ class Lottery < ActiveRecord::Base
 
   def can_apply_join_match?
     user = self.user
-    return false unless user
-    # 一、二、三等奖才有资格申请观赛
-    return false unless ['1','2','3'].include?(self.level)
-    return user.granted && !user.apply_attemped
+    return user && user.granted && !user.apply_attemped
   end
 
   def user_attributes=(attributes)
