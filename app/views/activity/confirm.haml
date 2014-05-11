@@ -10,9 +10,9 @@
   %p 请您完整填写以下信息，方便我们联系您！
 
   = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
+    - errors = @lottery.errors
     = f.hidden_field :serial
     - if @lottery.level == '4'
-      - errors = @lottery.errors
       %p
         = f.label :tel, :caption => '您输请您要充值入的手机号:'
         -if errors.include?(:tel)

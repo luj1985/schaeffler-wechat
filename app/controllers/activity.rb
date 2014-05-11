@@ -60,8 +60,13 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
 
 
   get :questions do
-    @questions = Question.order('random()').limit(2)
-    render :questions
+    user = User.find_by_openid session[:openid]
+    if user.apply_attemped then
+      redirect url(:activity, :index)
+    else
+      @questions = Question.order('random()').limit(2)
+      render :questions
+    end
   end
 
 
