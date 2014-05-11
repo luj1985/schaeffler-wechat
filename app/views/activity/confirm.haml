@@ -23,9 +23,8 @@
         = f.label :product, :caption => '您所购买的产品号:'
         = f.text_field :product
     = f.fields_for :user do |user|
-      =javascript_include_tag 'jquery.cityselect.js'
       :javascript
-        $(function() {
+        $(document).one('pageshow', function() {
           $('#address').citySelect({
             nodata: "none",
             prov: "#{user.object.province}",
@@ -49,8 +48,8 @@
         %span.error= user.error_message_on(:workshop) if errors.include?(:workshop)
       %p{:id => 'address'}
         = user.label :workshop_address, :caption => '您所在的修理厂地址:'
-        = user.select :province, :class => 'prov', 'data-native-menu' => "false", 'data-inline' => "true"
-        = user.select :city, :class => 'city', 'data-native-menu' => "false", 'data-inline' => "true"
+        = user.select :province, :class => 'prov', 'data-inline' => "true"
+        = user.select :city, :class => 'city', 'data-inline' => "true"
         = user.label :workshop_address, :caption => '详细地址:'
         = user.text_area :workshop_address
         %span.error= user.error_message_on(:workshop_address) if errors.include?(:workshop_address)
