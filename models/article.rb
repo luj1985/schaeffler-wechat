@@ -7,6 +7,6 @@ class Article < ActiveRecord::Base
   after_initialize :init
 
   def init
-    self.body ||= '正文内容'
+    self.body ||= '<p>正文内容</p>'
   end
 end

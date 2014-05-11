@@ -351,3 +351,13 @@ footer p {
   }
 }
 /* -- End Application -- */
+
+
+
+.flash-messages {
+  position: absolute;
+  float: right;
+  width: 90%;
+  margin: 0 auto;
+  z-index: 1;
+}

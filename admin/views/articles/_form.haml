@@ -22,44 +22,44 @@
   =stylesheet_link_tag 'froala_editor.min'
   =stylesheet_link_tag 'iphone'
 
-- error = @article.errors.include?(:title)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :title, :class => 'control-label'
-  .controls
-    =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
-    %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
-- error = @article.errors.include?(:name)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :name, :class => 'control-label'
-  .controls
-    =f.text_field :name, :class => 'form-control input-large input-with-feedback'
-    %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
-- error = @article.errors.include?(:body)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  .container
-    .row
-      .col-md-6
-        效果预览
-        .iphone
-          .iphone-light-gradient
-          .iphone-power-button
-          .iphone-voice-toogle
-          .iphone-voice-plus
-          .iphone-voice-minus
-          .iphone-camera
-          .iphone-dynamic
-          .iphone-black-bg
-          %iframe.iphone-display{:src => "/article/#{f.object.name}"}
-          .iphone-home
-          
-      .col-md-6
+.container
+  .row
+    .col-md-4
+      =f.label 'preview', :caption => '预览效果:'
+      .iphone
+        .iphone-light-gradient
+        .iphone-power-button
+        .iphone-voice-toogle
+        .iphone-voice-plus
+        .iphone-voice-minus
+        .iphone-camera
+        .iphone-dynamic
+        .iphone-black-bg
+        %iframe.iphone-display{:src => "/article/#{f.object.name}"}
+        .iphone-home
+    .col-md-8
+      - error = @article.errors.include?(:title)
+      %fieldset.control-group{:class => error ? 'has-error' : ''}
+        =f.label :title, :class => 'control-label'
+        .controls
+          =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
+          %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
+      - error = @article.errors.include?(:name)
+      %fieldset.control-group{:class => error ? 'has-error' : ''}
+        =f.label :name, :class => 'control-label'
+        .controls
+          =f.text_field :name, :class => 'form-control input-large input-with-feedback'
+          %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
+      - error = @article.errors.include?(:body)
+      %fieldset.control-group{:class => error ? 'has-error' : ''}
         =f.label :body, :class => 'control-label'
         .controls
           =f.text_area :body, :rows => 10, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''
-.form-actions
-  =f.submit pat(:save), :class => 'btn btn-primary'
-  &nbsp;
-  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-  &nbsp;
-  =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
+      %fieldset.control-group
+        .form-actions
+          =f.submit pat(:save), :class => 'btn btn-primary'
+          &nbsp;
+          =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+          &nbsp;
+          =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
