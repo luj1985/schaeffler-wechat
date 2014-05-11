@@ -1,0 +1,14 @@
+zh_cn:
+  models:
+    question:
+      name: 促销活动问题
+      attributes:
+        id: 编号
+        question: 问题内容
+        a: 选项A
+        b: 选项B
+        c: 选项C
+        d: 选项D
+        correct: 正确选项
+        created_at: 创建时间
+        updated_at: 更新时间

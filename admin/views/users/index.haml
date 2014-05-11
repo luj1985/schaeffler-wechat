@@ -26,14 +26,11 @@
                       =hidden_field_tag :user_ids, :'data-delete-many-ids' => true
                       =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
-        %th.header= mat(:user, :id)
         %th.header= mat(:user, :openid)
         %th.header= mat(:user, :tel)
         %th.header= mat(:user, :name)
         %th.header= mat(:user, :workshop)
         %th.header= mat(:user, :workshop_address)
-        %th.header= mat(:user, :created_at)
-        %th.header= mat(:user, :updated_at)
         %th.header= mat(:user, :join_match)
         %th.header.list-row-action-header
 
@@ -42,14 +39,11 @@
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'user_ids[]', :value => user.id, :class => 'list-selectable-checkbox'
-          %td.list-column=user.id
           %td.list-column=user.openid
           %td.list-column=user.tel
           %td.list-column=user.name
           %td.list-column=user.workshop
           %td.list-column=user.workshop_address
-          %td.list-column=time_ago_in_words user.created_at
-          %td.list-column=time_ago_in_words user.updated_at
           %td.list-column= user.join_match ? tag_icon(:ok) : tag_icon(:remove)
           %td.list-column.list-row-action
             .list-row-action-wrapper

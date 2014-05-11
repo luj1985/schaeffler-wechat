@@ -3,19 +3,19 @@
   =f.label :name, :class => 'control-label'
   .controls
     =f.text_field :name, :class => 'form-control input-large input-with-feedback', :autofocus => true
-    %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
+    %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
 - error = @menu.errors.include?(:text)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :text, :class => 'control-label'
   .controls
     =f.text_field :text, :class => 'form-control input-large input-with-feedback'
-    %span.help-inline=error ? f.error_message_on(:text, :class => 'text-error') : pat(:example)
+    %span.help-inline=error ? f.error_message_on(:text, :class => 'text-error') : ''
 - error = @menu.errors.include?(:link)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :link, :class => 'control-label'
   .controls
     =f.text_field :link, :class => 'form-control input-large input-with-feedback'
-    %span.help-inline=error ? f.error_message_on(:link, :class => 'text-error') : pat(:example)
+    %span.help-inline=error ? f.error_message_on(:link, :class => 'text-error') : ''
 
 .form-actions
   =f.submit pat(:save), :class => 'btn btn-primary'

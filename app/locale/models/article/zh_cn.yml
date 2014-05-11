@@ -5,7 +5,7 @@ zh_cn:
       attributes:
         id: 编号
         title: 新闻标题
-        name: 名字
+        name: 链接名字
         body: 正文内容
         created_at: 创建时间
         updated_at: 更新时间
