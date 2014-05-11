@@ -89,19 +89,23 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
   end
 
 
-
-
-  get :others, :map => '/activity/*' do
-    redirect url(:activity, :index)
-  end
-
-
-
   configure :development do
     # for view layout debug only
     get :challenge, :with => :debug, :protect => false do
       @lottery = Lottery.find_by_id 1
       render :confirm
     end
+
+
+    get :fail do
+      @passed = false
+      render :answer
+    end
   end
+
+
+  get :others, :map => '/activity/*' do
+    redirect url(:activity, :index)
+  end
+
 end
