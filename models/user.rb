@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
-  validates :tel, presence: true
-  validates :name, :workshop, :workshop_address, presence: true
+  validates :tel, :presence => true
+  validates :name, :presence => true
+  validates :workshop, :presence => true
+  validates :province, :presence => true
+  validates :city, :presence => true
+  validates :workshop_address, :presence => true
 
   def can_join_match?
   	not self.join_match

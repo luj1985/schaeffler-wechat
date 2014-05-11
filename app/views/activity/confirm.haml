@@ -15,8 +15,11 @@
       - errors = @lottery.errors
       %p
         = f.label :tel, :caption => '您输请您要充值入的手机号:'
-        = f.telephone_field :tel
-        %span.error= f.error_message_on(:tel) if errors.include?(:tel)
+        -if errors.include?(:tel)
+          = f.telephone_field :tel, :autofocus => true
+          %span.error= f.error_message_on(:tel)
+        -else
+          = f.telephone_field :tel
     - if ['1','2'].include?(@lottery.level)
       - errors = @lottery.errors
       %p
@@ -36,21 +39,42 @@
       - errors = @lottery.user.errors
       %p
         = user.label :name
-        = user.text_field :name
-        %span.error= user.error_message_on(:name) if errors.include?(:name)
+        -if errors.include?(:name)
+          = user.text_field :name, :autofocus => true
+          %span.error= user.error_message_on(:name)
+        -else
+          = user.text_field :name
       %p
         = user.label :tel
-        = user.telephone_field :tel
-        %span.error= user.error_message_on(:tel) if errors.include?(:tel)
+        -if errors.include?(:tel)
+          =user.telephone_field :tel, :autofocus => true
+          %span.error= user.error_message_on(:tel)
+        -else 
+          = user.telephone_field :tel
       %p
         = user.label :workshop, :caption => '您所在的修理厂名称:'
-        = user.text_field :workshop
-        %span.error= user.error_message_on(:workshop) if errors.include?(:workshop)
+        -if errors.include?(:workshop)
+          = user.text_field :workshop, :autofocus => true
+          %span.error= user.error_message_on(:workshop) 
+        -else
+          = user.text_field :workshop
       %p{:id => 'address'}
+
         = user.label :workshop_address, :caption => '您所在的修理厂地址:'
-        = user.select :province, :class => 'prov', 'data-inline' => "true"
-        = user.select :city, :class => 'city', 'data-inline' => "true"
+        -if errors.include?(:province)
+          = user.select :province, :class => 'prov', :autofocus => true, 'data-inline' => "true"
+        -else
+          = user.select :province, :class => 'prov', 'data-inline' => "true"
+
+        -if errors.include?(:city)
+          = user.select :city, :class => 'city', :autofocus => true, 'data-inline' => "true"
+        -else
+          = user.select :city, :class => 'city', 'data-inline' => "true"
+
         = user.label :workshop_address, :caption => '详细地址:'
-        = user.text_area :workshop_address
-        %span.error= user.error_message_on(:workshop_address) if errors.include?(:workshop_address)
+        -if errors.include?(:workshop_address)
+          = user.text_area :workshop_address, :autofocus => true
+          %span.error= user.error_message_on(:workshop_address)
+        -else
+          = user.text_area :workshop_address
     = f.submit_block t('activity.result.save')

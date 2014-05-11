@@ -2,11 +2,11 @@ class Lottery < ActiveRecord::Base
   belongs_to :user
   accepts_nested_attributes_for :user
 
-  validates :serial, presence: true, if: :exchanging?
-  validates :tel, presence: true, if: :validate_charge_tel?
-  validates :tel, length: {:is => 11, :message => '手机号码不正确'}, if: :validate_charge_tel?
+  validates :serial, :presence => true, if: :exchanging?
+  validates :tel, :presence => true, if: :validate_charge_tel?
+  validates :tel, :length => {:is => 11, :message => '手机号码不正确'}, if: :validate_charge_tel?
   validates :tel, :numericality => { :only_integer => true,:message => '手机号码不正确' }, if: :validate_charge_tel?
-  validates :product, presence: true, if: :validate_product?
+  validates :product, :presence => true, if: :validate_product?
 
   after_initialize :init
 
