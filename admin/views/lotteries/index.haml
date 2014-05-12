@@ -1,3 +1,13 @@
+.btn-group
+  -if params[:show] == 'all' then
+    %a.btn.btn-default{:href => url_for(:lotteries, :index)} 显示已兑换
+  -else
+    %a.btn.btn-default{:href => url_for(:lotteries, :index, :show => 'all')} 显示所有
+  %a.btn.btn-default.btn-primary{:href => url_for(:lotteries, :export, :format => :csv)} 导出已兑换的号码(csv格式)
+  %a.btn.btn-default.disabled{:href => url_for(:lotteries, :export, :format => :xlsx)} 导出已兑换的号码(xlsx格式-未完成)
+  %a.btn.btn-default{:href => url_for(:users, :export, :format => :csv)}导出参与微信用户(csv格式)
+
+
 %table#list.table.table-striped.table-hover.table-condensed
   %thead
     %tr

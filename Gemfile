@@ -39,6 +39,7 @@ group :development, :test do
 end
 
 gem 'unicorn'
+gem 'axlsx'
 
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
