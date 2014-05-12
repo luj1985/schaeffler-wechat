@@ -3,9 +3,10 @@ class Lottery < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   validates :serial, :presence => true, if: :exchanging?
-  validates :tel, :presence => true, if: :validate_charge_tel?
-  validates :tel, :length => {:is => 11, :message => '手机号码不正确'}, if: :validate_charge_tel?
-  validates :tel, :numericality => { :only_integer => true,:message => '手机号码不正确' }, if: :validate_charge_tel?
+  validates :tel, :length => {:is => 11, :message => '手机号码不正确'},
+                  :numericality => { :only_integer => true,:message => '手机号码不正确' }, 
+                  :presence => true, 
+                  if: :validate_charge_tel?
   validates :product, :presence => true, if: :validate_product?
 
   after_initialize :init
@@ -48,6 +49,7 @@ class Lottery < ActiveRecord::Base
   end
 
   def grant_permission
+    # 当兑奖信息被保存后，允许这个用户申请观赛
     if self.user then
       self.user.granted = true
     end
@@ -60,7 +62,6 @@ class Lottery < ActiveRecord::Base
   def validate_product?
     exchanging? && ['1','2'].include?(self.level)
   end
-
 
 
   # validate attributes when lottery is in other stages

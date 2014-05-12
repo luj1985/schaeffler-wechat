@@ -5,9 +5,4 @@ SchaefflerWechat::App.helpers do
   	@page_style.merge! hash
   end
 
-  def header_style hash={}
-  	@header_style ||= {'data-role' => 'header', 'data-position' => 'fixed'}
-  	@header_style.merge! hash
-  end
-
 end
