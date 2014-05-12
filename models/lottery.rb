@@ -49,7 +49,6 @@ class Lottery < ActiveRecord::Base
   end
 
   def grant_permission
-    # 当兑奖信息被保存后，允许这个用户申请观赛
     if self.user then
       self.user.granted = true
     end
