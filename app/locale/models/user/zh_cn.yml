@@ -7,6 +7,8 @@ zh_cn:
         openid: OpenID
         tel: 联系电话
         name: 姓名
+        province: 省份
+        city: 城市
         workshop: 修理厂名称
         workshop_address: 修理厂地址
         created_at: 创建时间
