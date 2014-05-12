@@ -1,13 +1,10 @@
 %img{:src => '/images/activity-poster.jpg'}
 %div{'data-role' => 'content'}
-  :javascript
-    $(function() {
-      $('.serial-number').inputmask("999999-999999").blur();
-    });
   =form_for :lottery, url(:activity, :confirm) do |f|
     %h3 欢迎您参与本次活动
     %p
-      =f.text_field :serial, :type => "text", 
+      =f.text_field :serial, :type => :number,
+        :autofocus => true,
         :required => true,
         :placeholder => '请您输入中奖验证码',
         :class => "serial-number",
