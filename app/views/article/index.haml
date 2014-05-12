@@ -1,2 +1,5 @@
 %div{'data-role' => 'content'}
   != @article.body
+%div{'data-role' => 'footer', 'data-position' => 'fixed'}
+  %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级
+  %a.ui-btn-right.schaeffler-exit{:href => "#", 'data-icon' => "home"} 退出
