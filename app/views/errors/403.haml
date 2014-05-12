@@ -1,2 +1,5 @@
 %div{'data-role' => 'content'}
   =body ? body.join : '403 Forbidden'
+%div{'data-role' => 'footer', 'data-position' => 'fixed'}
+  %a.hidden{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级
+  %a.ui-btn-right.schaeffler-exit{:href => "#", 'data-icon' => "home"} 退出

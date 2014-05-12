@@ -52,6 +52,7 @@ Menu.create(:name => "diagnostic", :text => "轮毂轴承", :link => 'fag')
 
 Article.create(:name => 'tools', :title => "工具列表", :body => '<h3>工具列表</h3><p>工具列表</p>')
 
+Article.create(:name => 'intro', :title => "赛事介绍", :body => '<img src="/images/introduction.jpg"><h3>赛事介绍</h3><p>赛事介绍正文</p>')
 
 Article.create(:name => 'article1', :title => 'Article 1', :body => '<h3>Title of Article 1</h3><p>body of article 1</p>')
 Article.create(:name => 'article2', :title => 'Article 2', :body => '<h3>Title of Article 2</h3><p>body of article 2</p>')
