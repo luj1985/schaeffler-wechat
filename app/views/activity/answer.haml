@@ -10,10 +10,9 @@
       非常抱歉，您提交的答案不正确！
       %i.cry
     %p.message 预祝您能刮中更多奖品哦！
--content_for :footer do
-  %div{'data-role' => 'footer',
-       'data-position' => 'fixed'}
-    -# This is workaround for show right button only footer
-    -# otherwise the footer height is 0
-    %a.hidden{:href => '#', 'data-rel' => 'back'} 返回上级
-    %a.ui-btn-right.schaeffler-exit{:href => "#", 'data-icon' => "home"} 退出
+%div{'data-role' => 'footer',
+     'data-position' => 'fixed'}
+  -# This is workaround for show right button only footer
+  -# otherwise the footer height is 0
+  %a.hidden{:href => '#', 'data-rel' => 'back'} 返回上级
+  %a.ui-btn-right.schaeffler-exit{:href => "#", 'data-icon' => "home"} 退出

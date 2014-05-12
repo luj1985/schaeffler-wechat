@@ -8,3 +8,6 @@
     - if @lottery.can_apply_join_match?
       %a{:href => url_for(:activity, :rules)}
         申请观赛
+%div{'data-role' => 'footer', 'data-position' => 'fixed'}
+  %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级
+  %a.ui-btn-right.schaeffler-exit{:href => "#", 'data-icon' => "home"} 退出

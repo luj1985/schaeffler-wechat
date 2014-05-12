@@ -48,8 +48,7 @@ class Lottery < ActiveRecord::Base
   end
 
   def grant_permission
-    # 一、二、三等奖才有资格申请观赛
-    if ['1','2','3'].include?(self.level) && self.user then
+    if self.user then
       self.user.granted = true
     end
   end
