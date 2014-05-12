@@ -1,7 +1,7 @@
 
 SchaefflerWechat::Admin.controllers :lotteries do
   get :index do
-    @title = "Lotteries"
+    @title = "促销活动兑奖"
     if params[:show] == 'all' then
       @lotteries = Lottery.all
     else

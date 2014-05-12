@@ -1,6 +1,6 @@
 SchaefflerWechat::Admin.controllers :users do
   get :index do
-    @title = "Users"
+    @title = "微信用户列表"
     @users = User.all
     render 'users/index'
   end
