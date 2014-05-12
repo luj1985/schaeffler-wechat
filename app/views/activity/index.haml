@@ -3,6 +3,7 @@
   =form_for :lottery, url(:activity, :confirm) do |f|
     %h3 欢迎您参与本次活动
     %p
+      =f.label :serial, :caption => '请您输入中奖验证码:'
       =f.text_field :serial, :type => :number,
         :autofocus => true,
         :required => true,
