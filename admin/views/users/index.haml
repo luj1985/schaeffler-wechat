@@ -1,5 +1,5 @@
 .btn-group
-  %a.btn.btn-default{:href => url_for(:users, :export, :format => :csv)}导出参与微信用户(csv格式)
+  %a.btn.btn-default{:href => url_for(:users, :export, :format => :xlsx)}导出参与微信用户(xlsx格式)
 
 .tabs-content
   %table#list.table.table-striped.table-hover.table-condensed
@@ -7,6 +7,7 @@
       %tr
         %th.header= mat(:user, :tel)
         %th.header= mat(:user, :name)
+        %th.header= mat(:user, :apply_attemped)
         %th.header= mat(:user, :join_match)
         %th.header= mat(:user, :workshop)
         %th.header= mat(:user, :province)
@@ -18,7 +19,8 @@
         %tr.list-row
           %td.list-column=user.tel
           %td.list-column=user.name
-          %td.list-column= user.join_match ? tag_icon(:ok) : tag_icon(:remove)
+          %td.list-column=user.apply_attemped ? tag_icon(:ok) : tag_icon(:remove)
+          %td.list-column=user.join_match ? tag_icon(:ok) : tag_icon(:remove)
           %td.list-column=user.workshop
           %td.list-column=user.province
           %td.list-column=user.city
