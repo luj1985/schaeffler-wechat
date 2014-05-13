@@ -10,7 +10,11 @@ SchaefflerWechat::Admin.controllers :users do
     attachment "参与用户#{timestamp}.xlsx"
     Axlsx::Package.new do |p|
       p.workbook.add_worksheet(:name => "参与用户 #{timestamp}") do |sheet|
-        sheet.add_row ["OpenID","用户名","联系电话","提交观赛申请", "申请结果","省份","城市","详细地址","修理厂名"]
+        sheet.add_row [
+          "OpenID","用户名","联系电话",
+          "提交观赛申请", 
+          "申请结果",
+          "省份","城市","详细地址","修理厂名"]
         User.all.each do |u|
           row = [u.openid, u.name, u.tel, 
             u.apply_attemped ? "是" : "否",
@@ -20,7 +24,7 @@ SchaefflerWechat::Admin.controllers :users do
           sheet.add_row row, :types => types
         end
       end
-      s = p.to_stream()
+      s = p.to_stream
       response.write(s.read)
     end
   end
