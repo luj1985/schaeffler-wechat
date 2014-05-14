@@ -39,7 +39,10 @@
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'question_ids[]', :value => question.id, :class => 'list-selectable-checkbox'
-          %td.list-column=question.question
+          %td.list-column
+            %a{:href => url(:questions, :edit, :id => question.id)}
+              =tag_icon(:edit)
+              =question.question
           %td.list-column=question.a
           %td.list-column=question.b
           %td.list-column=question.c

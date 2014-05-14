@@ -20,6 +20,7 @@
         %tr.list-row
           %td.list-column
             %a{:href => url_for(:users, :edit, :id => user.id)}
+              =tag_icon(:edit)
               =user.name
           %td.list-column=user.tel
           %td.list-column=user.apply_attemped ? tag_icon(:ok) : tag_icon(:remove)

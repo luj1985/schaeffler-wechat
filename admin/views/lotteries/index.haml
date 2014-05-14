@@ -27,5 +27,8 @@
           %td.list-column=lottery.level_name
           %td.list-column=lottery.display_name
           %td.list-column=lottery.tel
-          %td.list-column=lottery.user_id
+          %td.list-column
+            -if lottery.user_id.present?
+              %a{:href => url_for(:users, :edit, :id => lottery.user_id)}
+                =lottery.user.name
           %td.list-column=lottery.display_status

@@ -3,9 +3,9 @@ SchaefflerWechat::Admin.controllers :lotteries do
   get :index do
     @title = "促销活动兑奖"
     if params[:show] == 'all' then
-      @lotteries = Lottery.all
+      @lotteries = Lottery.includes(:user).all
     else
-      @lotteries = Lottery.where("serial is not null")
+      @lotteries = Lottery.includes(:user).where("serial is not null")
     end
     render 'lotteries/index'
   end
