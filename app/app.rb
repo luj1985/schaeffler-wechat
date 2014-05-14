@@ -13,6 +13,9 @@ module SchaefflerWechat
     end
 
     error 403 do
+      # return 200 to make jquerymobile show error page content
+      # instead of "loading error"
+      status 200
       render 'errors/403'
     end
 

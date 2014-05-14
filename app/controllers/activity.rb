@@ -28,6 +28,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     if @lottery && @lottery.available?then
       @lottery.status = 'EXCHANGING'
       user = User.find_or_initialize_by :openid => session[:openid]
+      halt 403, "对不起，您的账户被禁用" if user.blocked
       @lottery.user = user
       @lottery.serial = serial
       render :confirm
