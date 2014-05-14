@@ -4,30 +4,15 @@
   .col-sm-9
     ~f.text_area :question, :class => 'form-control', :autofocus => true
     %span.help-inline=f.error_message_on(:question, :class => 'text-error') if error
-- error = @question.errors.include?(:a)
-.form-group{:class => error ? 'has-error' : ''}
-  =f.label :a, :class => 'control-label col-sm-2'
-  .col-sm-5
-    =f.text_field :a, :class => 'form-control'
-    %span.help-inline=f.error_message_on(:a, :class => 'text-error') if error
-- error = @question.errors.include?(:b)
-.form-group{:class => error ? 'has-error' : ''}
-  =f.label :b, :class => 'control-label col-sm-2'
-  .col-sm-5
-    =f.text_field :b, :class => 'form-control'
-    %span.help-inline=f.error_message_on(:b, :class => 'text-error') if error
-- error = @question.errors.include?(:c)
-.form-group{:class => error ? 'has-error' : ''}
-  =f.label :c, :class => 'control-label col-sm-2'
-  .col-sm-5
-    =f.text_field :c, :class => 'form-control'
-    %span.help-inline=f.error_message_on(:c, :class => 'text-error') if error
-- error = @question.errors.include?(:d)
-.form-group{:class => error ? 'has-error' : ''}
-  =f.label :d, :class => 'control-label col-sm-2'
-  .col-sm-5
-    =f.text_field :d, :class => 'form-control'
-    %span.help-inline=f.error_message_on(:d, :class => 'text-error') if error
+
+- [:a, :b, :c, :d].each do |i|
+  - error = @question.errors.include?(i)
+  .form-group{:class => error ? 'has-error' : ''}
+    =f.label i, :class => 'control-label col-sm-2'
+    .col-sm-5
+      =f.text_field i, :class => 'form-control'
+      %span.help-inline=f.error_message_on(:a, :class => 'text-error') if error
+
 - error = @question.errors.include?(:correct)
 .form-group{:class => error ? 'has-error' : ''}
   =f.label :correct, :class => 'control-label col-sm-2'
