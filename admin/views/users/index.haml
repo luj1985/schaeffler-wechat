@@ -2,7 +2,7 @@
   %a.btn.btn-default{:href => url_for(:users, :export, :format => :xlsx)}导出参与微信用户(xlsx格式)
 
 .tabs-content
-  %table#list.table.table-striped.table-hover.table-condensed
+  %table#list.table.table-striped.table-hover
     %thead
       %tr
         %th.header= mat(:user, :name)
@@ -17,7 +17,7 @@
 
     %tbody
       -@users.each do |user|
-        %tr.list-row
+        %tr.list-row{:class => user.blocked ? 'danger' : ''}
           %td.list-column
             %a{:href => url_for(:users, :edit, :id => user.id)}
               =tag_icon(:edit)
