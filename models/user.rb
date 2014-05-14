@@ -16,5 +16,6 @@ class User < ActiveRecord::Base
   	self.apply_attemped ||= false
   	self.join_match ||= false
   	self.granted ||= false
+    self.blocked ||= false
   end
 end

@@ -13,3 +13,5 @@ zh_cn:
         crypted_serial: 加密后的抽奖号码
         user_id: 微信用户
         status: 状态
+
+        product: Product

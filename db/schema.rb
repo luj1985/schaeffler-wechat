@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 17) do
+ActiveRecord::Schema.define(version: 18) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 17) do
     t.boolean  "apply_attemped"
     t.string   "province"
     t.string   "city"
+    t.boolean  "blocked"
   end
 
 end

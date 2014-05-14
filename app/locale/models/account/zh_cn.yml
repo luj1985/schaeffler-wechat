@@ -1,13 +1,15 @@
 zh_cn:
   models:
     account:
-      name: Account
+      name: 管理员账户
       attributes:
-        id: Id
-        name: Name
-        surname: Surname
-        email: Email
-        crypted_password: Crypted password
-        role: Role
-        created_at: Created at
-        updated_at: Updated at
+        id: 编号
+        name: 名
+        surname: 姓
+        email: 邮件地址
+        crypted_password: 加密后的密码
+        role: 角色
+        password: 密码
+        password_confirmation: 确认密码
+        created_at: 创建时间
+        updated_at: 更新时间

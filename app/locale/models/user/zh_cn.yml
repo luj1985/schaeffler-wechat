@@ -11,7 +11,9 @@ zh_cn:
         city: 城市
         workshop: 修理厂名称
         workshop_address: 修理厂地址
-        created_at: 创建时间
-        updated_at: 更新时间
         join_match: 通过观赛申请
         apply_attemped: 提出申请
+        granted: 可以提出观赛申请
+        blocked: 阻止访问
+        created_at: 创建时间
+        updated_at: 更新时间
