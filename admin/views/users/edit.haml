@@ -1,0 +1,33 @@
+.tabs-content
+  = form_for :user, url(:users, :update, :id => @user.id), :method => :put do |f|
+    %dl.dl-horizontal.user-info
+      %dt= mat(:user, :openid)
+      %dd.text-muted= @user.openid
+
+      %dt= mat(:user, :name)
+      %dd.text-muted= @user.name
+
+      %dt= mat(:user, :tel)
+      %dd.text-muted= @user.tel
+
+      %dt= mat(:user, :workshop_address)
+      %dd.text-muted
+        =@user.province
+        =@user.city
+        =@user.workshop_address
+
+      %dt= mat(:user, :apply_attemped)
+      %dd.text-muted= @user.apply_attemped ? tag_icon(:ok) : tag_icon(:remove)
+
+      %dt= mat(:user, :join_match)
+      %dd.text-muted= @user.join_match ? tag_icon(:ok) : tag_icon(:remove)
+
+      %dt 列入黑名单
+      %dd=f.check_box :blocked
+  
+      %dt
+      %dd
+        =f.submit pat(:save), :class => 'btn btn-primary'
+        &nbsp;
+        =link_to pat(:cancel), url(:users, :index), :class => 'btn btn-default'
+    

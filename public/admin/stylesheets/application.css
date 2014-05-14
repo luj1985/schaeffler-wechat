@@ -361,3 +361,11 @@ footer p {
   margin: 0 auto;
   z-index: 1;
 }
+
+dl.user-info {
+  font-size: 1.1em;
+}
+
+dl.user-info dt, dl.user-info dd {
+  line-height: 2em;
+}

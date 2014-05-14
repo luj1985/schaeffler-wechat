@@ -5,6 +5,32 @@ SchaefflerWechat::Admin.controllers :users do
     render 'users/index'
   end
 
+  get :edit, :with => :id do
+    @user = User.find(params[:id])
+    if @user
+      render 'users/edit'
+    else
+      flash[:warning] = pat(:create_error, :model => 'User', :id => "#{params[:id]}")
+      halt 404
+    end
+  end
+
+  put :update, :with => :id do
+    @user = User.find(params[:id])
+    if @user
+      if @user.update_attributes(params[:user])
+        flash[:success] = "用户#{@user.name}数据已更新"
+        redirect(url(:users, :index))
+      else
+        flash.now[:error] = pat(:update_error, :model => 'user')
+        render 'users/edit'
+      end
+    else
+      flash[:warning] = pat(:update_warning, :model => 'user', :id => "#{params[:id]}")
+      halt 404
+    end
+  end
+
   get :export, :provides => :xlsx do
     timestamp = Time.now.strftime "%Y-%m-%d %H%M%S"
     attachment "参与用户#{timestamp}.xlsx"
