@@ -32,7 +32,6 @@
         %th.header= mat(:question, :c)
         %th.header= mat(:question, :d)
         %th.header= mat(:question, :correct)
-        %th.header.list-row-action-header
 
     %tbody
       -@questions.each do |question|
@@ -48,14 +47,3 @@
           %td.list-column=question.c
           %td.list-column=question.d
           %td.list-column=question.correct
-          %td.list-column.list-row-action
-            .list-row-action-wrapper
-              =link_to tag_icon(:edit), :href => url(:questions, :edit, :id => question.id), :rel => :tooltip, :title => "#{pat(:edit)} question", :class => 'list-row-action-wrapper-link'
-              =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} question", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
-              .popover.list-row-action-popover-delete-one.left
-                .arrow
-                %h3.popover-title=pat(:delete, :model => "question")
-                .popover-content
-                  = form_tag url(:questions, :destroy, :id => question.id), :method => :delete do
-                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
-                    .btn.btn-default.btn-small.cancel=pat(:cancel)

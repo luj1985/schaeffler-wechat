@@ -26,33 +26,22 @@
                       =hidden_field_tag :menu_ids, :'data-delete-many-ids' => true
                       =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
-        %th.header= mat(:menu, :id)
         %th.header= mat(:menu, :name)
         %th.header= mat(:menu, :text)
         %th.header= mat(:menu, :link)
         %th.header= mat(:menu, :created_at)
         %th.header= mat(:menu, :updated_at)
-        %th.header.list-row-action-header
 
     %tbody
       -@menus.each do |menu|
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'menu_ids[]', :value => menu.id, :class => 'list-selectable-checkbox'
-          %td.list-column=menu.id
-          %td.list-column=menu.name
+          %td.list-column
+            %a{:href => url(:menus, :edit, :id => menu.id)}
+              =tag_icon(:edit)
+              =menu.name
           %td.list-column=menu.text
           %td.list-column=menu.link
           %td.list-column=time_ago_in_words menu.created_at
           %td.list-column=time_ago_in_words menu.updated_at
-          %td.list-column.list-row-action
-            .list-row-action-wrapper
-              =link_to tag_icon(:edit), :href => url(:menus, :edit, :id => menu.id), :rel => :tooltip, :title => "#{pat(:edit)} menu", :class => 'list-row-action-wrapper-link'
-              =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} menu", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
-              .popover.list-row-action-popover-delete-one.left
-                .arrow
-                %h3.popover-title=pat(:delete, :model => "menu")
-                .popover-content
-                  = form_tag url(:menus, :destroy, :id => menu.id), :method => :delete do
-                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
-                    .btn.btn-default.btn-small.cancel=pat(:cancel)

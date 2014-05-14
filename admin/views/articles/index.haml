@@ -28,23 +28,18 @@
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
         %th.header= mat(:article, :title)
         %th.header= mat(:article, :name)
-        %th.header.list-row-action-header
+        %th.header= mat(:article, :created_at)
+        %th.header= mat(:article, :updated_at)
 
     %tbody
       -@articles.each do |article|
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'article_ids[]', :value => article.id, :class => 'list-selectable-checkbox'
-          %td.list-column=article.title
+          %td.list-column
+            %a{:href => url(:articles, :edit, :id => article.id)}
+              =tag_icon(:edit)
+              =article.title
           %td.list-column=article.name
-          %td.list-column.list-row-action
-            .list-row-action-wrapper
-              =link_to tag_icon(:edit), :href => url(:articles, :edit, :id => article.id), :rel => :tooltip, :title => "#{pat(:edit)} article", :class => 'list-row-action-wrapper-link'
-              =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} article", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
-              .popover.list-row-action-popover-delete-one.left
-                .arrow
-                %h3.popover-title=pat(:delete, :model => "article")
-                .popover-content
-                  = form_tag url(:articles, :destroy, :id => article.id), :method => :delete do
-                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
-                    .btn.btn-default.btn-small.cancel=pat(:cancel)
+          %td.list-column=time_ago_in_words article.created_at
+          %td.list-column=time_ago_in_words article.updated_at

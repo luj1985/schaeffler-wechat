@@ -1,12 +1,12 @@
 zh_cn:
   models:
     menu:
-      name: Menu
+      name: 二级菜单
       attributes:
-        id: Id
-        name: Name
-        text: Text
-        link: Link
-        created_at: Created at
-        updated_at: Updated at
-        description: Description
+        id: 编号
+        name: 菜单名字
+        text: 菜单标题
+        link: 链接名字
+        description: 菜链接单描述
+        created_at: 创建时间
+        updated_at: 更新时间

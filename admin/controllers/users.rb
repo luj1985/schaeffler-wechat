@@ -6,6 +6,7 @@ SchaefflerWechat::Admin.controllers :users do
   end
 
   get :edit, :with => :id do
+    @title = "编辑微信用户信息"
     @user = User.find(params[:id])
     if @user
       render 'users/edit'
@@ -16,11 +17,12 @@ SchaefflerWechat::Admin.controllers :users do
   end
 
   put :update, :with => :id do
+    @title = "编辑微信用户信息"
     @user = User.find(params[:id])
     if @user
       if @user.update_attributes(params[:user])
         flash[:success] = "用户#{@user.name}数据已更新"
-        redirect(url(:users, :index))
+        redirect(url(:users, :edit, :id => @user.id))          
       else
         flash.now[:error] = pat(:update_error, :model => 'user')
         render 'users/edit'
