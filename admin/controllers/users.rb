@@ -40,13 +40,15 @@ SchaefflerWechat::Admin.controllers :users do
       p.workbook.add_worksheet(:name => "参与用户 #{timestamp}") do |sheet|
         sheet.add_row [
           "OpenID","用户名","联系电话",
-          "提交观赛申请", 
-          "申请结果",
+          "提交观赛申请",
+          "申请结果", 
+          "列入黑名单",
           "省份","城市","详细地址","修理厂名"]
         User.all.each do |u|
           row = [u.openid, u.name, u.tel, 
             u.apply_attemped ? "是" : "否",
             u.join_match ? "成功" : u.apply_attemped ? "失败" : "", 
+            u.blocked ? "是" : "否",
             u.province, u.city, u.workshop_address, u.workshop ]
           types = row.map {|v| :string }
           sheet.add_row row, :types => types
