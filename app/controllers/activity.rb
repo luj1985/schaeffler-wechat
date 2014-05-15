@@ -45,6 +45,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     halt 404, "无效的验证码" unless @lottery
     @lottery.status = 'USED'
     if @lottery.update(params[:lottery])
+      @lottery.user.update_permission
       render :success
     else
       render :confirm

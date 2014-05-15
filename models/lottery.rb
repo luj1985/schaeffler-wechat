@@ -11,8 +11,6 @@ class Lottery < ActiveRecord::Base
 
   after_initialize :init
 
-  before_save :grant_permission
-
   def init
     self.status ||= 'AVAILABLE'
   end
@@ -46,15 +44,6 @@ class Lottery < ActiveRecord::Base
   def self.challenge serial
     crypted_serial = Digest::MD5::hexdigest serial
     self.find_by_crypted_serial crypted_serial
-  end
-
-  def grant_permission
-    user = self.user
-    # TODO: should not add logic in trigger
-    user.count += 1
-    user.lasttime = Time.now
-    user.granted = true
-    user.save
   end
 
   def validate_charge_tel?

@@ -20,4 +20,11 @@ class User < ActiveRecord::Base
     self.lasttime ||= Time.now
     self.count ||= 0
   end
+  
+  def update_permission
+    self.count += 1
+    self.lasttime = Time.now
+    self.granted = true
+    self.save
+  end
 end
