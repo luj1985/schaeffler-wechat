@@ -29,7 +29,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
       @lottery.status = 'EXCHANGING'
       user = User.find_or_initialize_by :openid => session[:openid]
       halt 403, "对不起，您的账户被禁用" if user.blocked
-      halt 403, "超过每天允许的兑奖次数" if user.count > 20
+      halt 403, "超过每天允许的兑奖次数" if user.exceed_limit?
       @lottery.user = user
       @lottery.serial = serial
       render :confirm
