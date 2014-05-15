@@ -17,5 +17,7 @@ class User < ActiveRecord::Base
   	self.join_match ||= false
   	self.granted ||= false
     self.blocked ||= false
+    self.lasttime ||= Time.now
+    self.count ||= 0
   end
 end

@@ -49,9 +49,12 @@ class Lottery < ActiveRecord::Base
   end
 
   def grant_permission
-    if self.user then
-      self.user.granted = true
-    end
+    user = self.user
+    # TODO: should not add logic in trigger
+    user.count += 1
+    user.lasttime = Time.now
+    user.granted = true
+    user.save
   end
 
   def validate_charge_tel?
