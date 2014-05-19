@@ -1,15 +1,14 @@
 %div{'data-role' => 'content'}
   -if @passed then
-    %p.message 恭喜您回答正确！
-    %p.message 
-      您获得了申请现场观赛的资格，我们将于8月初和10月初
-      从回答正确的申请者中抽取出幸运者！获得现场激情观赛的机会哦！
-    %p.message 届时请您关注舍弗勒汽车售后微信公共帐号！
+    %h4 恭喜您回答正确！
+    %p.message 我们奖于8月初和10月初期间，从正确回答问题的中奖者种抽取超级幸运大奖，提供免费到现场激情观赛的机会！
   -else
-    %p.message 
-      非常抱歉，您提交的答案不正确！
-      %i.cry
-    %p.message 预祝您能刮中更多奖品哦！
+    %h4 非常抱歉您的回答有误
+    %p.message 感谢您参与本次活动，预祝您刮中更多好礼！ 
+  
+  %p.message 请您持续关注我们的微信公众帐号。或登录舍弗勒汽车售后官方网站了解更多详情：
+  %a{:href => 'http://www.schaeffler-aftermarket.cn/'}
+    http://www.schaeffler-aftermarket.cn/
 %div{'data-role' => 'footer',
      'data-position' => 'fixed'}
   -# This is workaround for show right button only footer
