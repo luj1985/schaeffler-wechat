@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
-  validates :tel, :presence => true
+  validates :tel, :length => {:is => 11, :message => '手机号码不正确'},
+                  :numericality => { :only_integer => true,:message => '手机号码不正确' }, 
+                  :presence => true
+
   validates :name, :presence => true
   validates :workshop, :presence => true
   validates :province, :presence => true

@@ -6,7 +6,7 @@
   %p 观赛申请截止日期为10月1日
   %p 每个微信ID仅有一次申请观赛的机会哦！
 
-  %a{:href => url_for(:activity, :questions)}
+  %a.middle{'data-role' => 'button', :href => url_for(:activity, :questions)}
     进入答题
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
   %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级

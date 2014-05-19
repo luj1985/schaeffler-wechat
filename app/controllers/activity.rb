@@ -104,6 +104,12 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
       @passed = false
       render :answer
     end
+
+    get :success do
+      @lottery = Lottery.find_by_id 1
+      @lottery.can_apply_join_match?
+      render :success
+    end
   end
 
 

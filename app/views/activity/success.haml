@@ -1,12 +1,13 @@
 %div{'data-role' => 'content'}
   %p.message 您的兑奖信息已经成功提交！
   -if @lottery.level == '4' then
-    %p.message 我们将在三个工作日内为您指定的手机号码充值，
-    %p.message 感谢您参与本次活动，也感谢您对舍弗勒支持与信赖！
+    %p.message 我们将在三个工作日内完成验证，如通过验证，我们将会为您提交的手机号码进行充值。
+    %p.message 请您留意。
   -else
-    %p.message 我们将在一周以内联系您，感谢您参与本次活动，也感谢您对舍弗勒支持与信赖！
+    %p.message 我们将在三个工作日内完成验证，如通过验证，届时将会有工作人员联系您确认奖品兑奖事宜。
+    %p.message 请您保持手机通畅哦。
   -if @lottery.can_apply_join_match?
-    %a{:href => url_for(:activity, :rules)} 申请观赛
+    %a.middle{'data-role' => 'button', :href => url_for(:activity, :rules)} 申请观赛
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
   %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级
   %a.ui-btn-right.schaeffler-exit{:href => "#", 'data-icon' => "home"} 退出
