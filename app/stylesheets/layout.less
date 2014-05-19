@@ -38,6 +38,18 @@
     color: @red;
     font-weight: bold;
   }
+
+  input.invalid, textarea.invalid {
+    border: 1px solid @red;
+  }
+
+  .ui-focus {
+
+    input.invalid, textarea.invalid {
+      border-width: 0px;
+    }
+
+  }
   
   img {
     width: 100%;

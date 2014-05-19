@@ -9,14 +9,14 @@
     %span.prize=@lottery.display_name
     -if @lottery.display_image.present?
       %img.prize{:src => @lottery.display_image}
-  %p 请您完整填写以下信息，方便我们联系您！
+  %p 为顺利完成兑奖，您还需正确填写以下兑奖信息（修理厂及联系信息首次填写后系统将自动保存）
 
   = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
     - errors = @lottery.errors
     = f.hidden_field :serial
     - if @lottery.level == '4'
       %p
-        = f.label :tel, :caption => '您输请您要充值入的手机号:'
+        = f.label :tel, :caption => '请您输入要充值入的手机号:'
         -if errors.include?(:tel)
           = f.telephone_field :tel, :autofocus => true
           %span.error= f.error_message_on(:tel)
@@ -31,10 +31,10 @@
         -else
           = f.text_field :product
         %a.sample{:href => '#sample', 'data-rel' => 'popup', 'data-position-to' => 'window', 'data-transition'=>'fade'}
-          %img.popphoto{:src => '/images/sample.jpg', :alt=> '图例', :style => 'width:50%'}
+          %img{:src => '/images/sample.jpg', :alt=> '图例', :style => 'width:50%'}
         #sample{'data-role' => 'popup', 'data-corners' => "false"}
           %a.ui-btn.ui-corner-all.ui-shadow.ui-btn-a.ui-icon-delete.ui-btn-icon-notext.ui-btn-right{:href => '#', 'data-rel' => 'back'}关闭
-          %img.popphoto{:src => '/images/sample.jpg', :alt=> '图例', :style => 'max-height:512px'}
+          %img{:src => '/images/sample.jpg', :alt=> '图例', :style => 'max-height:512px'}
     = f.fields_for :user do |user|
       :javascript
         $(document).one('pageshow', function() {
