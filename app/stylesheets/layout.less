@@ -56,6 +56,12 @@
     background-color: @green;
     color: white;
   }
+
+  .ui-btn.left {
+    width: 40%;
+    background-color: @green;
+    color: white;
+  }
   
   img {
     width: 100%;
@@ -98,25 +104,30 @@
     width: 25px;
     display: inline-block;
   }
-}
 
-a.detail {
-  float: right;
-  right: 20px;
-  bottom: -15px;
-  position: absolute;
-  background-color: @red;
-  text-decoration: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 3px solid #FFF;
-  color: #FFF;
-  box-shadow: 4px 4px 4px lightgray;
-  font-weight: normal;
-  &:hover, &:visited, &:active{
-    color: white;
+
+  h4.activity {
+    &.l1, &.l2 {
+      padding-left: 82px;
+      display: inline;  
+      background-size: 80px 28.8px;
+      background-repeat: no-repeat;
+      background-position: left center;      
+    }
+    &.l1 {
+      background-image: url(/images/activity/header-1.png);
+    }
+    &.l2 {
+      background-image: url(/images/activity/header-2.png);
+    }
+  }
+
+  hr.dashed {
+    border-top:dashed 1px #000;
+    margin: 10px 0;
   }
 }
+
 
 div.clear {
   clear:right;
