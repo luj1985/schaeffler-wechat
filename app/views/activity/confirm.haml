@@ -7,6 +7,8 @@
   %p 
     奖品是
     %span.prize=@lottery.display_name
+    -if @lottery.display_image.present?
+      %img.prize{:src => @lottery.display_image}
   %p 请您完整填写以下信息，方便我们联系您！
 
   = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
@@ -22,12 +24,17 @@
           = f.telephone_field :tel
     - if ['1','2'].include?(@lottery.level)
       %p
-        = f.label :product, :caption => '您所购买的产品号:'
+        = f.label :product, :caption => '请您输入该中奖产品的编号，您可在产品包装盒外找到（如图例）'
         -if errors.include?(:product)
           = f.text_field :product, :autofocus => true
           %span.error= f.error_message_on(:product)
         -else
           = f.text_field :product
+        %a.sample{:href => '#sample', 'data-rel' => 'popup', 'data-position-to' => 'window', 'data-transition'=>'fade'}
+          %img.popphoto{:src => '/images/sample.jpg', :alt=> '图例', :style => 'width:50%'}
+        #sample{'data-role' => 'popup', 'data-corners' => "false"}
+          %a.ui-btn.ui-corner-all.ui-shadow.ui-btn-a.ui-icon-delete.ui-btn-icon-notext.ui-btn-right{:href => '#', 'data-rel' => 'back'}关闭
+          %img.popphoto{:src => '/images/sample.jpg', :alt=> '图例', :style => 'max-height:512px'}
     = f.fields_for :user do |user|
       :javascript
         $(document).one('pageshow', function() {
