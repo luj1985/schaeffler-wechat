@@ -32,17 +32,17 @@ account = Account.create(:email => "test@example.com", :name => "Jun", :surname 
 Menu.create(:name => "matches", :text => "“买舍弗勒产品，刮好礼，享速度与激情”", :link => '/activity/intro', :description => '活动详情')
 
 
-Menu.create(:name => "tutorial", :text => "LuK离合器", :link =>  'luk', :description => 'LuK离合器安装教程')
-Menu.create(:name => "tutorial", :text => "INA皮带传动部件及气门机构部件", :link => "ina")
-Menu.create(:name => "tutorial", :text => "FAG轮毂轴承", :link => 'fag')
+Menu.create(:name => "tutorial", :text => "LuK离合器", :link =>  '/article/luk', :description => 'LuK离合器安装教程')
+Menu.create(:name => "tutorial", :text => "INA皮带传动部件及气门机构部件", :link => "/article/ina")
+Menu.create(:name => "tutorial", :text => "FAG轮毂轴承", :link => '/article/fag')
 Article.create(:name => 'luk', :title => 'LuK离合器', :body => '<h3>LuK离合器安装教程</h3><p>LuK离合器安装教程</p>')
 Article.create(:name => 'ina', :title => 'LuK离合器', :body => '<h3>INA皮带传动部件及气门机构部件</h3><p>INA皮带传动部件及气门机构部件</p>')
 Article.create(:name => 'fag', :title => 'LuK离合器', :body => '<h3>FAG轮毂轴承</h3><p>FAG轮毂轴承</p>')
 
 
-Menu.create(:name => "diagnostic", :text => "离合器", :link => 'luk')
-Menu.create(:name => "diagnostic", :text => "皮带传动部件及气门机构部件", :link => "ina")
-Menu.create(:name => "diagnostic", :text => "轮毂轴承", :link => 'fag')
+Menu.create(:name => "diagnostic", :text => "离合器", :link => '/article/luk')
+Menu.create(:name => "diagnostic", :text => "皮带传动部件及气门机构部件", :link => "/article/ina")
+Menu.create(:name => "diagnostic", :text => "轮毂轴承", :link => '/article/fag')
 
 Article.create(:name => 'tools', :title => "工具列表", :body => '<h3>工具列表</h3><p>工具列表</p>')
 
