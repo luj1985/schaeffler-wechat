@@ -16,9 +16,9 @@ class Lottery < ActiveRecord::Base
   end
 
   NAMES = {
-    '1' => ["一等奖", "新一代iPhone", "/images/rewards/1.jpg"],
-    '2' => ["二等奖", "iPad Mini", "/images/rewards/2.jpg"],
-    '3' => ["三等奖", "舍弗勒双肩包", "/images/rewards/3.jpg"],
+    '1' => ["一等奖", "新一代iPhone", "/images/rewards/1.png"],
+    '2' => ["二等奖", "iPad Mini", "/images/rewards/2.png"],
+    '3' => ["三等奖", "舍弗勒双肩包", "/images/rewards/3.png"],
     '4' => ["四等奖", "开心花费10元"]
   }
 
