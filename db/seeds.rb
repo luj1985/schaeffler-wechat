@@ -29,13 +29,7 @@
 
 account = Account.create(:email => "test@example.com", :name => "Jun", :surname => "Lu", :password => "test", :password_confirmation => "test", :role => "admin")
 
-Menu.create(:name => "matches", :text => "test menu 1", :link => 'article1', :description => 'This is a test description for menu 1')
-# Menu.create(:name => "matches", :text => "test menu 2", :link => 'article2', :description => 'This is a test description for menu 2')
-# Menu.create(:name => "matches", :text => "test menu 3", :link => 'article3', :description => 'This is a test description for menu 3')
-# Menu.create(:name => "matches", :text => "test menu 4", :link => 'article4', :description => 'This is a test description for menu 4')
-# Menu.create(:name => "matches", :text => "test menu 5", :link => 'article5', :description => 'This is a test description for menu 5')
-# Menu.create(:name => "matches", :text => "test menu 6", :link => 'article6', :description => 'This is a test description for menu 6')
-# Menu.create(:name => "matches", :text => "test menu 7", :link => 'article7', :description => 'This is a test description for menu 7')
+Menu.create(:name => "matches", :text => "“买舍弗勒产品，刮好礼，享速度与激情”", :link => '/activity/intro', :description => '活动详情')
 
 
 Menu.create(:name => "tutorial", :text => "LuK离合器", :link =>  'luk', :description => 'LuK离合器安装教程')
@@ -54,13 +48,7 @@ Article.create(:name => 'tools', :title => "工具列表", :body => '<h3>工具�
 
 Article.create(:name => 'intro', :title => "赛事介绍", :body => '<img src="/images/introduction.jpg"><h3>赛事介绍</h3><p>赛事介绍正文</p>')
 
-Article.create(:name => 'article1', :title => 'Article 1', :body => '<h3>Title of Article 1</h3><p>body of article 1</p>')
-Article.create(:name => 'article2', :title => 'Article 2', :body => '<h3>Title of Article 2</h3><p>body of article 2</p>')
-Article.create(:name => 'article3', :title => 'Article 3', :body => '<h3>Title of Article 3</h3><p>body of article 3</p>')
-Article.create(:name => 'article4', :title => 'Article 4', :body => '<h3>Title of Article 4</h3><p>body of article 4</p>')
-Article.create(:name => 'article5', :title => 'Article 5', :body => '<h3>Title of Article 5</h3><p>body of article 5</p>')
-Article.create(:name => 'article6', :title => 'Article 6', :body => '<h3>Title of Article 6</h3><p>body of article 6</p>')
-Article.create(:name => 'article7', :title => 'Article 8', :body => '<h3>Title of Article 7</h3><p>body of article 7</p>')
+Article.create(:name => 'progress', :title => '敬请期待', :body => '<img src="/images/progress.jpg" />')
 
 
 Question.create(:question => '阿拉伯神灯中主人公是', 
