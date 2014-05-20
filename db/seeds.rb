@@ -46,7 +46,25 @@ Menu.create(:name => "diagnostic", :text => "轮毂轴承", :link => 'fag')
 
 Article.create(:name => 'tools', :title => "工具列表", :body => '<h3>工具列表</h3><p>工具列表</p>')
 
-Article.create(:name => 'intro', :title => "赛事介绍", :body => '<img src="/images/introduction.jpg"><h3>赛事介绍</h3><p>赛事介绍正文</p>')
+introduction_page =<<EOF
+<img src="/images/activity/rules.jpg" />
+<h4>申请观赛介绍：</h4>
+<p>
+舍弗勒集团将携手奥迪车队和保时捷车队分别参加2014年
+<strong>DTM德国房车大师赛</strong>及<strong>WEC世界耐力锦标赛</strong>。
+两项赛事的分站赛将先后于<strong>9月28日</strong>和
+<strong>11月2日</strong>登陆广州及上海。
+届时，我们将从正确回答申请观赛环节问题的中奖者中抽取
+<strong class="highlight">超级幸运大奖</strong>，提供免费到现场激情观赛的机会！
+</p>
+<ul class="description">
+<li>申请观赛截止日期为<strong>2014年10月1日</strong>，获奖者名单将在<strong>8月初</strong>以及<strong>10月</strong>初分两次公布。</li>
+<li>每个微信ID只有一次申请观赛的机会，好好把握哦！</li>
+</ul>
+EOF
+
+
+Article.create(:name => 'intro', :title => "赛事介绍", :body => introduction_page)
 
 Article.create(:name => 'progress', :title => '敬请期待', :body => '<img src="/images/progress.jpg" />')
 
