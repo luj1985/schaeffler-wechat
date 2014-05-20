@@ -30,12 +30,12 @@
 account = Account.create(:email => "test@example.com", :name => "Jun", :surname => "Lu", :password => "test", :password_confirmation => "test", :role => "admin")
 
 Menu.create(:name => "matches", :text => "test menu 1", :link => 'article1', :description => 'This is a test description for menu 1')
-Menu.create(:name => "matches", :text => "test menu 2", :link => 'article2', :description => 'This is a test description for menu 2')
-Menu.create(:name => "matches", :text => "test menu 3", :link => 'article3', :description => 'This is a test description for menu 3')
-Menu.create(:name => "matches", :text => "test menu 4", :link => 'article4', :description => 'This is a test description for menu 4')
-Menu.create(:name => "matches", :text => "test menu 5", :link => 'article5', :description => 'This is a test description for menu 5')
-Menu.create(:name => "matches", :text => "test menu 6", :link => 'article6', :description => 'This is a test description for menu 6')
-Menu.create(:name => "matches", :text => "test menu 7", :link => 'article7', :description => 'This is a test description for menu 7')
+# Menu.create(:name => "matches", :text => "test menu 2", :link => 'article2', :description => 'This is a test description for menu 2')
+# Menu.create(:name => "matches", :text => "test menu 3", :link => 'article3', :description => 'This is a test description for menu 3')
+# Menu.create(:name => "matches", :text => "test menu 4", :link => 'article4', :description => 'This is a test description for menu 4')
+# Menu.create(:name => "matches", :text => "test menu 5", :link => 'article5', :description => 'This is a test description for menu 5')
+# Menu.create(:name => "matches", :text => "test menu 6", :link => 'article6', :description => 'This is a test description for menu 6')
+# Menu.create(:name => "matches", :text => "test menu 7", :link => 'article7', :description => 'This is a test description for menu 7')
 
 
 Menu.create(:name => "tutorial", :text => "LuK离合器", :link =>  'luk', :description => 'LuK离合器安装教程')
