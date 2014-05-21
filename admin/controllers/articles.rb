@@ -8,6 +8,7 @@ SchaefflerWechat::Admin.controllers :articles do
   get :new do
     @title = pat(:new_title, :model => 'article')
     @article = Article.new
+    @article.body = '<p>正文内容</p>'
     render 'articles/new'
   end
 

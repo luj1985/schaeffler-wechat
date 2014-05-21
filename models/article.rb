@@ -4,9 +4,7 @@ class Article < ActiveRecord::Base
   validates :title, presence: true
   validates :body, presence: true
 
-  after_initialize :init
+  has_many :relations
+  has_many :menus, :through => :relations
 
-  def init
-    self.body ||= '<p>正文内容</p>'
-  end
 end
