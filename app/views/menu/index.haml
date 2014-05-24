@@ -1,9 +1,10 @@
 %div{'data-role' => 'content'}
   %ul{'data-role' => 'listview'}
     -@menu.articles.each do |article|
+      - extract_cover_image(article)
       %li
         %a{:href=>url_for(:article, :index, :name => article.name)}
-          %img{:src => '/images/introduction.jpg'}
+          !=extract_cover_image(article)
           %h2=article.title
           %p=article.abstract
 
