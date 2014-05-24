@@ -40,24 +40,30 @@
     .col-md-1
     .col-md-7
       - error = @article.errors.include?(:title)
-      %fieldset.control-group{:class => error ? 'has-error' : ''}
+      %fieldset.form-group{:class => error ? 'has-error' : ''}
         =f.label :title, :class => 'control-label'
         .controls
           =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
           %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
+      - error = @article.errors.include?(:abstract)
+      %fieldset.form-group{:class => error ? 'has-error' : ''}
+        =f.label :abstract, :class => 'control-label'
+        .controls
+          =f.text_area :abstract, :rows => 3, :class => 'form-control input-large input-with-feedback'
+          %span.help-inline=error ? f.error_message_on(:abstract, :class => 'text-error') : ''
       - error = @article.errors.include?(:name)
-      %fieldset.control-group{:class => error ? 'has-error' : ''}
+      %fieldset.form-group{:class => error ? 'has-error' : ''}
         =f.label :name, :class => 'control-label'
         .controls
           =f.text_field :name, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
       - error = @article.errors.include?(:body)
-      %fieldset.control-group{:class => error ? 'has-error' : ''}
+      %fieldset.form-group{:class => error ? 'has-error' : ''}
         =f.label :body, :class => 'control-label'
         .controls
           =f.text_area :body, :rows => 10, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''
-      %fieldset.control-group
+      %fieldset.form-group
         .form-actions
           =f.submit pat(:save), :class => 'btn btn-primary'
           &nbsp;

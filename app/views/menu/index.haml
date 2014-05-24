@@ -1,11 +1,11 @@
 %div{'data-role' => 'content'}
   %ul{'data-role' => 'listview'}
-    -@menus.each do |item|
+    -@menu.articles.each do |article|
       %li
-        %a{:href=>item.link}
+        %a{:href=>url_for(:article, :index, :name => article.name)}
           %img{:src => '/images/introduction.jpg'}
-          %h2=item.text
-          %p=item.description
+          %h2=article.title
+          %p=article.abstract
 
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
   %a.hidden{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级
