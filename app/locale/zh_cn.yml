@@ -1,9 +1,0 @@
-zh_cn:
-  activity:
-    result:
-      title: 填写个人信息
-      save: 保存
-      status:
-        USED: 已经被使用
-        AVAILABLE: 可用
-        EXCHANGING: 正在兑奖
