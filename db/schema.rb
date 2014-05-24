@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 21) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "abstract"
+    t.text     "abstract"
   end
 
   create_table "images", force: true do |t|
@@ -53,8 +53,7 @@ ActiveRecord::Schema.define(version: 21) do
 
   create_table "menus", force: true do |t|
     t.string   "name"
-    t.string   "text"
-    t.string   "link"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"

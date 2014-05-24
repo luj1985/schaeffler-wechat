@@ -26,11 +26,7 @@
                       =hidden_field_tag :menu_ids, :'data-delete-many-ids' => true
                       =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
-        %th.header= mat(:menu, :name)
-        %th.header= mat(:menu, :text)
-        %th.header= mat(:menu, :link)
-        %th.header= mat(:menu, :created_at)
-        %th.header= mat(:menu, :updated_at)
+        %th.header= mat(:menu, :title)
 
     %tbody
       -@menus.each do |menu|
@@ -40,8 +36,4 @@
           %td.list-column
             %a{:href => url(:menus, :edit, :id => menu.id)}
               =tag_icon(:edit)
-              =menu.name
-          %td.list-column=menu.text
-          %td.list-column=menu.link
-          %td.list-column=time_ago_in_words menu.created_at
-          %td.list-column=time_ago_in_words menu.updated_at
+              =menu.title

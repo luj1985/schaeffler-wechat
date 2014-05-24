@@ -29,22 +29,10 @@
 
 account = Account.create(:email => "test@example.com", :name => "Jun", :surname => "Lu", :password => "test", :password_confirmation => "test", :role => "admin")
 
-Menu.create(:name => "matches", :text => "“买舍弗勒产品，刮好礼，享速度与激情”", :link => '/activity/intro', :description => '活动详情')
 
 
-Menu.create(:name => "tutorial", :text => "LuK离合器", :link =>  '/article/luk', :description => 'LuK离合器安装教程')
-Menu.create(:name => "tutorial", :text => "INA皮带传动部件及气门机构部件", :link => "/article/ina")
-Menu.create(:name => "tutorial", :text => "FAG轮毂轴承", :link => '/article/fag')
-Article.create(:name => 'luk', :title => 'LuK离合器', :body => '<h3>LuK离合器安装教程</h3><p>LuK离合器安装教程</p>')
-Article.create(:name => 'ina', :title => 'LuK离合器', :body => '<h3>INA皮带传动部件及气门机构部件</h3><p>INA皮带传动部件及气门机构部件</p>')
-Article.create(:name => 'fag', :title => 'LuK离合器', :body => '<h3>FAG轮毂轴承</h3><p>FAG轮毂轴承</p>')
 
 
-Menu.create(:name => "diagnostic", :text => "离合器", :link => '/article/luk')
-Menu.create(:name => "diagnostic", :text => "皮带传动部件及气门机构部件", :link => "/article/ina")
-Menu.create(:name => "diagnostic", :text => "轮毂轴承", :link => '/article/fag')
-
-Article.create(:name => 'tools', :title => "工具列表", :body => '<h3>工具列表</h3><p>工具列表</p>')
 
 introduction_page =<<EOF
 <img src="/images/activity/rules.jpg" />
@@ -64,9 +52,33 @@ introduction_page =<<EOF
 EOF
 
 
-Article.create(:name => 'intro', :title => "赛事介绍", :body => introduction_page)
+a1 = Article.create(:name => 'intro', :title => "赛事介绍", :body => introduction_page)
+a2 = Article.create(:name => 'progress', :title => '敬请期待', :body => '<img src="/images/progress.jpg" />')
+a3 = Article.create(:name => 'luk', :title => 'LuK离合器安装教程', :body => '<p>LuK离合器安装教程</p>')
+a4 = Article.create(:name => 'ina', :title => 'INA皮带传动部件及气门机构部件', :body => '<p>INA皮带传动部件及气门机构部件</p>')
+a5 = Article.create(:name => 'fag', :title => 'FAG轮毂轴承', :body => '<p>FAG轮毂轴承</p>')
+a6 = Article.create(:name => 'tools', :title => "工具列表", :body => '<h3>工具列表</h3><p>工具列表</p>')
 
-Article.create(:name => 'progress', :title => '敬请期待', :body => '<img src="/images/progress.jpg" />')
+
+
+
+
+m1 = Menu.create(:name => "matches", :title => "“买舍弗勒产品，刮好礼，享速度与激情”")
+m1.articles << a1
+m1.save
+
+
+m2 = Menu.create(:name => "tutorial", :title => "安装教程")
+m2.articles << a3 << a4 << a5
+m2.save
+
+
+m3 = Menu.create(:name => "diagnostic", :title => "故障诊断")
+m3.articles << a3 << a4 << a5
+m3.save
+
+
+
 
 
 Question.create(:question => '阿拉伯神灯中主人公是', 

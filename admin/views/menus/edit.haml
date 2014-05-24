@@ -1,8 +1,51 @@
 %ul.nav.nav-tabs
   %li=link_to tag_icon(:list, pat(:list)), url(:menus, :index)
   %li=link_to tag_icon(:plus, pat(:new)), url(:menus, :new)
-  %li.active=link_to tag_icon(:edit, pat(:edit)), url(:menus, :edit, :id => @menu.id)
+  %li.active=link_to tag_icon(:edit, pat(:edit)), url(:menus, :edit, :id => params[:id])
 
 .tabs-content
+  %fieldset.control-group
+    .col-sm-2.controls
+      %label.control-label 新闻列表:
+    %ul#list.col-sm-10.controls
+      -@menu.articles.each do |article|
+        %li.list-group-item.list-row-action
+          %a{:href => url(:articles, :edit, :id => article.id)}
+            =tag_icon(:edit)
+            =article.title
+          .list-row-action-wrapper.pull-right{:style => 'display:inline;min-width:96px'}
+            =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} #{article.title}", :class => 'list-row-action-delete-one'
+            .popover.list-row-action-popover-delete-one.left
+              .arrow
+              %h3.popover-title="将\"#{article.title}\"从菜单中移除"
+              .popover-content
+                = form_tag url(:menus, :remove_article, :id => @menu.id, :article_id => article.id), :method => :delete do
+                  =submit_tag pat(:delete), :class =>'btn btn-danger btn-small'
+                  .btn.btn-default.btn-small.cancel=pat(:cancel)
+          
+      %li.list-group-item
+        = form_for :menu, url(:menus, :add_article, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
+          - options = Article.select(:id, :title).all.map { |article| [article.title, article.id] }
+
+          =select_tag :article_id, :class => 'form-control', :options => options
+          =f.submit '添加到菜单', :class => 'btn btn-primary'
+
   = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
-    =partial 'menus/form', :locals => { :f => f }
+    - error = @menu.errors.include?(:title)
+    %fieldset.control-group{:class => error ? 'has-error' : ''}
+      .col-sm-2.controls
+        =f.label :title, :class => 'control-label'
+      .col-sm-10.controls
+        =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
+        %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
+
+    %fieldset.control-group
+      .form-actions
+        =f.submit pat(:save), :class => 'btn btn-primary'
+        &nbsp;
+        =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+        &nbsp;
+        =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'
+
+        
+

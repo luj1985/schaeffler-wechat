@@ -2,8 +2,7 @@ class CreateMenus < ActiveRecord::Migration
   def self.up
     create_table :menus do |t|
       t.string :name
-      t.string :text
-      t.string :link
+      t.string :title
       t.timestamps
     end
   end

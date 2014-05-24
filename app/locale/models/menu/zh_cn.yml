@@ -5,8 +5,9 @@ zh_cn:
       attributes:
         id: 编号
         name: 菜单名字
-        text: 菜单标题
-        link: 链接名字
+        title: 菜单标题
+        articles: 新闻列表
+        link: 链接地址
         description: 菜链接单描述
         created_at: 创建时间
         updated_at: 更新时间

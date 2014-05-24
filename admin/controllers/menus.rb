@@ -1,7 +1,7 @@
 SchaefflerWechat::Admin.controllers :menus do
   get :index do
     @title = "Menus"
-    @menus = Menu.all
+    @menus = Menu.group('name').all
     render 'menus/index'
   end
 
@@ -24,8 +24,23 @@ SchaefflerWechat::Admin.controllers :menus do
     end
   end
 
+  put :add_article, :with => :id do
+    menu = Menu.find(params[:id])
+    article = Article.find(params[:article_id])
+    menu.articles << article
+    menu.save
+    redirect(url(:menus, :edit, :id => params[:id]))
+  end
+
+  delete :remove_article, :with => [:id, :article_id] do
+    menu = Menu.find(params[:id])
+    article = Article.find(params[:article_id])
+    menu.articles.delete(article)
+    menu.save
+    redirect(url(:menus, :edit, :id => params[:id]))
+  end
+
   get :edit, :with => :id do
-    @title = pat(:edit_title, :model => "menu #{params[:id]}")
     @menu = Menu.find(params[:id])
     if @menu
       render 'menus/edit'
