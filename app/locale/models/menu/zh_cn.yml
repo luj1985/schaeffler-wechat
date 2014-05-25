@@ -7,6 +7,7 @@ zh_cn:
         name: 菜单名字
         title: 菜单标题
         articles: 新闻列表
+        pages: 微页面
         link: 链接地址
         description: 菜链接单描述
         created_at: 创建时间

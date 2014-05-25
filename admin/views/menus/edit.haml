@@ -59,8 +59,17 @@
             
       .col-sm-offset-2
         .col-sm-8
-          =select_tag :article_id, :class => 'form-control articles_selection', :options => dropdown_selection(@menu)
+          =select_tag :article_id, :class => 'form-control articles_selection', :options => dropdown_articles(@menu)
         %a.col-sm-2.add_article.btn.btn-primary{:href => '#'}添加到菜单
+
+    %fieldset.form-group
+      .col-sm-2.controls
+        =f.label :pages, :class => 'control-label'
+      %ul.articles_list.col-sm-10.controls
+        -@menu.pages.each do |page|
+          %li.list-group-item
+            %a{:href => page.href}
+              =page.title
 
     - error = @menu.errors.include?(:title)
     %fieldset.form-group{:class => error ? 'has-error' : ''}

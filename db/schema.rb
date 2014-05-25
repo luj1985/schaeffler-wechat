@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 22) do
+ActiveRecord::Schema.define(version: 23) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -59,6 +59,21 @@ ActiveRecord::Schema.define(version: 22) do
     t.text     "description"
   end
 
+  create_table "page_relations", force: true do |t|
+    t.integer  "page_id"
+    t.integer  "menu_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", force: true do |t|
+    t.string   "title"
+    t.string   "href"
+    t.string   "image_href"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.text     "question"
     t.string   "a"
@@ -73,13 +88,6 @@ ActiveRecord::Schema.define(version: 22) do
   create_table "relations", force: true do |t|
     t.integer  "article_id"
     t.integer  "menu_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "special_pages", force: true do |t|
-    t.string   "title"
-    t.string   "href"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

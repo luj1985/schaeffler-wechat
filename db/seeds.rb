@@ -63,8 +63,9 @@ a6 = Article.create(:name => 'tools', :title => "工具列表", :body => '<h3>�
 
 
 
-m1 = Menu.create(:name => "matches", :title => "“买舍弗勒产品，刮好礼，享速度与激情”")
-m1.articles << a1
+m1 = Menu.create(:name => "matches", :title => "促销活动")
+sp1 = Page.create(:title => "“买舍弗勒产品，刮好礼，享速度与激情”", :href => '/activity/intro', :image_href => '/images/introduction.jpg')
+m1.pages << sp1
 m1.save
 
 
@@ -76,9 +77,6 @@ m2.save
 m3 = Menu.create(:name => "diagnostic", :title => "故障诊断")
 m3.articles << a3 << a4 << a5
 m3.save
-
-
-SpecialPage.create(:title => "“买舍弗勒产品，刮好礼，享速度与激情”", :href => '/activity/intro')
 
 
 
