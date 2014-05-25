@@ -1,34 +1,67 @@
+-content_for :javascripts do
+  :javascript
+    $(function() {
+      $('.articles_list').on('click', '.delete_article', function(e) {
+        e.preventDefault();
+        var article = $(this).closest('li.list-group-item');
+        var id = article.data('article-id');
+        var title = article.data('article-title');
+        var $selected = $('.articles_selection');
+        var html = '';
+        html += '<option value="' + id+ '">';
+        html += title;
+        html += '</option>';
+        $selected.append(html);
+        article.remove();
+      });
+
+      $('.add_article').on('click', function(e) {
+        e.preventDefault();
+        var $selected = $('.articles_selection option:selected');
+        var text = $selected.text();
+        var id = $('.articles_selection').val();
+        var html = '';
+        html += '<li class="list-group-item" data-article-id="' + id + '" data-article-title="' + text + '">';
+        html += '<input type="hidden" name="menu[selected_articles][]" value="' + id +'">';
+        html += '<a href="/admin/articles/edit/' + id + '">';
+        html += '<i class="icon-edit"></i>';
+        html += text;
+        html += '</a>';
+        html += '<a href="#" class="delete_article pull-right">';
+        html += '<i class="icon-trash"></i>';
+        html += '</a>';
+        html += '</li>';
+        $('.articles_list').append(html);
+        $selected.remove();
+      });
+    });
+
+
 %ul.nav.nav-tabs
   %li=link_to tag_icon(:list, pat(:list)), url(:menus, :index)
   %li=link_to tag_icon(:plus, pat(:new)), url(:menus, :new)
   %li.active=link_to tag_icon(:edit, pat(:edit)), url(:menus, :edit, :id => params[:id])
 
 .tabs-content
-  %fieldset.form-group
-    .col-sm-2.controls
-      %label.control-label 新闻列表:
-    %ul#list.list-group.col-sm-10.controls
-      -@menu.articles.each do |article|
-        %li.list-group-item.list-row-action
-          %a{:href => url(:articles, :edit, :id => article.id)}
-            =tag_icon(:edit)
-            =article.title
-          .list-row-action-wrapper.pull-right{:style => 'display:inline;min-width:96px'}
-            =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} #{article.title}", :class => 'list-row-action-delete-one'
-            .popover.list-row-action-popover-delete-one.left
-              .arrow
-              %h3.popover-title="将\"#{article.title}\"从菜单中移除"
-              .popover-content
-                = form_tag url(:menus, :remove_article, :id => @menu.id, :article_id => article.id), :method => :delete do
-                  =submit_tag pat(:delete), :class =>'btn btn-danger btn-small'
-                  .btn.btn-default.btn-small.cancel=pat(:cancel)
-          
-      %li.list-group-item
-        = form_for :menu, url(:menus, :add_article, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
-          =select_tag :article_id, :class => 'form-control', :options => dropdown_selection(@menu)
-          =f.submit '添加到菜单', :class => 'btn btn-primary'
-
   = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
+    %fieldset.form-group
+      .col-sm-2.controls
+        =f.label :articles, :class => 'control-label'
+      %ul.articles_list.col-sm-10.controls
+        -@menu.articles.each do |article|
+          %li.list-group-item{'data-article-id' => article.id, 'data-article-title' => article.title}
+            %input{:type => 'hidden', :name => "menu[selected_articles][]", :value => article.id }
+            %a{:href => url(:articles, :edit, :id => article.id)}
+              =tag_icon(:edit)
+              =article.title
+            %a.delete_article.pull-right{:href => '#'}
+              =tag_icon(:trash)
+            
+      .col-sm-offset-2
+        .col-sm-8
+          =select_tag :article_id, :class => 'form-control articles_selection', :options => dropdown_selection(@menu)
+        %a.col-sm-2.add_article.btn.btn-primary{:href => '#'}添加到菜单
+
     - error = @menu.errors.include?(:title)
     %fieldset.form-group{:class => error ? 'has-error' : ''}
       .col-sm-2.controls
@@ -37,6 +70,7 @@
         =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
         %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
 
+    - error = @menu.errors.include?(:name)
     %fieldset.form-group{:class => error ? 'has-error' : ''}
       .col-sm-2.controls
         =f.label :name, :class => 'control-label'

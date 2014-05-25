@@ -24,22 +24,6 @@ SchaefflerWechat::Admin.controllers :menus do
     end
   end
 
-  put :add_article, :with => :id do
-    menu = Menu.find(params[:id])
-    article = Article.find(params[:article_id])
-    menu.articles << article
-    menu.save
-    redirect(url(:menus, :edit, :id => params[:id]))
-  end
-
-  delete :remove_article, :with => [:id, :article_id] do
-    menu = Menu.find(params[:id])
-    article = Article.find(params[:article_id])
-    menu.articles.delete(article)
-    menu.save
-    redirect(url(:menus, :edit, :id => params[:id]))
-  end
-
   get :edit, :with => :id do
     @menu = Menu.find(params[:id])
     if @menu
@@ -52,8 +36,12 @@ SchaefflerWechat::Admin.controllers :menus do
 
   put :update, :with => :id do
     @title = pat(:update_title, :model => "menu #{params[:id]}")
+    selected_article_ids = params[:menu][:selected_articles] # array
+    articles = Article.find selected_article_ids
+
     @menu = Menu.find(params[:id])
     if @menu
+      @menu.articles = articles
       if @menu.update_attributes(params[:menu])
         flash[:success] = pat(:update_success, :model => 'Menu', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?

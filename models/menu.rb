@@ -1,4 +1,6 @@
 class Menu < ActiveRecord::Base
+  attr_accessor :selected_articles
+  
   has_many :relations
   has_many :articles, :through => :relations
 
