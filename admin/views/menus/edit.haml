@@ -41,7 +41,7 @@
       .col-sm-2.controls
         =f.label :name, :class => 'control-label'
       .col-sm-10.controls
-        =f.text_field :name, :class => 'form-control input-large input-with-feedback', :autofocus => true
+        =f.text_field :name, :class => 'form-control input-large input-with-feedback'
         %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
 
     %fieldset.form-group

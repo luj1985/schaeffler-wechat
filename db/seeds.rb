@@ -52,11 +52,11 @@ introduction_page =<<EOF
 EOF
 
 
-a1 = Article.create(:name => 'intro', :title => "赛事介绍", :body => introduction_page)
+a1 = Article.create(:name => 'intro', :title => "赛事介绍", :abstract => "赛事介绍摘要", :body => introduction_page)
 a2 = Article.create(:name => 'progress', :title => '敬请期待', :body => '<img src="/images/progress.jpg" />')
-a3 = Article.create(:name => 'luk', :title => 'LuK离合器安装教程', :body => '<p>LuK离合器安装教程</p>')
-a4 = Article.create(:name => 'ina', :title => 'INA皮带传动部件及气门机构部件', :body => '<p>INA皮带传动部件及气门机构部件</p>')
-a5 = Article.create(:name => 'fag', :title => 'FAG轮毂轴承', :body => '<p>FAG轮毂轴承</p>')
+a3 = Article.create(:name => 'luk', :title => 'LuK离合器安装教程', :abstract => 'LuK离合器安装教程摘要', :body => '<p>LuK离合器安装教程</p>')
+a4 = Article.create(:name => 'ina', :title => 'INA皮带传动部件及气门机构部件', :abstract => 'INA皮带传动部件及气门机构部件摘要', :body => '<p>INA皮带传动部件及气门机构部件</p>')
+a5 = Article.create(:name => 'fag', :title => 'FAG轮毂轴承', :abstract => 'FAG轮毂轴承摘要', :body => '<p>FAG轮毂轴承</p>')
 a6 = Article.create(:name => 'tools', :title => "工具列表", :body => '<h3>工具列表</h3><p>工具列表</p>')
 
 
