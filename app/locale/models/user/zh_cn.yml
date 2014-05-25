@@ -17,3 +17,6 @@ zh_cn:
         blocked: 列入黑名单
         created_at: 创建时间
         updated_at: 更新时间
+
+        count: Count
+        lasttime: Lasttime

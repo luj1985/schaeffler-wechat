@@ -1,0 +1,10 @@
+zh_cn:
+  models:
+    relation:
+      name: Relation
+      attributes:
+        id: Id
+        article_id: Article
+        menu_id: Menu
+        created_at: Created at
+        updated_at: Updated at

@@ -1,0 +1,10 @@
+zh_cn:
+  models:
+    special_page:
+      name: 特殊页面
+      attributes:
+        id: 编号
+        title: 标题
+        href: 链接
+        created_at: 创建时间
+        updated_at: 更新时间

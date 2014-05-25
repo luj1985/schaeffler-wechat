@@ -78,6 +78,7 @@ m3.articles << a3 << a4 << a5
 m3.save
 
 
+SpecialPage.create(:title => "“买舍弗勒产品，刮好礼，享速度与激情”", :href => '/activity/intro')
 
 
 
