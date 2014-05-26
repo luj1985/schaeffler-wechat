@@ -65,7 +65,7 @@
     %fieldset.form-group
       .col-sm-2.controls
         =f.label :pages, :class => 'control-label'
-      %ul.articles_list.col-sm-10.controls
+      %ul.pages_list.col-sm-10.controls
         -@menu.pages.each do |page|
           %li.list-group-item
             %a{:href => page.href}
