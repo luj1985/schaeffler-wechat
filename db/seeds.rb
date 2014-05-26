@@ -32,8 +32,6 @@ account = Account.create(:email => "test@example.com", :name => "Jun", :surname 
 
 
 
-
-
 introduction_page =<<EOF
 <img src="/images/activity/rules.jpg" />
 <h4>申请观赛介绍：</h4>
@@ -81,12 +79,16 @@ m3.save
 
 
 
-Question.create(:question => '阿拉伯神灯中主人公是', 
-	:a=>'阿拉甲', :b => '阿拉乙', :c => '阿拉丙', :d => '阿拉丁', :correct => 'd')
-Question.create(:question => '英文老歌 " Let it be " 的原唱是', 
-	:a => '披头一', :b => '披头二', :c => '披头三', :d => '披头四', :correct => 'd')
-Question.create(:question => '中国最神秘的部门是神马部门？', 
-	:a => '有关部门', :b => '无关部门', :c => '艳照门', :correct => 'a')
+Question.create(:question => '舍弗勒在2014 DTM德国房车大师赛中赞助的车队是哪一支?', 
+	:a=>'宝马车队', :b => '奥迪车队', :c => '奔驰车队', :d => '法拉利车队', :correct => 'b')
+Question.create(:question => '舍弗勒在2014 WEC世界耐力锦标赛赞助的是哪一支车队?', 
+	:a => '奥迪车队', :b => '丰田车队', :c => '红牛车队', :d => '保时捷车队', :correct => 'd')
+Question.create(:question => '角逐DTM德国房车大师赛冠军的三家厂商车队以下哪三家？', 
+	:a => '雷诺、宝马、丰田', :b => '奔驰、宝马、奥迪', :c => '法拉利、宝马、迈凯轮', :d => '奥迪、奔驰、本田', :correct => 'b')
+Question.create(:question => 'DTM德国房车大师赛今年将首次登陆广州举行分站赛，你知道本站赛事的具体时间是几号吗？', 
+	:a => '6月8号', :b => '9月28号', :c => '10月3号', :d => '12月20号', :correct => 'b')
+Question.create(:question => '迄今为止,舍弗勒支持的车手共赢得几次德国房车大师赛冠军?', 
+	:a => '1次', :b => '10次', :c => '4次', :d => '0次', :correct => 'c')
 
 
 require 'csv'
