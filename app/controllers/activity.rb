@@ -44,6 +44,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     @lottery = Lottery.find_by_id(params[:id])
     halt 404, "无效的验证码" unless @lottery
     @lottery.status = 'USED'
+    @lottery.exchange_time = Time.now
     if @lottery.update(params[:lottery])
       @lottery.user.update_permission
       render :success
@@ -87,6 +88,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     @passed = (params.length == 2) && misses.empty?
     user.apply_attemped = true
     user.join_match = @passed
+    user.apply_time = Time.now
     user.save
     render :answer
   end

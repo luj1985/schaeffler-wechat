@@ -7,11 +7,11 @@ zh_cn:
         name: 奖品名称
         level: 奖品等级
         tel: 充值号码
-        created_at: 创建时间
-        updated_at: 更新时间
         serial: 中奖号码
         crypted_serial: 加密后的抽奖号码
         user_id: 微信用户
         status: 状态
-
-        product: Product
+        exchange_time: 兑奖时间
+        product: 产品号
+        created_at: 创建时间
+        updated_at: 更新时间

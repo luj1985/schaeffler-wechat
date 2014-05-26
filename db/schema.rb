@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 23) do
+ActiveRecord::Schema.define(version: 25) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 23) do
     t.integer  "user_id"
     t.string   "status"
     t.string   "product"
+    t.datetime "exchange_time"
   end
 
   create_table "menus", force: true do |t|
@@ -108,6 +109,7 @@ ActiveRecord::Schema.define(version: 23) do
     t.boolean  "blocked"
     t.integer  "count"
     t.datetime "lasttime"
+    t.datetime "apply_time"
   end
 
 end

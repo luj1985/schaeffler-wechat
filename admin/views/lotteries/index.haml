@@ -12,6 +12,7 @@
     %thead
       %tr
         %th.header= mat(:lottery, :crypted_serial)
+        %th.header= mat(:lottery, :exchange_time)
         %th.header= mat(:lottery, :serial)
         %th.header= mat(:lottery, :level)
         %th.header= mat(:lottery, :name)
@@ -23,6 +24,7 @@
       -@lotteries.each do |lottery|
         %tr.list-row
           %td.list-column=lottery.crypted_serial
+          %td.list-column=lottery.exchange_time
           %td.list-column=lottery.serial
           %td.list-column=lottery.level_name
           %td.list-column=lottery.display_name

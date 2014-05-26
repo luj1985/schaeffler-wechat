@@ -10,21 +10,48 @@ SchaefflerWechat::Admin.controllers :lotteries do
     render 'lotteries/index'
   end
 
-  get :export, :provides => [:csv, :xlsx] do
-    @lotteries = Lottery.includes(:user).where("serial is not null")
+  get :export, :provides => :xlsx do
     timestamp = Time.now.strftime "%Y-%m-%d %H%M%S"
-    attachment "已兑奖号码#{timestamp}.xlsx"
+    attachment "赛事促销活动#{timestamp}.xlsx"
     Axlsx::Package.new do |p|
-      p.workbook.add_worksheet(:name => "已被兑奖号码 #{timestamp}") do |sheet|
+      p.workbook.add_worksheet(:name => "兑奖帐号") do |sheet|
         sheet.add_row [
-          "验证码","奖品","奖品等级", "产品号","充值号码", 
-          "用户名","联系电话","省份","城市","详细地址","修理厂名"
+          "微信ID", "兑奖日期", "中奖号码","奖品等级", 
+          "省","市","地址","修理厂名称", 
+          "联系人姓名", "联系电话",
+          "充值手机号", "产品号"
         ]
+
+        @lotteries = Lottery.includes(:user).where("serial is not null")
+
         @lotteries.each do |l|
           u = l.user
-          row = [ 
-            l.serial, l.display_name, l.level_name, l.product, l.tel, 
-            u.name, u.tel, u.province, u.city, u.workshop_address, u.workshop
+          timestamp = l.exchange_time ? (l.exchange_time.strftime "%Y-%m-%d %H:%M:%S") : ""
+          row = [
+            u.openid, timestamp, l.serial, l.level_name,
+            u.province, u.city, u.workshop_address, u.workshop, 
+            u.name, u.tel,
+            l.tel, l.product
+          ]
+          types = row.map {|v| :string }
+          sheet.add_row row, :types => types
+        end
+      end
+
+      p.workbook.add_worksheet(:name => '申请观赛') do |sheet|
+        sheet.add_row [
+          "微信ID", "申请观赛", 
+          "申请时间", "省", "市", "地址", 
+          "修理厂名称", "联系人", "联系方式", 
+          "是否回答正确"
+        ]
+        User.all.each do |u|
+          timestamp = u.apply_time ? (u.apply_time.strftime "%Y-%m-%d %H:%M:%S") : ""
+          row = [
+            u.openid, u.apply_attemped ? "是" : "否",
+            timestamp, u.province, u.city, u.workshop_address,
+            u.workshop, u.name, u.tel,
+            u.join_match ? "是" : u.apply_attemped ? "否" : ""
           ]
           types = row.map {|v| :string }
           sheet.add_row row, :types => types
