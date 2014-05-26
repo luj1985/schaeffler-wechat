@@ -9,32 +9,41 @@
 
 .tabs-content
   = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
-    %fieldset.form-group
+    %fieldset.form-group.well
       .col-sm-2.controls
         =f.label :articles, :class => 'control-label'
-      %ul.articles_list.col-sm-10.controls
+      %ul.articles-list.col-sm-10.controls
         -@menu.articles.each do |article|
           %li.list-group-item{'data-article-id' => article.id, 'data-article-title' => article.title}
             %input{:type => 'hidden', :name => "menu[selected_articles][]", :value => article.id }
             %a{:href => url(:articles, :edit, :id => article.id)}
               =tag_icon(:edit)
               =article.title
-            %a.delete_article.pull-right{:href => '#'}
+            %a.delete-article.pull-right{:href => '#'}
               =tag_icon(:trash)
             
       .col-sm-offset-2
         .col-sm-8
-          =select_tag :article_id, :class => 'form-control articles_selection', :options => dropdown_articles(@menu)
-        %a.col-sm-2.add_article.btn.btn-primary{:href => '#'}添加到菜单
+          =select_tag :article_id, :class => 'form-control articles-selection', :options => dropdown_articles(@menu)
+        %a.col-sm-2.add-article.btn.btn-primary{:href => '#'}添加到菜单
 
-    %fieldset.form-group
+    %fieldset.form-group.well
       .col-sm-2.controls
         =f.label :pages, :class => 'control-label'
-      %ul.pages_list.col-sm-10.controls
+      %ul.pages-list.col-sm-10.controls
         -@menu.pages.each do |page|
-          %li.list-group-item
+          %li.list-group-item{'data-page-id' => page.id, 'data-page-title' => page.title}
+            %input{:type => 'hidden', :name => "menu[selected_pages][]", :value => page.id }
             %a{:href => page.href}
               =page.title
+            %a.delete-page.pull-right{:href => '#'}
+              =tag_icon(:trash)
+
+      .col-sm-offset-2
+        .col-sm-8
+          =select_tag :page_id, :class => 'form-control pages-selection', :options => dropdown_pages(@menu)
+        %a.col-sm-2.add-page.btn.btn-primary{:href => '#'}添加到菜单
+
 
     - error = @menu.errors.include?(:title)
     %fieldset.form-group{:class => error ? 'has-error' : ''}

@@ -1,5 +1,5 @@
 class Menu < ActiveRecord::Base
-  attr_accessor :selected_articles, :selected_special_pages
+  attr_accessor :selected_articles, :selected_pages
   
   has_many :relations
   has_many :articles, :through => :relations
