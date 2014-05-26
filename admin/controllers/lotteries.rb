@@ -25,6 +25,7 @@ SchaefflerWechat::Admin.controllers :lotteries do
         title_style = s.add_style :bg_color => 'FFFF00', 
                                   :b => false, 
                                   :sz => 12,
+                                  :alignment => { :horizontal=> :center },
                                   :border => { :style => :hair, :color => "00" }
         body_style = s.add_style  :b => false,
                                   :sz => 12,
