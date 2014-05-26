@@ -4,8 +4,6 @@
   -else
     %a.btn.btn-default{:href => url_for(:lotteries, :index, :show => 'all')} 显示所有
   %a.btn.btn-default{:href => url_for(:lotteries, :export, :format => :xlsx)} 导出已兑换的号码(xlsx格式)
-  %a.btn.btn-default{:href => url_for(:users, :export, :format => :xlsx)}导出参与微信用户(xlsx格式)
-
 
 .tabs-content
   %table#list.table.table-striped.table-hover
