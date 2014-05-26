@@ -1,6 +1,6 @@
 zh_cn:
   models:
-    special_page:
+    page:
       name: 特殊页面
       attributes:
         id: 编号
