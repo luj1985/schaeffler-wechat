@@ -1,11 +1,13 @@
-.overlap
-  %img{:src => '/images/activity-poster.jpg'}
+%img{:src => '/images/activity/activity-poster.png'}
 %div{'data-role' => 'content'}
+  %p 自2014年6月至12月，购买舍弗勒LuK，INA，FAG赛事促销装产品，既有机会赢得双重惊喜
+
+  %hr.dashed
 
   %h4.activity.l1 随手刮出好礼，综合中奖率高达15%！
   %img{:src => '/images/activity/rewards.png'}
 
-  %h5 参与方式：
+  %img{:src => '/images/activity/title-text.png', :style=> 'width: 200px;'}
   .procedure
     .ui-grid-a
       .ui-block-a
@@ -25,4 +27,4 @@
   %hr.dashed
   %h4.activity.l2 回答问题申请观顶级车赛，尽享速度与激情！
   %p 兑奖成功后可获得申请观看国际赛车比赛的机会（同一个微信ID仅有一次申请机会），申请截至日期为10月1日。更多详情请点击活动进展
-  %a.left{'data-role' => 'button', :href => url_for(:article, :index, :name => 'progress')}活动进展
+  %a.left{'data-role' => 'button', :href => url_for(:menu, :index, :name => 'matches')}活动进展
