@@ -70,10 +70,10 @@ a8 = Article.create(:name => 'diagnostic', :title => '故障诊断', :abstract =
 
 
 m1 = Menu.create(:name => "matches", :title => "促销活动")
-#sp1 = Page.create(:title => "“买舍弗勒产品，刮好礼，享速度与激情”", :abstract => '活动详情', :href => '/activity/intro', :image_href => '/images/introduction.jpg')
+
+sp1 = Page.create(:title => "“买舍弗勒产品，刮好礼，享速度与激情”", :abstract => '活动详情', :href => '/activity/intro1', :image_href => '/images/cover.jpg')
 #sp2 = Page.create(:title => "促销活动兑奖页面", :abstract => '活动详情', :href => '/activity/index', :image_href => '/images/introduction.jpg')
-#m1.pages << sp1
-m1.articles << a1
+m1.pages << sp1
 m1.save
 
 
