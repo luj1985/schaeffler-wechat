@@ -32,29 +32,29 @@ account = Account.create(:email => "test@example.com", :name => "Jun", :surname 
 
 
 
-introduction_page =<<EOF
-<img src="/images/activity/rules.jpg" />
-<h4>申请观赛介绍：</h4>
-<p>
-舍弗勒集团将携手奥迪车队和保时捷车队分别参加2014年
-<strong>DTM德国房车大师赛</strong>及<strong>WEC世界耐力锦标赛</strong>。
-两项赛事的分站赛将先后于<strong>9月28日</strong>和
-<strong>11月2日</strong>登陆广州及上海。
-届时，我们将从正确回答申请观赛环节问题的中奖者中抽取
-<strong class="highlight">超级幸运大奖</strong>，提供免费到现场激情观赛的机会！
-</p>
-<ul class="description">
-<li>申请观赛截止日期为<strong>2014年10月1日</strong>，获奖者名单将在<strong>8月初</strong>以及<strong>10月</strong>初分两次公布。</li>
-<li>每个微信ID只有一次申请观赛的机会，好好把握哦！</li>
-</ul>
-EOF
+# introduction_page =<<EOF
+# <img src="/images/activity/rules.jpg" />
+# <h4>申请观赛介绍：</h4>
+# <p>
+# 舍弗勒集团将携手奥迪车队和保时捷车队分别参加2014年
+# <strong>DTM德国房车大师赛</strong>及<strong>WEC世界耐力锦标赛</strong>。
+# 两项赛事的分站赛将先后于<strong>9月28日</strong>和
+# <strong>11月2日</strong>登陆广州及上海。
+# 届时，我们将从正确回答申请观赛环节问题的中奖者中抽取
+# <strong class="highlight">超级幸运大奖</strong>，提供免费到现场激情观赛的机会！
+# </p>
+# <ul class="description">
+# <li>申请观赛截止日期为<strong>2014年10月1日</strong>，获奖者名单将在<strong>8月初</strong>以及<strong>10月</strong>初分两次公布。</li>
+# <li>每个微信ID只有一次申请观赛的机会，好好把握哦！</li>
+# </ul>
+# EOF
 
 
-a1 = Article.create(:name => 'intro', :title => "“买舍弗勒产品，刮好礼，享速度与激情”", :abstract => "活动详情", :body => introduction_page)
-a2 = Article.create(:name => 'progress', :title => '敬请期待', :body => '<img src="/images/progress.jpg" />')
-a3 = Article.create(:name => 'luk', :title => 'LuK离合器安装教程', :abstract => 'LuK离合器安装教程摘要', :body => '<p>LuK离合器安装教程</p>')
-a4 = Article.create(:name => 'ina', :title => 'INA皮带传动部件及气门机构部件', :abstract => 'INA皮带传动部件及气门机构部件摘要', :body => '<p>INA皮带传动部件及气门机构部件</p>')
-a5 = Article.create(:name => 'fag', :title => 'FAG轮毂轴承', :abstract => 'FAG轮毂轴承摘要', :body => '<p>FAG轮毂轴承</p>')
+# a1 = Article.create(:name => 'intro', :title => "“买舍弗勒产品，刮好礼，享速度与激情”", :abstract => "活动详情", :body => introduction_page)
+# a2 = Article.create(:name => 'progress', :title => '敬请期待', :body => '<img src="/images/progress.jpg" />')
+# a3 = Article.create(:name => 'luk', :title => 'LuK离合器安装教程', :abstract => 'LuK离合器安装教程摘要', :body => '<p>LuK离合器安装教程</p>')
+# a4 = Article.create(:name => 'ina', :title => 'INA皮带传动部件及气门机构部件', :abstract => 'INA皮带传动部件及气门机构部件摘要', :body => '<p>INA皮带传动部件及气门机构部件</p>')
+# a5 = Article.create(:name => 'fag', :title => 'FAG轮毂轴承', :abstract => 'FAG轮毂轴承摘要', :body => '<p>FAG轮毂轴承</p>')
 
 
 

@@ -108,8 +108,6 @@ ActiveRecord::Schema.define(version: 26) do
     t.string   "province"
     t.string   "city"
     t.boolean  "blocked"
-    t.integer  "count"
-    t.datetime "lasttime"
     t.datetime "apply_time"
   end
 
