@@ -20,30 +20,10 @@ class User < ActiveRecord::Base
   	self.join_match ||= false
   	self.granted ||= false
     self.blocked ||= false
-    self.lasttime ||= Time.now
-    self.count ||= 0
   end
 
-  def sameday?
-    now = Time.now.strftime '%Y%m%d'
-    lasttime = self.lasttime.strftime '%Y%m%d'
-    now == lasttime
-  end
-  
   def update_permission
-    if sameday? then
-      self.count += 1
-    else
-      self.count = 1
-    end
-    self.lasttime = Time.now
     self.granted = true
     self.save
-  end
-
-  def exceed_limit?
-    now = Time.now
-    lasttime = self.lasttime
-    sameday? && self.count >= 20
   end
 end
