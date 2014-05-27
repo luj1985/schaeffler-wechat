@@ -56,10 +56,17 @@ a2 = Article.create(:name => 'progress', :title => '敬请期待', :body => '<im
 a3 = Article.create(:name => 'luk', :title => 'LuK离合器安装教程', :abstract => 'LuK离合器安装教程摘要', :body => '<p>LuK离合器安装教程</p>')
 a4 = Article.create(:name => 'ina', :title => 'INA皮带传动部件及气门机构部件', :abstract => 'INA皮带传动部件及气门机构部件摘要', :body => '<p>INA皮带传动部件及气门机构部件</p>')
 a5 = Article.create(:name => 'fag', :title => 'FAG轮毂轴承', :abstract => 'FAG轮毂轴承摘要', :body => '<p>FAG轮毂轴承</p>')
-a6 = Article.create(:name => 'tools', :title => "工具列表", :body => '<h3>工具列表</h3><p>工具列表</p>')
 
 
 
+a6 = Article.create(:name => 'tools', :title => "工具列表", :abstract => '工具列表',
+	:body => '<h1>工具列表</h1><img src="/images/articles/tools.png" />')
+
+a7 = Article.create(:name => 'tutorial', :title => '安装教程', :abstract => '安装教程',
+	:body => '<h1>安装教程</h1><img src="/images/articles/tutorial.png" />')
+
+a8 = Article.create(:name => 'diagnostic', :title => '故障诊断', :abstract => '故障诊断',
+	:body => '<h1>故障诊断</h1><img src="/images/articles/diagnostic.png" />')
 
 
 m1 = Menu.create(:name => "matches", :title => "促销活动")
