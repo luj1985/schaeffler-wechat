@@ -3,7 +3,7 @@
     -@menu.articles.each do |article|
       %li
         %a{:href=>url_for(:article, :index, :name => article.name)}
-          %img{:src => '/images/no_image.jpg'}
+          %img{:src => '/images/cover.jpg'}
           %h2=article.title
           %p
             =article.abstract
