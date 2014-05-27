@@ -76,7 +76,7 @@ sp1 = Page.create(:title => "促销活动一级页面", :abstract => '活动详�
 sp2 = Page.create(:title => "“买舍弗勒产品，刮好礼，享速度与激情”", :abstract => '活动详情', :href => '/activity/intro1', :image_href => '/images/cover.jpg')
 sp3 = Page.create(:title => "促销活动兑奖页面", :abstract => '活动详情', :href => '/activity/index', :image_href => '/images/introduction.jpg')
 
-m1.pages << sp1
+m1.pages << sp2
 m1.save
 
 
