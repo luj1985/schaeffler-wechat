@@ -24,7 +24,10 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
 
 
   post :confirm do
-    # initialize
+    user = User.find_or_initialize_by :openid => session[:openid]
+    halt 403, "对不起，您的账户已经被被禁用" if user.blocked
+
+    # initialize rules
     session[:failCount] = session[:failCount] || 0
     session[:successCount] = session[:successCount] || 0
     lasttime = session[:last_challenge_time] || Time.now
@@ -38,12 +41,12 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     session[:last_challenge_time] = Time.now
 
     serial = params[:lottery][:serial]
+
+
     @lottery = Lottery.challenge serial
      # record found, correct serial number
     if @lottery && @lottery.available?then
       @lottery.status = 'EXCHANGING'
-      user = User.find_or_initialize_by :openid => session[:openid]
-      halt 403, "对不起，您的账户已经被被禁用" if user.blocked
       @lottery.user = user
       @lottery.serial = serial
       render :confirm
