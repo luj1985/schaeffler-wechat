@@ -1,10 +1,13 @@
 %div{'data-role' => 'content'}
   -if @lottery.nil? then
-    %p.message 您输入的验证码有误，请检查并重新输入。
+    %p.message 您输入的验证码有误
+    %p.message 请检查您的输入是否正确。
   -elsif @lottery.status == 'USED' then
-    %p.message 您输入的兑奖验证码已经被兑换。请检查是否验证码输入有误。
+    %p.message 对不起，您输入的兑奖验证码已经被兑换。
+    %p.message 您或可输入是否有误。
   -else
-    %p.message 您输入的验证码有误，请检查并重新输入。
+    %p.message 您输入的验证码有误
+    %p.message 请检查您的输入是否正确。
 
   %p.message 如有问题，请拨打活动热线：
   %a{:href => "tel:021-39576702"}

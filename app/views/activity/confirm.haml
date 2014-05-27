@@ -1,7 +1,7 @@
 
 %div{'data-role' => 'content'}
   %p.greeting
-    恭喜你获得
+    恭喜您，您输入的验证码为
     %span.prize=@lottery.level_name
     ！
   %p 
@@ -48,6 +48,13 @@
       = user.hidden_field :openid
       - errors = @lottery.user.errors
       %p
+        = user.label :workshop, :caption => '您所在的修理厂名称:'
+        -if errors.include?(:workshop)
+          = user.text_field :workshop, :autofocus => true
+          %span.error= user.error_message_on(:workshop) 
+        -else
+          = user.text_field :workshop
+      %p
         = user.label :name
         -if errors.include?(:name)
           = user.text_field :name, :autofocus => true
@@ -61,13 +68,6 @@
           %span.error= user.error_message_on(:tel)
         -else 
           = user.telephone_field :tel
-      %p
-        = user.label :workshop, :caption => '您所在的修理厂名称:'
-        -if errors.include?(:workshop)
-          = user.text_field :workshop, :autofocus => true
-          %span.error= user.error_message_on(:workshop) 
-        -else
-          = user.text_field :workshop
       %p{:id => 'address'}
 
         = user.label :workshop_address, :caption => '您所在的修理厂地址:'

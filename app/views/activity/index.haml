@@ -3,13 +3,13 @@
   =form_for :lottery, url(:activity, :confirm) do |f|
     %h3 欢迎您参与本次活动
     %p
-      =f.label :serial, :caption => '请您输入中奖验证码:'
+      =f.label :serial, :caption => '请在下框中输入您的中奖验证码'
       =f.text_field :serial, :type => :number,
         :autofocus => true,
         :required => true,
         :placeholder => '请您输入中奖验证码',
         :class => "serial-number",
         'data-clear-btn' => "true"
+    %p.message 本次活动仅限修理厂用户参与。
     = f.submit_block '提交'
-  %p.message
-    本次活动仅限修理厂用户参与。
+ 

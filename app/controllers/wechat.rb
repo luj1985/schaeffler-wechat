@@ -56,8 +56,8 @@ SchaefflerWechat::App.controllers :wechat do
         xml.ArticleCount 1
         xml.Articles {
           xml.item {
-            xml.Title "“买舍弗勒产品，刮好礼，享速度与激情”  活动兑换"
-            xml.Description '本次活动仅限修理厂用户参与'
+            xml.Title "“买舍弗勒产品，刮好礼，享速度与激情”"
+            xml.Description ''
             xml.PicUrl URI.join(host, '/images/exchange-poster.jpg')
             xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
           }
