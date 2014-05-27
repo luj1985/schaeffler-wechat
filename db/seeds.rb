@@ -33,7 +33,6 @@ account = Account.create(:email => "test@example.com", :name => "Jun", :surname 
 
 
 introduction_page =<<EOF
-<h1>第三级页面</h1>
 <img src="/images/activity/rules.jpg" />
 <h4>申请观赛介绍：</h4>
 <p>
@@ -59,14 +58,27 @@ a5 = Article.create(:name => 'fag', :title => 'FAG轮毂轴承', :abstract => 'F
 
 
 
-a6 = Article.create(:name => 'tools', :title => "工具列表", :abstract => '工具列表',
-	:body => '<h1>工具列表</h1><img src="/images/articles/tools.png" />')
+a6 = Article.create(:name => 'tools', :title => "【FAG专题】舍弗勒汽车售后首部微电影隆重登场", :abstract => '工具及附件',
+	:body => '<img src="/images/articles/tools.png" />')
 
-a7 = Article.create(:name => 'tutorial', :title => '安装教程', :abstract => '安装教程',
-	:body => '<h1>安装教程</h1><img src="/images/articles/tutorial.png" />')
 
-a8 = Article.create(:name => 'diagnostic', :title => '故障诊断', :abstract => '故障诊断',
-	:body => '<h1>故障诊断</h1><img src="/images/articles/diagnostic.png" />')
+
+
+a7 = Article.create(:name => 'tutorial', :title => '【LuK专题】自调试离合器 (SAC)，来自LuK的原创', :abstract => '安装教程',
+	:body => '<img src="/images/articles/tutorial.png" />')
+
+a8 = Article.create(:name => 'tutorial1', :title => '还在用榔头砸轮毂轴承？那就out了！', :abstract => '安装教程',
+	:body => '<img src="/images/articles/tutorial.png" />')
+
+
+
+a9 = Article.create(:name => 'diagnostic', :title => '【FAG专题】轮毂轴承常见故障诊断', :abstract => '摘要',
+	:body => '<img src="/images/articles/diagnostic.png" />')
+a10 = Article.create(:name => 'diagnostic1', :title => '【LuK专题】常见离合器故障诊断', :abstract => '摘要',
+	:body => '<img src="/images/articles/diagnostic.png" />')
+a11 = Article.create(:name => 'diagnostic2', :title => '【LuK专题】双质量飞轮故障诊断', :abstract => '摘要',
+	:body => '<img src="/images/articles/diagnostic.png" />')
+
 
 
 m1 = Menu.create(:name => "matches", :title => "促销活动")
@@ -80,13 +92,14 @@ m1.pages << sp2
 m1.save
 
 
+
 m2 = Menu.create(:name => "tutorial", :title => "安装教程")
-m2.articles << a3 << a4 << a5
+m2.articles << a7 << a8
 m2.save
 
 
 m3 = Menu.create(:name => "diagnostic", :title => "故障诊断")
-m3.articles << a3 << a4 << a5
+m3.articles << a9 << a10 << a11
 m3.save
 
 

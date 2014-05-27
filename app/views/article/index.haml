@@ -1,4 +1,7 @@
 %div{'data-role' => 'content'}
+  .header
+    %h1.title=@article.title
+    .article-timestamp=@article.created_at.strftime "%Y-%m-%d"
   != @article.body
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
   %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级

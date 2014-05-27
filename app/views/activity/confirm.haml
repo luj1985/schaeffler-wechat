@@ -16,7 +16,7 @@
     = f.hidden_field :serial
     - if @lottery.level == '4'
       %p
-        = f.label :tel, :caption => '请您输入要充值入的手机号:'
+        = f.label :tel, :caption => '请您输入要充值的手机号:'
         -if errors.include?(:tel)
           = f.telephone_field :tel, :autofocus => true
           %span.error= f.error_message_on(:tel)
