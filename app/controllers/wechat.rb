@@ -58,7 +58,7 @@ SchaefflerWechat::App.controllers :wechat do
           xml.item {
             xml.Title "“买舍弗勒产品，刮好礼，享速度与激情”"
             xml.Description ''
-            xml.PicUrl URI.join(host, '/images/activity/push-message.jpg')
+            xml.PicUrl URI.join(host, '/images/activity/push-message.png')
             xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
           }
         }
