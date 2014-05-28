@@ -16,6 +16,10 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     render :intro1
   end
 
+  get :progress, :protect => false do
+    render :progress
+  end
+
 
   get :index do
     render :index
