@@ -67,4 +67,21 @@ SchaefflerWechat::App.controllers :wechat do
     builder.to_xml
   end
 
+  wechat_event :subscribe do |hash|
+    content_type :xml
+    builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+      xml.xml {
+        xml.ToUserName hash[:from_user_name]
+        xml.FromUserName hash[:to_user_name]
+        xml.CreateTime Time.now.to_i
+        xml.MsgType "text"
+        xml.Content "欢迎您关注舍弗勒中国汽车售后。
+即日起至12月31日，购买舍弗勒LuK，INA，FAG赛事促销装产品，既有机会赢得新一代iphone手机，及其他好礼。
+
+更多详情，请点击“促销活动”。"
+      }
+    end
+    builder.to_xml
+  end
+
 end
