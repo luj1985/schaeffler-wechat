@@ -43,6 +43,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
      # record found, correct serial number
     if @lottery && @lottery.available?then
       @lottery.status = 'EXCHANGING'
+      @lottery.tel = user.chargetel if @lottery.level == '4'
       @lottery.user = user
       @lottery.serial = serial
       render :confirm
@@ -61,7 +62,9 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     @lottery.status = 'USED'
     @lottery.exchange_time = Time.now
     if @lottery.update(params[:lottery])
-      @lottery.user.update_permission
+      user = @lottery.user
+      user.chargetel = @lottery.tel if @lottery.level == '4'
+      user.update_permission
 
       fence = Fence.find_or_create_by :openid => session[:openid]
       fence.inc_success_counter

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 28) do
+ActiveRecord::Schema.define(version: 29) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 28) do
     t.string   "city"
     t.boolean  "blocked"
     t.datetime "apply_time"
+    t.string   "chargetel"
   end
 
 end
