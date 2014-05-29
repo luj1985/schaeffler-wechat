@@ -1,6 +1,7 @@
 class CreateFences < ActiveRecord::Migration
   def self.up
     create_table :fences do |t|
+      t.belongs_to :user
       t.string :openid
       t.datetime :activetime
       t.integer :success

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_one :fence, :foreign_key => :openid, :primary_key => :openid
+
   validates :tel, :length => {:is => 11, :message => '手机号码不正确'},
                   :numericality => { :only_integer => true,:message => '手机号码不正确' }, 
                   :presence => true

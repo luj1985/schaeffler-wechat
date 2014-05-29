@@ -6,5 +6,8 @@ zh_cn:
         id: 编号
         title: 标题
         href: 链接
+        image_href: 图片链接
+        abstract: 摘要
         created_at: 创建时间
         updated_at: 更新时间
+

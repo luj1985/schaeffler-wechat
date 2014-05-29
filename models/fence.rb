@@ -15,7 +15,9 @@ class Fence < ActiveRecord::Base
   	if sameday? then
   		self.success += 1
   	else
+      # reset all status when new days come
   		self.success = 1
+      self.fail = 0
   	end
   end
 
@@ -24,6 +26,7 @@ class Fence < ActiveRecord::Base
   		self.fail += 1
   	else
   		self.fail = 1
+      self.success = 0
   	end
   end
 

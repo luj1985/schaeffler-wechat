@@ -22,6 +22,15 @@
       %dt= mat(:user, :join_match)
       %dd.text-muted= @user.join_match ? tag_icon(:ok) : tag_icon(:remove)
 
+      %dt= mat(:fence, :activetime)
+      %dd.text-muted= @user.fence.activetime.strftime "%Y-%m-%d %H:%M:%S"
+
+      %dt= mat(:fence, :success)
+      %dd.text-muted= @user.fence.success
+
+      %dt= mat(:fence, :fail)
+      %dd.text-muted= @user.fence.fail
+
       %dt 列入黑名单
       %dd=f.check_box :blocked
   

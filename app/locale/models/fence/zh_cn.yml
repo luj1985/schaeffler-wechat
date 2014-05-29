@@ -1,0 +1,12 @@
+zh_cn:
+  models:
+    fence:
+      name: Fence
+      attributes:
+        id: 编号
+        openid: 微信OpenID
+        activetime: 上次活跃时间
+        success: 当天成功兑换次数
+        fail: 当天失败兑换次数
+        created_at: 创建时间
+        updated_at: 更新时间

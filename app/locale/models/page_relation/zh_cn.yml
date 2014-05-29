@@ -1,0 +1,10 @@
+zh_cn:
+  models:
+    page_relation:
+      name: 页面关联
+      attributes:
+        id: 编号
+        page_id: 页面编号
+        menu_id: 菜单编号
+        created_at: 创建时间
+        updated_at: 更新时间

@@ -9,6 +9,8 @@ zh_cn:
         articles: 新闻列表
         pages: 微页面
         link: 链接地址
+        image: 图片链接
         description: 菜链接单描述
         created_at: 创建时间
         updated_at: 更新时间
+
