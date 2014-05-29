@@ -93,12 +93,12 @@ m1.save
 
 
 
-m2 = Menu.create(:name => "tutorial", :title => "安装教程")
+m2 = Menu.create(:name => "tutorial", :title => "安装教程", :image => "/images/menu/tutorial.jpg")
 m2.articles << a7 << a8
 m2.save
 
 
-m3 = Menu.create(:name => "diagnostic", :title => "故障诊断")
+m3 = Menu.create(:name => "diagnostic", :title => "故障诊断", :image => '/images/menu/diagnostic.jpg')
 m3.articles << a9 << a10 << a11
 m3.save
 
