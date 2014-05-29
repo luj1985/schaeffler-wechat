@@ -63,7 +63,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     if @lottery.update(params[:lottery])
       @lottery.user.update_permission
 
-      fence = Fence.find_or_create_by :openid => openid
+      fence = Fence.find_or_create_by :openid => session[:openid]
       fence.inc_success_counter
       fence.save
 
