@@ -28,24 +28,16 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
 
 
   post :confirm do
-    user = User.find_or_initialize_by :openid => session[:openid]
+    openid = session[:openid]
+
+    user = User.find_or_initialize_by :openid => openid
     halt 403, "对不起，您的账户已经被被禁用" if user.blocked
 
-    # initialize rules
-    session[:failCount] = session[:failCount] || 0
-    session[:successCount] = session[:successCount] || 0
-    lasttime = session[:last_challenge_time] || Time.now
-    if (Time.now.strftime '%Y%m%d') == (lasttime.strftime '%Y%m%d') then
-      halt 403, "您当天已经累计输入错误3次，今天您将无法再提交验证码，请您明天再尝试兑奖。感谢您的理解和配合。" if session[:failCount] >= 3
-      halt 403, "您好，感谢您的积极参与。您当天的累计兑奖数已达到上限20个，您可第二天继续来完成兑奖，感谢您的理解和配合。" if session[:successCount] >= 20
-    else
-      session[:failCount] = 0
-      session[:successCount] = 0
-    end
-    session[:last_challenge_time] = Time.now
+    fence = Fence.find_or_create_by :openid => openid
+    halt 403, "您当天已经累计输入错误3次，今天您将无法再提交验证码，请您明天再尝试兑奖。感谢您的理解和配合。" if fence.exceed_max_fail?
+    halt 403, "您好，感谢您的积极参与。您当天的累计兑奖数已达到上限20个，您可第二天继续来完成兑奖，感谢您的理解和配合。" if fence.exceed_max_success?
 
     serial = params[:lottery][:serial]
-
 
     @lottery = Lottery.challenge serial
      # record found, correct serial number
@@ -55,12 +47,8 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
       @lottery.serial = serial
       render :confirm
     else
-      if not @lottery then
-        # same day
-        if (Time.now.strftime '%Y%m%d') == (lasttime.strftime '%Y%m%d') then
-          session[:failCount] += 1
-        end
-      end
+      fence.inc_fail_counter
+      fence.save
       render :fail
     end
   end
@@ -75,12 +63,9 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     if @lottery.update(params[:lottery])
       @lottery.user.update_permission
 
-      lasttime = session[:last_challenge_time] || Time.now
-      session[:successCount] = session[:successCount] || 0
-      # same day
-      if (Time.now.strftime '%Y%m%d') == (lasttime.strftime '%Y%m%d') then
-        session[:successCount] += 1
-      end
+      fence = Fence.find_or_create_by :openid => openid
+      fence.inc_success_counter
+      fence.save
 
       render :success
     else
