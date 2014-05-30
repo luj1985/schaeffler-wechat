@@ -8,7 +8,7 @@ class Fence < ActiveRecord::Base
   end
 
   def sameday?
-    (Time.now.strftime '%Y%m%d') == (self.activetime.strftime '%Y%m%d')
+    (Time.now.localtime.strftime '%Y%m%d') == (self.activetime.localtime.strftime '%Y%m%d')
   end
 
   def inc_success_counter
@@ -19,6 +19,7 @@ class Fence < ActiveRecord::Base
   		self.success = 1
       self.fail = 0
   	end
+    self.activetime = Time.now.utc
   end
 
   def inc_fail_counter
@@ -28,6 +29,7 @@ class Fence < ActiveRecord::Base
   		self.fail = 1
       self.success = 0
   	end
+    self.activetime = Time.now.utc
   end
 
   def exceed_max_success?

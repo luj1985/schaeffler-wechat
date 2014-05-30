@@ -48,8 +48,12 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
       @lottery.serial = serial
       render :confirm
     else
-      fence.inc_fail_counter
-      fence.save
+      # wrong number
+      # otherwise, correct number, but invalid status
+      if @lottery.nil? then
+        fence.inc_fail_counter
+        fence.save
+      end
       render :fail
     end
   end

@@ -23,7 +23,7 @@
       %dd.text-muted= @user.join_match ? tag_icon(:ok) : tag_icon(:remove)
 
       %dt= mat(:fence, :activetime)
-      %dd.text-muted= @user.fence.activetime.strftime "%Y-%m-%d %H:%M:%S"
+      %dd.text-muted= @user.fence.activetime.localtime.strftime "%Y-%m-%d %H:%M:%S"
 
       %dt= mat(:fence, :success)
       %dd.text-muted= @user.fence.success

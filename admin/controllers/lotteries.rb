@@ -66,7 +66,7 @@ SchaefflerWechat::Admin.controllers :lotteries do
             "是否回答正确"
           ], :style => title_style
           User.all.each do |u|
-            timestamp = u.apply_time ? (u.apply_time.strftime "%Y-%m-%d %H:%M:%S") : ""
+            timestamp = u.apply_time ? (u.apply_time.localtime.strftime "%Y-%m-%d %H:%M:%S") : ""
             row = [
               u.openid, u.apply_attemped ? "是" : "否",
               timestamp, u.province, u.city, u.workshop_address,

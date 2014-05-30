@@ -22,7 +22,8 @@
       -@lotteries.each do |lottery|
         %tr.list-row
           %td.list-column=lottery.crypted_serial
-          %td.list-column=lottery.exchange_time
+          - strtime = lottery.exchange_time ? lottery.exchange_time.localtime.strftime("%Y-%m-%d %H:%M:%S") : ""
+          %td.list-column=strtime
           %td.list-column=lottery.serial
           %td.list-column=lottery.level_name
           %td.list-column=lottery.display_name
