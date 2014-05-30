@@ -124,6 +124,7 @@ m3 = Menu.create(:name => "diagnostic", :title => "故障诊断", :image => '/im
 #m3.articles << a9 << a10 << a11
 #m3.save
 
+m4 = Menu.create(:name => "tools", :title => "工具及附件", :image => '/images/menu/tools.jpg')
 
 
 Question.create(:question => '舍弗勒在2014 DTM德国房车大师赛中赞助的车队是哪一支?', 
