@@ -8,6 +8,7 @@
     %p.message 请您保持手机通畅。
   -if @lottery.can_apply_join_match?
     %a.middle{'data-role' => 'button', :href => url_for(:activity, :rules)} 申请观赛
+    %p
     %a.middle{'data-role' => 'button', :href => url_for(:activity, :index)} 继续兑奖
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
   %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级
