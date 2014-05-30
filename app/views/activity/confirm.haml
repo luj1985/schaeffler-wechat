@@ -9,7 +9,7 @@
     %span.prize=@lottery.display_name
     -if @lottery.display_image.present?
       %img.prize{:src => @lottery.display_image}
-  %p 为顺利完成兑奖，您还需正确填写以下兑奖信息（修理厂及联系信息首次填写后系统将自动保存）
+  %p 为顺利完成兑奖，您还需正确填写以下兑奖信息（修理厂信息只需要在首次兑奖时填写）
 
   = form_for :lottery, url(:activity, :save, :id => @lottery.id) do |f|
     - errors = @lottery.errors
