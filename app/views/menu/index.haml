@@ -8,6 +8,7 @@
           %h2=article.title
           %p
             %span{:style=>'float:right'}=article.created_at.strftime "%Y-%m-%d"
+
           
     -@menu.pages.each do |page|
       %li
@@ -16,6 +17,9 @@
           %h2=page.title
           %p
             %span{:style=>'float:right'}=page.created_at.strftime "%Y-%m-%d"
+
+    -if @menu.articles.length == 0 && @menu.pages.length == 0 then
+      %h1{:style => 'text-align:center'} 敬请期待
 
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
   %a.hidden{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级
