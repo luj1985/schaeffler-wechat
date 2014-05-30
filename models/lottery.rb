@@ -55,7 +55,7 @@ class Lottery < ActiveRecord::Base
   end
 
   def validate_product?
-    exchanging? && ['1','2'].include?(self.level)
+    exchanging? && ['1','2', '3'].include?(self.level)
   end
 
 

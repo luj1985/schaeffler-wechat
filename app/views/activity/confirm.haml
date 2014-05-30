@@ -22,7 +22,7 @@
           %span.error= f.error_message_on(:tel)
         -else
           = f.telephone_field :tel
-    - if ['1','2'].include?(@lottery.level)
+    - if ['1','2', '3'].include?(@lottery.level)
       %p
         = f.label :product, :caption => '请您输入该中奖产品的编号，您可在产品包装盒外找到（如图例）我们将通过产品编号来验证您奖券的有效性。（请保留该产品包装盒至兑奖完成）'
         -if errors.include?(:product)

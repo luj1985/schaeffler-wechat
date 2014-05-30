@@ -33,7 +33,7 @@ class Fence < ActiveRecord::Base
   end
 
   def exceed_max_success?
-  	sameday? && (self.success >= 2)
+  	sameday? && (self.success >= 20)
   end
 
   def exceed_max_fail?
