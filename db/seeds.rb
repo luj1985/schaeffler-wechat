@@ -115,16 +115,16 @@ m1.save
 
 
 
-m2 = Menu.create(:name => "tutorial", :title => "安装教程", :image => "/images/menu/tutorial.jpg")
+m2 = Menu.create(:name => "tutorial", :title => "安装教程", :image => "/images/menu/tutorial1.jpg")
 #m2.articles << a7 << a8
 #m2.save
 
 
-m3 = Menu.create(:name => "diagnostic", :title => "故障诊断", :image => '/images/menu/diagnostic.jpg')
+m3 = Menu.create(:name => "diagnostic", :title => "故障诊断", :image => '/images/menu/diagnostic1.jpg')
 #m3.articles << a9 << a10 << a11
 #m3.save
 
-m4 = Menu.create(:name => "tools", :title => "工具及附件", :image => '/images/menu/tools.jpg')
+m4 = Menu.create(:name => "tools", :title => "工具及附件", :image => '/images/menu/tools1.jpg')
 
 
 Question.create(:question => '舍弗勒在2014 DTM德国房车大师赛中赞助的车队是哪一支?', 
