@@ -5,8 +5,8 @@ zh_cn:
       attributes:
         id: 编号
         openid: OpenID
-        tel: 姓名
-        name: 联系手机
+        tel: 联系手机
+        name: 姓名
         province: 省份
         city: 城市
         workshop: 修理厂名称
