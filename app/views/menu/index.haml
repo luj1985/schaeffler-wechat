@@ -1,4 +1,6 @@
-%img{:src => @menu.image}
+- if @menu.image then
+  %h1.menu-title=@menu.title
+  %img{:src => @menu.image}
 %div{'data-role' => 'content'}
   %ul.schaeffler-menu{'data-role' => 'listview'}
     -@menu.articles.each do |article|
