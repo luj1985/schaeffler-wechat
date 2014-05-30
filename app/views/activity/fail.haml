@@ -1,6 +1,7 @@
 %div{'data-role' => 'content'}
   -if @lottery.nil? then
     %p.message 您输入的验证码有误！
+    %p
     %p.message 请检查您的输入是否正确。
   -elsif @lottery.status == 'USED' then
     %p.message 对不起，您输入的验证码已经被兑换。
