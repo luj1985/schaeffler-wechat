@@ -51,7 +51,28 @@ account = Account.create(:email => "test@example.com", :name => "Jun", :surname 
 
 
 # a1 = Article.create(:name => 'intro', :title => "“买舍弗勒产品，刮好礼，享速度与激情”", :abstract => "活动详情", :body => introduction_page)
-#a2 = Article.create(:name => 'progress', :title => '敬请期待', :body => '<img src="/images/progress.jpg" />')
+
+matches_page =<<EOF
+<img src="/images/matches/1.jpg" />
+<p>2014年，舍弗勒再次与奥迪凤凰车队合作，征战德国房车大师赛（DTM）。作为主赞助商，参赛车辆涂装依旧是与众不同的黄绿色。</p>
+<img src="/images/matches/2.jpg" />
+<p>2013赛季证明了舍弗勒选择赞助伙伴上有一双“幸运的手”，我们的车手Mike和冠军车队凤凰车队的成绩，印证了舍弗勒与DTM拍档之间成功的合作关系。</p>
+<p>2013赛季中，Mike Rockenfeller所用的是舍弗勒与奥迪合作的RS5 DTM车型。在倒数第二站赞德沃特赛道，他就已经能够将冠军头衔收入囊中。在赛季的最后，经过车队和车手的密切配合，舍弗勒奥迪凤凰车队成功拿下DTM车队冠军头衔。</p>
+<img src="/images/matches/3.jpg" />
+<p>2014赛季，舍弗勒在选择合作伙伴时毫不犹豫，继续与奥迪凤凰车队及车手Mike Rockenfeller携手，朝着成功卫冕的目标努力。</p>
+<img src="/images/matches/4.jpg" />
+<p>从2000年的重新启动至今，德国房车大师赛（DTM）走过了第十五个赛季，今年奥迪，宝马和梅赛德斯奔驰将再次角逐这世上最受欢迎的汽车赛事，所有的车队都将拿出最新款的赛车出战。</p>
+<p>2014年DTM赛季于4月30日德国正式开始， 5月4日第一轮于4.574公里的德国霍根海姆赛道上进行了42圈的激烈争夺。</p>
+<img src="/images/matches/5.jpg" />
+<p>2014年DTM增加了中国赛区广州分站的比赛（9月27/28日）。</p>
+<p>近在咫尺的世界赛事，怎能错过？舍弗勒中国汽车售后将诚邀忠实客户，一同亲临广州站现场，为奥迪凤凰车队及车手加油助威！</p>
+<p>如何才能成为万众瞩目的幸运儿？答案就在舍弗勒汽车售后近期的微信内容。</p>
+<p>敬请期待。</p>
+<img src="/images/matches/6.jpg" />
+EOF
+a2 = Article.create(:name => 'matches', 
+	:title => '舍弗勒与奥迪携手征战DTM', 
+	:body => matches_page)
 # a3 = Article.create(:name => 'luk', :title => 'LuK离合器安装教程', :abstract => 'LuK离合器安装教程摘要', :body => '<p>LuK离合器安装教程</p>')
 # a4 = Article.create(:name => 'ina', :title => 'INA皮带传动部件及气门机构部件', :abstract => 'INA皮带传动部件及气门机构部件摘要', :body => '<p>INA皮带传动部件及气门机构部件</p>')
 # a5 = Article.create(:name => 'fag', :title => 'FAG轮毂轴承', :abstract => 'FAG轮毂轴承摘要', :body => '<p>FAG轮毂轴承</p>')
