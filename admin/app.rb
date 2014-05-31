@@ -40,6 +40,7 @@ module SchaefflerWechat
       role.project_module :users, '/users'
       role.project_module :lotteries, '/lotteries'
       role.project_module :accounts, '/accounts'
+      role.project_module :fences, '/fences'
     end
 
     # Custom error management 
