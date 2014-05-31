@@ -27,16 +27,6 @@
           %ul.nav.navbar-nav.pull-left
             %li.dropdown.navbar-module
               %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
-                消息管理
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => url_for(:menus, :index)} 微网页二级菜单
-                  %a{:href => url_for(:articles, :index)} 微网页消息
-                  %a{:href => url_for(:pages, :index)} 促销活动页面
-
-            %li.dropdown.navbar-module
-              %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
                 促销活动
                 %b.caret
               %ul.dropdown-menu
@@ -45,6 +35,16 @@
                   %a{:href => url_for(:users, :index)} 中奖微信用户
                   %a{:href => url_for(:questions, :index)} 申请观赛问题
                   %a{:href => url_for(:fences, :index)} 用户参与情况
+
+            %li.dropdown.navbar-module
+              %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
+                消息管理
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => url_for(:menus, :index)} 微网页二级菜单
+                  %a{:href => url_for(:articles, :index)} 微网页消息
+                  %a{:href => url_for(:pages, :index)} 促销活动页面
 
             %li
               %a{:href => url_for(:wmenus, :index)} 编辑微信菜单
