@@ -1,0 +1,24 @@
+-content_for :javascripts do
+  =javascript_include_tag 'wechat_menu'
+-content_for :stylesheets do
+  =stylesheet_link_tag 'iphone'
+  =stylesheet_link_tag 'wechat_menu'
+
+%h1 开发中……
+
+.container
+  .row
+    .col-md-4
+      .iphone
+        .iphone-power-button
+        .iphone-voice-toogle
+        .iphone-voice-plus
+        .iphone-voice-minus
+        .iphone-camera
+        .iphone-dynamic
+        .iphone-black-bg
+        .iphone-display.wechat-menu
+        .iphone-home
+    .col-md-1
+    .col-md-7
+      %pre.menu_contents

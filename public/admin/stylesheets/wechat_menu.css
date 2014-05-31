@@ -1,0 +1,31 @@
+
+.wechat-toolbar {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  width: 100%;
+}
+
+.wechat-toolbar .button {
+  width: 33.3%;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 35px;
+  overflow: hidden;
+  text-align: center;
+  border: 1px solid green;
+}
+
+.wechat-toolbar .dropup.open .dropdown-menu {
+}
+
+.wechat-toolbar .dropup.open .dropdown-menu li{
+	border-bottom: 1px solid #ECECEC;
+}
+
+.wechat-toolbar .dropup.open .dropdown-menu li:last-child{
+	border-bottom: 0px;
+}

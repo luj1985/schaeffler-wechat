@@ -34,14 +34,14 @@ gem 'nokogiri'
 gem 'padrino', '0.12.1'
 
 group :development, :test do
-	gem 'guard'
-	gem 'guard-livereload'
-	gem 'guard-rspec'
+  gem 'guard'
+  gem 'guard-livereload'
+  gem 'guard-rspec'
 end
 
 gem 'unicorn'
 gem 'axlsx'
-
+gem 'rest_client'
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 

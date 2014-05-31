@@ -45,6 +45,9 @@
                   %a{:href => url_for(:users, :index)} 参与微信用户
                   %a{:href => url_for(:questions, :index)} 申请观赛问题
 
+            %li
+              %a{:href => url_for(:wmenus, :index)} 编辑微信菜单
+
           -#%ul.nav.navbar-nav.pull-left
           -#  - project_modules.each do |project_module|
           -#    %li{:class => "navbar-module #{('active' if request.path_info =~ /^#{project_module.path}/)}"}
