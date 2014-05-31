@@ -136,8 +136,8 @@ Question.create(:question => '迄今为止,舍弗勒支持的车手共赢得几�
 require 'csv'
 
 
-seed = 'test.csv' if ENV['RACK_ENV'] == 'development'
-seed = 'production.csv' if ENV['RACK_ENV'] == 'production'
+seed = '../../test.csv' if ENV['RACK_ENV'] == 'development'
+seed = '../../production.csv' if ENV['RACK_ENV'] == 'production'
 
 path = File.join(File.dirname(__FILE__), seed)
 batch, batch_size = [], 1000
