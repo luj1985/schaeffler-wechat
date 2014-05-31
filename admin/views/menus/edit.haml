@@ -9,6 +9,11 @@
 
 .tabs-content
   = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
+    %fieldset.form-group
+      .col-sm-2.controls
+        =f.label :image, :class => 'control-label'
+      %img.col-sm-5{:src => @menu.image}
+
     %fieldset.form-group.well
       .col-sm-2.controls
         =f.label :articles, :class => 'control-label'
