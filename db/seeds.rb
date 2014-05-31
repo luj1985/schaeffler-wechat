@@ -73,11 +73,6 @@ EOF
 a2 = Article.create(:name => 'matches', 
 	:title => '舍弗勒与奥迪携手征战DTM', 
 	:body => matches_page)
-# a3 = Article.create(:name => 'luk', :title => 'LuK离合器安装教程', :abstract => 'LuK离合器安装教程摘要', :body => '<p>LuK离合器安装教程</p>')
-# a4 = Article.create(:name => 'ina', :title => 'INA皮带传动部件及气门机构部件', :abstract => 'INA皮带传动部件及气门机构部件摘要', :body => '<p>INA皮带传动部件及气门机构部件</p>')
-# a5 = Article.create(:name => 'fag', :title => 'FAG轮毂轴承', :abstract => 'FAG轮毂轴承摘要', :body => '<p>FAG轮毂轴承</p>')
-
-
 
 a6 = Article.create(:name => 'tools', :title => "【FAG专题】舍弗勒汽车售后首部微电影隆重登场", :abstract => '工具及附件',
 	:body => '<img src="/images/articles/tools.png" />')
@@ -108,7 +103,6 @@ m1 = Menu.create(:name => "matches", :title => "促销活动")
 sp1 = Page.create(:title => "促销活动一级页面", :abstract => '活动详情', :href => '/activity/intro', :image_href => '/images/cover.jpg')
 sp2 = Page.create(:title => "“买舍弗勒产品，刮好礼，享速度与激情”", :abstract => '活动详情', :href => '/activity/intro1', :image_href => '/images/cover.jpg')
 sp3 = Page.create(:title => "促销活动兑奖页面", :abstract => '活动详情', :href => '/activity/index', :image_href => '/images/introduction.jpg')
-sp4 = Page.create(:title => "敬请期待", :abstract => "摘要", :href => '/activity/progress', :image_href => '/images/progress.jpg')
 
 m1.pages << sp2
 m1.save
