@@ -27,8 +27,8 @@
 
 # shell.say ""
 
-account = Account.create(:email => "wujnx@schaeffler.com", :name => "Harry", :surname => "Wu", :password => "changeit", :password_confirmation => "test", :role => "admin")
-
+account = Account.create(:email => "wujnx@schaeffler.com", :name => "Harry", :surname => "Wu", :password => "changeit", :password_confirmation => "changeit", :role => "admin")
+account1 = Account.create(:email => "luj1985@gmail.com", :name => "Jun", :surname => "Lu", :password => "changeit", :password_confirmation => "changeit", :role => "admin")
 
 
 
