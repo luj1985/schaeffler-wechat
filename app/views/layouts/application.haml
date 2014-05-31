@@ -16,17 +16,20 @@
         $.mobile.defaultPageTransition = 'slide';
       });
 
-      function hideToolbar() {
+      function initializePage() {
         if (!!window.WeixinJSBridge) {
           WeixinJSBridge.call('hideToolbar');
+        }
+        if ($('.ui-page').length === 1) {
+          $('a[data-rel="back"]').addClass('hidden');
         }
       }
 
       if (typeof WeixinJSBridge === "undefined") {
-        $(document).bind('WeixinJSBridgeReady', hideToolbar);
-        $(document).bind('pageshow', hideToolbar);
+        $(document).bind('WeixinJSBridgeReady', initializePage);
+        $(document).bind('pageshow', initializePage);
       } else {
-        hideToolbar();
+        initializePage();
       }
 
       $(function() {
