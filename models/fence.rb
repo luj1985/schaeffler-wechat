@@ -1,6 +1,8 @@
 class Fence < ActiveRecord::Base
   after_initialize :init
 
+  has_one :user, :foreign_key => :openid, :primary_key => :openid
+
   def init
     self.activetime ||= Time.now
     self.success ||= 0

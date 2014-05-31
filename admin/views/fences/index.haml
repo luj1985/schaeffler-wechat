@@ -1,0 +1,24 @@
+%table#list.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.header= mat(:user, :name)
+      %th.header= mat(:fence, :openid)
+      %th.header= mat(:fence, :activetime)
+      %th.header= mat(:fence, :success)
+      %th.header= mat(:fence, :fail)
+
+  %tbody
+    -@fences.each do |fence|
+      %tr.list-row
+        %td.list-column
+          -if fence.user then
+            %a{:href => url_for(:users, :edit, :id => fence.user.id)}
+              =fence.user.name
+        %td.list-column=fence.openid
+        %td.list-column=fence.activetime ? fence.activetime.localtime.strftime("%Y-%m-%d %H:%M:%S") : ""
+        %td.list-column=fence.success
+        %td.list-column=fence.fail
+  %tfoot
+    %tr
+      %td{:colspan => 5}
+        =will_paginate(@fences, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')
