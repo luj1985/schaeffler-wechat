@@ -1,39 +1,35 @@
 .btn-group
-  -if params[:show] == 'all' then
-    %a.btn.btn-default{:href => url_for(:lotteries, :index)} 显示已兑换
-  -else
-    %a.btn.btn-default{:href => url_for(:lotteries, :index, :show => 'all')} 显示全部
-  %a.btn.btn-default{:href => url_for(:lotteries, :export, :format => :xlsx)} 导出已兑换的号码(xlsx格式)
+  %a.btn.btn-primary{:href => url_for(:lotteries, :export, :format => :xlsx)}
+    导出已兑换的号码(xlsx格式)
 
-.tabs-content
-  %table#list.table.table-striped.table-hover
-    %thead
-      %tr
-        %th.header= mat(:lottery, :crypted_serial)
-        %th.header= mat(:lottery, :exchange_time)
-        %th.header= mat(:lottery, :serial)
-        %th.header= mat(:lottery, :level)
-        %th.header= mat(:lottery, :name)
-        %th.header= mat(:lottery, :tel)
-        %th.header= mat(:lottery, :user_id)
-        %th.header= mat(:lottery, :status)
+%table#list.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.header= mat(:lottery, :crypted_serial)
+      %th.header= mat(:lottery, :exchange_time)
+      %th.header= mat(:lottery, :serial)
+      %th.header= mat(:lottery, :level)
+      %th.header= mat(:lottery, :name)
+      %th.header= mat(:lottery, :tel)
+      %th.header= mat(:lottery, :user_id)
+      %th.header= mat(:lottery, :status)
 
-    %tbody
-      -@lotteries.each do |lottery|
-        %tr.list-row
-          %td.list-column=lottery.crypted_serial
-          - strtime = lottery.exchange_time ? lottery.exchange_time.localtime.strftime("%Y-%m-%d %H:%M:%S") : ""
-          %td.list-column=strtime
-          %td.list-column=lottery.serial
-          %td.list-column=lottery.level_name
-          %td.list-column=lottery.display_name
-          %td.list-column=lottery.tel
-          %td.list-column
-            -if lottery.user_id.present?
-              %a{:href => url_for(:users, :edit, :id => lottery.user_id)}
-                =lottery.user.name
-          %td.list-column=lottery.display_status
-    %tfoot
-      %tr
-        %td{:colspan => 8}
-          =will_paginate(@lotteries, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')
+  %tbody
+    -@lotteries.each do |lottery|
+      %tr.list-row
+        %td.list-column=lottery.crypted_serial
+        - strtime = lottery.exchange_time ? lottery.exchange_time.localtime.strftime("%Y-%m-%d %H:%M:%S") : ""
+        %td.list-column=strtime
+        %td.list-column=lottery.serial
+        %td.list-column=lottery.level_name
+        %td.list-column=lottery.display_name
+        %td.list-column=lottery.tel
+        %td.list-column
+          -if lottery.user_id.present?
+            %a{:href => url_for(:users, :edit, :id => lottery.user_id)}
+              =lottery.user.name
+        %td.list-column=lottery.display_status
+  %tfoot
+    %tr
+      %td{:colspan => 8}
+        =will_paginate(@lotteries, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')

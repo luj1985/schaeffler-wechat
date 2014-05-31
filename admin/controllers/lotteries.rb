@@ -2,11 +2,7 @@
 SchaefflerWechat::Admin.controllers :lotteries do
   get :index do
     @title = "促销活动兑奖"
-    if params[:show] == 'all' then
-      @lotteries = Lottery.includes(:user).all.paginate(:page => params[:page])
-    else
-      @lotteries = Lottery.includes(:user).where("serial is not null").paginate(:page => params[:page])
-    end
+    @lotteries = Lottery.includes(:user).paginate(:page => params[:page])
     render 'lotteries/index'
   end
 
