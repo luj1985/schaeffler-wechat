@@ -2,7 +2,7 @@
   -if params[:show] == 'all' then
     %a.btn.btn-default{:href => url_for(:lotteries, :index)} 显示已兑换
   -else
-    %a.btn.btn-default{:href => url_for(:lotteries, :index, :show => 'all')} 显示所有
+    %a.btn.btn-default{:href => url_for(:lotteries, :index, :show => 'all')} 显示前100
   %a.btn.btn-default{:href => url_for(:lotteries, :export, :format => :xlsx)} 导出已兑换的号码(xlsx格式)
 
 .tabs-content

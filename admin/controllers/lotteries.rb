@@ -3,7 +3,7 @@ SchaefflerWechat::Admin.controllers :lotteries do
   get :index do
     @title = "促销活动兑奖"
     if params[:show] == 'all' then
-      @lotteries = Lottery.includes(:user).all
+      @lotteries = Lottery.includes(:user).all.limit(100)
     else
       @lotteries = Lottery.includes(:user).where("serial is not null")
     end
