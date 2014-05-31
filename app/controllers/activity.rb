@@ -31,7 +31,7 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     openid = session[:openid]
 
     user = User.find_or_initialize_by :openid => openid
-    halt 403, "对不起，您的账户已经被禁用" if user.blocked
+    halt 403, '<p class="message">对不起，您的账户已经被禁用</p>' if user.blocked
 
     fence = Fence.find_or_create_by :openid => openid
     halt 403, '<p class="message">您当天已经累计输入错误3次，将无法再提交验证码，请您明天再尝试兑奖。</p><p class="message">如有问题，可拨打活动热线 <a href="tel:400-660-8686">400-660-8686</a></p>' if fence.exceed_max_fail?
