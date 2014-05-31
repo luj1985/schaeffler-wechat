@@ -20,6 +20,7 @@ gem 'rack-less'
 gem 'less'
 gem 'haml'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
+gem 'activerecord-import'
 gem 'sqlite3'
 
 # Test requirements

@@ -27,7 +27,7 @@
 
 # shell.say ""
 
-account = Account.create(:email => "test@example.com", :name => "Jun", :surname => "Lu", :password => "test", :password_confirmation => "test", :role => "admin")
+account = Account.create(:email => "wujnx@schaeffler.com", :name => "Harry", :surname => "Wu", :password => "changeit", :password_confirmation => "test", :role => "admin")
 
 
 
@@ -134,8 +134,24 @@ Question.create(:question => '迄今为止,舍弗勒支持的车手共赢得几�
 
 
 require 'csv'
-path = File.join(File.dirname(__FILE__), 'test.csv')
+
+
+seed = 'test.csv' if ENV['RACK_ENV'] == 'development'
+seed = 'production.csv' if ENV['RACK_ENV'] == 'production'
+
+path = File.join(File.dirname(__FILE__), seed)
+batch, batch_size = [], 1000
 CSV.foreach(path) do |row|
   crypted, level = row
-  Lottery.create(:level => level, :crypted_serial => crypted)
+  lottery = Lottery.new
+  lottery.level = level
+  lottery.crypted_serial = crypted
+
+  batch << lottery
+
+  if batch.size >= batch_size
+  	Lottery.import batch
+  	batch = []
+  end
 end
+Lottery.import batch
