@@ -43,3 +43,7 @@
           %td.list-column=article.name
           %td.list-column=time_ago_in_words article.created_at
           %td.list-column=time_ago_in_words article.updated_at
+    %tfoot
+      %tr
+        %td{:colspan => 5}
+          =will_paginate(@articles, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')

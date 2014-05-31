@@ -36,6 +36,11 @@ Padrino::Helpers::TagHelpers::DATA_ATTRIBUTES.push(:role, :mini)
 # Add your before (RE)load hooks here
 #
 Padrino.before_load do
+  require 'will_paginate'
+  require 'will_paginate/active_record'
+  require 'will_paginate/view_helpers/sinatra'
+  require 'bootstrap_pagination/sinatra'
+  include WillPaginate::Sinatra::Helpers
 end
 
 ##

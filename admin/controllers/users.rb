@@ -1,7 +1,7 @@
 SchaefflerWechat::Admin.controllers :users do
   get :index do
     @title = "微信用户列表"
-    @users = User.all
+    @users = User.all.paginate(:page => params[:page])
     render 'users/index'
   end
 

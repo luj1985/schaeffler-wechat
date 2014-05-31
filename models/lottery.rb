@@ -1,4 +1,7 @@
 class Lottery < ActiveRecord::Base
+
+  self.per_page = 12
+
   belongs_to :user
   accepts_nested_attributes_for :user
 

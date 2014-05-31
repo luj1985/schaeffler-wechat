@@ -1,7 +1,7 @@
 SchaefflerWechat::Admin.controllers :articles do
   get :index do
     @title = "Articles"
-    @articles = Article.all
+    @articles = Article.all.paginate(:page => params[:page])
     render 'articles/index'
   end
 

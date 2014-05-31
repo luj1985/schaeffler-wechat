@@ -32,6 +32,7 @@ Padrino.configure_apps do
   set :protect_from_csrf, false
 end
 
+
 # Mounts the core application for this project
 
 Padrino.mount("SchaefflerWechat::Admin", :app_file => Padrino.root('admin/app.rb')).to("/admin")

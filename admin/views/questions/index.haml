@@ -47,3 +47,7 @@
           %td.list-column=question.c
           %td.list-column=question.d
           %td.list-column=question.correct
+    %tfoot
+      %tr
+        %td{:colspan => 6}
+          =will_paginate(@questions, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')

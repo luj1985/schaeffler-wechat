@@ -12,3 +12,8 @@
       %tr.list-row
         %td.list-column=page.title
         %td.list-column=page.href
+        
+  %tfoot
+    %tr
+      %td{:colspan => 2}
+        =will_paginate(@pages, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')

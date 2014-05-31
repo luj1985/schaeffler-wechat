@@ -1,7 +1,7 @@
 SchaefflerWechat::Admin.controllers :menus do
   get :index do
     @title = "Menus"
-    @menus = Menu.group('name').all
+    @menus = Menu.all.paginate(:page => params[:page])
     render 'menus/index'
   end
 

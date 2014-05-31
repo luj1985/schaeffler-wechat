@@ -37,3 +37,7 @@
             %a{:href => url(:menus, :edit, :id => menu.id)}
               =tag_icon(:edit)
               =menu.title
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          =will_paginate(@menus, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')

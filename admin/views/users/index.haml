@@ -27,3 +27,7 @@
           %td.list-column=user.province
           %td.list-column=user.city
           %td.list-column=user.workshop_address
+    %tfoot
+      %tr
+        %td{:colspan => 9}
+          =will_paginate(@users, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')

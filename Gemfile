@@ -14,6 +14,8 @@ source 'https://rubygems.org'
 gem 'rake'
 
 # Component requirements
+gem 'will_paginate', '~>3.0'
+gem 'will_paginate-bootstrap'
 gem 'bcrypt'
 gem 'therubyracer'
 gem 'rack-less'
