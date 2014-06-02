@@ -1,6 +1,8 @@
 -content_for :javascripts do
   =javascript_include_tag 'articles_list'
 
+-content_for :stylesheets do
+  =stylesheet_link_tag 'iphone'
 
 %ul.nav.nav-tabs
   %li=link_to tag_icon(:list, pat(:list)), url(:menus, :index)
@@ -8,71 +10,85 @@
   %li.active=link_to tag_icon(:edit, pat(:edit)), url(:menus, :edit, :id => params[:id])
 
 .tabs-content
-  = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
-    %fieldset.form-group
-      .col-sm-2.controls
-        =f.label :image, :class => 'control-label'
-      %img.col-sm-5{:src => @menu.image}
+  .container
+    .row
+      = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
+        .col-md-4
+          =f.label 'preview', :caption => '预览效果:'
+          .iphone
+            .iphone-light-gradient
+            .iphone-power-button
+            .iphone-voice-toogle
+            .iphone-voice-plus
+            .iphone-voice-minus
+            .iphone-camera
+            .iphone-dynamic
+            .iphone-black-bg
+            %iframe.iphone-display{:src => "/menu/#{f.object.name}"}
+            .iphone-home
+        .col-md-1
+        .col-md-7
+          %fieldset.form-group
+            .col-sm-2.controls
+              =f.label :image, :class => 'control-label'
+            %img.col-sm-5{:src => @menu.image}
 
-    %fieldset.form-group.well
-      .col-sm-2.controls
-        =f.label :articles, :class => 'control-label'
-      %ul.articles-list.col-sm-10.controls
-        -@menu.articles.each do |article|
-          %li.list-group-item{'data-article-id' => article.id, 'data-article-title' => article.title}
-            %input{:type => 'hidden', :name => "menu[selected_articles][]", :value => article.id }
-            %a{:href => url(:articles, :edit, :id => article.id)}
-              =tag_icon(:edit)
-              =article.title
-            %a.delete-article.pull-right{:href => '#'}
-              =tag_icon(:trash)
-            
-      .col-sm-offset-2
-        .col-sm-8
-          =select_tag :article_id, :class => 'form-control articles-selection', :options => dropdown_articles(@menu)
-        %a.col-sm-2.add-article.btn.btn-primary{:href => '#'}添加到菜单
+          %fieldset.form-group
+            .col-sm-2.controls
+              =f.label :articles, :class => 'control-label'
+            %ul.articles-list.col-sm-10.controls
+              -@menu.articles.each do |article|
+                %li.list-group-item{'data-article-id' => article.id, 'data-article-title' => article.title}
+                  %input{:type => 'hidden', :name => "menu[selected_articles][]", :value => article.id }
+                  %a{:href => url(:articles, :edit, :id => article.id)}
+                    =tag_icon(:edit)
+                    =article.title
+                  %a.delete-article.pull-right{:href => '#'}
+                    =tag_icon(:trash)
+                  
+            .col-sm-offset-2
+              .col-sm-8
+                =select_tag :article_id, :class => 'form-control articles-selection', :options => dropdown_articles(@menu)
+              %a.col-sm-2.add-article.btn.btn-primary{:href => '#'}添加到菜单
 
-    %fieldset.form-group.well
-      .col-sm-2.controls
-        =f.label :pages, :class => 'control-label'
-      %ul.pages-list.col-sm-10.controls
-        -@menu.pages.each do |page|
-          %li.list-group-item{'data-page-id' => page.id, 'data-page-title' => page.title}
-            %input{:type => 'hidden', :name => "menu[selected_pages][]", :value => page.id }
-            %a{:href => page.href}
-              =page.title
-            %a.delete-page.pull-right{:href => '#'}
-              =tag_icon(:trash)
+          %fieldset.form-group
+            .col-sm-2.controls
+              =f.label :pages, :class => 'control-label'
+            %ul.pages-list.col-sm-10.controls
+              -@menu.pages.each do |page|
+                %li.list-group-item{'data-page-id' => page.id, 'data-page-title' => page.title}
+                  %input{:type => 'hidden', :name => "menu[selected_pages][]", :value => page.id }
+                  %a{:href => page.href}
+                    =page.title
+                  %a.delete-page.pull-right{:href => '#'}
+                    =tag_icon(:trash)
 
-      .col-sm-offset-2
-        .col-sm-8
-          =select_tag :page_id, :class => 'form-control pages-selection', :options => dropdown_pages(@menu)
-        %a.col-sm-2.add-page.btn.btn-primary{:href => '#'}添加到菜单
+            .col-sm-offset-2
+              .col-sm-8
+                =select_tag :page_id, :class => 'form-control pages-selection', :options => dropdown_pages(@menu)
+              %a.col-sm-2.add-page.btn.btn-primary{:href => '#'}添加到菜单
 
 
-    - error = @menu.errors.include?(:title)
-    %fieldset.form-group{:class => error ? 'has-error' : ''}
-      .col-sm-2.controls
-        =f.label :title, :class => 'control-label'
-      .col-sm-10.controls
-        =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
-        %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
+          - error = @menu.errors.include?(:title)
+          %fieldset.form-group{:class => error ? 'has-error' : ''}
+            .col-sm-2.controls
+              =f.label :title, :class => 'control-label'
+            .col-sm-10.controls
+              =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
+              %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
 
-    - error = @menu.errors.include?(:name)
-    %fieldset.form-group{:class => error ? 'has-error' : ''}
-      .col-sm-2.controls
-        =f.label :name, :class => 'control-label'
-      .col-sm-10.controls
-        =f.text_field :name, :class => 'form-control input-large input-with-feedback'
-        %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
+          - error = @menu.errors.include?(:name)
+          %fieldset.form-group{:class => error ? 'has-error' : ''}
+            .col-sm-2.controls
+              =f.label :name, :class => 'control-label'
+            .col-sm-10.controls
+              =f.text_field :name, :class => 'form-control input-large input-with-feedback'
+              %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
 
-    %fieldset.form-group
-      .form-actions
-        =f.submit pat(:save), :class => 'btn btn-primary'
-        &nbsp;
-        =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-        &nbsp;
-        =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'
-
-        
-
+          %fieldset.form-group
+            .form-actions
+              =f.submit pat(:save), :class => 'btn btn-primary'
+              &nbsp;
+              =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+              &nbsp;
+              =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'
