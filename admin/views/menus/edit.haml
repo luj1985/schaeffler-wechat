@@ -26,8 +26,7 @@
             .iphone-black-bg
             %iframe.iphone-display{:src => "/menu/#{f.object.name}"}
             .iphone-home
-        .col-md-1
-        .col-md-7
+        .col-md-8
           %fieldset.form-group
             .col-sm-2.controls
               =f.label :image, :class => 'control-label'
@@ -87,7 +86,7 @@
 
           %fieldset.form-group
             .form-actions
-              =f.submit pat(:save), :class => 'btn btn-primary'
+              =f.submit '保存&预览', :class => 'btn btn-primary'
               &nbsp;
               =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
               &nbsp;

@@ -65,7 +65,7 @@
           %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''
       %fieldset.form-group
         .form-actions
-          =f.submit pat(:save), :class => 'btn btn-primary'
+          =f.submit '保存&预览', :class => 'btn btn-primary'
           &nbsp;
           =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
           &nbsp;
