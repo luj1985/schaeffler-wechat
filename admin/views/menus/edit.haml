@@ -5,6 +5,7 @@
   =javascript_include_tag 'jquery.fileupload'
   :javascript
     $(function() {
+      $progress = $('#progress');
       $('#upload').fileupload({
         dataType : 'json',
         paramName : 'file',
@@ -17,7 +18,10 @@
         },
         progressall: function (e, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
-          $('#progress .bar').css('width', progress + '%' );
+          $progress.html(progress + "%");
+          if (progress === 100) {
+            $progress.html('');
+          }
         }
       });
     });
@@ -81,8 +85,7 @@
                 %i.glyphicon.glyphicon-plus
                 %span 选择封面图片
                 %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
-              #progress
-                .bar{:style => 'width: 0%;'}
+              %span#progress
 
           %fieldset.form-group
             .col-sm-2.controls
