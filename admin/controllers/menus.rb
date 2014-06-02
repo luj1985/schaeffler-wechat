@@ -38,13 +38,14 @@ SchaefflerWechat::Admin.controllers :menus do
     @title = pat(:update_title, :model => "menu #{params[:id]}")
     selected_article_ids = params[:menu][:selected_articles] # array
     selected_page_ids = params[:menu][:selected_pages]
-    articles = Article.find selected_article_ids
-    pages = Page.find selected_page_ids
+
+    articles = Article.find selected_article_ids if selected_article_ids
+    pages = Page.find selected_page_ids if selected_page_ids
 
     @menu = Menu.find(params[:id])
     if @menu
-      @menu.articles = articles
-      @menu.pages = pages
+      @menu.articles = articles || []
+      @menu.pages = pages || []
       if @menu.update_attributes(params[:menu])
         flash[:success] = pat(:update_success, :model => 'Menu', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?

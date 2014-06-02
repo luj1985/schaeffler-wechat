@@ -6,12 +6,12 @@ SchaefflerWechat::Admin.controllers :wmenus do
   get :wechat, :provides => :json do
     access_token = settings.access_token
     headers "Content-Type" => "application/json; charset=utf8"
-    if access_token.nil? then
+    # if access_token.nil? then
       url = "#{ENV['WECHAT_BASE']}/token?grant_type=client_credential&appid=#{ENV['WECHAT_APPID']}&secret=#{ENV['WECHAT_SECRET']}"
       response = RestClient.get(url)
       payload = JSON.parse(response.body)
     	access_token = settings.access_token = payload["access_token"]
-  	end
+  	# end
 
   	url = "#{ENV['WECHAT_BASE']}/menu/get?access_token=#{access_token}"
   	response = RestClient.get(url)
