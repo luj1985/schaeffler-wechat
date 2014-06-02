@@ -1,8 +1,30 @@
 -content_for :javascripts do
   =javascript_include_tag 'articles_list'
+  =javascript_include_tag 'jquery.ui.widget'
+  =javascript_include_tag 'jquery.iframe-transport'
+  =javascript_include_tag 'jquery.fileupload'
+  :javascript
+    $(function() {
+      $('#upload').fileupload({
+        dataType : 'json',
+        paramName : 'file',
+        type : 'POST',
+        done : function(e, data) {
+          var result = data.result,
+              link = result.link;
+          $('#cover').attr('src', link);
+          $('[name="menu[image]"]').val(link);
+        },
+        progressall: function (e, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          $('#progress .bar').css('width', progress + '%' );
+        }
+      });
+    });
 
 -content_for :stylesheets do
   =stylesheet_link_tag 'iphone'
+  =stylesheet_link_tag 'jquery.fileupload'
 
 %ul.nav.nav-tabs
   %li=link_to tag_icon(:list, pat(:list)), url(:menus, :index)
@@ -12,6 +34,8 @@
 .tabs-content
   .container
     .row
+
+
       = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
         .col-md-4
           =f.label 'preview', :caption => '预览效果:'
@@ -26,11 +50,39 @@
             .iphone-black-bg
             %iframe.iphone-display{:src => "/menu/#{f.object.name}"}
             .iphone-home
-        .col-md-8
+        .col-md-1
+        .col-md-7
+          %fieldset.form-group
+            .col-sm-2.controls
+              =f.label :name, :class => 'control-label'
+            .col-sm-10.controls
+              =f.text_field :name, :class => 'form-control input-large input-with-feedback', :disabled => true
+
+          - error = @menu.errors.include?(:title)
+          %fieldset.form-group{:class => error ? 'has-error' : ''}
+            .col-sm-2.controls
+              =f.label :title, :class => 'control-label'
+            .col-sm-10.controls
+              =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
+              %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
+
           %fieldset.form-group
             .col-sm-2.controls
               =f.label :image, :class => 'control-label'
-            %img.col-sm-5{:src => @menu.image}
+              =f.hidden_field :image
+            %img.col-sm-5#cover{:src => @menu.image}
+
+
+          %fieldset.form-group
+            .col-sm-2.controls
+              =f.label :image, :caption => '上传封面:', :class => 'control-label'
+            .col-sm-10.controls
+              .btn.btn-success.fileinput-button
+                %i.glyphicon.glyphicon-plus
+                %span 选择封面图片
+                %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
+              #progress
+                .bar{:style => 'width: 0%;'}
 
           %fieldset.form-group
             .col-sm-2.controls
@@ -67,23 +119,7 @@
                 =select_tag :page_id, :class => 'form-control pages-selection', :options => dropdown_pages(@menu)
               %a.col-sm-2.add-page.btn.btn-primary{:href => '#'}添加到菜单
 
-
-          - error = @menu.errors.include?(:title)
-          %fieldset.form-group{:class => error ? 'has-error' : ''}
-            .col-sm-2.controls
-              =f.label :title, :class => 'control-label'
-            .col-sm-10.controls
-              =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
-              %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
-
-          - error = @menu.errors.include?(:name)
-          %fieldset.form-group{:class => error ? 'has-error' : ''}
-            .col-sm-2.controls
-              =f.label :name, :class => 'control-label'
-            .col-sm-10.controls
-              =f.text_field :name, :class => 'form-control input-large input-with-feedback'
-              %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
-
+          %hr
           %fieldset.form-group
             .form-actions
               =f.submit '保存&预览', :class => 'btn btn-primary'

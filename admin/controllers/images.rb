@@ -12,7 +12,7 @@ SchaefflerWechat::Admin.controllers :images do
     Image.destroy_all(:href => src)
   end
 
-  post :upload do
+  upload = lambda do
     tempfile = params[:file][:tempfile]
     filename = params[:file][:filename]
     extension = File.extname(filename)
@@ -30,4 +30,7 @@ SchaefflerWechat::Admin.controllers :images do
     }
     res.to_json
   end
+
+  post :upload, &upload
+  put :upload, &upload
 end
