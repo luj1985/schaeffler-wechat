@@ -1,4 +1,4 @@
-- if @menu.image then
+- if @menu.image && !@menu.image.empty? then
   %h1.menu-title=@menu.title
   %img{:src => @menu.image}
 %div{'data-role' => 'content'}
