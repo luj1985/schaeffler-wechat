@@ -8,6 +8,8 @@ require 'bundler/setup'
 require 'csv'
 Bundler.require(:default, RACK_ENV)
 
+require 'time'
+
 ##
 # ## Enable devel logging
 #

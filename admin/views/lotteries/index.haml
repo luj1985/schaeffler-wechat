@@ -2,7 +2,7 @@
   =stylesheet_link_tag 'datepicker.min'
 
 -content_for :javascripts do
-  =javascript_include_tag 'bootstrap-datepicker.min'
+  =javascript_include_tag Padrino.env == :production ? 'bootstrap-datepicker.min' : 'bootstrap-datepicker'
   =javascript_include_tag 'bootstrap-datepicker.zh-CN'
   :javascript
     $(function() {
@@ -17,14 +17,28 @@
       });
     });
 
-.col-md-5
-  .input-daterange.input-group#datepicker
-    %input.input-sm.form-control{:type => 'text', :name => 'start'}
-    %span.input-group-addon -
-    %input.input-sm.form-control{:type => 'text', :name => 'end'}
-.col-md-7
-  %a.btn.btn-primary{:href => url_for(:lotteries, :index)}检索
-  %a.btn.btn-success{:href => url_for(:lotteries, :export, :format => :xlsx)}导出已兑换的号码(xlsx格式)
+
+= form_tag url(:lotteries, :index), :method => :get, :class => 'form-horizontal' do
+  %fieldset.form-group
+    .col-sm-2
+      %label.control-label 选择兑奖时间范围：
+    .col-sm-3
+      .input-daterange.input-group#datepicker
+        %input.form-control{:type => 'text', :name => 'start', :value => params[:start]}
+        %span.input-group-addon 到
+        %input.form-control{:type => 'text', :name => 'end', :value => params[:end]}
+    .col-sm-7
+      .btn-group
+        %input.btn.btn-primary{:type => :submit, :value => '查询'}
+  .bg-info
+    查询结果中不会包括结束时间当天的数据。<br>
+    例如：查询条件为2014/06/06~2014/06/07，不会检索出2014/06/07的数据
+    因为时间的完全形式是2014/06/07 00:00:00，没有比一天开始时间更早的数据
+
+= form_tag url(:lotteries, :export, :format => :xlsx), :method => :get do
+  =hidden_field_tag :start, :value => params[:start]
+  =hidden_field_tag :end, :value => params[:end]
+  =submit_tag '从查询结果中导出Excel', :class => 'btn btn-success'
 
 %table#list.table.table-striped.table-hover
   %thead

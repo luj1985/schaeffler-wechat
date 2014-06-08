@@ -2,11 +2,21 @@
 SchaefflerWechat::Admin.controllers :lotteries do
   get :index do
     @title = "促销活动兑奖"
-    @lotteries = Lottery.includes(:user).paginate(:page => params[:page])
+    startTime = Time.parse(params[:start]) if params[:start] && !params[:start].empty?
+    endTime = Time.parse(params[:end]) if params[:end] && !params[:end].empty?
+
+    @lotteries = Lottery.includes(:user)
+    @lotteries = @lotteries.where('exchange_time > ?', startTime) if startTime
+    @lotteries = @lotteries.where('exchange_time < ?', endTime) if endTime
+
+    @lotteries = @lotteries.where("serial is not null").paginate(:page => params[:page])
     render 'lotteries/index'
   end
 
   get :export, :provides => :xlsx do
+    startTime = Time.parse(params[:start]) if params[:start] && !params[:start].empty?
+    endTime = Time.parse(params[:end]) if params[:end] && !params[:end].empty?
+
     timestamp = Time.now.strftime "%Y-%m-%d %H%M%S"
     attachment "赛事促销活动#{timestamp}.xlsx"
     Axlsx::Package.new do |p|
@@ -37,6 +47,9 @@ SchaefflerWechat::Admin.controllers :lotteries do
           ], :style => title_style
 
           @lotteries = Lottery.includes(:user).where("serial is not null")
+          
+          @lotteries = @lotteries.where('exchange_time > ?', startTime) if startTime
+          @lotteries = @lotteries.where('exchange_time < ?', endTime) if endTime
 
           @lotteries.each do |l|
             u = l.user
@@ -78,4 +91,5 @@ SchaefflerWechat::Admin.controllers :lotteries do
       response.write(s.read)
     end
   end
+
 end
