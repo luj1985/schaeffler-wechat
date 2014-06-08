@@ -1,6 +1,30 @@
-.btn-group
-  %a.btn.btn-primary{:href => url_for(:lotteries, :export, :format => :xlsx)}
-    导出已兑换的号码(xlsx格式)
+-content_for :stylesheets do
+  =stylesheet_link_tag 'datepicker.min'
+
+-content_for :javascripts do
+  =javascript_include_tag 'bootstrap-datepicker.min'
+  =javascript_include_tag 'bootstrap-datepicker.zh-CN'
+  :javascript
+    $(function() {
+      $('#datepicker.input-daterange').datepicker({
+        format: "yyyy/mm/dd",
+        startDate: "2014/06/01",
+        endDate: "2014/12/31",
+        todayBtn: "linked",
+        language: "zh-CN",
+        autoclose: true,
+        todayHighlight: true
+      });
+    });
+
+.col-md-5
+  .input-daterange.input-group#datepicker
+    %input.input-sm.form-control{:type => 'text', :name => 'start'}
+    %span.input-group-addon -
+    %input.input-sm.form-control{:type => 'text', :name => 'end'}
+.col-md-7
+  %a.btn.btn-primary{:href => url_for(:lotteries, :index)}检索
+  %a.btn.btn-success{:href => url_for(:lotteries, :export, :format => :xlsx)}导出已兑换的号码(xlsx格式)
 
 %table#list.table.table-striped.table-hover
   %thead
