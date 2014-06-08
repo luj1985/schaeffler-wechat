@@ -5,11 +5,11 @@ SchaefflerWechat::Admin.controllers :lotteries do
     startTime = Time.parse(params[:start]) if params[:start] && !params[:start].empty?
     endTime = Time.parse(params[:end]) if params[:end] && !params[:end].empty?
 
-    @lotteries = Lottery.includes(:user)
+    @lotteries = Lottery.includes(:user).where("serial is not null")
     @lotteries = @lotteries.where('exchange_time > ?', startTime) if startTime
     @lotteries = @lotteries.where('exchange_time < ?', endTime) if endTime
 
-    @lotteries = @lotteries.where("serial is not null").paginate(:page => params[:page])
+    @lotteries = @lotteries.order('exchange_time desc').paginate(:page => params[:page])
     render 'lotteries/index'
   end
 
@@ -47,10 +47,10 @@ SchaefflerWechat::Admin.controllers :lotteries do
           ], :style => title_style
 
           @lotteries = Lottery.includes(:user).where("serial is not null")
-          
+
           @lotteries = @lotteries.where('exchange_time > ?', startTime) if startTime
           @lotteries = @lotteries.where('exchange_time < ?', endTime) if endTime
-
+          @lotteries = @lotteries.order('exchange_time desc')
           @lotteries.each do |l|
             u = l.user
             timestamp = l.exchange_time ? (l.exchange_time.strftime "%Y-%m-%d %H:%M:%S") : ""
