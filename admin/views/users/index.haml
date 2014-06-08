@@ -1,33 +1,32 @@
-.tabs-content
-  %table#list.table.table-striped.table-hover
-    %thead
-      %tr
-        %th.header= mat(:user, :name)
-        %th.header= mat(:user, :tel)
-        %th.header= mat(:user, :apply_attemped)
-        %th.header= mat(:user, :join_match)
-        %th.header= mat(:user, :blocked)
-        %th.header= mat(:user, :workshop)
-        %th.header= mat(:user, :province)
-        %th.header= mat(:user, :city)
-        %th.header= mat(:user, :workshop_address)
+%table#list.table.table-striped.table-hover
+  %thead
+    %tr
+      %th.header= mat(:user, :name)
+      %th.header= mat(:user, :tel)
+      %th.header= mat(:user, :apply_attemped)
+      %th.header= mat(:user, :join_match)
+      %th.header= mat(:user, :blocked)
+      %th.header= mat(:user, :workshop)
+      %th.header= mat(:user, :province)
+      %th.header= mat(:user, :city)
+      %th.header= mat(:user, :workshop_address)
 
-    %tbody
-      -@users.each do |user|
-        %tr.list-row{:class => user.blocked ? 'danger' : ''}
-          %td.list-column
-            %a{:href => url_for(:users, :edit, :id => user.id)}
-              =tag_icon(:edit)
-              =user.name
-          %td.list-column=user.tel
-          %td.list-column=user.apply_attemped ? tag_icon(:ok) : tag_icon(:remove)
-          %td.list-column=user.join_match ? tag_icon(:ok) : tag_icon(:remove)
-          %td.list-column=user.blocked ? tag_icon('minus-sign') : ''
-          %td.list-column=user.workshop
-          %td.list-column=user.province
-          %td.list-column=user.city
-          %td.list-column=user.workshop_address
-    %tfoot
-      %tr
-        %td{:colspan => 9}
-          =will_paginate(@users, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')
+  %tbody
+    -@users.each do |user|
+      %tr.list-row{:class => user.blocked ? 'danger' : ''}
+        %td.list-column
+          %a{:href => url_for(:users, :edit, :id => user.id)}
+            =tag_icon(:edit)
+            =user.name
+        %td.list-column=user.tel
+        %td.list-column=user.apply_attemped ? tag_icon(:ok) : tag_icon(:remove)
+        %td.list-column=user.join_match ? tag_icon(:ok) : tag_icon(:remove)
+        %td.list-column=user.blocked ? tag_icon('minus-sign') : ''
+        %td.list-column=user.workshop
+        %td.list-column=user.province
+        %td.list-column=user.city
+        %td.list-column=user.workshop_address
+  %tfoot
+    %tr
+      %td{:colspan => 9}
+        =will_paginate(@users, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')
