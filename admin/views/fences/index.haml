@@ -1,3 +1,9 @@
+.btn-group
+  -if params[:option] == 'valid' then
+    %a.btn.btn-primary{:href => url_for(:fences, :index)}显示所有
+  -else
+    %a.btn.btn-primary{:href => url_for(:fences, :index, :option => :valid)}只显示有效兑奖
+
 %table#list.table.table-striped.table-hover
   %thead
     %tr

@@ -1,6 +1,10 @@
 SchaefflerWechat::Admin.controllers :fences do
   get :index do
-  	@fences = Fence.includes(:user).all.paginate(:page => params[:page])
+    if params[:option] == 'valid' then
+      @fences = Fence.joins(:user).all.paginate(:page => params[:page])
+    else
+      @fences = Fence.includes(:user).all.paginate(:page => params[:page])
+    end
     render "fences/index"
   end
 end

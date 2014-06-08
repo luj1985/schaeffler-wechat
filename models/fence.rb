@@ -1,4 +1,6 @@
 class Fence < ActiveRecord::Base
+  self.per_page = 12
+
   after_initialize :init
 
   has_one :user, :foreign_key => :openid, :primary_key => :openid
@@ -14,31 +16,31 @@ class Fence < ActiveRecord::Base
   end
 
   def inc_success_counter
-  	if sameday? then
-  		self.success += 1
-  	else
+    if sameday? then
+      self.success += 1
+    else
       # reset all status when new days come
-  		self.success = 1
+      self.success = 1
       self.fail = 0
-  	end
+    end
     self.activetime = Time.now.utc
   end
 
   def inc_fail_counter
-  	if sameday? then
-  		self.fail += 1
-  	else
-  		self.fail = 1
+    if sameday? then
+      self.fail += 1
+    else
+      self.fail = 1
       self.success = 0
-  	end
+    end
     self.activetime = Time.now.utc
   end
 
   def exceed_max_success?
-  	sameday? && (self.success >= 20)
+    sameday? && (self.success >= 20)
   end
 
   def exceed_max_fail?
-  	sameday? && (self.fail >= 3)
+    sameday? && (self.fail >= 3)
   end
 end
