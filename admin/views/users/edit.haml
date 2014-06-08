@@ -1,42 +1,63 @@
-.tabs-content
-  = form_for :user, url(:users, :update, :id => @user.id), :method => :put do |f|
-    %dl.dl-horizontal.user-info
-      %dt= mat(:user, :openid)
-      %dd.text-muted= @user.openid
+= form_for :user, url(:users, :update, :id => @user.id), :method => :put do |f|
+  %dl.dl-horizontal.user-info
+    %dt= mat(:user, :openid)
+    %dd.text-muted= @user.openid
 
-      %dt= mat(:user, :name)
-      %dd.text-muted= @user.name
+    %dt= mat(:user, :name)
+    %dd.text-muted= @user.name
 
-      %dt= mat(:user, :tel)
-      %dd.text-muted= @user.tel
+    %dt= mat(:user, :tel)
+    %dd.text-muted= @user.tel
 
-      %dt= mat(:user, :workshop_address)
-      %dd.text-muted
-        =@user.province
-        =@user.city
-        =@user.workshop_address
+    %dt= mat(:user, :workshop_address)
+    %dd.text-muted
+      =@user.province
+      =@user.city
+      =@user.workshop_address
 
-      %dt= mat(:user, :apply_attemped)
-      %dd.text-muted= @user.apply_attemped ? tag_icon(:ok) : tag_icon(:remove)
+    %dt= mat(:user, :apply_attemped)
+    %dd.text-muted= @user.apply_attemped ? tag_icon(:ok) : tag_icon(:remove)
 
-      %dt= mat(:user, :join_match)
-      %dd.text-muted= @user.join_match ? tag_icon(:ok) : tag_icon(:remove)
+    %dt= mat(:user, :join_match)
+    %dd.text-muted= @user.join_match ? tag_icon(:ok) : tag_icon(:remove)
 
-      %dt= mat(:fence, :activetime)
-      %dd.text-muted= @user.fence.activetime.localtime.strftime "%Y-%m-%d %H:%M:%S"
+    %dt= mat(:fence, :activetime)
+    %dd.text-muted= @user.fence.activetime.localtime.strftime "%Y-%m-%d %H:%M:%S"
 
-      %dt= mat(:fence, :success)
-      %dd.text-muted= @user.fence.success
+    %dt= mat(:fence, :success)
+    %dd.text-muted= @user.fence.success
 
-      %dt= mat(:fence, :fail)
-      %dd.text-muted= @user.fence.fail
+    %dt= mat(:fence, :fail)
+    %dd.text-muted= @user.fence.fail
 
-      %dt 列入黑名单
-      %dd=f.check_box :blocked
+    %dt 总兑换次数
+    %dd.text-muted= @user.lotteries.length
+
+    %dt= mat(:user, :lotteries)
+    %dd
+      %table#list.table.table-striped.table-hover
+        %thead
+          %tr
+            %th.header= mat(:lottery, :serial)
+            %th.header= mat(:lottery, :exchange_time)
+            %th.header= mat(:lottery, :level)
+            %th.header= mat(:lottery, :name)
+        %tbody
+          -@user.lotteries.order('exchange_time desc').each do |lottery|
+            %tr.list-row
+              %td.list-column=lottery.serial
+              - strtime = lottery.exchange_time ? lottery.exchange_time.localtime.strftime("%Y-%m-%d %H:%M:%S") : ""
+              %td.list-column=strtime
+              %td.list-column=lottery.level_name
+              %td.list-column=lottery.display_name
+
+
+    %dt 列入黑名单
+    %dd=f.check_box :blocked
+
+    %dt
+    %dd
+      =f.submit pat(:save), :class => 'btn btn-primary'
+      &nbsp;
+      =link_to pat(:cancel), url(:users, :index), :class => 'btn btn-default'
   
-      %dt
-      %dd
-        =f.submit pat(:save), :class => 'btn btn-primary'
-        &nbsp;
-        =link_to pat(:cancel), url(:users, :index), :class => 'btn btn-default'
-    
