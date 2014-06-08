@@ -17,8 +17,16 @@ SchaefflerWechat::Admin.controllers :lotteries do
     startTime = Time.parse(params[:start]) if params[:start] && !params[:start].empty?
     endTime = Time.parse(params[:end]) if params[:end] && !params[:end].empty?
 
-    timestamp = Time.now.strftime "%Y-%m-%d %H%M%S"
-    attachment "赛事促销活动#{timestamp}.xlsx"
+    timestamp = ''
+    if startTime || endTime then
+      timestamp += ' ' + (startTime.strftime "%Y-%m-%d") if startTime
+      timestamp += '~'
+      timestamp += (endTime.strftime "%Y-%m-%d") if endTime
+    else
+      timestamp = '~' + (Time.now.strftime "%Y-%m-%d %H%M%S")
+    end
+
+    attachment "赛事促销活动 #{timestamp}.xlsx"
     Axlsx::Package.new do |p|
       wb = p.workbook
       wb.styles.fonts.first.name = '微软雅黑'
