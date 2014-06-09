@@ -48,7 +48,7 @@ SchaefflerWechat::Admin.controllers :lotteries do
           sheet.add_row ["赛事促销活动 兑奖管控表"], :style => header_style
           sheet.merge_cells("A1:L1")
           sheet.add_row [
-            "微信ID", "兑奖日期", "中奖号码","奖品等级", 
+            "微信ID", "兑奖日期", "兑奖月份", "兑奖日期", "中奖号码","奖品等级", 
             "省","市","地址","修理厂名称", 
             "联系人姓名", "联系电话",
             "充值手机号", "产品号"
@@ -61,9 +61,11 @@ SchaefflerWechat::Admin.controllers :lotteries do
           @lotteries = @lotteries.order('exchange_time desc')
           @lotteries.each do |l|
             u = l.user
-            timestamp = l.exchange_time ? (l.exchange_time.strftime "%Y-%m-%d %H:%M:%S") : ""
+            timestamp = l.exchange_time ? (l.exchange_time.localtime.strftime "%Y-%m-%d %H:%M:%S") : ""
+            month = l.exchange_time ? l.exchange_time.localtime.month : ''
+            day = l.exchange_time ? l.exchange_time.localtime.day : ''
             row = [
-              u.openid, timestamp, l.serial, l.level_name,
+              u.openid, timestamp, month, day, l.serial, l.level_name,
               u.province, u.city, u.workshop_address, u.workshop, 
               u.name, u.tel,
               l.tel, l.product
