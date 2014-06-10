@@ -9,7 +9,7 @@ SchaefflerWechat::Admin.controllers :lotteries do
     @lotteries = @lotteries.where('exchange_time > ?', startTime) if startTime
     @lotteries = @lotteries.where('exchange_time < ?', endTime) if endTime
 
-    @lotteries = @lotteries.order('exchange_time desc').paginate(:page => params[:page])
+    @lotteries = @lotteries.order('exchange_time asc').paginate(:page => params[:page])
     render 'lotteries/index'
   end
 
@@ -58,7 +58,7 @@ SchaefflerWechat::Admin.controllers :lotteries do
 
           @lotteries = @lotteries.where('exchange_time > ?', startTime) if startTime
           @lotteries = @lotteries.where('exchange_time < ?', endTime) if endTime
-          @lotteries = @lotteries.order('exchange_time desc')
+          @lotteries = @lotteries.order('exchange_time asc')
           @lotteries.each do |l|
             u = l.user
             timestamp = l.exchange_time ? (l.exchange_time.localtime.strftime "%Y-%m-%d %H:%M:%S") : ""
