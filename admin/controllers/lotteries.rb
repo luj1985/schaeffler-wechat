@@ -46,7 +46,7 @@ SchaefflerWechat::Admin.controllers :lotteries do
                                   :border => { :style => :hair, :color => "00" }
         wb.add_worksheet(:name => "兑奖帐号") do |sheet|
           sheet.add_row ["赛事促销活动 兑奖管控表"], :style => header_style
-          sheet.merge_cells("A1:L1")
+          sheet.merge_cells("A1:N1")
           sheet.add_row [
             "微信ID", "兑奖日期", "兑奖月份", "兑奖日期", "中奖号码","奖品等级", 
             "省","市","地址","修理厂名称", 
