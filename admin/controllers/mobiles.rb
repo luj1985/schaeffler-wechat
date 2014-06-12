@@ -1,6 +1,6 @@
 SchaefflerWechat::Admin.controllers :mobiles do
   get :index do
-  	@title = "App"
+    @title = "App推广"
     @mobiles = Mobile.all
     render 'mobiles/index'
   end
