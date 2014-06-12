@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 29) do
+ActiveRecord::Schema.define(version: 31) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 29) do
     t.datetime "updated_at"
     t.text     "description"
     t.string   "image"
+  end
+
+  create_table "mobiles", force: true do |t|
+    t.string   "file"
+    t.integer  "count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "os"
   end
 
   create_table "page_relations", force: true do |t|
