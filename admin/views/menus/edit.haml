@@ -74,7 +74,12 @@
             .col-sm-2.controls
               =f.label :image, :class => 'control-label'
               =f.hidden_field :image
-            %img.col-sm-5#cover{:src => @menu.image}
+            -has_cover = !@menu.image.nil? && !@menu.image.empty?
+            -if has_cover then
+              %img.col-sm-5#cover{:src => @menu.image}
+            -else
+              %img.col-sm-5#cover
+
 
 
           %fieldset.form-group
