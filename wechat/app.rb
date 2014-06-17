@@ -96,8 +96,6 @@ module SchaefflerWechat
       content_type :xml
       host = ENV['WECHAT_HOST']
 
-      puts "host is #{host}"
-
       builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
         xml.xml {
           xml.ToUserName hash[:from_user_name]
@@ -110,13 +108,14 @@ module SchaefflerWechat
               xml.Title "“买舍弗勒产品，刮好礼，享速度与激情”"
               xml.Description ''
               xml.PicUrl URI.join(host, '/images/activity/push-message.png')
-              #xml.Url URI.join(host, url_for(:activity, :index, :openid => hash[:from_user_name]))
               xml.Url (host + '/activity?openid=' + hash[:from_user_name])
             }
           }
         }
       end
-      builder.to_xml
+      output = builder.to_xml
+      puts output
+      ouptput
     end
     
     wechat_event :subscribe do |hash|
