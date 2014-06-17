@@ -1,6 +1,6 @@
 module SchaefflerWechat
   class App < Padrino::Application
-  register WillPaginate::Sinatra
+    register WillPaginate::Sinatra
     register LessInitializer
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
     use Rack::Env

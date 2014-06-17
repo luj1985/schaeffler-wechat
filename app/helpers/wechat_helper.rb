@@ -5,5 +5,4 @@ SchaefflerWechat::App.helpers do
     raw = [token, params[:timestamp], params[:nonce]].compact.sort.join
     Digest::SHA1.hexdigest(raw) == params[:signature]
   end
-
 end
