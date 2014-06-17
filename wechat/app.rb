@@ -123,9 +123,9 @@ module SchaefflerWechat
           xml.CreateTime Time.now.to_i
           xml.MsgType "text"
           xml.Content "欢迎您关注舍弗勒中国汽车售后。
-    即日起至12月31日，购买舍弗勒LuK、INA、FAG赛事促销装产品，即有机会赢得新一代 iPhone 手机，及其他好礼。
-    
-    更多详情，请点击“促销活动”。"
+即日起至12月31日，购买舍弗勒LuK、INA、FAG赛事促销装产品，即有机会赢得新一代 iPhone 手机，及其他好礼。
+
+更多详情，请点击“促销活动”。"
         }
       end
       builder.to_xml
