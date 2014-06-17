@@ -113,9 +113,7 @@ module SchaefflerWechat
           }
         }
       end
-      output = builder.to_xml
-      puts output
-      output
+      builder.to_xml
     end
     
     wechat_event :subscribe do |hash|
