@@ -36,4 +36,5 @@ end
 # Mounts the core application for this project
 
 Padrino.mount("SchaefflerWechat::Admin", :app_file => Padrino.root('admin/app.rb')).to("/admin")
+Padrino.mount('SchaefflerWechat::Wechat', :app_file => Padrino.root('wechat/app.rb')).to('/wechat')
 Padrino.mount('SchaefflerWechat::App', :app_file => Padrino.root('app/app.rb')).to('/')
