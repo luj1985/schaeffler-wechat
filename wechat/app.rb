@@ -68,12 +68,13 @@ module SchaefflerWechat
       content = hash[:content] || ""
     
       message = ""
-      if content.include? '申请海报' then
-        message = "您的海报申请信息我们已经收到，我们将尽快安排活动海报出发，请您注意查收，谢谢"
-      end
     
       if content.include? '省' or content.include? '市' then
         message = "感谢您参与本次活动，请确认提交的联系方式准确无误，以便我们联系您"
+      end
+
+      if content.include? '申请海报' then
+        message = "您的海报申请信息我们已经收到，我们将尽快安排活动海报出发，请您注意查收，谢谢"
       end
     
       if !message.empty? then
