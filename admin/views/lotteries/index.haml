@@ -38,7 +38,7 @@
 = form_tag url(:lotteries, :export, :format => :xlsx), :method => :get do
   =hidden_field_tag :start, :value => params[:start]
   =hidden_field_tag :end, :value => params[:end]
-  =submit_tag '从查询结果中导出Excel', :class => 'btn btn-success'
+  =submit_tag '从查询结果中导出Excel', :class => 'btn btn-primary'
   %p.bg-info
     导出的Excel中，“申请观赛”包括所有的参与用户，不仅是查询结果中的用户。
 
