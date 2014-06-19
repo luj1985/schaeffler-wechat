@@ -119,14 +119,22 @@ module SchaefflerWechat
     
     wechat_event :subscribe do |hash|
       content_type :xml
+      host = ENV['WECHAT_HOST']
       builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
         xml.xml {
           xml.ToUserName hash[:from_user_name]
           xml.FromUserName hash[:to_user_name]
           xml.CreateTime Time.now.to_i
-          xml.MsgType "text"
-          xml.Content "欢迎您关注舍弗勒中国汽车售后。
-即日起至8月31日，只要给汽配店中的舍弗勒活动海报拍照，就有机会获得2014限量版玩偶钥匙圈！还有最具人气的10家汽配店评选，赶快来参与吧！"
+          xml.MsgType "news"
+          xml.ArticleCount 1
+          xml.Articles {
+            xml.item {
+              xml.Title "欢迎您关注舍弗勒中国汽车售后"
+              xml.Description "即日起至8月31日，只要给汽配店中的舍弗勒活动海报拍照，就有机会获得2014限量版玩偶钥匙圈！还有最具人气的10家汽配店评选，赶快来参与吧！"
+              xml.PicUrl URI.join(host, '/images/subscribe.jpg')
+              xml.Url 'http://mp.weixin.qq.com/s?__biz=MzA4MTA1ODMwNw==&mid=200123849&idx=1&sn=baa00ea5fd0154200612365d5d20c563#rd'
+            }
+          }
         }
       end
       builder.to_xml
