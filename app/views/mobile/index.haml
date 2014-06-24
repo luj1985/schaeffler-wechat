@@ -4,10 +4,8 @@
   .ui-grid-a
     .ui-block-a
       -#%a{:href => url_for(:mobile, :ios)}
-      %a{:href => "javascript:alert('敬请期待')"}
-        %img{:src => '/images/mobile/iphone.png', :width=> '100%'}
+      %a.download.ios{:href => "javascript:alert('敬请期待')"}
       %h4.name iOS（苹果）
     .ui-block-b
-      %a{:href => url_for(:mobile, :android)}
-        %img{:src => '/images/mobile/android.png', :width=> '100%'}
+      %a.download.android{:href => url_for(:mobile, :android)}
       %h4.name Android（安卓）
