@@ -15,4 +15,8 @@ SchaefflerWechat::App.controllers :mobile do
       :type => 'application/vnd.android.package-archive')
   end
 
+  get :ios do
+    halt 404
+  end
+
 end

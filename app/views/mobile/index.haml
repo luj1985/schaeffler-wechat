@@ -1,4 +1,12 @@
-%ul
-  %li
-    %a{:href => url_for(:mobile, :android)} Android
-  %li iPhone
+%div{'data-role' => 'content'}
+  %h1.header 请选择您的手机系统
+  %h2.subheader 进入相应页面下载
+  .ui-grid-a
+    .ui-block-a
+      %a{:href => url_for(:mobile, :ios)}
+        %img{:src => '/images/mobile/iphone.png', :width=> '100%'}
+        %h4.name iOS（苹果）
+    .ui-block-b
+      %a{:href => url_for(:mobile, :android)}
+        %img{:src => '/images/mobile/android.png', :width=> '100%'}
+        %h4.name Android（安卓）
