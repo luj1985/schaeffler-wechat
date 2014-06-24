@@ -3,7 +3,8 @@
   %h2.subheader 进入相应页面下载
   .ui-grid-a
     .ui-block-a
-      %a{:href => url_for(:mobile, :ios)}
+      -#%a{:href => url_for(:mobile, :ios)}
+      %a{:href => "javascript:alert('敬请期待')"}
         %img{:src => '/images/mobile/iphone.png', :width=> '100%'}
       %h4.name iOS（苹果）
     .ui-block-b
