@@ -25,35 +25,34 @@
           
 
           %ul.nav.navbar-nav.pull-left
-            %li.dropdown.navbar-module
-              %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
-                促销活动
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => url_for(:lotteries, :index)} 已兑奖号码
-                  %a{:href => url_for(:users, :index)} 参与微信用户
-                  %a{:href => url_for(:questions, :index)} 申请观赛问题
-                  %a{:href => url_for(:fences, :index)} 用户活跃度
+            -promotions = project_modules.select { |p| p.options[:group] == :promotion }
+            -active = promotions.find_index { |p| request.path_info =~ /^#{p.path}/}
+            -if !promotions.empty? then
+              %li.dropdown.navbar-module{:class => "#{'active' if active}"}
+                %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
+                  促销活动
+                  %b.caret
+                %ul.dropdown-menu
+                  - promotions.each do |project_module|
+                    %li{:class => "#{('active' if request.path_info =~ /^#{project_module.path}/)}"}
+                      =link_to project_module.options[:name], url(project_module.path)
 
-            %li.dropdown.navbar-module
-              %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
-                微网页消息管理
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => url_for(:menus, :index)} 微网页二级菜单
-                  %a{:href => url_for(:articles, :index)} 微网页消息
-                  %a{:href => url_for(:pages, :index)} 促销活动页面
-            %li
-              %a{:href => url_for(:mobiles, :index)} App推广
-            %li
-              %a{:href => url_for(:wmenus, :index)} 编辑微信菜单
+            -news = project_modules.select { |p| p.options[:group] == :news }
+            -active = news.find_index { |p| request.path_info =~ /^#{p.path}/}
+            -if !news.empty? then
+              %li.dropdown.navbar-module{:class => "#{'active' if active}"}
+                %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
+                  微网页消息管理
+                  %b.caret
+                %ul.dropdown-menu
+                  - news.each do |project_module|
+                    %li{:class => "#{('active' if request.path_info =~ /^#{project_module.path}/)}"}
+                      =link_to project_module.options[:name], url(project_module.path)
 
-          -#%ul.nav.navbar-nav.pull-left
-          -#  - project_modules.each do |project_module|
-          -#    %li{:class => "navbar-module #{('active' if request.path_info =~ /^#{project_module.path}/)}"}
-          -#      =link_to t("modules.#{project_module.name}"), url(project_module.path)
+            - project_modules.each do |project_module|
+              - if ![:promotion, :news, :account ].include? (project_module.options[:group])
+                %li{:class => "navbar-module #{('active' if request.path_info =~ /^#{project_module.path}/)}"}
+                  =link_to project_module.options[:name], url(project_module.path)
 
     .container.main
       .main-wrapper
