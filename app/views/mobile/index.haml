@@ -1,11 +1,16 @@
-%div{'data-role' => 'content'}
-  %h1.header 请选择您的手机系统
-  %h2.subheader 进入相应页面下载
+.wrapper{'data-role' => 'content'}
+  %h1.header 
+    舍弗勒官方应用软件
+    %sub 舍弗勒产品助手
+  %h2.header 
+    请选择您的手机系统
+    %sub 进入相应页面下载
   .ui-grid-a
     .ui-block-a
       -#%a{:href => url_for(:mobile, :ios)}
       %a.download.ios{:href => "javascript:alert('敬请期待')"}
-      %h4.name iOS（苹果）
+        %h4.name iOS (苹果)
     .ui-block-b
       %a.download.android{:href => url_for(:mobile, :android)}
-      %h4.name Android（安卓）
+        %h4.name Android (安卓)
+  %h1.ad 舍弗勒APP·全新登场
