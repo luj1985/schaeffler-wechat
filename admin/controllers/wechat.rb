@@ -27,4 +27,7 @@ SchaefflerWechat::Admin.controllers :wechat do
   get :menu do
     render 'wechat/menu'
   end
+
+  put :update do
+  end
 end

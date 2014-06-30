@@ -1,0 +1,8 @@
+%ul.nav.nav-tabs
+  %li=link_to tag_icon(:list, pat(:list)), url(:auto_replies, :index)
+  %li=link_to tag_icon(:plus, pat(:new)), url(:auto_replies, :new)
+  %li.active=link_to tag_icon(:edit, pat(:edit)), url(:auto_replies, :edit, :id => @auto_reply.id)
+
+.tabs-content
+  = form_for :auto_reply, url(:auto_replies, :update, :id => @auto_reply.id), :method => :put, :class => 'form-horizontal' do |f|
+    =partial 'auto_replies/form', :locals => { :f => f }
