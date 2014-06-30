@@ -5,6 +5,6 @@ SchaefflerWechat::Admin.controllers :fences do
     else
       @fences = Fence.includes(:user).all.paginate(:page => params[:page])
     end
-    render "fences/index"
+    render "fences"
   end
 end

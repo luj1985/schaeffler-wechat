@@ -25,6 +25,9 @@ module SchaefflerWechat
       role.project_module :menus, '/menus', { :name => '微网页二级菜单', :group => :news }
       role.project_module :articles, '/articles', {:name => '微网页消息', :group => :news }
       role.project_module :pages, '/pages', { :name => '促销活动页面', :group => :news }
+
+      role.project_module :auto_reply, '/wechat/auto_reply', { :name => '自动回复', :group => :wechat}
+      role.project_module :wechat, '/wechat/menu', { :name => '微信菜单', :group => :wechat}
     end
 
     access_control.roles_for :admin, :apps do |role|

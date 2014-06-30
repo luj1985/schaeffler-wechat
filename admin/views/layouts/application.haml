@@ -49,8 +49,20 @@
                     %li{:class => "#{('active' if request.path_info =~ /^#{project_module.path}/)}"}
                       =link_to project_module.options[:name], url(project_module.path)
 
+            -wechat = project_modules.select { |p| p.options[:group] == :wechat }
+            -active = wechat.find_index { |p| request.path_info =~ /^#{p.path}/}
+            -if !news.empty? then
+              %li.dropdown.navbar-module{:class => "#{'active' if active}"}
+                %a.dropdown-toggle{:href => '#', 'data-toggle'=>"dropdown"}
+                  微信配置管理
+                  %b.caret
+                %ul.dropdown-menu
+                  - wechat.each do |project_module|
+                    %li{:class => "#{('active' if request.path_info =~ /^#{project_module.path}/)}"}
+                      =link_to project_module.options[:name], url(project_module.path)
+
             - project_modules.each do |project_module|
-              - if ![:promotion, :news, :account ].include? (project_module.options[:group])
+              - if ![:promotion, :news, :account, :wechat ].include? (project_module.options[:group])
                 %li{:class => "navbar-module #{('active' if request.path_info =~ /^#{project_module.path}/)}"}
                   =link_to project_module.options[:name], url(project_module.path)
 

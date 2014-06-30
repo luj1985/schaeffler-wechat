@@ -10,7 +10,7 @@ SchaefflerWechat::Admin.controllers :lotteries do
     @lotteries = @lotteries.where('exchange_time < ?', endTime) if endTime
 
     @lotteries = @lotteries.order('exchange_time asc').paginate(:page => params[:page])
-    render 'lotteries/index'
+    render 'lotteries'
   end
 
   get :export, :provides => :xlsx do

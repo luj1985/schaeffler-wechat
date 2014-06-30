@@ -1,0 +1,14 @@
+zh_cn:
+  models:
+    auto_reply:
+      name: 自动回复
+      attributes:
+        id: 编号
+        event: 事件类型
+        param: 事件参数
+        title: 回复新闻标题
+        pic_url: 回复图片
+        url: 回复链接
+        description: 回复新闻正文
+        created_at: 创建时间
+        updated_at: 更新时间
