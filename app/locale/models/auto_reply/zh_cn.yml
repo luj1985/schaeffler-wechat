@@ -6,6 +6,7 @@ zh_cn:
         id: 编号
         event: 事件类型
         param: 事件参数
+        weight: 优先级
         title: 回复新闻标题
         pic_url: 回复图片
         url: 回复链接

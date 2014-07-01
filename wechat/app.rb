@@ -64,26 +64,20 @@ module SchaefflerWechat
 
     message_event :text do |hash|
       content_type :xml
-      content = hash[:content] || ""
-    
-      message = ""
-    
-      if content.include? '省' or content.include? '市' then
-        message = "感谢您参与本次活动，请确认提交的联系方式准确无误，以便我们联系您/::)"
-      end
 
-      if content.include? '申请海报' then
-        message = "您的海报申请信息我们已经收到，我们将尽快安排活动海报出发，请您注意查收，谢谢/::)"
-      end
-    
-      if !message.empty? then
+      replies = AutoReply.where(:event => 'keyword').order(:weight => :desc)
+
+      content = hash[:content] || ""
+      reply = replies.find { |reply| content.include? reply.param }
+
+      if not reply.nil? then
         builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
           xml.xml {
             xml.ToUserName hash[:from_user_name]
             xml.FromUserName hash[:to_user_name]
             xml.CreateTime Time.now.to_i
             xml.MsgType "text"
-            xml.Content message
+            xml.Content reply.description % hash
           }
         end
         builder.to_xml
@@ -91,7 +85,6 @@ module SchaefflerWechat
         ""
       end
     end
-    
 
     def wechat_news_reply replies, hash
       content_type :xml
@@ -106,10 +99,10 @@ module SchaefflerWechat
           xml.Articles {
             replies.each do |reply|
               xml.item {
-                xml.Title (reply.title % hash)
-                xml.Description (reply.description % hash)
-                xml.PicUrl (reply.pic_url % hash)
-                xml.Url (reply.url % hash)
+                xml.Title reply.title % hash
+                xml.Description reply.description % hash
+                xml.PicUrl reply.pic_url % hash
+                xml.Url reply.url % hash
               }
             end
           }

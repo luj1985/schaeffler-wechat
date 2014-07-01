@@ -1,7 +1,7 @@
 SchaefflerWechat::Admin.controllers :auto_replies do
   get :index do
     @title = "Auto_replies"
-    @auto_replies = AutoReply.all
+    @auto_replies = AutoReply.all.order(:event => :desc, :weight => :desc)
     render 'auto_replies/index'
   end
 

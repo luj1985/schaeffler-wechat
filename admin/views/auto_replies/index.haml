@@ -28,6 +28,7 @@
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
         %th.header= mat(:auto_reply, :event)
         %th.header= mat(:auto_reply, :param)
+        %th.header= mat(:auto_reply, :weight)
         %th.header= mat(:auto_reply, :title)
         %th.header.list-row-action-header
 
@@ -38,6 +39,7 @@
             =check_box_tag 'auto_reply_ids[]', :value => auto_reply.id, :class => 'list-selectable-checkbox'
           %td.list-column=auto_reply.event
           %td.list-column=auto_reply.param
+          %td.list-column=auto_reply.weight
           %td.list-column=auto_reply.title
           %td.list-column.list-row-action
             .list-row-action-wrapper
