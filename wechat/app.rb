@@ -89,26 +89,31 @@ module SchaefflerWechat
     def wechat_news_reply replies, hash
       content_type :xml
       hash[:host] = ENV['WECHAT_HOST']
-      builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
-        xml.xml {
-          xml.ToUserName hash[:from_user_name]
-          xml.FromUserName hash[:to_user_name]
-          xml.CreateTime Time.now.to_i
-          xml.MsgType "news"
-          xml.ArticleCount replies.length
-          xml.Articles {
-            replies.each do |reply|
-              xml.item {
-                xml.Title reply.title % hash
-                xml.Description reply.description % hash
-                xml.PicUrl reply.pic_url % hash
-                xml.Url reply.url % hash
-              }
-            end
+      
+      if replies.length != 0 then
+        builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+          xml.xml {
+            xml.ToUserName hash[:from_user_name]
+            xml.FromUserName hash[:to_user_name]
+            xml.CreateTime Time.now.to_i
+            xml.MsgType "news"
+            xml.ArticleCount replies.length
+            xml.Articles {
+              replies.each do |reply|
+                xml.item {
+                  xml.Title reply.title % hash
+                  xml.Description reply.description % hash
+                  xml.PicUrl reply.pic_url % hash
+                  xml.Url reply.url % hash
+                }
+              end
+            }
           }
-        }
+        end
+        builder.to_xml
+      else
+        ""
       end
-      builder.to_xml
     end
     
     wechat_event :click, :event_key => 'activity' do |hash|
