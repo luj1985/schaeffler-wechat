@@ -1,38 +1,44 @@
 
 - error = @auto_reply.errors.include?(:event)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :event, :class => 'control-label'
-  .controls
-    =f.text_field :event, :class => 'form-control input-large input-with-feedback'
+%fieldset.form-group{:class => error ? 'has-error' : ''}
+  .col-sm-2.controls
+    =f.label :event, :class => 'control-label'
+  .col-sm-2.controls
+    =f.select :event, :options => ['subscribe', 'click', 'keyword'], :class => 'form-control input-large input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:event, :class => 'text-error') : ''
 - error = @auto_reply.errors.include?(:param)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :param, :class => 'control-label'
-  .controls
+%fieldset.form-group{:class => error ? 'has-error' : ''}
+  .col-sm-2.controls
+    =f.label :param, :class => 'control-label'
+  .col-sm-10.controls
     =f.text_field :param, :class => 'form-control input-large input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:param, :class => 'text-error') : ''
 - error = @auto_reply.errors.include?(:title)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :title, :class => 'control-label'
-  .controls
+%fieldset.form-group{:class => error ? 'has-error' : ''}
+  .col-sm-2.controls
+    =f.label :title, :class => 'control-label'
+  .col-sm-10.controls
     =f.text_field :title, :class => 'form-control input-large input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
 - error = @auto_reply.errors.include?(:pic_url)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :pic_url, :class => 'control-label'
-  .controls
-    =f.text_field :pic_url, :class => 'form-control input-large input-with-feedback'
+%fieldset.form-group{:class => error ? 'has-error' : ''}
+  .col-sm-2.controls
+    =f.label :pic_url, :class => 'control-label'
+  .col-sm-10.controls
+    =f.url_field :pic_url, :class => 'form-control input-large input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:pic_url, :class => 'text-error') : ''
 - error = @auto_reply.errors.include?(:url)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :url, :class => 'control-label'
-  .controls
-    =f.text_field :url, :class => 'form-control input-large input-with-feedback'
+%fieldset.form-group{:class => error ? 'has-error' : ''}
+  .col-sm-2.controls
+    =f.label :url, :class => 'control-label'
+  .col-sm-10.controls
+    =f.url_field :url, :class => 'form-control input-large input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:url, :class => 'text-error') : ''
 - error = @auto_reply.errors.include?(:description)
-%fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :description, :class => 'control-label'
-  .controls
+%fieldset.form-group{:class => error ? 'has-error' : ''}
+  .col-sm-2.controls
+    =f.label :description, :class => 'control-label'
+  .col-sm-10.controls
     ~f.text_area :description, :class => 'form-control input-large input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:description, :class => 'text-error') : ''
 

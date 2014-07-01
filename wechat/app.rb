@@ -11,7 +11,6 @@ module SchaefflerWechat
     end
 
     class << self
-
       def message_event type, &blk
         message_handlers = settings.message_handlers
         message_handlers[type] = blk
@@ -93,51 +92,40 @@ module SchaefflerWechat
       end
     end
     
-    wechat_event :click, :event_key => 'activity' do |hash|
-      content_type :xml
-      host = ENV['WECHAT_HOST']
 
+    def wechat_news_reply replies, hash
+      content_type :xml
+      hash[:host] = ENV['WECHAT_HOST']
       builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
         xml.xml {
           xml.ToUserName hash[:from_user_name]
           xml.FromUserName hash[:to_user_name]
           xml.CreateTime Time.now.to_i
           xml.MsgType "news"
-          xml.ArticleCount 1
+          xml.ArticleCount replies.length
           xml.Articles {
-            xml.item {
-              xml.Title "“买舍弗勒产品，刮好礼，享速度与激情”"
-              xml.Description ''
-              xml.PicUrl URI.join(host, '/images/activity/push-message.png')
-              xml.Url (host + '/activity?openid=' + hash[:from_user_name])
-            }
+            replies.each do |reply|
+              xml.item {
+                xml.Title (reply.title % hash)
+                xml.Description (reply.description % hash)
+                xml.PicUrl (reply.pic_url % hash)
+                xml.Url (reply.url % hash)
+              }
+            end
           }
         }
       end
       builder.to_xml
     end
     
+    wechat_event :click, :event_key => 'activity' do |hash|
+      replies = AutoReply.where :event => 'click', :param => 'activity'
+      wechat_news_reply replies, hash
+    end
+    
     wechat_event :subscribe do |hash|
-      content_type :xml
-      host = ENV['WECHAT_HOST']
-      builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
-        xml.xml {
-          xml.ToUserName hash[:from_user_name]
-          xml.FromUserName hash[:to_user_name]
-          xml.CreateTime Time.now.to_i
-          xml.MsgType "news"
-          xml.ArticleCount 1
-          xml.Articles {
-            xml.item {
-              xml.Title "欢迎您关注舍弗勒中国汽车售后"
-              xml.Description "即日起至8月31日，只要给汽配店中的舍弗勒活动海报拍照，就有机会获得2014限量版玩偶钥匙圈！还有最具人气的10家汽配店评选，赶快来参与吧！"
-              xml.PicUrl URI.join(host, '/images/subscribe.jpg')
-              xml.Url 'http://mp.weixin.qq.com/s?__biz=MzA4MTA1ODMwNw==&mid=200123849&idx=1&sn=baa00ea5fd0154200612365d5d20c563#rd'
-            }
-          }
-        }
-      end
-      builder.to_xml
+      replies = AutoReply.where :event => 'subscribe'
+      wechat_news_reply replies, hash
     end
   end
 end
