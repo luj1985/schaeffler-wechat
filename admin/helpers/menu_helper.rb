@@ -8,9 +8,9 @@ SchaefflerWechat::Admin.helpers do
   end
 
   def dropdown_pages menu
-  	selected = menu.pages.map { |page| page.id }
-  	pages = Page.select(:id, :title).all
-  		.order(:title).reject { |page| selected.include?(page.id) }
-  	pages.map { |page| [page.title, page.id]}
+    selected = menu.pages.map { |page| page.id }
+    pages = Page.select(:id, :title).all
+      .order(:title).reject { |page| selected.include?(page.id) }
+    pages.map { |page| [page.title, page.id]}
   end
 end

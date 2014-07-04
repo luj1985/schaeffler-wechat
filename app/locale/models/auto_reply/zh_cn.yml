@@ -6,10 +6,11 @@ zh_cn:
         id: 编号
         event: 事件类型
         param: 事件参数
+        rtype: 回复类型
         weight: 优先级
-        title: 回复新闻标题
+        title: 回复消息标题
         pic_url: 回复图片
         url: 回复链接
-        description: 回复新闻正文
+        description: 回复消息正文
         created_at: 创建时间
         updated_at: 更新时间

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 34) do
+ActiveRecord::Schema.define(version: 35) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 34) do
     t.string   "url"
     t.string   "event"
     t.integer  "weight"
+    t.string   "rtype"
   end
 
   create_table "fences", force: true do |t|

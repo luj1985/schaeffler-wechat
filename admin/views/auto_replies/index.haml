@@ -1,8 +1,21 @@
+
+
 %ul.nav.nav-tabs
   %li.active=link_to tag_icon(:list, pat(:list)), url(:auto_replies, :index)
   %li=link_to tag_icon(:plus, pat(:new)), url(:auto_replies, :new)
 
 .tabs-content
+  .btn-group{:style => 'margin-bottom:20px;'}
+    %a.btn.btn-default{:href => url_for(:auto_replies, :index), :class => params['event'] ? '' : 'active'}
+      显示全部
+    %a.btn.btn-default{:href => url_for(:auto_replies, :index, :event => 'subscribe'), :class => params['event'] == 'subscribe' ? 'active' : ''}
+      订阅事件自动回复
+    %a.btn.btn-default{:href => url_for(:auto_replies, :index, :event => 'keyword'), :class => params['event'] == 'keyword' ? 'active' : ''}
+      关键字自动回复
+    %a.btn.btn-default{:href => url_for(:auto_replies, :index, :event => 'click'), :class => params['event'] == 'click' ? 'active' : ''}
+      自定义菜单事件
+
+
   %table#list.table.table-striped.table-hover.table-condensed
     %thead
       %tr
@@ -28,8 +41,8 @@
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
         %th.header= mat(:auto_reply, :event)
         %th.header= mat(:auto_reply, :param)
+        %th.header= mat(:auto_reply, :rtype)
         %th.header= mat(:auto_reply, :weight)
-        %th.header= mat(:auto_reply, :title)
         %th.header.list-row-action-header
 
     %tbody
@@ -37,10 +50,10 @@
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'auto_reply_ids[]', :value => auto_reply.id, :class => 'list-selectable-checkbox'
-          %td.list-column=auto_reply.event
+          %td.list-column=event_pair(auto_reply.event)
           %td.list-column=auto_reply.param
+          %td.list-column=rtype_pair(auto_reply.rtype)
           %td.list-column=auto_reply.weight
-          %td.list-column=auto_reply.title
           %td.list-column.list-row-action
             .list-row-action-wrapper
               =link_to tag_icon(:edit), :href => url(:auto_replies, :edit, :id => auto_reply.id), :rel => :tooltip, :title => "#{pat(:edit)} auto_reply", :class => 'list-row-action-wrapper-link'
