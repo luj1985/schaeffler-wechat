@@ -1,9 +1,19 @@
+-content_for :javascripts do
+  =javascript_include_tag 'auto_reply'
+  :javascript
+    $(function() {
+      $('.tabs-content form').auto_reply();
+      
+      $('select[name="auto_reply[rtype]"]').on('change', function() {
+        $('.tabs-content form').auto_reply();
+      });
+    });
 
 - error = @auto_reply.errors.include?(:event)
 %fieldset.form-group{:class => error ? 'has-error' : ''}
   .col-sm-2.controls
     =f.label :event, :class => 'control-label'
-  .col-sm-2.controls
+  .col-sm-3.controls
     =f.select :event, :options => [['订阅事件', 'subscribe'], ['菜单事件', 'click'], ['关键字回复','keyword']], :class => 'form-control input-large input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:event, :class => 'text-error') : ''
 
@@ -30,45 +40,11 @@
 %fieldset.form-group{:class => error ? 'has-error' : ''}
   .col-sm-2.controls
     =f.label :rtype, :class => 'control-label'
-  .col-sm-2.controls
+  .col-sm-3.controls
     =f.select :rtype, :options => [['文本消息', 'text'], ['图文消息', 'news']], :class => 'form-control input-large input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:rtype, :class => 'text-error') : ''
 
-
-- error = @auto_reply.errors.include?(:title)
-%fieldset.form-group{:class => error ? 'has-error' : ''}
-  .col-sm-2.controls
-    =f.label :title, :class => 'control-label'
-  .col-sm-10.controls
-    =f.text_field :title, :class => 'form-control input-large input-with-feedback'
-    %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
-
-
-- error = @auto_reply.errors.include?(:pic_url)
-%fieldset.form-group{:class => error ? 'has-error' : ''}
-  .col-sm-2.controls
-    =f.label :pic_url, :class => 'control-label'
-  .col-sm-10.controls
-    =f.url_field :pic_url, :class => 'form-control input-large input-with-feedback'
-    %span.help-inline=error ? f.error_message_on(:pic_url, :class => 'text-error') : ''
-
-
-- error = @auto_reply.errors.include?(:url)
-%fieldset.form-group{:class => error ? 'has-error' : ''}
-  .col-sm-2.controls
-    =f.label :url, :class => 'control-label'
-  .col-sm-10.controls
-    =f.url_field :url, :class => 'form-control input-large input-with-feedback'
-    %span.help-inline=error ? f.error_message_on(:url, :class => 'text-error') : ''
-
-
-- error = @auto_reply.errors.include?(:description)
-%fieldset.form-group{:class => error ? 'has-error' : ''}
-  .col-sm-2.controls
-    =f.label :description, :class => 'control-label'
-  .col-sm-10.controls
-    ~f.text_area :description, :class => 'form-control input-large input-with-feedback'
-    %span.help-inline=error ? f.error_message_on(:description, :class => 'text-error') : ''
+#reply_editor
 
 .form-actions
   =f.submit pat(:save), :class => 'btn btn-primary'
