@@ -2,7 +2,7 @@
     var newsTmpl = $([
         '<fieldset class="form-group">',
         '  <div class="col-sm-2 controls">',
-        '    <label for="auto_reply_title" id="auto_reply_title" class="control-label">回复消息标题: </label>',
+        '    <label for="auto_reply_title" class="control-label">回复消息标题: </label>',
         '  </div>',
         '  <div class="col-sm-10 controls">',
         '    <input name="auto_reply[title]" id="auto_reply_title" class="form-control input-large input-with-feedback" type="text">',
@@ -10,10 +10,10 @@
         '</fieldset>',
         '<fieldset class="form-group">',
         '  <div class="col-sm-2 controls">',
-        '    <label for="auto_reply_pic_url" id="auto_reply_pic_url" class="control-label">回复图片: </label>',
+        '    <label for="auto_reply_pic_url" class="control-label">回复图片: </label>',
         '  </div>',
-        '  <div class="col-sm-5 controls">',
-        '    <input name="auto_reply[pic_url]" value="" id="auto_reply_pic_url" class="form-control input-large input-with-feedback" type="text" disabled>',
+        '  <div class="col-sm-6 controls">',
+        '    <input name="auto_reply[pic_url]" id="auto_reply_pic_url" class="form-control input-large input-with-feedback" type="text">',
         '  </div>',
         '  <div class="col-sm-4 controls">',
         '    <div class="btn btn-success fileinput-button">',
@@ -26,7 +26,7 @@
         '</fieldset>',
         '<fieldset class="form-group">',
         '  <div class="col-sm-2 controls">',
-        '    <label for="auto_reply_url" id="auto_reply_url" class="control-label">回复链接: </label>',
+        '    <label for="auto_reply_url" class="control-label">回复链接: </label>',
         '  </div>',
         '  <div class="col-sm-10 controls">',
         '    <input name="auto_reply[url]" id="auto_reply_url" class="form-control input-large input-with-feedback" type="text">',
@@ -34,7 +34,7 @@
         '</fieldset>',
         '<fieldset class="form-group">',
         '  <div class="col-sm-2 controls">',
-        '    <label for="auto_reply_description" id="auto_reply_description" class="control-label">回复消息正文: </label>',
+        '    <label for="auto_reply_description" class="control-label">回复消息正文: </label>',
         '  </div>',
         '  <div class="col-sm-10 controls">',
         '    <textarea name="auto_reply[description]" rows="" cols="" id="auto_reply_description" class="form-control input-large input-with-feedback"></textarea>',
@@ -47,8 +47,8 @@
     $('#upload', newsTmpl).fileupload({
         dataType: 'json',
         paramName: 'file',
-        type: 'POST',
-        url: '/admin/images/upload',
+        type: 'PUT',
+        url: '/admin/images/upload?path=absolute',
         done: function(e, data) {
             var result = data.result,
                 link = result.link;
@@ -67,10 +67,10 @@
     var textTmpl = $([
         '<fieldset class="form-group">',
         '  <div class="col-sm-2 controls">',
-        '    <label for="auto_reply_description" id="auto_reply_description" class="control-label">回复消息正文: </label>',
+        '    <label for="auto_reply_description" class="control-label">回复消息正文: </label>',
         '  </div>',
         '  <div class="col-sm-10 controls">',
-        '    <textarea name="auto_reply[description]" rows="" cols="" id="auto_reply_description" class="form-control input-large input-with-feedback"></textarea>',
+        '    <textarea name="auto_reply[description]" id="auto_reply_description" class="form-control input-large input-with-feedback"></textarea>',
         '  </div>',
         '</fieldset>'
     ].join('\n'));
@@ -94,6 +94,7 @@
 
         var html = render($rtype.val());
 
+        // form data initialize
         $('input[name="auto_reply[title]"]', html).val(obj.title);
         $('input[name="auto_reply[pic_url]"]', html).val(obj.pic_url);
         $('input[name="auto_reply[url]"]', html).val(obj.url);

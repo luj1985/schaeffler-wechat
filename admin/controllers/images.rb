@@ -13,12 +13,17 @@ SchaefflerWechat::Admin.controllers :images do
   end
 
   upload = lambda do
+    path = params[:path]
+
+
     tempfile = params[:file][:tempfile]
     filename = params[:file][:filename]
     extension = File.extname(filename)
-    resource = SecureRandom.hex + extension;
+    resource = SecureRandom.hex + extension
     target = "public/uploads/#{resource}"
     link =  "/uploads/#{resource}"
+
+    link = ENV['WECHAT_ENDPOINT'] + link if path == 'absolute'   
 
     cp tempfile.path, target
     chmod 0644, target
