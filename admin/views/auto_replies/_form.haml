@@ -2,13 +2,11 @@
   =javascript_include_tag 'auto_reply'
   :javascript
     $(function() {
-      $('.tabs-content form').auto_reply();
-      
+      $('.tabs-content form').init_reply(#{f.object.to_json});
       $('select[name="auto_reply[rtype]"]').on('change', function() {
         $('.tabs-content form').auto_reply();
       });
     });
-
 - error = @auto_reply.errors.include?(:event)
 %fieldset.form-group{:class => error ? 'has-error' : ''}
   .col-sm-2.controls
