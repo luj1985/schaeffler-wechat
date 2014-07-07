@@ -5,10 +5,7 @@
   =javascript_include_tag 'auto_reply'
   :javascript
     $(function() {
-      $('.tabs-content form').init_reply(#{f.object.to_json});
-      $('select[name="auto_reply[rtype]"]').on('change', function() {
-        $('.tabs-content form').auto_reply();
-      });
+      $('.tabs-content form').auto_reply(#{f.object.to_json});
     });
 
 -content_for :stylesheets do

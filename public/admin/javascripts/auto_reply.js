@@ -55,8 +55,14 @@
     };
 
 
-    function render(rtype) {
+    function render(rtype, obj) {
         $('#reply_editor').html(TMPLS[rtype]);
+
+        $('input[name="auto_reply[title]"]').val(obj.title);
+        $('input[name="auto_reply[pic_url]"]').val(obj.pic_url);
+        $('input[name="auto_reply[url]"]').val(obj.url);
+        $('textarea[name="auto_reply[description]"]').val(obj.description);
+
         $progress = $('#progress');
 
         $('#upload').fileupload({
@@ -79,32 +85,20 @@
         });
     }
 
-    $.fn.init_reply = function(obj) {
+    $.fn.auto_reply = function(obj) {
         var rtype = $('select[name="auto_reply[rtype]"]').val();
 
-        render(rtype);
+        render(rtype, obj);
 
+        $('select[name="auto_reply[rtype]"]').on('change', function() {
+            var rtype = $(this).val();
 
-        $('input[name="auto_reply[title]"]').val(obj.title);
-        $('input[name="auto_reply[pic_url]"]').val(obj.pic_url);
-        $('input[name="auto_reply[url]"]').val(obj.url);
-        $('textarea[name="auto_reply[description]"]').val(obj.description);
-    };
+            obj.title = $('input[name="auto_reply[title]"]').val();
+            obj.pic_url = $('input[name="auto_reply[pic_url]"]').val();
+            obj.url = $('input[name="auto_reply[url]"]').val();
+            obj.description = $('textarea[name="auto_reply[description]"]').val();
 
-    $.fn.auto_reply = function() {
-        var rtype = $('select[name="auto_reply[rtype]"]').val();
-
-        var title = $('input[name="auto_reply[title]"]').val(),
-            pic = $('input[name="auto_reply[pic_url]"]').val(),
-            url = $('input[name="auto_reply[url]"]').val(),
-            description = $('textarea[name="auto_reply[description]"]').val();
-
-
-        render(rtype);
-
-        $('input[name="auto_reply[title]"]').val(title);
-        $('input[name="auto_reply[pic_url]"]').val(pic);
-        $('input[name="auto_reply[url]"]').val(url);
-        $('textarea[name="auto_reply[description]"]').val(description);
+            render(rtype, obj);
+        });
     };
 })(jQuery)
