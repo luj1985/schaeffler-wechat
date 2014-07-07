@@ -62,6 +62,7 @@ module SchaefflerWechat
       end
     end
 
+    # used for keyword auto reply
     message_event :text do |hash|
       content_type :xml
 
@@ -69,6 +70,29 @@ module SchaefflerWechat
 
       content = hash[:content] || ""
       reply = replies.find { |reply| content.include? reply.param }
+
+      execute_reply [reply], hash
+    end
+
+    def execute_reply replies, hash
+      return "" if replies.length == 0
+      
+      rtype = replies.first.rtype
+      valid_replies = replies.select { |reply| reply.rtype == rtype }
+
+      if rtype == 'news' then
+        wechat_news_reply valid_replies, hash
+      elsif rtype == 'text'
+        wechat_text_reply valid_replies, hash 
+      end
+    end
+
+    # for 'text' type reply, only one action can be execute at the same time
+    def wechat_text_reply replies, hash
+      content_type :xml
+      hash[:host] = ENV['WECHAT_HOST']
+
+      reply = replies[0]
 
       if not reply.nil? then
         builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
@@ -86,6 +110,7 @@ module SchaefflerWechat
       end
     end
 
+    # for 'news' type reply, serveral response can be take at the same time
     def wechat_news_reply replies, hash
       content_type :xml
       hash[:host] = ENV['WECHAT_HOST']
@@ -118,12 +143,12 @@ module SchaefflerWechat
     
     wechat_event :click, :event_key => 'activity' do |hash|
       replies = AutoReply.where :event => 'click', :param => 'activity'
-      wechat_news_reply replies, hash
+      execute_reply replies, hash
     end
     
     wechat_event :subscribe do |hash|
       replies = AutoReply.where :event => 'subscribe'
-      wechat_news_reply replies, hash
+      execute_reply replies, hash
     end
   end
 end
