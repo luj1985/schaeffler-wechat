@@ -13,7 +13,7 @@
         '    <label for="auto_reply_pic_url" id="auto_reply_pic_url" class="control-label">回复图片: </label>',
         '  </div>',
         '  <div class="col-sm-5 controls">',
-        '    <input name="auto_reply[pic_url]" id="auto_reply_pic_url" class="form-control input-large input-with-feedback" type="text" disabled>',
+        '    <input name="auto_reply[pic_url]" value="" id="auto_reply_pic_url" class="form-control input-large input-with-feedback" type="text" disabled>',
         '  </div>',
         '  <div class="col-sm-4 controls">',
         '    <div class="btn btn-success fileinput-button">',

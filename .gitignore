@@ -11,4 +11,5 @@ db/*.db
 .project
 .env
 *~
+*.bak
 public/uploads/*
