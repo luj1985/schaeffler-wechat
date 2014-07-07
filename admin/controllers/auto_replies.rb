@@ -38,10 +38,6 @@ SchaefflerWechat::Admin.controllers :auto_replies do
 
   put :update, :with => :id do
     @title = pat(:update_title, :model => "auto_reply #{params[:id]}")
-
-    puts '------------'
-    puts params
-    
     @auto_reply = AutoReply.find(params[:id])
     if @auto_reply
       if @auto_reply.update_attributes(params[:auto_reply])

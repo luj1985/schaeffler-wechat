@@ -37,7 +37,7 @@
         '    <label for="auto_reply_description" class="control-label">回复消息正文: </label>',
         '  </div>',
         '  <div class="col-sm-10 controls">',
-        '    <textarea name="auto_reply[description]" rows="" cols="" id="auto_reply_description" class="form-control input-large input-with-feedback"></textarea>',
+        '    <textarea name="auto_reply[description]" id="auto_reply_description" class="form-control input-large input-with-feedback"></textarea>',
         '  </div>',
         '</fieldset>'
     ].join('\n'));

@@ -1,5 +1,8 @@
 
 
+-content_for :stylesheets do
+  =stylesheet_link_tag 'admin'
+
 %ul.nav.nav-tabs
   %li.active=link_to tag_icon(:list, pat(:list)), url(:auto_replies, :index)
   %li=link_to tag_icon(:plus, pat(:new)), url(:auto_replies, :new)
@@ -39,29 +42,26 @@
                       =hidden_field_tag :auto_reply_ids, :'data-delete-many-ids' => true
                       =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
+
         %th.header= mat(:auto_reply, :event)
         %th.header= mat(:auto_reply, :param)
         %th.header= mat(:auto_reply, :rtype)
         %th.header= mat(:auto_reply, :weight)
-        %th.header.list-row-action-header
+        %th.header Summary
 
     %tbody
       -@auto_replies.each do |auto_reply|
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'auto_reply_ids[]', :value => auto_reply.id, :class => 'list-selectable-checkbox'
-          %td.list-column=event_pair(auto_reply.event)
+            
+          %td.list-column
+            %a{:href => url_for(:auto_replies, :edit, :id => auto_reply.id)}
+              =tag_icon(:edit)
+              =event_pair(auto_reply.event)
+            
           %td.list-column=auto_reply.param
           %td.list-column=rtype_pair(auto_reply.rtype)
           %td.list-column=auto_reply.weight
-          %td.list-column.list-row-action
-            .list-row-action-wrapper
-              =link_to tag_icon(:edit), :href => url(:auto_replies, :edit, :id => auto_reply.id), :rel => :tooltip, :title => "#{pat(:edit)} auto_reply", :class => 'list-row-action-wrapper-link'
-              =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} auto_reply", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
-              .popover.list-row-action-popover-delete-one.left
-                .arrow
-                %h3.popover-title=pat(:delete, :model => "auto_reply")
-                .popover-content
-                  = form_tag url(:auto_replies, :destroy, :id => auto_reply.id), :method => :delete do
-                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
-                    .btn.btn-default.btn-small.cancel=pat(:cancel)
+          %td.list-column
+            =summary auto_reply
