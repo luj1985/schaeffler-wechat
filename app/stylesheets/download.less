@@ -1,26 +1,40 @@
+@green : #218e4d;
+
 h1, h2 {
   font-family: "SimHei","STHeiti", monospace;
 }
 
+h1.title {
+  background-color: @green;
+  color: white;
+  margin: 0;
+  font-size: 1.5em;
+  padding: 1.8em 0 .95em 0;
+  display: block;
+  text-align: center;
+}
+
 h1.header {
-  font-size: 15px;
   display: block;
   color: #685c5c;
   padding-left: 65px;
-  padding-top: 13px;
+  padding-top: 20px;
   height: 56px;
   background: url(/images/mobile/logo.png) left center no-repeat;
   margin-left: 5%;
   sub {
-    font-size: 19px;
+    font-size: 23px;
     margin: 5px 0;
     display: block;
+    -webkit-box-reflect: below 1px -webkit-linear-gradient(transparent, transparent 50%,rgba(255,255,255,.2));
+    box-reflect: below 1px linear-gradient(transparent, transparent 50%,rgba(255,255,255,.2));
+  
   }
 }
 h2.header {
   text-align: left;
   font-size: 20px;
-  color: #95c72a;
+  color: @green;
   display: block;
   margin-top: 30px;
   margin-left: 5%;
@@ -37,8 +51,13 @@ h2.header {
 a {
   text-decoration: none;
 }
+
+.wrapper {
+  padding: 0 20px 0 20px;
+}
 body {
-  padding: 20px 20px 0 20px;
+  padding: 0;
+  margin: 0;
 }
 a.download {
   width: 80%;
