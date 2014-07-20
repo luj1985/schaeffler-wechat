@@ -41,7 +41,7 @@ Padrino.before_load do
   envfile = File.join(Dir.getwd, '.env')
   File.readlines(envfile).each do |line|
     key, value = line.split "="
-    ENV[key] = value
+    ENV[key] = value.chomp!
   end if File.exists? envfile
   
   require 'will_paginate'

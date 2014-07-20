@@ -39,6 +39,8 @@ group :development, :test do
   gem 'guard'
   gem 'guard-livereload'
   gem 'guard-rspec'
+  gem 'pry'
+  gem 'pry-nav'
 end
 
 gem 'unicorn'
