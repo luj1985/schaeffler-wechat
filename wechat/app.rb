@@ -1,9 +1,6 @@
 module SchaefflerWechat
   class Wechat < Padrino::Application
-    require 'sinatra/wechat'
-
     register Sinatra::Wechat
-    use Rack::Env
     enable :sessions
 
     def execute_reply replies, values

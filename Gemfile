@@ -29,7 +29,6 @@ gem 'sqlite3'
 gem 'rspec', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
-gem 'rack-env'
 gem 'sinatra-wechat'
 gem 'nokogiri'
 

@@ -3,7 +3,6 @@ module SchaefflerWechat
     register WillPaginate::Sinatra
     register LessInitializer
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
-    use Rack::Env
     register Padrino::Helpers
     
     enable :sessions
