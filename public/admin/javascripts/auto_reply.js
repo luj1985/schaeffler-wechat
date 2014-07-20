@@ -100,6 +100,7 @@
         $('input[name="auto_reply[pic_url]"]', html).val(obj.pic_url);
         $('input[name="auto_reply[url]"]', html).val(obj.url);
         $('textarea[name="auto_reply[description]"]', html).val(obj.description).emojiarea({
+            buttonPosition: 'before',
             buttonLabel : '插入表情'
         });
 
