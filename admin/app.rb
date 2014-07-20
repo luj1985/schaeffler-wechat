@@ -45,7 +45,7 @@ module SchaefflerWechat
 
     not_found do
       status 404
-      @title = "Error 403"
+      @title = "Error 404"
       render('errors/404', :layout => :error)
     end
   end

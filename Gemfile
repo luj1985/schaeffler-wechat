@@ -30,6 +30,7 @@ gem 'rspec', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
 gem 'rack-env'
+gem 'sinatra-wechat'
 gem 'nokogiri'
 
 # Padrino Stable Gem
@@ -43,7 +44,6 @@ end
 
 gem 'unicorn'
 gem 'axlsx'
-gem 'rest_client'
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 
