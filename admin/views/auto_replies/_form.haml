@@ -3,13 +3,22 @@
   =javascript_include_tag 'jquery.iframe-transport'
   =javascript_include_tag 'jquery.fileupload'
   =javascript_include_tag 'auto_reply'
+  =javascript_include_tag 'jquery.emojiarea'
+
   :javascript
     $(function() {
+      $.emojiarea.path = '/admin/images/emoji';
+      $.emojiarea.icons = {
+        '/::)' : 'smile.png',
+        '/::@' : 'angry.png',
+        '/::D' : 'laughing.png'
+      };
       $('.tabs-content form').auto_reply(#{f.object.to_json});
     });
 
 -content_for :stylesheets do
   =stylesheet_link_tag 'jquery.fileupload'
+  =stylesheet_link_tag 'jquery.emojiarea'
   
 - error = @auto_reply.errors.include?(:event)
 %fieldset.form-group{:class => error ? 'has-error' : ''}

@@ -83,6 +83,7 @@
     function render(rtype) {
         var html = TEMPLATES[rtype];
         return $('#reply_editor').html(html);
+        
     }
 
     $.fn.auto_reply = function(obj) {
@@ -98,6 +99,10 @@
         $('input[name="auto_reply[title]"]', html).val(obj.title);
         $('input[name="auto_reply[pic_url]"]', html).val(obj.pic_url);
         $('input[name="auto_reply[url]"]', html).val(obj.url);
-        $('textarea[name="auto_reply[description]"]', html).val(obj.description);
+        $('textarea[name="auto_reply[description]"]', html).val(obj.description).emojiarea({
+            buttonLabel : '插入表情'
+        });
+
+        $('.emoji-wysiwyg-editor', html).addClass('form-control input-large input-with-feedback');
     };
 })(jQuery)
