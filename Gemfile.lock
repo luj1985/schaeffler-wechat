@@ -79,6 +79,7 @@ GEM
     minitest (5.3.3)
     moneta (0.7.20)
     multi_json (1.9.2)
+    netrc (0.7.7)
     nio4r (1.0.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -137,6 +138,9 @@ GEM
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
     ref (1.0.5)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -175,6 +179,8 @@ GEM
       raindrops (~> 0.7)
     url_mount (0.2.1)
       rack
+    wechat-adapter (0.0.2)
+      rest-client
     will_paginate (3.0.5)
     will_paginate-bootstrap (1.0.0)
       will_paginate (>= 3.0.3)
@@ -204,5 +210,6 @@ DEPENDENCIES
   sqlite3
   therubyracer
   unicorn
+  wechat-adapter
   will_paginate (~> 3.0)
   will_paginate-bootstrap

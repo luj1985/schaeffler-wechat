@@ -30,6 +30,7 @@ gem 'rspec', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
 gem 'sinatra-wechat'
+gem 'wechat-adapter'
 gem 'nokogiri'
 
 # Padrino Stable Gem
