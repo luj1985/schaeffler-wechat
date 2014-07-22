@@ -23,12 +23,9 @@ h1.header {
   background: url(/images/mobile/logo.png) left center no-repeat;
   margin-left: 5%;
   sub {
-    font-size: 23px;
+    font-size: 24px;
     margin: 5px 0;
     display: block;
-    -webkit-box-reflect: below 1px -webkit-linear-gradient(transparent, transparent 50%,rgba(255,255,255,.2));
-    box-reflect: below 1px linear-gradient(transparent, transparent 50%,rgba(255,255,255,.2));
-  
   }
 }
 h2.header {
@@ -90,7 +87,8 @@ a.download {
 
 .apps {
   background: url(/images/mobile/bg.png) no-repeat center center;
-  background-size: 100%;
+  background-attachment: fixed;
+  background-size: 100% auto;
 }
 .android {  
   background: url(/images/mobile/android.png) center 20% no-repeat,
@@ -119,15 +117,4 @@ a.download {
   &:active {
     background: url(/images/mobile/iphone.png) center 20% no-repeat;
   } 
-}
-
-h1.ad {
-  margin-top: 30px;
-  color: #218e4d;
-  font-size: 22px;
-  width: 100%;
-  display: block;
-  text-align: center;
-  -webkit-box-reflect: below 1px -webkit-linear-gradient(transparent, transparent 50%,rgba(255,255,255,.2));
-  box-reflect: below 1px linear-gradient(transparent, transparent 50%,rgba(255,255,255,.2));
 }
