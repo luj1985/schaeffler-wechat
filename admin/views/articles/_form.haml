@@ -24,20 +24,6 @@
 
 .container
   .row
-    .col-md-4
-      =f.label 'preview', :caption => '预览效果:'
-      .iphone
-        .iphone-light-gradient
-        .iphone-power-button
-        .iphone-voice-toogle
-        .iphone-voice-plus
-        .iphone-voice-minus
-        .iphone-camera
-        .iphone-dynamic
-        .iphone-black-bg
-        %iframe.iphone-display{:src => "/article/#{f.object.name}"}
-        .iphone-home
-    .col-md-1
     .col-md-7
       - error = @article.errors.include?(:title)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
@@ -70,3 +56,20 @@
           =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
           &nbsp;
           =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
+          
+    .col-md-1
+
+    .col-md-4
+      =f.label 'preview', :caption => '预览效果:'
+      .iphone
+        .iphone-light-gradient
+        .iphone-power-button
+        .iphone-voice-toogle
+        .iphone-voice-plus
+        .iphone-voice-minus
+        .iphone-camera
+        .iphone-dynamic
+        .iphone-black-bg
+        %iframe.iphone-display{:src => "/article/#{f.object.name}"}
+        .iphone-home
+    
