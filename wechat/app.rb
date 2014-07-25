@@ -79,10 +79,12 @@ module SchaefflerWechat
         reply = replies.find { |reply| content.include? reply.param }
         execute_reply [reply], values
       }
-      event(lambda {|values| values[:event].downcase == 'click'}, :event_key => 'activity') {
+      # tencent use 'CLICK' as the event name
+      event(:event => /click/i) {
         content_type :xml
         values = request[:wechat_values]
-        replies = AutoReply.where :event => 'click', :param => 'activity'
+        replies = AutoReply.where(:event => 'click', :param => values[:event_key])
+                           .order(:weight => :desc)
         execute_reply replies, values
       }
       event(:event => 'subscribe') {
