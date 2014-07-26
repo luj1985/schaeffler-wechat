@@ -16,7 +16,12 @@ SchaefflerWechat::App.controllers :mobile do
   end
 
   get :ios do
-    halt 404
+    mobile = Mobile.find_by_os :ios
+    halt 404 if mobile.nil?
+
+    mobile.count += 1
+    mobile.save
+    redirect "https://itunes.apple.com/cn/app/she-fu-lei-chan-pin-zhu-shou/id899938848"
   end
 
 end
