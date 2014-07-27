@@ -50,9 +50,13 @@
 
       -unless f.object.menus.empty?
         %fieldset.form-group
-          = f.label '已经发布到二级菜单', :class => 'control-label'
+          = f.label '发布到二级菜单', :class => 'control-label'
           - f.object.menus.each do |m|
             =link_to m.title, url(:menus, :edit, :id => m.id), :class => 'label label-default'
+      -else
+        %fieldset.form-group
+          .alert.alert-success
+            还没有发布
       - error = @article.errors.include?(:title)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
         =f.label :title, :class => 'control-label'
