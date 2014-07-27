@@ -15,6 +15,7 @@
           console.log(data);
         }
       });
+
     });
 
 -content_for :stylesheets do
@@ -25,6 +26,33 @@
 .container
   .row
     .col-md-7
+
+      .modal.fade{:id => 'select-menu', :role => 'dialog'}
+        .modal-dialog.modal-sm
+          .modal-content
+            .modal-header
+              %button.close{:type => 'button', "data-dismiss" => 'modal'}
+                %span &times;
+              %h4.modal-title 请选择文章发布的位置
+            .modal-body
+              - menus = f.object.menus
+              - Menu.all.each do |m|
+                .checkbox
+                  %label
+                    %input{:type => 'checkbox', 
+                           :value => m.id, 
+                           :name => 'article[menus][]',
+                           :checked => menus.include?(m) ? true : false } 
+                      =m.title
+            .modal-footer
+              %button.btn.btn-default{:type => 'button', 'data-dismiss' => 'modal'} 关闭
+              =f.submit "保存&发布", :class => 'btn btn-primary'
+
+      -unless f.object.menus.empty?
+        %fieldset.form-group
+          = f.label '已经发布到二级菜单', :class => 'control-label'
+          - f.object.menus.each do |m|
+            =link_to m.title, url(:menus, :edit, :id => m.id), :class => 'label label-default'
       - error = @article.errors.include?(:title)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
         =f.label :title, :class => 'control-label'
@@ -53,6 +81,7 @@
         .form-actions
           =f.submit '保存&预览', :class => 'btn btn-primary'
           &nbsp;
+          =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
           =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
           &nbsp;
           =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'

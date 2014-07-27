@@ -13,8 +13,13 @@ SchaefflerWechat::Admin.controllers :articles do
   end
 
   post :create do
+    select_menu_ids = params[:article][:menus] # array
+    menus = Menu.find select_menu_ids if select_menu_ids
+    params[:article][:menus] = menus || []
+
     @article = Article.new(params[:article])
     if @article.save
+
       @title = pat(:create_title, :model => "article #{@article.id}")
       flash[:success] = pat(:create_success, :model => 'Article')
       params[:save_and_continue] ? redirect(url(:articles, :index)) : redirect(url(:articles, :edit, :id => @article.id))
@@ -38,8 +43,14 @@ SchaefflerWechat::Admin.controllers :articles do
 
   put :update, :with => :id do
     @title = pat(:update_title, :model => "article #{params[:id]}")
+
+
     @article = Article.find(params[:id])
     if @article
+      select_menu_ids = params[:article][:menus] # array
+      menus = Menu.find select_menu_ids if select_menu_ids
+      params[:article][:menus] = menus || []
+
       if @article.update_attributes(params[:article])
         flash[:success] = pat(:update_success, :model => 'Article', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
