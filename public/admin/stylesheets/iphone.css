@@ -131,7 +131,7 @@
 	left: 113px;
 	top: 56px;
 	overflow: hidden;
-	z-index: 1000;
+	z-index: 500;
 	border-radius: 20px;
 	background: -webkit-radial-gradient(35% 35%, ellipse closest-side, rgba(26, 26, 27, 0.1), rgba(44, 43, 45, 0.1) 300%);
 	background: radial-gradient(35% 35%, ellipse closest-side, rgba(26, 26, 27, 0.1), rgba(44, 43, 45, 0.1) 300%);
@@ -259,7 +259,7 @@
 	height: 480px;
 	left: 23px;
 	top: 122px;
-	z-index: 1002;
+	z-index: 502;
 	overflow: hidden;
 	background: -webkit-linear-gradient(top, #666, #333);
 	background: linear-gradient(to bottom, #666, #333)
