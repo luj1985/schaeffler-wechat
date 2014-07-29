@@ -24,6 +24,14 @@
           }
         }
       });
+
+
+      $('#preview').on('click', function(d) {
+        var base = '/menu/preview',
+            options = $('form.menu').serialize();
+        var url = [base, options].join('?');
+        $('iframe.iphone-display').attr('src', url);
+      });
     });
 
 -content_for :stylesheets do
@@ -39,8 +47,7 @@
   .container
     .row
 
-
-      = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal' do |f|
+      = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal menu' do |f|
         .col-md-4
           =f.label 'preview', :caption => '预览效果:'
           .iphone
@@ -130,7 +137,8 @@
           %hr
           %fieldset.form-group
             .form-actions
-              =f.submit '保存&预览', :class => 'btn btn-primary'
+              =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
+              =f.submit '保存&发布', :class => 'btn btn-primary'
               &nbsp;
               =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
               &nbsp;

@@ -84,10 +84,8 @@
       %fieldset.form-group
         .form-actions
           =f.submit '保存&预览', :class => 'btn btn-primary'
-          &nbsp;
           =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
           =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-          &nbsp;
           =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
           
     .col-md-1

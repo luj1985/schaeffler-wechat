@@ -1,18 +1,17 @@
-- if @menu.image && !@menu.image.empty? then
-  %h1.menu-title=@menu.title
-  %img{:src => @menu.image}
+- if @menu[:image] && !@menu[:image].empty? then
+  %h1.menu-title=@menu[:title]
+  %img{:src => @menu[:image]}
 %div{'data-role' => 'content'}
   %ul.schaeffler-menu{'data-role' => 'listview'}
-    -@menu.articles.each do |article|
+    -@articles.each do |article|
       %li
         %a{:href=>url_for(:article, :index, :name => article.name)}
           != extract_cover_image(article)
           %h2=article.title
           %p
             %span{:style=>'float:right'}=article.created_at.strftime "%Y-%m-%d"
-
-          
-    -@menu.pages.each do |page|
+   
+    -@pages.each do |page|
       %li
         %a{:href => page.href}
           %img{:src => page.image_href}
@@ -20,7 +19,7 @@
           %p
             %span{:style=>'float:right'}=page.created_at.strftime "%Y-%m-%d"
 
-    -if @menu.articles.length == 0 && @menu.pages.length == 0 then
+    -if @articles.length == 0 && @pages.length == 0 then
       %h1{:style => 'text-align:center'} 敬请期待
 
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
