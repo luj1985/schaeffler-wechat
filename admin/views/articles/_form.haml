@@ -1,4 +1,5 @@
 -content_for :javascripts do
+  =javascript_include_tag 'jquery-scrolltofixed-min'
   =javascript_include_tag 'froala_editor.min'
   =javascript_include_tag 'langs/zh_cn'
   :javascript
@@ -16,6 +17,7 @@
         }
       });
 
+      $('.iphone').scrollToFixed();
     });
 
 -content_for :stylesheets do

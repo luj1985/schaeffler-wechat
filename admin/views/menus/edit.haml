@@ -1,4 +1,5 @@
 -content_for :javascripts do
+  =javascript_include_tag 'jquery-scrolltofixed-min'
   =javascript_include_tag 'articles_list'
   =javascript_include_tag 'jquery.ui.widget'
   =javascript_include_tag 'jquery.iframe-transport'
@@ -32,6 +33,9 @@
         var url = [base, options].join('?');
         $('iframe.iphone-display').attr('src', url);
       });
+
+      
+      $('.iphone').scrollToFixed();
     });
 
 -content_for :stylesheets do
