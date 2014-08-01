@@ -1,10 +1,10 @@
 zh_cn:
   models:
     article:
-      name: 新闻
+      name: 素材
       attributes:
         id: 编号
-        title: 新闻标题
+        title: 素材标题
         abstract: 摘要
         name: 链接名字
         body: 正文内容

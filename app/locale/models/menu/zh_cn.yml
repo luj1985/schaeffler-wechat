@@ -6,7 +6,7 @@ zh_cn:
         id: 编号
         name: 菜单名字
         title: 菜单标题
-        articles: 新闻列表
+        articles: 素材列表
         pages: 微页面
         link: 链接地址
         image: 封面图片

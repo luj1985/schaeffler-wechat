@@ -22,7 +22,7 @@ module SchaefflerWechat
       role.project_module :fences, '/fences', {:name => '用户活跃度', :group => :promotion }
 
       role.project_module :menus, '/menus', { :name => '微网页二级菜单', :group => :news }
-      role.project_module :articles, '/articles', {:name => '微网页消息', :group => :news }
+      role.project_module :articles, '/articles', {:name => '微网页素材', :group => :news }
       role.project_module :pages, '/pages', { :name => '促销活动页面', :group => :news }
 
       role.project_module :auto_replies, '/auto_replies', { :name => '自动回复', :group => :wechat}
