@@ -1,6 +1,6 @@
 SchaefflerWechat::App.controllers :menu do
   
-  get :preview do
+  get :__preview do
     @menu = params[:menu]
     selected_articles = @menu[:selected_articles]
     selected_pages = @menu[:selected_pages]

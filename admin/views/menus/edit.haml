@@ -28,13 +28,13 @@
 
 
       $('#preview').on('click', function(d) {
-        var base = '/menu/preview',
+        var base = '/menu/__preview',
             options = $('form.menu').serialize();
         var url = [base, options].join('?');
         $('iframe.iphone-display').attr('src', url);
       });
 
-      
+
       $('.iphone').scrollToFixed();
     });
 
