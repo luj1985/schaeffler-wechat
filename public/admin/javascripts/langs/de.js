@@ -1,3 +1,8 @@
+/*!
+ * froala_editor v1.1.7 (http://editor.froala.com)
+ * Copyright 2014-2014 Froala
+ */
+
 /**
  * German
  */
@@ -46,11 +51,11 @@ $.Editable.LANGS['de'] = {
     "Remove Image": "Bild entfernen",
     "Title": "Titel",
     "Insert image": "Bild einf\u00fcgen",
-    "Drop image": "Drop-Bild",
+    "Drop image": "Ziehen Sie ein Bild hierhin",
     "or click": "oder klicken Sie auf",
     "Enter URL": "URL eingeben",
     "Please wait!": "Bitte warten Sie!",
-    "Are you sure? Image will be deleted.": "Sind Sie sicher? Bild wird gel\u00f6scht.",
+    "Are you sure? Image will be deleted.": "Sind Sie sicher? Das Bild wird gel\u00f6scht.",
     "UNLINK": "Link entfernen",
     "Open in new tab": "In neuer Registerkarte \u00f6ffnen",
     "Type something": "Schreiben Sie etwas",
@@ -59,7 +64,25 @@ $.Editable.LANGS['de'] = {
     "Manage images": "Bilder verwalten",
     "Delete": "L\u00f6schen",
     "Font Family": "Schriftart",
-    "Insert Horizontal Line": "Legen Horizontale Linie"
+    "Insert Horizontal Line": "Horizontale Linie Einf\u00fcgen",
+    "Table": "Tabelle",
+    "Insert table": "Tabelle einf\u00fcgen",
+    "Cell": "Zelle",
+    "Row": "Zeile",
+    "Column": "Spalte",
+    "Delete table": "Tabelle l\u00f6schen",
+    "Insert cell before": "Neue zelle davor einf\u00fcgen",
+    "Insert cell after": "Neue zelle danach einf\u00fcgen",
+    "Delete cell": "Zelle l\u00f6schen",
+    "Merge cells": "Zelle verschmelzen",
+    "Horizontal split": "Horizontal aufteilung",
+    "Vertical split": "Vertikal aufteilung",
+    "Insert row above": "Neue Zeile davor einf\u00fcgen",
+    "Insert row below": "Neue Zeile danach einf\u00fcgen",
+    "Delete row": "Zeile l\u00f6schen",
+    "Insert column before": "Neue Spalte davor einf\u00fcgen",
+    "Insert column after": "Neue Spalte danach einf\u00fcgen",
+    "Delete column": "Spalte l\u00f6schen"
   },
   direction: "ltr"
 };
