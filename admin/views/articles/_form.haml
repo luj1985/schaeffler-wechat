@@ -1,6 +1,8 @@
 -content_for :javascripts do
   =javascript_include_tag 'jquery-scrolltofixed-min'
   =javascript_include_tag 'froala_editor.min'
+  /[if lt IE 9] 
+    =javascript_include_tag 'froala_editor_ie8.min'
   =javascript_include_tag 'froala-plugins/media_manager.min'
   =javascript_include_tag 'froala-plugins/video.min'
   =javascript_include_tag 'froala-plugins/colors.min'
