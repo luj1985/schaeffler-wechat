@@ -10,6 +10,7 @@ SchaefflerWechat::Admin.controllers :images do
   post :delete do
     src = params[:src]
     Image.destroy_all(:href => src)
+    status 200
   end
 
   upload = lambda do
