@@ -11,6 +11,10 @@
   =javascript_include_tag 'langs/zh_cn'
   :javascript
     $(function() {
+
+      $('.froala-editor:first').scrollToFixed();
+      $('.iphone').scrollToFixed();
+
       $('textarea[name="article[body]"]').editable({
         preloaderSrc: "/images/preloader.gif",
         inlineMode: false,
@@ -23,9 +27,6 @@
           console.log(data);
         }
       });
-
-      $('.froala-editor:first').scrollToFixed();
-      $('.iphone').scrollToFixed();
     });
 
 -content_for :stylesheets do
