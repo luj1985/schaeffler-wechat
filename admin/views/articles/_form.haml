@@ -68,7 +68,7 @@
       -else
         %fieldset.form-group
           .alert.alert-success
-            还没有发布
+            没有发布到二级菜单
       - error = @article.errors.include?(:title)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
         =f.label :title, :class => 'control-label'
