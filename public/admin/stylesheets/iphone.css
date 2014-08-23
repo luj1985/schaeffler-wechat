@@ -10,28 +10,9 @@
 	border-radius: 58px;
 	box-shadow: #c1bfbf 0 0 0 1px;
 	-webkit-font-smoothing: antialiased;
-	-moz-font-smoothing: antialiased
-}
-.iphone:after {
-	content: '';
-	width: 4px;
-	height: 3px;
-	position: absolute;
-	top: -1px;
-	left: 120px;
-	background: rgba(0, 0, 0, 0.7);
-	box-shadow: 0 0 1px #000, inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1)
-}
-.iphone:before {
-	content: '';
-	width: 373px;
-	height: 3px;
-	position: absolute;
-	top: 646px;
-	left: 0px;
-	z-index: 0;
-	background: rgba(0, 0, 0, 0.7);
-	box-shadow: 0 0 1px #000, inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1)
+	-moz-font-smoothing: antialiased;
+	-webkit-box-sizing: content-box;
+					box-sizing: content-box;
 }
 .iphone * {
 	-webkit-user-select: none;
@@ -39,7 +20,7 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	-o-user-select: none;
-	user-select: none
+	user-select: none;
 }
 .iphone-power-button {
 	height: 4px;
@@ -61,6 +42,7 @@
 	height: 731px;
 	top: 5px;
 	right: 5px;
+	left: 4px;
 	border-radius: 53px;
 	border-radius: 55px \0/IE89;
 	background: -webkit-linear-gradient(-155deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.075) 50%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);

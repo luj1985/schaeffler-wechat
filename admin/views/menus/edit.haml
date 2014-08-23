@@ -1,5 +1,5 @@
 -content_for :javascripts do
-  =javascript_include_tag 'jquery-scrolltofixed-min'
+  =javascript_include_tag 'jquery-scrolltofixed'
   =javascript_include_tag 'articles_list'
   =javascript_include_tag 'jquery.ui.widget'
   =javascript_include_tag 'jquery.iframe-transport'
@@ -35,7 +35,7 @@
       });
 
 
-      $('.iphone').scrollToFixed();
+      $('.iphone').scrollToFixed({marginTop: -80});
     });
 
 -content_for :stylesheets do
@@ -54,7 +54,7 @@
       = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal menu' do |f|
         .col-md-4
           =f.label 'preview', :caption => '预览效果:'
-          .iphone
+          .iphone{:style => 'width:368px;'}
             .iphone-light-gradient
             .iphone-power-button
             .iphone-voice-toogle
