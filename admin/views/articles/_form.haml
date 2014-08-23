@@ -37,7 +37,6 @@
 .container
   .row
     .col-md-7
-
       .modal.fade{:id => 'select-menu', :role => 'dialog'}
         .modal-dialog.modal-sm
           .modal-content
@@ -65,9 +64,10 @@
           - f.object.menus.each do |m|
             =link_to m.title, url(:menus, :edit, :id => m.id), :class => 'label label-default'
       -else
-        %fieldset.form-group
-          .alert.alert-success
-            没有发布到二级菜单
+        -if f.object.id
+          %fieldset.form-group
+            .alert.alert-success
+              没有发布到二级菜单
       - error = @article.errors.include?(:title)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
         =f.label :title, :class => 'control-label'
