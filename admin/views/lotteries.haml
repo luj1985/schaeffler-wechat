@@ -45,22 +45,19 @@
 %table#list.table.table-striped.table-hover
   %thead
     %tr
-      %th.header= mat(:lottery, :crypted_serial)
-      %th.header= mat(:lottery, :exchange_time)
       %th.header= mat(:lottery, :serial)
+      %th.header= mat(:lottery, :exchange_time)
       %th.header= mat(:lottery, :level)
       %th.header= mat(:lottery, :name)
       %th.header= mat(:lottery, :tel)
       %th.header= mat(:lottery, :user_id)
-      %th.header= mat(:lottery, :status)
 
   %tbody
     -@lotteries.each do |lottery|
       %tr.list-row
-        %td.list-column=lottery.crypted_serial
+        %td.list-column=lottery.serial
         - strtime = lottery.exchange_time ? lottery.exchange_time.localtime.strftime("%Y-%m-%d %H:%M:%S") : ""
         %td.list-column=strtime
-        %td.list-column=lottery.serial
         %td.list-column=lottery.level_name
         %td.list-column=lottery.display_name
         %td.list-column=lottery.tel
@@ -68,8 +65,7 @@
           -if lottery.user_id.present?
             %a{:href => url_for(:users, :edit, :id => lottery.user_id)}
               =lottery.user.name
-        %td.list-column=lottery.display_status
   %tfoot
     %tr
-      %td{:colspan => 8}
+      %td{:colspan => 6}
         =will_paginate(@lotteries, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')
