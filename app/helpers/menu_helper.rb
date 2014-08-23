@@ -1,9 +1,12 @@
 SchaefflerWechat::App.helpers do
 
   def extract_cover_image article
-    page = Nokogiri::HTML.fragment(article.body)
-    img = page.css('img')[0]
-    src = img ? img['src'] : '/images/no_image.jpg'
+    src = if article.image then
+      article.image
+    else
+      el = Nokogiri::HTML.fragment(article.body).css('img')[0]
+      el ? el['src'] : '/images/no_image.jpg'
+    end
     "<img src=\"#{src}\" />"
   end
 
