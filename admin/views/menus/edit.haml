@@ -35,7 +35,7 @@
       });
 
 
-      $('.iphone').scrollToFixed({marginTop: -80});
+      $('.iphone').scrollToFixed({marginTop: -100});
       $('.form-actions').scrollToFixed();
     });
 
@@ -54,7 +54,6 @@
     .row
       = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal menu' do |f|
         .col-md-4
-          =f.label 'preview', :caption => '预览效果:'
           .iphone{:style => 'width:368px;'}
             .iphone-light-gradient
             .iphone-power-button
@@ -66,16 +65,14 @@
             .iphone-black-bg
             %iframe.iphone-display{:src => "/menu/#{f.object.name}"}
             .iphone-home
-        .col-md-1
-        .col-md-7
-          %fieldset.form-group
-            .form-actions
-              =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
-              =f.submit '保存&发布', :class => 'btn btn-primary'
-              &nbsp;
-              =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-              &nbsp;
-              =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'
+        .col-md-8
+          .form-actions.col-sm-offset-2
+            =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
+            =f.submit '保存&发布', :class => 'btn btn-primary'
+            &nbsp;
+            =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+            &nbsp;
+            =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'
 
           %fieldset.form-group
             .col-sm-2.controls
@@ -103,11 +100,11 @@
 
           %fieldset.form-group
             .col-sm-2.controls
-              =f.label :image, :caption => '上传封面:', :class => 'control-label'
+              =f.label :image, :caption => '封面图片:', :class => 'control-label'
             .col-sm-10.controls
               .btn.btn-success.fileinput-button
                 %i.glyphicon.glyphicon-plus
-                %span 选择封面图片
+                %span 上传封面图片
                 %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
               %span#progress
 

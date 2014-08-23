@@ -49,8 +49,8 @@
       });
 
       $('.form-actions').scrollToFixed();
-      $('.froala-editor:first').scrollToFixed({ marginTop: 56 });
-      $('.iphone').scrollToFixed({ marginTop: -80 });
+      $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: 54 });
+      $('.iphone').scrollToFixed({ marginTop: -100 });
     });
 
 -content_for :stylesheets do
@@ -83,69 +83,7 @@
         =f.submit "保存&发布", :class => 'btn btn-primary'
 .container
   .row
-    .col-md-7
-      %fieldset.form-group
-        .form-actions{ :style => 'text-align:left;' }
-          =f.submit '保存&预览', :class => 'btn btn-primary'
-          =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
-          =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-          =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
-
-      -unless f.object.menus.empty?
-        %fieldset.form-group
-          = f.label '发布到二级菜单', :class => 'control-label'
-          - f.object.menus.each do |m|
-            =link_to m.title, url(:menus, :edit, :id => m.id), :class => 'label label-default'
-      -else
-        -if f.object.id
-          %fieldset.form-group
-            .alert.alert-success
-              没有发布到二级菜单
-      - error = @article.errors.include?(:title)
-      %fieldset.form-group{:class => error ? 'has-error' : ''}
-        =f.label :title, :class => 'control-label'
-        .controls
-          =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
-          %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
-      - error = @article.errors.include?(:abstract)
-      %fieldset.form-group{:class => error ? 'has-error' : ''}
-        =f.label :abstract, :class => 'control-label'
-        .controls
-          =f.text_area :abstract, :rows => 3, :class => 'form-control input-large input-with-feedback'
-          %span.help-inline=error ? f.error_message_on(:abstract, :class => 'text-error') : ''
-      
-      %fieldset.form-group
-        =f.label :image, :class => 'control-label'
-        =f.hidden_field :image
-        .controls
-          .col-sm-3
-            .btn.btn-success.fileinput-button
-              %i.glyphicon.glyphicon-plus
-              %span 选择封面图片
-              %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
-            %span#progress
-          -has_cover = !@article.image.nil? && !@article.image.empty?
-          -if has_cover then
-            %img.col-sm-5#cover{:src => @article.image}
-          -else
-            %img.col-sm-5#cover
-
-      - error = @article.errors.include?(:name)
-      %fieldset.form-group{:class => error ? 'has-error' : ''}
-        =f.label :name, :class => 'control-label'
-        .controls
-          =f.text_field :name, :class => 'form-control input-large input-with-feedback'
-          %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
-      - error = @article.errors.include?(:body)
-      %fieldset.form-group{:class => error ? 'has-error' : ''}
-        =f.label :body, :class => 'control-label'
-        .controls
-          =f.text_area :body, :rows => 10, :class => 'form-control input-large input-with-feedback'
-          %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''
-
-    .col-md-1
     .col-md-4
-      =f.label 'preview', :caption => '预览效果:'
       .iphone
         .iphone-light-gradient
         .iphone-power-button
@@ -157,3 +95,68 @@
         .iphone-black-bg
         %iframe.iphone-display{:src => "/article/#{f.object.name}"}
         .iphone-home
+    .col-md-8
+      .form-actions.col-sm-offset-2
+        =f.submit '保存&预览', :class => 'btn btn-primary'
+        =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
+        =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+        =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
+
+      -unless f.object.menus.empty?
+        %fieldset.form-group
+          .col-sm-2.controls
+            %label.control-label 二级菜单:
+          .col-sm-10.controls{:style => 'line-height:30px;'}
+            -f.object.menus.each do |m|
+              =link_to m.title, url(:menus, :edit, :id => m.id), :class => 'label label-default'
+          
+      -else
+        -if f.object.id
+          %fieldset.form-group
+            .alert.alert-success
+              没有发布到二级菜单
+      - error = @article.errors.include?(:title)
+      %fieldset.form-group{:class => error ? 'has-error' : ''}
+        .col-sm-2.controls
+          =f.label :title, :class => 'control-label'
+        .col-sm-10.controls
+          =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
+          %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
+      - error = @article.errors.include?(:abstract)
+      %fieldset.form-group{:class => error ? 'has-error' : ''}
+        .col-sm-2.controls
+          =f.label :abstract, :class => 'control-label'
+        .col-sm-10.controls
+          =f.text_area :abstract, :rows => 3, :class => 'form-control input-large input-with-feedback'
+          %span.help-inline=error ? f.error_message_on(:abstract, :class => 'text-error') : ''
+      
+      %fieldset.form-group
+        .col-sm-2.controls
+          =f.label :image, :class => 'control-label'
+          =f.hidden_field :image
+        .col-sm-3.controls
+          .btn.btn-success.fileinput-button
+            %i.glyphicon.glyphicon-plus
+            %span 上传封面图片
+            %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
+          %span#progress
+        -has_cover = !@article.image.nil? && !@article.image.empty?
+        -if has_cover then
+          %img.col-sm-5#cover{:src => @article.image}
+        -else
+          %img.col-sm-5#cover
+
+      - error = @article.errors.include?(:name)
+      %fieldset.form-group{:class => error ? 'has-error' : ''}
+        .col-sm-2.controls
+          =f.label :name, :class => 'control-label'
+        .col-sm-10.controls
+          =f.text_field :name, :class => 'form-control input-large input-with-feedback'
+          %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : ''
+      - error = @article.errors.include?(:body)
+      %fieldset.form-group{:class => error ? 'has-error' : ''}
+        .col-sm-2.controls
+          =f.label :body, :class => 'control-label'
+        .col-sm-10.controls
+          =f.text_area :body, :rows => 10, :class => 'form-control input-large input-with-feedback'
+          %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''
