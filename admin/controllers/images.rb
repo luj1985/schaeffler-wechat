@@ -16,7 +16,6 @@ SchaefflerWechat::Admin.controllers :images do
   upload = lambda do
     path = params[:path]
 
-
     tempfile = params[:file][:tempfile]
     filename = params[:file][:filename]
     extension = File.extname(filename)
@@ -27,14 +26,10 @@ SchaefflerWechat::Admin.controllers :images do
     link = ENV['WECHAT_ENDPOINT'] + link if path == 'absolute'   
 
     cp tempfile.path, target
-    chmod 0644, target
+    chmod 0644, target # otherwise it cannot be read by nginx
 
     Image.create :title => filename, :href => link
-
-    res = {
-      :link => link
-    }
-    res.to_json
+    { :link => link }.to_json
   end
 
   post :upload, &upload

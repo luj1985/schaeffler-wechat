@@ -3,3 +3,9 @@
 	text-overflow: ellipsis;
 	display: inline-block;
 }
+
+.froala-box .froala-editor {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  border-bottom: 1px solid;
+}
