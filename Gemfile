@@ -24,6 +24,7 @@ gem 'haml'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'activerecord-import'
 gem 'sqlite3'
+gem 'rmagick'
 
 # Test requirements
 gem 'rspec', :group => 'test'
