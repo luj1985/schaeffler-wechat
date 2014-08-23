@@ -11,8 +11,6 @@
 	box-shadow: #c1bfbf 0 0 0 1px;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
-	-webkit-box-sizing: content-box;
-					box-sizing: content-box;
 }
 .iphone * {
 	-webkit-user-select: none;

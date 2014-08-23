@@ -4,8 +4,6 @@
 	display: inline-block;
 }
 
-.froala-box .froala-editor {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+.froala-editor.scroll-to-fixed-fixed {
   border-bottom: 1px solid;
 }

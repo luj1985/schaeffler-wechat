@@ -50,7 +50,6 @@
 .tabs-content
   .container
     .row
-
       = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal menu' do |f|
         .col-md-4
           =f.label 'preview', :caption => '预览效果:'
