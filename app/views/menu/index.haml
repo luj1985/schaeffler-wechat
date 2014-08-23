@@ -8,8 +8,6 @@
         %a{:href=>url_for(:article, :index, :name => article.name)}
           != extract_cover_image(article)
           %h2=article.title
-          %p
-            %span{:style=>'float:right'}=article.created_at.strftime "%Y-%m-%d"
    
     -@pages.each do |page|
       %li

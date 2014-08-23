@@ -192,10 +192,21 @@
   }
 
   .schaeffler-menu {
-    li {
-      h2 {
-        font-size: 14px;
-      }
+
+    &.ui-listview>.ui-li-has-thumb>.ui-btn, 
+    &.ui-listview>.ui-li-static.ui-li-has-thumb {
+      min-height: 30px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    &.ui-listview li h1,
+    &.ui-listview li h2 {
+      white-space: normal;
+      font-size: 14px;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      height: 2.5em;
     }
   }
 
@@ -204,7 +215,7 @@
     position: absolute;
     font-size: 2.4em;
     font-family: SimHei,Helvetica,Arial,sans-serif;
-    top: 70px;
+    top: 40px;
     padding: 0;
     margin: 0;
     text-align: center;
