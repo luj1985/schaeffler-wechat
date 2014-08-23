@@ -1,4 +1,8 @@
 -content_for :javascripts do
+  =javascript_include_tag 'jquery.ui.widget'
+  =javascript_include_tag 'jquery.iframe-transport'
+  =javascript_include_tag 'jquery.fileupload'
+
   =javascript_include_tag 'jquery-scrolltofixed-min'
   =javascript_include_tag 'froala_editor.min'
   /[if lt IE 9] 
@@ -24,11 +28,32 @@
         }
       });
 
+      $progress = $('#progress');
+      $('#upload').fileupload({
+        dataType : 'json',
+        paramName : 'file',
+        type : 'POST',
+        done : function(e, data) {
+          var result = data.result,
+              link = result.link;
+          $('[name="article[image]"]').val(link);
+          $('#cover').attr('src', link);
+        },
+        progressall: function (e, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          $progress.html(progress + "%");
+          if (progress === 100) {
+            $progress.html('');
+          }
+        }
+      });
+
       $('.froala-editor:first').scrollToFixed();
       $('.iphone').scrollToFixed();
     });
 
 -content_for :stylesheets do
+  =stylesheet_link_tag 'jquery.fileupload'
   =stylesheet_link_tag 'font-awesome.min'
   =stylesheet_link_tag 'froala_editor.min'
   =stylesheet_link_tag 'froala_reset.min'
@@ -80,6 +105,25 @@
         .controls
           =f.text_area :abstract, :rows => 3, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:abstract, :class => 'text-error') : ''
+      
+      %fieldset.form-group
+        =f.label :image, :class => 'control-label'
+        =f.hidden_field :image
+        .controls
+          .col-sm-3
+            .btn.btn-success.fileinput-button
+              %i.glyphicon.glyphicon-plus
+              %span 选择封面图片
+              %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
+            %span#progress
+          -has_cover = !f.object[:image].nil? && !f.object[:image].empty?
+          -if has_cover then
+            %img.col-sm-5#cover{:src => f.object[:image]}
+          -else
+            %img.col-sm-5#cover
+
+
+
       - error = @article.errors.include?(:name)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
         =f.label :name, :class => 'control-label'
