@@ -36,11 +36,13 @@
 
 
       $('.iphone').scrollToFixed({marginTop: -80});
+      $('.form-actions').scrollToFixed();
     });
 
 -content_for :stylesheets do
   =stylesheet_link_tag 'iphone'
   =stylesheet_link_tag 'jquery.fileupload'
+  =stylesheet_link_tag 'admin'
 
 %ul.nav.nav-tabs
   %li=link_to tag_icon(:list, pat(:list)), url(:menus, :index)
@@ -66,6 +68,15 @@
             .iphone-home
         .col-md-1
         .col-md-7
+          %fieldset.form-group
+            .form-actions
+              =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
+              =f.submit '保存&发布', :class => 'btn btn-primary'
+              &nbsp;
+              =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+              &nbsp;
+              =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'
+
           %fieldset.form-group
             .col-sm-2.controls
               =f.label :name, :class => 'control-label'
@@ -134,13 +145,3 @@
               .col-sm-8
                 =select_tag :page_id, :class => 'form-control pages-selection', :options => dropdown_pages(@menu)
               %a.col-sm-2.add-page.btn.btn-primary{:href => '#'}添加到菜单
-
-          %hr
-          %fieldset.form-group
-            .form-actions
-              =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
-              =f.submit '保存&发布', :class => 'btn btn-primary'
-              &nbsp;
-              =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-              &nbsp;
-              =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'

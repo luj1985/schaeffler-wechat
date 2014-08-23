@@ -48,7 +48,8 @@
         }
       });
 
-      $('.froala-editor:first').scrollToFixed();
+      $('.form-actions').scrollToFixed();
+      $('.froala-editor:first').scrollToFixed({ marginTop: 56 });
       $('.iphone').scrollToFixed({ marginTop: -80 });
     });
 
@@ -60,29 +61,35 @@
   =stylesheet_link_tag 'iphone'
   =stylesheet_link_tag 'admin'
 
+.modal.fade{:id => 'select-menu', :role => 'dialog'}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{:type => 'button', "data-dismiss" => 'modal'}
+          %span &times;
+        %h4.modal-title 请选择文章发布的位置
+      .modal-body
+        - menus = f.object.menus
+        - Menu.all.each do |m|
+          .checkbox
+            %label
+              %input{:type => 'checkbox', 
+                     :value => m.id, 
+                     :name => 'article[menus][]',
+                     :checked => menus.include?(m) ? true : false } 
+                =m.title
+      .modal-footer
+        %button.btn.btn-default{:type => 'button', 'data-dismiss' => 'modal'} 关闭
+        =f.submit "保存&发布", :class => 'btn btn-primary'
 .container
   .row
     .col-md-7
-      .modal.fade{:id => 'select-menu', :role => 'dialog'}
-        .modal-dialog.modal-sm
-          .modal-content
-            .modal-header
-              %button.close{:type => 'button', "data-dismiss" => 'modal'}
-                %span &times;
-              %h4.modal-title 请选择文章发布的位置
-            .modal-body
-              - menus = f.object.menus
-              - Menu.all.each do |m|
-                .checkbox
-                  %label
-                    %input{:type => 'checkbox', 
-                           :value => m.id, 
-                           :name => 'article[menus][]',
-                           :checked => menus.include?(m) ? true : false } 
-                      =m.title
-            .modal-footer
-              %button.btn.btn-default{:type => 'button', 'data-dismiss' => 'modal'} 关闭
-              =f.submit "保存&发布", :class => 'btn btn-primary'
+      %fieldset.form-group
+        .form-actions{ :style => 'text-align:left;' }
+          =f.submit '保存&预览', :class => 'btn btn-primary'
+          =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
+          =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+          =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
 
       -unless f.object.menus.empty?
         %fieldset.form-group
@@ -135,13 +142,7 @@
         .controls
           =f.text_area :body, :rows => 10, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''
-      %hr
-      %fieldset.form-group
-        .form-actions
-          =f.submit '保存&预览', :class => 'btn btn-primary'
-          =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
-          =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-          =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
+
     .col-md-1
     .col-md-4
       =f.label 'preview', :caption => '预览效果:'

@@ -7,3 +7,13 @@
 .froala-editor.scroll-to-fixed-fixed {
   border-bottom: 1px solid;
 }
+
+.form-actions {
+  background-color: white;
+  padding: 10px;
+}
+
+.form-actions.scroll-to-fixed-fixed {
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 1px 0 rgba(16,16,32,0.25), 0 0 2px 0 rgba(0,0,0,0.15);
+}
