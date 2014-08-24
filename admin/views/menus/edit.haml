@@ -6,7 +6,7 @@
   =javascript_include_tag 'jquery.fileupload'
   :javascript
     $(function() {
-      
+
       $progress = $('#progress');
       $('#upload').fileupload({
         dataType : 'json',
@@ -67,7 +67,8 @@
             %iframe.iphone-display{:src => "/menu/#{f.object.name}"}
             .iphone-home
         .col-md-8
-          .form-actions
+          %fieldset.form-group.form-actions
+            .col-sm-offset-2.col-sm-10
             =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
             =f.submit '保存&发布', :class => 'btn btn-primary'
             &nbsp;

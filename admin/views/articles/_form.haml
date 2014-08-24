@@ -97,11 +97,12 @@
         %iframe.iphone-display{:src => "/article/#{f.object.name}"}
         .iphone-home
     .col-md-8
-      .form-actions.col-sm-offset-2.col-sm-10
-        =f.submit '保存&预览', :class => 'btn btn-primary'
-        =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
-        =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-        =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
+      %fieldset.form-group.form-actions
+        .col-sm-offset-2.col-sm-10
+          =f.submit '保存&预览', :class => 'btn btn-primary'
+          =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
+          =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+          =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
 
       -unless f.object.menus.empty?
         %fieldset.form-group
