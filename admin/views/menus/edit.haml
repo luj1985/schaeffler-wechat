@@ -41,7 +41,6 @@
     });
 
 -content_for :stylesheets do
-  =stylesheet_link_tag 'iphone'
   =stylesheet_link_tag 'jquery.fileupload'
   =stylesheet_link_tag 'admin'
 
@@ -55,17 +54,7 @@
     .row
       = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal menu' do |f|
         .col-md-4
-          .iphone
-            .iphone-light-gradient
-            .iphone-power-button
-            .iphone-voice-toogle
-            .iphone-voice-plus
-            .iphone-voice-minus
-            .iphone-camera
-            .iphone-dynamic
-            .iphone-black-bg
-            %iframe.iphone-display{:src => "/menu/#{f.object.name}"}
-            .iphone-home
+          =partial 'iphone', :locals => { :src => "/menu/#{f.object.name}" }
         .col-md-8
           %fieldset.form-group
             .form-actions.col-sm-10.col-sm-offset-2

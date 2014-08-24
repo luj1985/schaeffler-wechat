@@ -61,7 +61,6 @@
   =stylesheet_link_tag 'font-awesome.min'
   =stylesheet_link_tag 'froala_editor.min'
   =stylesheet_link_tag 'froala_reset.min'
-  =stylesheet_link_tag 'iphone'
   =stylesheet_link_tag 'admin'
 
 .modal.fade{:id => 'select-menu', :role => 'dialog'}
@@ -87,17 +86,7 @@
 .container
   .row
     .col-md-4
-      .iphone
-        .iphone-light-gradient
-        .iphone-power-button
-        .iphone-voice-toogle
-        .iphone-voice-plus
-        .iphone-voice-minus
-        .iphone-camera
-        .iphone-dynamic
-        .iphone-black-bg
-        %iframe.iphone-display{:src => "/article/#{f.object.name}"}
-        .iphone-home
+      =partial 'iphone', :locals => { :src => "/article/#{f.object.name}" }
     .col-md-8
       %fieldset.form-group
         .form-actions.col-sm-10.col-sm-offset-2
