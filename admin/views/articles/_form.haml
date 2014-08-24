@@ -50,8 +50,10 @@
       });
 
       $('.iphone').scrollToFixed({ marginTop: -100 });
-      $('.form-actions').scrollToFixed();
-      $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: 54 });
+      var actions= $('.form-actions');
+      actions.scrollToFixed();
+      var height = parseInt(actions.css('height'));
+      $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: height });
     });
 
 -content_for :stylesheets do
@@ -97,8 +99,8 @@
         %iframe.iphone-display{:src => "/article/#{f.object.name}"}
         .iphone-home
     .col-md-8
-      %fieldset.form-group.form-actions
-        .col-sm-offset-2.col-sm-10
+      %fieldset.form-group
+        .form-actions.col-sm-10.col-sm-offset-2
           =f.submit '保存&预览', :class => 'btn btn-primary'
           =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
           =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'

@@ -67,14 +67,14 @@
             %iframe.iphone-display{:src => "/menu/#{f.object.name}"}
             .iphone-home
         .col-md-8
-          %fieldset.form-group.form-actions
-            .col-sm-offset-2.col-sm-10
-            =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
-            =f.submit '保存&发布', :class => 'btn btn-primary'
-            &nbsp;
-            =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-            &nbsp;
-            =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'
+          %fieldset.form-group
+            .form-actions.col-sm-10.col-sm-offset-2
+              =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
+              =f.submit '保存&发布', :class => 'btn btn-primary'
+              &nbsp;
+              =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+              &nbsp;
+              =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'
 
           %fieldset.form-group
             .col-sm-2.controls
