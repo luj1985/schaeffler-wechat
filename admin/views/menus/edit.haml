@@ -6,6 +6,7 @@
   =javascript_include_tag 'jquery.fileupload'
   :javascript
     $(function() {
+      
       $progress = $('#progress');
       $('#upload').fileupload({
         dataType : 'json',
@@ -54,7 +55,7 @@
     .row
       = form_for :menu, url(:menus, :update, :id => @menu.id), :method => :put, :class => 'form-horizontal menu' do |f|
         .col-md-4
-          .iphone{:style => 'width:368px;'}
+          .iphone
             .iphone-light-gradient
             .iphone-power-button
             .iphone-voice-toogle
@@ -66,7 +67,7 @@
             %iframe.iphone-display{:src => "/menu/#{f.object.name}"}
             .iphone-home
         .col-md-8
-          .form-actions.col-sm-offset-2
+          .form-actions
             =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
             =f.submit '保存&发布', :class => 'btn btn-primary'
             &nbsp;
@@ -85,7 +86,7 @@
             .col-sm-2.controls
               =f.label :title, :class => 'control-label'
             .col-sm-10.controls
-              =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
+              =f.text_field :title, :class => 'form-control input-large input-with-feedback'
               %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
 
           %fieldset.form-group

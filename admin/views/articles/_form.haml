@@ -15,6 +15,7 @@
   =javascript_include_tag 'langs/zh_cn'
   :javascript
     $(function() {
+
       $('textarea[name="article[body]"]').editable({
         preloaderSrc: "/images/preloader.gif",
         inlineMode: false,
@@ -48,9 +49,9 @@
         }
       });
 
+      $('.iphone').scrollToFixed({ marginTop: -100 });
       $('.form-actions').scrollToFixed();
       $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: 54 });
-      $('.iphone').scrollToFixed({ marginTop: -100 });
     });
 
 -content_for :stylesheets do
@@ -96,7 +97,7 @@
         %iframe.iphone-display{:src => "/article/#{f.object.name}"}
         .iphone-home
     .col-md-8
-      .form-actions.col-sm-offset-2
+      .form-actions.col-sm-offset-2.col-sm-10
         =f.submit '保存&预览', :class => 'btn btn-primary'
         =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
         =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
@@ -109,18 +110,13 @@
           .col-sm-10.controls{:style => 'line-height:30px;'}
             -f.object.menus.each do |m|
               =link_to m.title, url(:menus, :edit, :id => m.id), :class => 'label label-default'
-          
-      -else
-        -if f.object.id
-          %fieldset.form-group
-            .alert.alert-success
-              没有发布到二级菜单
+
       - error = @article.errors.include?(:title)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
         .col-sm-2.controls
           =f.label :title, :class => 'control-label'
         .col-sm-10.controls
-          =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
+          =f.text_field :title, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
       - error = @article.errors.include?(:abstract)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
@@ -156,7 +152,7 @@
       - error = @article.errors.include?(:body)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
         .col-sm-2.controls
-          =f.label :body, :class => 'control-label'
+          %label.control-label{:for => 'article_body'} 正文内容:
         .col-sm-10.controls
           =f.text_area :body, :rows => 10, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''

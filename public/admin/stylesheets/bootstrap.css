@@ -663,10 +663,10 @@ pre code {
 .container:after {
   clear: both;
 }
-.row {
+/*.row {
   margin-left: -15px;
   margin-right: -15px;
-}
+}*/
 .row:before,
 .row:after {
   content: " ";

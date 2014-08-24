@@ -445,7 +445,7 @@
             // Put the target element on top of everything that could be below
             // it. This reduces flicker when the target element is transitioning
             // to fixed.
-            base.$el.css('z-index', base.options.zIndex);
+            // base.$el.css('z-index', base.options.zIndex);
 
             // Create a spacer element to fill the void left by the target
             // element when it goes fixed.
