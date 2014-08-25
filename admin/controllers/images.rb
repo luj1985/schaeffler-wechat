@@ -28,7 +28,9 @@ SchaefflerWechat::Admin.controllers :images do
     cp tempfile.path, target
     chmod 0644, target # otherwise it cannot be read by nginx
 
-    Image.create :title => filename, :href => link
+    img = Magick::Image.read(target).first
+
+    Image.create :title => filename, :href => link, :width => img.columns, :height => img.rows
     { :link => link }.to_json
   end
 
