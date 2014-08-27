@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 37) do
+ActiveRecord::Schema.define(version: 39) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 37) do
     t.datetime "updated_at"
     t.text     "abstract"
     t.string   "image"
+    t.string   "offset"
   end
 
   create_table "auto_replies", force: true do |t|
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 37) do
     t.datetime "updated_at"
     t.text     "description"
     t.string   "image"
+    t.string   "offset"
   end
 
   create_table "mobiles", force: true do |t|
