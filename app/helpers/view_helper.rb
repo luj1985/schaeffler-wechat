@@ -6,7 +6,7 @@ SchaefflerWechat::App.helpers do
   end
 
   def format_date date
-    date = date || Date.now
+    date = Time.now if !date || date == ""
     date = Date.parse(date) unless date.respond_to?(:strftime)
     date.strftime("%Y-%m-%d")
   end
