@@ -126,6 +126,7 @@
         $htmleditor.editable("sync");
         return preview('/menu/__previewarticle');
       });
+
       updateImageEditor();
     });
 
@@ -153,11 +154,11 @@
               %input{:type => 'checkbox', 
                      :value => m.id, 
                      :name => 'article[menus][]',
-                     :checked => menus.include?(m) ? true : false } 
+                     :checked => menus.include?(m) } 
                 =m.title
       .modal-footer
         %button.btn.btn-default{:type => 'button', 'data-dismiss' => 'modal'} 关闭
-        =f.submit "保存&发布", :class => 'btn btn-primary'
+        =f.submit "保存&发布", :class => 'btn btn-primary', :id => 'publish'
 .container
   .row
     .col-md-4
