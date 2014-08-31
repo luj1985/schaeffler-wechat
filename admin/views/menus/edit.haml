@@ -1,8 +1,75 @@
 -content_for :javascripts do
   =javascript_include_tag 'jquery-scrolltofixed'
   =javascript_include_tag 'articles_list'
+  =javascript_include_tag 'jquery.ui.widget'
+  =javascript_include_tag 'jquery.iframe-transport'
+  =javascript_include_tag 'jquery.fileupload'
+  =javascript_include_tag 'jquery.Jcrop.min'
   :javascript
     $(function() {
+
+
+      var $offset = $('input[name*="[offset]"]'),
+          $image = $('input[name*="[image]"]'),
+          $editor = $('#image-editor'),
+          $progress = $('#progress');
+
+      function updateOffset(c) {
+        $offset.val(JSON.stringify(c));
+      }
+
+      function updateImageEditor() {
+        $editor.empty();
+        var src = $image.val();
+        if (!src) return;
+
+        var img = $('<img id="cover" class="col-sm-12">').attr('src', src);
+        var width = $editor.data("width"), height = $editor.data('height');
+
+        img.on('load', function() {
+          $(this).Jcrop({
+            onChange: updateOffset,
+            onSelect: updateOffset,
+            trueSize: [width, height]
+          }, function() {
+            var offset = $offset.val();
+            if (offset) {
+              var ovalue = JSON.parse(offset);
+              if (ovalue) {
+                this.setSelect([ovalue.x, ovalue.y, ovalue.x2, ovalue.y2]);
+              }
+            }
+          });
+        });
+        $editor.append(img);
+      }
+
+      $('#upload').fileupload({
+        dataType : 'json',
+        paramName : 'file',
+        type : 'POST',
+        done : function(e, data) {
+          var result = data.result;
+          $image.val(result.link);
+          $editor.data("width", result.width);
+          $editor.data("height", result.height);
+          $offset.val(null);
+          updateImageEditor();
+        },
+        progressall: function (e, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          $progress.html(progress + "%");
+          if (progress === 100) {
+            $progress.html('');
+          }
+        }
+      });
+
+
+      $('.remove-img').on('click', function() {
+        $editor.empty();
+        $image.val(null);
+      });
 
       $('#preview').on('click', function(d) {
         var base = '/menu/__preview',
@@ -14,9 +81,14 @@
 
       $('.iphone').scrollToFixed({marginTop: -100});
       $('.form-actions').scrollToFixed();
+
+
+      updateImageEditor();
     });
 
 -content_for :stylesheets do
+  =stylesheet_link_tag 'jquery.fileupload'
+  =stylesheet_link_tag 'jquery.Jcrop.min'
   =stylesheet_link_tag 'admin'
 
 %ul.nav.nav-tabs
@@ -78,8 +150,6 @@
                 %span#progress
                 .btn.btn-default.remove-img
                   =tag_icon(:trash, "删除封面图片") 
-
-          =partial 'editor'
                 
 
           %fieldset.form-group

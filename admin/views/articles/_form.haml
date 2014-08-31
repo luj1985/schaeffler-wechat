@@ -2,6 +2,7 @@
   =javascript_include_tag 'jquery.ui.widget'
   =javascript_include_tag 'jquery.iframe-transport'
   =javascript_include_tag 'jquery.fileupload'
+  =javascript_include_tag 'jquery.Jcrop.min'
 
   =javascript_include_tag 'jquery-scrolltofixed'
   =javascript_include_tag 'froala_editor.min'
@@ -15,7 +16,69 @@
     $(function() {
 
       var $progress = $('#progress'),
-          $actions= $('.form-actions');
+          $actions = $('.form-actions'),
+          $offset = $('input[name*="[offset]"]'),
+          $image = $('input[name*="[image]"]'),
+          $editor = $('#image-editor'),
+          $progress = $('#progress');
+
+      function updateOffset(c) {
+        $offset.val(JSON.stringify(c));
+      }
+
+      function updateImageEditor() {
+        $editor.empty();
+        var src = $image.val();
+        if (!src) return;
+
+        var img = $('<img id="cover" class="col-sm-12">').attr('src', src);
+        var width = $editor.data("width"), height = $editor.data('height');
+
+        img.on('load', function() {
+          $(this).Jcrop({
+            onChange: updateOffset,
+            onSelect: updateOffset,
+            aspectRatio: 160/100,
+            trueSize: [width, height]
+          }, function() {
+            var offset = $offset.val();
+            if (offset) {
+              var ovalue = JSON.parse(offset);
+              if (ovalue) {
+                this.setSelect([ovalue.x, ovalue.y, ovalue.x2, ovalue.y2]);
+              }
+            }
+          });
+        });
+        $editor.append(img);
+      }
+
+      $('#upload').fileupload({
+        dataType : 'json',
+        paramName : 'file',
+        type : 'POST',
+        done : function(e, data) {
+          var result = data.result;
+          $image.val(result.link);
+          $editor.data("width", result.width);
+          $editor.data("height", result.height);
+          $offset.val(null);
+          updateImageEditor();
+        },
+        progressall: function (e, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          $progress.html(progress + "%");
+          if (progress === 100) {
+            $progress.html('');
+          }
+        }
+      });
+
+
+      $('.remove-img').on('click', function() {
+        $editor.empty();
+        $image.val(null);
+      });
 
       $('textarea[name="article[body]"]').editable({
         preloaderSrc: "/images/preloader.gif",
@@ -30,28 +93,11 @@
         }
       });
 
-      $('#upload').fileupload({
-        dataType : 'json',
-        paramName : 'file',
-        type : 'POST',
-        done : function(e, data) {
-          var result = data.result,
-              link = result.link;
-          $('[name="article[image]"]').val(link);
-          $('#cover').attr('src', link);
-        },
-        progressall: function (e, data) {
-          var progress = parseInt(data.loaded / data.total * 100, 10);
-          $progress.html(progress + "%");
-          if (progress === 100) {
-            $progress.html('');
-          }
-        }
-      });
-
       $actions.scrollToFixed();
       $('.iphone').scrollToFixed({ marginTop: -100 });
-      $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: parseInt(actions.css('height')) });
+      $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: parseInt($actions.css('height')) });
+
+      updateImageEditor();
     });
 
 -content_for :stylesheets do
@@ -59,6 +105,8 @@
   =stylesheet_link_tag 'font-awesome.min'
   =stylesheet_link_tag 'froala_editor.min'
   =stylesheet_link_tag 'froala_reset.min'
+  =stylesheet_link_tag 'jquery.fileupload'
+  =stylesheet_link_tag 'jquery.Jcrop.min'
   =stylesheet_link_tag 'admin'
 
 .modal.fade{:id => 'select-menu', :role => 'dialog'}
@@ -88,10 +136,11 @@
     .col-md-8
       %fieldset.form-group
         .form-actions.col-sm-10.col-sm-offset-2
-          =f.submit '保存&预览', :class => 'btn btn-primary'
-          =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
-          =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
-          =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
+          .btn-group
+            =f.submit '保存&预览', :class => 'btn btn-primary'
+            =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
+            =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+            =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
 
       -unless f.object.menus.empty?
         %fieldset.form-group
@@ -108,6 +157,7 @@
         .col-sm-10.controls
           =f.text_field :title, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
+
       - error = @article.errors.include?(:abstract)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
         .col-sm-2.controls
@@ -117,20 +167,33 @@
           %span.help-inline=error ? f.error_message_on(:abstract, :class => 'text-error') : ''
       
       %fieldset.form-group
+        .row
+          .col-sm-2.controls
+            =f.label :image, :class => 'control-label'
+          .col-sm-10
+            =f.hidden_field :offset
+            =f.hidden_field :image
+            %ol.text-info
+              %li 如果没有提供封面图片，那么默认使用素材内容的第一张图片作为封面
+              %li 如果素材的图片比例不合适，那么会保证图片宽度能完全显示，截断高度的超出部分
+              %li 封面图片大小为160&times;100。如果图片大于160&times;100，则缩小图片。如果图片小于这个数值，则维持不变，仅在显示的时候进行缩放。
+        .row
+          .col-sm-6.col-sm-offset-2.controls
+            - dim = image_size(@article)
+            #image-editor{"data-width" => dim[0], "data-height" => dim[1]}
+
+      %fieldset.form-group
         .col-sm-2.controls
-          =f.label :image, :class => 'control-label'
-          =f.hidden_field :image
-        .col-sm-3.controls
-          .btn.btn-success.fileinput-button
-            %i.glyphicon.glyphicon-plus
-            %span 上传封面图片
-            %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
-          %span#progress
-        -has_cover = !@article.image.nil? && !@article.image.empty?
-        -if has_cover then
-          %img.col-sm-5#cover{:src => @article.image}
-        -else
-          %img.col-sm-5#cover
+          =f.label :image, :caption => '封面图片:', :class => 'control-label'
+        .col-sm-5.controls
+          .btn-group
+            .btn.btn-primary.fileinput-button
+              %i.glyphicon.glyphicon-plus
+              %span 上传封面图片
+              %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
+            %span#progress
+            .btn.btn-default.remove-img
+              =tag_icon(:trash, "删除封面图片") 
 
       - error = @article.errors.include?(:name)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
