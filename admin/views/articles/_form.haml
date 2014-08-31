@@ -97,6 +97,12 @@
       $('.iphone').scrollToFixed({ marginTop: -100 });
       $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: parseInt($actions.css('height')) });
 
+      $('#preview-menu').on('click', function() {
+        var base = '/article/__previewmenu',
+            options = $('form.article').serialize();
+        var url = [base, options].join('?');
+        $('iframe.iphone-display').attr('src', url);
+      });
       updateImageEditor();
     });
 
@@ -135,7 +141,7 @@
       =partial 'iphone', :locals => { :src => "/article/#{f.object.name}" }
     .col-md-8
       %fieldset.form-group
-        .form-actions.col-sm-10.col-sm-offset-2
+        .form-actions.col-sm-11.col-sm-offset-1
           .btn-group
             =f.submit '保存&预览', :class => 'btn btn-primary'
             =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
@@ -185,15 +191,18 @@
       %fieldset.form-group
         .col-sm-2.controls
           =f.label :image, :caption => '封面图片:', :class => 'control-label'
-        .col-sm-5.controls
+        .col-sm-10.controls
           .btn-group
             .btn.btn-primary.fileinput-button
               %i.glyphicon.glyphicon-plus
               %span 上传封面图片
               %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
-            %span#progress
+              %span#progress 
             .btn.btn-default.remove-img
-              =tag_icon(:trash, "删除封面图片") 
+              =tag_icon(:trash, "删除封面图片")
+            .btn.btn-default#preview-menu
+              =tag_icon(:search, "预览二级菜单")
+              
 
       - error = @article.errors.include?(:name)
       %fieldset.form-group{:class => error ? 'has-error' : ''}

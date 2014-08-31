@@ -6,4 +6,8 @@ SchaefflerWechat::App.controllers :article do
     render :index
   end
 
+
+  get :__previewmenu do
+  end
+
 end

@@ -72,16 +72,25 @@
       });
 
       $('#preview').on('click', function(d) {
-        var base = '/menu/__preview',
-            options = $('form.menu').serialize();
-        var url = [base, options].join('?');
-        $('iframe.iphone-display').attr('src', url);
-      });
+        var params = $('form.menu').serializeArray().filter(function(v) {
+          return v.name != '_method';
+        });
 
+        var iphone = $('iframe.iphone-display')[0];
+        if (iphone) {
+          var w = iphone.contentWindow;
+          w.$.mobile.changePage( '/menu/__preview', {
+            type: "post",
+            data: $.param(params),
+            transition: 'fade',
+            changeHash: false
+          });
+        }
+        return false;
+      });
 
       $('.iphone').scrollToFixed({marginTop: -100});
       $('.form-actions').scrollToFixed();
-
 
       updateImageEditor();
     });
@@ -104,7 +113,7 @@
           =partial 'iphone', :locals => { :src => "/menu/#{f.object.name}" }
         .col-md-8
           %fieldset.form-group
-            .form-actions.col-sm-10.col-sm-offset-2
+            .form-actions.col-sm-11.col-sm-offset-1
               .btn-group
                 =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
                 =f.submit '保存&发布', :class => 'btn btn-primary'

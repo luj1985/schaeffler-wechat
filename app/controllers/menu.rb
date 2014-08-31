@@ -1,6 +1,6 @@
 SchaefflerWechat::App.controllers :menu do
   
-  get :__preview do
+  post :__preview do
     @menu = params[:menu]
     selected_articles = @menu[:selected_articles]
     selected_pages = @menu[:selected_pages]
@@ -13,7 +13,6 @@ SchaefflerWechat::App.controllers :menu do
   end
 
   get :index, :with => :name do
-    # TODO: add menu image parse?
     @menu = Menu.find_by_name params[:name]
     @articles = @menu.articles
     @pages = @menu.pages
