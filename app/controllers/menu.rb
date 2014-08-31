@@ -15,11 +15,15 @@ SchaefflerWechat::App.controllers :menu do
   post :__previewarticle do
     @article = params[:article]
     menus = @article[:menus]
+
     if menus && menus.length > 0 then
       @menu = Menu.find_by_id menus[0]
-      @articles = [@article]
-      @pages = []
+    else
+      @menu = Menu.new
     end
+
+    @articles = [@article]
+    @pages = []
     render :index
   end
 

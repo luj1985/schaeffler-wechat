@@ -24,9 +24,10 @@
         if (!src) return;
 
         var img = $('<img id="cover" class="col-sm-12">').attr('src', src);
-        var width = $editor.data("width"), height = $editor.data('height');
 
         img.on('load', function() {
+          var width = parseInt($editor.data("width")), 
+              height = parseInt($editor.data('height'));
           $(this).Jcrop({
             onChange: updateOffset,
             onSelect: updateOffset,
@@ -115,8 +116,10 @@
           %fieldset.form-group
             .form-actions.col-sm-11.col-sm-offset-1
               .btn-group
-                =button_tag '预览', :class => 'btn btn-primary', :id => 'preview'
-                =f.submit '保存&发布', :class => 'btn btn-primary'
+                .btn.btn-primary#preview
+                  =tag_icon(:search, "预览")
+                %button.btn.btn-primary#save{:type => :submit}
+                  =tag_icon(:save, "保存&发布")
                 =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
                 =link_to pat(:cancel), url(:menus, :index), :class => 'btn btn-default'
 

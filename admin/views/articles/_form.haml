@@ -20,6 +20,7 @@
           $offset = $('input[name*="[offset]"]'),
           $image = $('input[name*="[image]"]'),
           $editor = $('#image-editor'),
+          $htmleditor = $('textarea[name="article[body]"]'),
           $progress = $('#progress');
 
       function updateOffset(c) {
@@ -32,14 +33,15 @@
         if (!src) return;
 
         var img = $('<img id="cover" class="col-sm-12">').attr('src', src);
-        var width = $editor.data("width"), height = $editor.data('height');
 
         img.on('load', function() {
+          var width = parseInt($editor.data("width")), 
+              height = parseInt($editor.data('height'));
           $(this).Jcrop({
             onChange: updateOffset,
             onSelect: updateOffset,
-            aspectRatio: 160/100,
-            trueSize: [width, height]
+            trueSize: [width, height],
+            aspectRatio: (160 / 100)
           }, function() {
             var offset = $offset.val();
             if (offset) {
@@ -62,6 +64,7 @@
           $image.val(result.link);
           $editor.data("width", result.width);
           $editor.data("height", result.height);
+          console.log(result);
           $offset.val(null);
           updateImageEditor();
         },
@@ -80,7 +83,7 @@
         $image.val(null);
       });
 
-      $('textarea[name="article[body]"]').editable({
+      $htmleditor.editable({
         preloaderSrc: "/images/preloader.gif",
         inlineMode: false,
         language: "zh_cn",
@@ -115,10 +118,12 @@
         return false;
       }
       $('#preview').on('click', function() {
+        $htmleditor.editable("sync");
         return preview('/article/__preview');
       });
 
       $('#preview-menu').on('click', function() {
+        $htmleditor.editable("sync");
         return preview('/menu/__previewarticle');
       });
       updateImageEditor();
@@ -165,7 +170,7 @@
               =tag_icon(:search, "预览")
             %button.btn.btn-primary#save{:type => :submit}
               =tag_icon(:save, "保存")
-            %button.btn.btn-primary{"data-target" => "#select-menu", "data-toggle" => "modal"}
+            .btn.btn-primary{"data-target" => "#select-menu", "data-toggle" => "modal"}
               =tag_icon(:ok, "发布")
             =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
             =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
@@ -195,21 +200,23 @@
           =f.text_area :abstract, :rows => 3, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:abstract, :class => 'text-error') : ''
       
+
       %fieldset.form-group
         .row
           .col-sm-2.controls
             =f.label :image, :class => 'control-label'
-          .col-sm-10
+          .col-sm-10.controls
             =f.hidden_field :offset
             =f.hidden_field :image
             %ol.text-info
-              %li 如果没有提供封面图片，那么默认使用素材内容的第一张图片作为封面
+              %li 如果没有提供二级菜单封面图片，那么默认使用素材内容的第一张图片作为封面
               %li 如果素材的图片比例不合适，那么会保证图片宽度能完全显示，截断高度的超出部分
               %li 封面图片大小为160&times;100。如果图片大于160&times;100，则缩小图片。如果图片小于这个数值，则维持不变，仅在显示的时候进行缩放。
-        .row
-          .col-sm-6.col-sm-offset-2.controls
             - dim = image_size(@article)
+        .row
+          .col-sm-6.col-sm-offset-2
             #image-editor{"data-width" => dim[0], "data-height" => dim[1]}
+
 
       %fieldset.form-group
         .col-sm-2.controls
@@ -242,4 +249,4 @@
           =f.text_area :body, :rows => 10, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''
 
-  =f.hidden_field :created_at
+=f.hidden_field :created_at
