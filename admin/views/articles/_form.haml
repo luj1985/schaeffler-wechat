@@ -5,8 +5,6 @@
 
   =javascript_include_tag 'jquery-scrolltofixed'
   =javascript_include_tag 'froala_editor.min'
-  /[if lt IE 9] 
-    =javascript_include_tag 'froala_editor_ie8.min'
   =javascript_include_tag 'froala-plugins/media_manager.min'
   =javascript_include_tag 'froala-plugins/video.min'
   =javascript_include_tag 'froala-plugins/colors.min'
@@ -15,6 +13,9 @@
   =javascript_include_tag 'langs/zh_cn'
   :javascript
     $(function() {
+
+      var $progress = $('#progress'),
+          $actions= $('.form-actions');
 
       $('textarea[name="article[body]"]').editable({
         preloaderSrc: "/images/preloader.gif",
@@ -29,7 +30,6 @@
         }
       });
 
-      $progress = $('#progress');
       $('#upload').fileupload({
         dataType : 'json',
         paramName : 'file',
@@ -49,11 +49,9 @@
         }
       });
 
+      $actions.scrollToFixed();
       $('.iphone').scrollToFixed({ marginTop: -100 });
-      var actions= $('.form-actions');
-      actions.scrollToFixed();
-      var height = parseInt(actions.css('height'));
-      $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: height });
+      $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: parseInt(actions.css('height')) });
     });
 
 -content_for :stylesheets do

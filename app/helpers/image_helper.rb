@@ -2,7 +2,7 @@ SchaefflerWechat::App.helpers do
 
   def cropped_image article, width=640
     return "" if article[:image].empty?
-    return article[:image] if article[:offset].empty?
+    return article[:image] if !article[:offset] || article[:offset].empty?
 
     basename = File.basename(article[:image], ".*")
     extension = File.extname(article[:image])
