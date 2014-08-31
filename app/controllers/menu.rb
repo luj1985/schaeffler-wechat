@@ -12,6 +12,17 @@ SchaefflerWechat::App.controllers :menu do
     render :index
   end
 
+  post :__previewarticle do
+    @article = params[:article]
+    menus = @article[:menus]
+    if menus && menus.length > 0 then
+      @menu = Menu.find_by_id menus[0]
+      @articles = [@article]
+      @pages = []
+    end
+    render :index
+  end
+
   get :index, :with => :name do
     @menu = Menu.find_by_name params[:name]
     @articles = @menu.articles

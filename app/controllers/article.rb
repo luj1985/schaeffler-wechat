@@ -6,8 +6,8 @@ SchaefflerWechat::App.controllers :article do
     render :index
   end
 
-
-  get :__previewmenu do
+  post :__preview do
+    @article = params[:article]
+    render :index
   end
-
 end

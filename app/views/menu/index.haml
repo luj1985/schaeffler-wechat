@@ -6,17 +6,19 @@
   %ul.schaeffler-menu{'data-role' => 'listview'}
     -@articles.each do |article|
       %li
-        %a{:href=>url_for(:article, :index, :name => article.name)}
+        %a{:href=>url_for(:article, :index, :name => article[:name])}
           %img{:src => extract_cover_image(article)}
-          %h2=article.title
+          %h2=article[:title]
    
     -@pages.each do |page|
       %li
-        %a{:href => page.href}
-          %img{:src => page.image_href}
-          %h2=page.title
+        %a{:href => page[:href]}
+          %img{:src => page[:image_href]}
+          %h2=page[:title]
           %p
-            %span{:style=>'float:right'}=page.created_at.strftime "%Y-%m-%d"
+            -created_at = page[:created_at]
+            %span{:style=>'float:right'}
+              =created_at.respond_to?(:strftime)? created_at.strftime("%Y-%m-%d") : created_at
 
     -if @articles.length == 0 && @pages.length == 0 then
       %h1{:style => 'text-align:center'} 敬请期待

@@ -97,11 +97,29 @@
       $('.iphone').scrollToFixed({ marginTop: -100 });
       $('.froala-editor:first, label[for="article_body"]').scrollToFixed({ marginTop: parseInt($actions.css('height')) });
 
+      function preview(url) {
+        var params = $('form.article').serializeArray().filter(function(v) {
+          return v.name != '_method';
+        });
+
+        var iphone = $('iframe.iphone-display')[0];
+        if (iphone) {
+          var w = iphone.contentWindow;
+          w.$.mobile.changePage( url, {
+            type: "post",
+            data: $.param(params),
+            transition: 'fade',
+            changeHash: false
+          });
+        }
+        return false;
+      }
+      $('#preview').on('click', function() {
+        return preview('/article/__preview');
+      });
+
       $('#preview-menu').on('click', function() {
-        var base = '/article/__previewmenu',
-            options = $('form.article').serialize();
-        var url = [base, options].join('?');
-        $('iframe.iphone-display').attr('src', url);
+        return preview('/menu/__previewarticle');
       });
       updateImageEditor();
     });
@@ -143,8 +161,12 @@
       %fieldset.form-group
         .form-actions.col-sm-11.col-sm-offset-1
           .btn-group
-            =f.submit '保存&预览', :class => 'btn btn-primary'
-            =button_tag '发布', :class => 'btn btn-primary', 'data-target' => '#select-menu', 'data-toggle'=> "modal"
+            .btn.btn-primary#preview
+              =tag_icon(:search, "预览")
+            %button.btn.btn-primary#save{:type => :submit}
+              =tag_icon(:save, "保存")
+            %button.btn.btn-primary{"data-target" => "#select-menu", "data-toggle" => "modal"}
+              =tag_icon(:ok, "发布")
             =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
             =link_to pat(:cancel), url(:articles, :index), :class => 'btn btn-default'
 
@@ -155,6 +177,7 @@
           .col-sm-10.controls{:style => 'line-height:30px;'}
             -f.object.menus.each do |m|
               =link_to m.title, url(:menus, :edit, :id => m.id), :class => 'label label-default'
+              %input{:type => 'hidden', :name => "article[menus][]", :value => m.id }
 
       - error = @article.errors.include?(:title)
       %fieldset.form-group{:class => error ? 'has-error' : ''}
@@ -218,3 +241,5 @@
         .col-sm-10.controls
           =f.text_area :body, :rows => 10, :class => 'form-control input-large input-with-feedback'
           %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''
+
+  =f.hidden_field :created_at

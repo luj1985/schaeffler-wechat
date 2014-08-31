@@ -1,8 +1,9 @@
 %div{'data-role' => 'content'}
   .header
-    %h1.title=@article.title
-    .article-timestamp=@article.created_at.strftime "%Y-%m-%d"
-  != @article.body
+    %h1.title=@article[:title]
+    - created_at = @article[:created_at]
+    .article-timestamp=created_at.respond_to?(:strftime) ? created_at.strftime("%Y-%m-%d"): created_at
+  != @article[:body]
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
   %a{:href => '#', 'data-icon' => 'back', 'data-rel' => 'back'} 返回上级
   %a.ui-btn-right.schaeffler-exit{:href => "#", 'data-icon' => "home"} 退出
