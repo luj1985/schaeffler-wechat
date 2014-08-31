@@ -7,11 +7,13 @@
   =javascript_include_tag 'jquery.Jcrop.min'
   :javascript
     $(function() {
-      var width = 400, height = 400 * 0.618;
-      
-      var $offset = $('input[name="menu[offset]"]'),
+
+      var $width = $('#cover-width'),
+          $height = $('#cover-height'),
+          $offset = $('input[name="menu[offset]"]'),
           $image = $('input[name="menu[image]"]'),
-          $editor = $('#image-editor');
+          $editor = $('#image-editor'),
+          $progress = $('#progress');
 
       function updateOffset(c) {
         $offset.val(JSON.stringify(c));
@@ -23,10 +25,13 @@
         if (!src) return;
 
         var img = $('<img id="cover" class="col-sm-12">').attr('src', src);
+        var width = $width.val(), height = $height.val();
+
         img.on('load', function() {
           $(this).Jcrop({
             onChange: updateOffset,
-            onSelect: updateOffset
+            onSelect: updateOffset,
+            trueSize: [width, height]
           }, function() {
             var offset = $offset.val();
             if (offset) {
@@ -40,13 +45,16 @@
         $editor.append(img);
       }
 
-      $progress = $('#progress');
       $('#upload').fileupload({
         dataType : 'json',
         paramName : 'file',
         type : 'POST',
         done : function(e, data) {
-          $image.val(data.result.link);
+          var result = data.result;
+          $image.val(result.link);
+          $width.val(result.width);
+          $height.val(result.height);
+          $offset.val(null);
           updateImageEditor();
         },
         progressall: function (e, data) {
@@ -119,7 +127,14 @@
             .col-sm-10.controls
               =f.hidden_field :offset
               =f.hidden_field :image
-              .container#image-editor
+              - dim = image_size(@menu)
+              %input#cover-width{:type => 'hidden', :value => dim[0]}
+              %input#cover-height{:type => 'hidden', :value => dim[1]}
+              %ol.text-info
+                %li 上传的图片不要太大，最好限制在2M以下，否则会等待较长时间
+                %li 图片会按选中部分进行裁剪。裁剪后如果宽度大于640px则缩小为640px，高度等比例缩小
+                %li 如果选中部分的图片小于640px则直接显示选中部分，并且显示的时候进行等比例放大
+              #image-editor
 
           %fieldset.form-group
             .col-sm-2.controls

@@ -61,8 +61,6 @@ ActiveRecord::Schema.define(version: 39) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "href"
-    t.integer  "width"
-    t.integer  "height"
   end
 
   create_table "lotteries", force: true do |t|

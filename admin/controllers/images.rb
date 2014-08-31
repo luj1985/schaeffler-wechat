@@ -30,8 +30,8 @@ SchaefflerWechat::Admin.controllers :images do
 
     img = Magick::Image.read(target).first
 
-    Image.create :title => filename, :href => link, :width => img.columns, :height => img.rows
-    { :link => link }.to_json
+    Image.create :title => filename, :href => link
+    { :link => link, :width => img.columns, :height => img.rows }.to_json
   end
 
   post :upload, &upload

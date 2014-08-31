@@ -1,12 +1,13 @@
 - if @menu[:image] && !@menu[:image].empty? then
   %h1.menu-title=@menu[:title]
-  %img{:src => @menu[:image]}
+  -if @menu[:image] then
+    %img{:src => cropped_image(@menu)}
 %div{'data-role' => 'content'}
   %ul.schaeffler-menu{'data-role' => 'listview'}
     -@articles.each do |article|
       %li
         %a{:href=>url_for(:article, :index, :name => article.name)}
-          != extract_cover_image(article)
+          %img{:src => extract_cover_image(article)}
           %h2=article.title
    
     -@pages.each do |page|
