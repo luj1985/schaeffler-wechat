@@ -24,6 +24,7 @@
         if (!src) return;
 
         var img = $('<img id="cover" class="col-sm-12">').attr('src', src);
+        $editor.append(img);
 
         img.on('load', function() {
           var width = parseInt($editor.data("width")), 
@@ -42,7 +43,6 @@
             }
           });
         });
-        $editor.append(img);
       }
 
       $('#upload').fileupload({
