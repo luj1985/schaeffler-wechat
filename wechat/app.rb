@@ -77,7 +77,7 @@ module SchaefflerWechat
         replies = AutoReply.where(:event => 'keyword').order(:weight => :desc)
         content = values[:content] || ""
         reply = replies.find { |reply| content.include? reply.param }
-        execute_reply [reply], values
+        execute_reply [reply].compact, values
       }
       # tencent use 'CLICK' as the event name
       event(:event => /click/i) {
