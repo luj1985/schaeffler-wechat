@@ -29,7 +29,8 @@
         %input.form-control{:type => 'text', :name => 'end', :value => params[:end]}
     .col-sm-7
       .btn-group
-        %input.btn.btn-primary{:type => :submit, :value => '查询'}
+        %button.btn.btn-primary{:type => "submit"}
+          =tag_icon(:search, '查询')
   %p.bg-info
     查询结果中不会包括结束时间当天的数据。<br>
     例如：查询条件为2014/06/06 ~ 2014/06/07，不会检索出2014/06/07的数据，
@@ -38,7 +39,8 @@
 = form_tag url(:lotteries, :export, :format => :xlsx), :method => :get do
   =hidden_field_tag :start, :value => params[:start]
   =hidden_field_tag :end, :value => params[:end]
-  =submit_tag '从查询结果中导出Excel', :class => 'btn btn-primary'
+  %button.btn.btn-primary{:type => "submit"}
+    =tag_icon("download-alt", '从查询结果中导出Excel')
   %p.bg-info
     导出的Excel中，“申请观赛”包括所有的参与用户，不仅是查询结果中的用户。
 

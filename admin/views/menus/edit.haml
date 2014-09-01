@@ -156,7 +156,7 @@
             .col-sm-10.controls
               .btn-group
                 .btn.btn-primary.fileinput-button
-                  %i.glyphicon.glyphicon-plus
+                  %i.glyphicon.glyphicon-upload
                   %span 上传封面图片
                   %input{:type => 'file', :id => 'upload', :class => 'form-control', 'data-url' => '/admin/images/upload', 'data-method' => 'POST'}
                 %span#progress
@@ -178,9 +178,10 @@
                     =tag_icon(:trash)
                   
             .col-sm-offset-2
-              .col-sm-8
+              .col-sm-9
                 =select_tag :article_id, :class => 'form-control articles-selection', :options => dropdown_articles(@menu)
-              %a.col-sm-2.add-article.btn.btn-primary{:href => '#'}添加到菜单
+              %a.col-sm-3.add-article.btn.btn-primary{:href => '#'}
+                =tag_icon(:plus, '添加到菜单')
 
           %fieldset.form-group
             .col-sm-2.controls
@@ -195,6 +196,7 @@
                     =tag_icon(:trash)
 
             .col-sm-offset-2
-              .col-sm-8
+              .col-sm-9
                 =select_tag :page_id, :class => 'form-control pages-selection', :options => dropdown_pages(@menu)
-              %a.col-sm-2.add-page.btn.btn-primary{:href => '#'}添加到菜单
+              %a.col-sm-3.add-page.btn.btn-primary{:href => '#'}
+                =tag_icon(:plus, '添加到菜单')
