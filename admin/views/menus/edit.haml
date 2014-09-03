@@ -32,7 +32,8 @@
           $(this).Jcrop({
             onChange: updateOffset,
             onSelect: updateOffset,
-            trueSize: [width, height]
+            trueSize: [width, height],
+            aspectRatio: 2.4
           }, function() {
             var offset = $offset.val();
             if (offset) {

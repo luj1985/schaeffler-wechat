@@ -30,7 +30,7 @@ SchaefflerWechat::App.helpers do
 
   def extract_cover_image article
     if article[:image] && !article[:image].empty? then
-      cropped_image article
+      cropped_image article, 160
     else
       el = Nokogiri::HTML.fragment(article[:body]).css('img')[0]
       el ? el['src'] : '/images/no_image.jpg'
