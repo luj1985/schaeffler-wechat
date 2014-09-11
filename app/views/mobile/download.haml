@@ -10,14 +10,17 @@
     :javascript
       window.onload = function() {
         var ua = navigator.userAgent.toLowerCase();
-        if(/micromessenger/.test(ua)){
+        if(/micromessenger/.test(ua)) {
+          var hint = document.getElementById("hint");
+          hint.innerText = /iphone|ipod/.test(ua) ? '请点击右上角按钮，并选择“在Safari中打开”' : '请点击右上角按钮，并选择“在浏览器中打开”'
+
           document.getElementById("popweixin").style.display = "block";
         }
       };
   %body
     #popweixin
       .tip.top2bottom.animate-delay-1
-        %p.hint 如果不能下载，请点击右上角按钮，选择“在浏览器中打开”
+        %p#hint 请点击右上角按钮，选择“在浏览器中打开”
 
     %h1.header
       %span.title 舍弗勒产品助手
