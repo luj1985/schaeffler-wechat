@@ -4,6 +4,10 @@ SchaefflerWechat::App.controllers :mobile do
     render :index, :layout => :download
   end
 
+  get :download do
+    render :download, :layout => false
+  end
+
   get :android do
     mobile = Mobile.find_by_os :android
     halt 404 if mobile.nil?
