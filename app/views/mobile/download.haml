@@ -7,7 +7,18 @@
     %title 舍弗勒产品助手
     =stylesheet_link_tag 'download'
     =stylesheet_link_tag 'jquery.mobile.structure.min'
+    :javascript
+      window.onload = function() {
+        var ua = navigator.userAgent.toLowerCase();
+        if(/micromessenger/.test(ua)){
+          document.getElementById("popweixin").style.display = "block";
+        }
+      };
   %body
+    #popweixin
+      .tip.top2bottom.animate-delay-1
+        %p.hint 如果不能下载，请点击右上角按钮，选择“在浏览器中打开”
+
     %h1.header
       %span.title 舍弗勒产品助手
     %h2.ad
