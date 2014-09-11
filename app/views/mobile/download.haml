@@ -8,18 +8,40 @@
     =stylesheet_link_tag 'download'
     =stylesheet_link_tag 'jquery.mobile.structure.min'
     :javascript
-      window.onload = function() {
+      function isWechat() {
         var ua = navigator.userAgent.toLowerCase();
-        if(/micromessenger/.test(ua)) {
-          var hint = document.getElementById("hint");
-          hint.innerText = /iphone|ipod/.test(ua) ? '请点击右上角按钮，并选择“在Safari中打开”' : '请点击右上角按钮，并选择“在浏览器中打开”'
+        return /micromessenger/.test(ua);
+      } 
 
-          document.getElementById("popweixin").style.display = "block";
+      function showWechatTips() {
+        var ua = navigator.userAgent.toLowerCase(),
+            hint = document.getElementById("hint");
+
+        hint.innerText = /iphone|ipod/.test(ua) ? '请点击右上角按钮，并选择“在Safari中打开”' : '请点击右上角按钮，并选择“在浏览器中打开”';
+
+        document.getElementById("popweixin").style.display = "block";
+      }
+
+      window.onload = function() {
+        var links = document.getElementsByTagName('a'), i;
+        for (i = 0; i < links.length; i++) {
+          var link = links[i];
+          link.addEventListener('click', function(e) {
+            if (isWechat()) {
+              showWechatTips();
+              e.preventDefault();
+            }
+          }, false);
         }
+
+        var dialog = document.getElementById("popweixin");
+        dialog.addEventListener('click', function(e) {
+          dialog.style.display = 'none';
+        }, false);
       };
   %body
     #popweixin
-      .tip.top2bottom.animate-delay-1
+      .tip.top2bottom
         %p#hint 请点击右上角按钮，选择“在浏览器中打开”
 
     %h1.header
@@ -32,7 +54,7 @@
     %ul.download-area
       %li
         %i.icon.ios
-        %h4.name 
+        %h4.name
           %span iOS (苹果)
           %a{:href => "http://114.215.177.24/mobile/ios"}
             http://114.215.177.24/mobile/ios
