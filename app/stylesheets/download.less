@@ -1,0 +1,137 @@
+@green : #218e4d;
+@bg-color: #c8c8c8;
+h1, h2, p, span{
+  font-family: "SimHei","STHeiti", monospace;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: url(/images/mobile/download/background.png) no-repeat top center;
+  background-size: 100% auto;
+}
+h1.header {
+  background: -moz-linear-gradient(right, rgba(255,255,255,0), rgba(255,255,255,1));
+  background: -webkit-linear-gradient(right, rgba(255,255,255,0), rgba(255,255,255,1));
+  background: -o-linear-gradient(right, rgba(255,255,255,0), rgba(255,255,255,1));
+  margin: 70px 0 20px 0;
+
+  .title {
+    display: block;
+    color: @green;
+    padding-left: 75px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    background: url(/images/mobile/logo.png) 30px center no-repeat;
+    background-size: 40px 40px;
+  }
+}
+
+h2.ad {
+  height: 100px;
+  background: url(/images/mobile/download/slogans.png) no-repeat top center;
+}
+
+p.description {
+  text-indent: 26px;
+  font-size: 13px;
+  padding: 0 40px;
+  line-height: 18px;
+}
+img.poster {
+  width: 86%;
+  margin: 0 7%;
+}
+.qrcode {
+  margin: 20px 0;
+  img {
+    width: 36%;
+    margin: 0 32%;  
+  }
+  span {
+    text-align: center;
+    display: block;
+  }
+}
+
+ul.download-area {
+  margin: 25px 10px;
+  padding: 15px 0;
+  background: -moz-radial-gradient(top center, circle, #f3f3f3, rgba(255,255,255,0)  50%),
+              -moz-radial-gradient(bottom center, circle, #f3f3f3, rgba(255,255,255,0) 50%);
+  background: -webkit-radial-gradient(top center, circle, #f3f3f3, rgba(255,255,255,0) 50%),
+              -webkit-radial-gradient(bottom center, circle, #f3f3f3, rgba(255,255,255,0) 50%);
+  li {
+    list-style: none;
+    padding-left: 10px;
+    display: block;
+    position: relative;
+
+    i.icon {
+      width: 55px;
+      height: 60px;
+      display: inline-block;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+          -ms-box-sizing: border-box;
+           -o-box-sizing: border-box;
+              box-sizing: border-box;
+      border: 1px #e4e4e4 solid;
+      border-radius: 4px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h4.name {
+      display: inline-block;
+      margin: 0;
+      padding-left: 10px;
+      span, a {
+        display: block;
+        line-height: 20px;
+        color: #3e3431;
+        &:last-child {
+          line-height: 10px;
+        }
+      }
+      a {
+        overflow: hidden;
+        text-overflow:ellipsis;
+        font-size: 13px;
+      }
+    }
+  }
+
+
+  .android {  
+    background: url(/images/mobile/download/android.png) center center no-repeat,
+      -webkit-linear-gradient(-120deg, white 0%, white 50%, #f9f9f9 50%, #f9f9f9 100%) repeat scroll 0% 0% transparent;
+    background: url(/images/mobile/download/android.png) center center no-repeat,
+      -moz-linear-gradient(-120deg, white 0%, white 50%, #f9f9f9 50%, #f9f9f9 100%) repeat scroll 0% 0% transparent;
+    background: url(/images/mobile/download/android.png) center center no-repeat,
+      -o-linear-gradient(-120deg, white 0%, white 50%, #f9f9f9 50%, #f9f9f9 100%) repeat scroll 0% 0% transparent;
+    background: url(/images/mobile/download/android.png) center center no-repeat,
+      linear-gradient(-120deg, white 0%, white 50%, #f9f9f9 50%, #f9f9f9 100%) repeat scroll 0% 0% transparent;
+
+    &:active {
+      background: url(/images/mobile/download/android.png) center center no-repeat;
+    }
+  }
+
+  .ios {
+    background: url(/images/mobile/download/iphone.png) center center no-repeat,
+      -webkit-linear-gradient(-120deg, white 0%, white 50%, #f9f9f9 50%, #f9f9f9 100%) repeat scroll 0% 0% transparent;
+    background: url(/images/mobile/download/iphone.png) center center no-repeat,
+      -moz-linear-gradient(-120deg, white 0%, white 50%, #f9f9f9 50%, #f9f9f9 100%) repeat scroll 0% 0% transparent;
+    background: url(/images/mobile/download/iphone.png) center center no-repeat,
+      -o-linear-gradient(-120deg, white 0%, white 50%, #f9f9f9 50%, #f9f9f9 100%) repeat scroll 0% 0% transparent;
+    background: url(/images/mobile/download/iphone.png) center center no-repeat,
+      linear-gradient(-120deg, white 0%, white 50%, #f9f9f9 50%, #f9f9f9 100%) repeat scroll 0% 0% transparent;
+
+    &:active {
+      background: url(/images/mobile/download/iphone.png) center center no-repeat;
+    } 
+  }
+}

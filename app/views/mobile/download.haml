@@ -5,5 +5,32 @@
     %meta{:name => 'viewport', 
           :content => 'width=device-width, initial-scale=1'}
     %title 舍弗勒产品助手
+    =stylesheet_link_tag 'download'
     =stylesheet_link_tag 'jquery.mobile.structure.min'
   %body
+    %h1.header
+      %span.title 舍弗勒产品助手
+    %h2.ad
+    %p.description
+      舍弗勒产品助手是一款实用的汽车零部件应用查询软件，
+      可以帮您轻松找到舍弗勒汽车售后旗下所有乘用车产品及其车型应用信息。
+    %img.poster{:src => "/images/mobile/download/poster.png"}
+    %ul.download-area
+      %li
+        %i.icon.ios
+        %h4.name 
+          %span iOS (苹果)
+          %a{:href => "http://114.215.177.24/mobile/ios"}
+            http://114.215.177.24/mobile/ios
+          %span &nbsp;
+      %li
+        %i.icon.android
+        %h4.name 
+          %span Android (安卓)
+          %a{:href => "http://114.215.177.24/mobile/android"}
+            http://114.215.177.24/mobile/android
+          %span &nbsp;
+    .qrcode
+      %img{:src => "/images/mobile/download/qrcode.png"}
+      %span 扫描二维码 可免费下载
+
