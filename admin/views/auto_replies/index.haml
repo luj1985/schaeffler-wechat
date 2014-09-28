@@ -64,7 +64,7 @@
           %td.list-column=auto_reply.param
           %td.list-column=rtype_pair(auto_reply.rtype)
           %td.list-column=auto_reply.weight
-          %td.list-column
+          %td.list-column{:title => full_summary(auto_reply)}
             =summary auto_reply
 
           %td.list-column.list-row-action
