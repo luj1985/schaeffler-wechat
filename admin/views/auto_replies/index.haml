@@ -48,6 +48,7 @@
         %th.header= mat(:auto_reply, :rtype)
         %th.header= mat(:auto_reply, :weight)
         %th.header= mat(:auto_reply, :summary)
+        %th.header.list-row-action-header
 
     %tbody
       -@auto_replies.each do |auto_reply|
@@ -65,3 +66,14 @@
           %td.list-column=auto_reply.weight
           %td.list-column
             =summary auto_reply
+
+          %td.list-column.list-row-action
+            .list-row-action-wrapper
+              =link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} auto_reply", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              .popover.list-row-action-popover-delete-one.left
+                .arrow
+                %h3.popover-title=pat(:delete, :model => "auto_reply")
+                .popover-content
+                  = form_tag url(:auto_replies, :destroy, :id => auto_reply.id), :method => :delete do
+                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    .btn.btn-default.btn-small.cancel=pat(:cancel)
