@@ -3,7 +3,7 @@ SchaefflerWechat::Admin.controllers :auto_replies do
     @title = "Auto_replies"
     @auto_replies = AutoReply.all
       .where(params.reject {|k, v| k == "page" })
-      .order(:event => :desc, :weight => :desc)
+      .order(:event => :desc, :weight => :desc, :created_at => :desc)
       .paginate(:page => params[:page])
     render 'auto_replies/index'
   end
