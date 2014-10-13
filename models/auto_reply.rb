@@ -9,6 +9,7 @@ class RTypeValidator < ActiveModel::Validator
 end
 
 class AutoReply < ActiveRecord::Base
+  self.per_page = 9
   validates_with RTypeValidator
   after_initialize :init
 

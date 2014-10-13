@@ -77,3 +77,7 @@
                   = form_tag url(:auto_replies, :destroy, :id => auto_reply.id), :method => :delete do
                     =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
                     .btn.btn-default.btn-small.cancel=pat(:cancel)
+    %tfoot
+      %tr
+        %td{:colspan => 7}
+          =will_paginate(@auto_replies, renderer: BootstrapPagination::Sinatra, :previous_label => '&laquo;', :next_label => '&raquo;')
