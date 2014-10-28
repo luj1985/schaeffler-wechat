@@ -9,7 +9,7 @@
     %p.message 我们会在三个工作日内完成验证，如通过验证，届时将会有工作人员联系您确认奖品兑奖事宜。
     %p.message 请您保持手机通畅。
   -if @lottery.can_apply_join_match?
-    %a.middle{'data-role' => 'button', :href => url_for(:activity, :rules)} 申请观赛
+    %a.middle{'data-role' => 'button', :class => 'ui-disabled', :disabled => true, :href => '#'} 申请观赛已结束
     %p
     %a.middle{'data-role' => 'button', :href => url_for(:activity, :index)} 继续兑奖
 %div{'data-role' => 'footer', 'data-position' => 'fixed'}
