@@ -15,9 +15,6 @@
         %a{:href => page[:href]}
           %img{:src => page[:image_href]}
           %h2=page[:title]
-          %p
-            %span{:style=>'float:right'}
-              =format_date(page[:created_at])
 
     -if @articles.length == 0 && @pages.length == 0 then
       %h1{:style => 'text-align:center'} 敬请期待
