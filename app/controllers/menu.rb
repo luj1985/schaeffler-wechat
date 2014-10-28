@@ -7,7 +7,7 @@ SchaefflerWechat::App.controllers :menu do
     articles = Article.find selected_articles unless selected_articles.nil?
     pages = Page.find selected_pages unless selected_pages.nil?
 
-    @articles = articles || []
+    @articles = (articles || []).sort{|a, b| b.created_at <=> a.created_at }
     @pages = pages || []
     render :index
   end
@@ -29,7 +29,7 @@ SchaefflerWechat::App.controllers :menu do
 
   get :index, :with => :name do
     @menu = Menu.find_by_name params[:name]
-    @articles = @menu.articles
+    @articles = @menu.articles.sort{|a, b| b.created_at <=> a.created_at }
     @pages = @menu.pages
     render :index
   end
