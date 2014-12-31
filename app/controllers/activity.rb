@@ -18,10 +18,9 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
 
 
   get :index do
-    render :index
+    # render :index
+    render :finished
   end
-
-
 
   post :confirm do
     openid = session[:openid]
