@@ -16,10 +16,12 @@ SchaefflerWechat::App.controllers :activity, :conditions => {:protect => true} d
     render :intro1
   end
 
+  get :finished, :protect => false do
+    render :finished
+  end
 
   get :index do
-    # render :index
-    render :finished
+    render :index
   end
 
   post :confirm do
