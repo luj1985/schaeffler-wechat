@@ -1,16 +1,63 @@
-%h1.title
-  舍弗勒官方应用软件
+!!! 5
+%html
+  %head
+    %meta{:charset => 'utf-8'}
+    %meta{:name => 'viewport', 
+          :content => 'width=device-width, initial-scale=1'}
+    %title 舍弗勒产品助手
+    =stylesheet_link_tag 'products'
+    =stylesheet_link_tag 'jquery.mobile.structure.min'
+    :javascript
+      function isWechat() {
+        var ua = navigator.userAgent.toLowerCase();
+        return /micromessenger/.test(ua);
+      } 
 
-.wrapper{'data-role' => 'content'}
-  %h1.header 
-    %sub 舍弗勒产品助手
-  %h2.header 
-    请选择您的手机系统
-    %sub 进入相应页面下载
-  .ui-grid-a
-    .ui-block-a
-      %a.download.ios{:href => url_for(:mobile, :ios)}
-        %h4.name iOS (苹果)
-    .ui-block-b
-      %a.download.android{:href => url_for(:mobile, :android)}
-        %h4.name Android (安卓)
+      function showWechatTips() {
+        var ua = navigator.userAgent.toLowerCase(),
+            hint = document.getElementById("hint");
+
+        hint.innerText = /iphone|ipod/.test(ua) ? '请点击右上角按钮，并选择“在Safari中打开”' : '请点击右上角按钮，并选择“在浏览器中打开”';
+
+        document.getElementById("popweixin").style.display = "block";
+      }
+
+      window.onload = function() {
+        var links = document.getElementsByTagName('a'), i;
+        for (i = 0; i < links.length; i++) {
+          var link = links[i];
+          link.addEventListener('click', function(e) {
+            if (isWechat()) {
+              showWechatTips();
+              e.preventDefault();
+            }
+          }, false);
+        }
+
+        var dialog = document.getElementById("popweixin");
+        dialog.addEventListener('click', function(e) {
+          dialog.style.display = 'none';
+        }, false);
+      };
+  %body
+    #popweixin
+      .tip.top2bottom
+        %p#hint 请点击右上角按钮，选择“在浏览器中打开”
+
+    %h1.title
+      舍弗勒官方应用软件
+
+    .wrapper{'data-role' => 'content'}
+      %h1.header 
+        %sub 舍弗勒产品助手
+      %h2.header 
+        请选择您的手机系统
+        %sub 进入相应页面下载
+      .ui-grid-a
+        .ui-block-a
+          %a.download.ios{:href => url_for(:mobile, :ios)}
+            %h4.name iOS (苹果)
+        .ui-block-b
+          %a.download.android{:href => url_for(:mobile, :android)}
+            %h4.name Android (安卓)
+
